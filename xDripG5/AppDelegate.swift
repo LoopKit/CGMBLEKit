@@ -18,9 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
     var transmitter: Transmitter?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
 
-        transmitter = Transmitter(ID: "500000", startTimeInterval: nil)
+        var transmitterID: String?
+
+        if let
+            settingsPath = NSBundle.mainBundle().pathForResource("RemoteSettings", ofType: "plist"),
+            settings = NSDictionary(contentsOfFile: settingsPath)
+        {
+            transmitterID = settings["TransmitterID"] as? String
+        }
+
+        transmitter = Transmitter(ID: transmitterID ?? "500000", startTimeInterval: nil)
         transmitter?.delegate = self
 
         return true

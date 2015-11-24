@@ -44,7 +44,7 @@ class Transmitter: BluetoothManagerDelegate {
 
     func bluetoothManager(manager: BluetoothManager, isReadyWithError error: NSError?) {
         if let error = error {
-            NSLog("\(__FUNCTION__) called with \(error)")
+            self.delegate?.transmitter(self, didError: error)
             return
         }
 
