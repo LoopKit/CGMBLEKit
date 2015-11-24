@@ -1,0 +1,393 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		435B80DB1BD1D51F00201EBC /* BluetoothServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435B80DA1BD1D51F00201EBC /* BluetoothServices.swift */; };
+		4366568E1BD6C2A500FA7779 /* DiagnosticLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4366568D1BD6C2A500FA7779 /* DiagnosticLogger.swift */; };
+		436656901BD6C3B600FA7779 /* RemoteSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4366568F1BD6C3B600FA7779 /* RemoteSettings.plist */; };
+		436656921BD6C57100FA7779 /* NSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436656911BD6C57100FA7779 /* NSData.swift */; };
+		43A7B3C31C03DFC00036D0A2 /* KeepAliveTxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A7B3C21C03DFC00036D0A2 /* KeepAliveTxMessage.swift */; };
+		43A7B3C51C03E0BD0036D0A2 /* BondRequestTxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A7B3C41C03E0BD0036D0A2 /* BondRequestTxMessage.swift */; };
+		43A7B3C71C03EF300036D0A2 /* GlucoseRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A7B3C61C03EF300036D0A2 /* GlucoseRxMessage.swift */; };
+		43A7B3C91C03F3CC0036D0A2 /* TransmitterTimeRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A7B3C81C03F3CC0036D0A2 /* TransmitterTimeRxMessage.swift */; };
+		43C8833E1C0295C9004350AF /* TransmitterMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C8833D1C0295C9004350AF /* TransmitterMessage.swift */; };
+		43C883441C02994E004350AF /* AuthRequestTxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C883431C02994E004350AF /* AuthRequestTxMessage.swift */; };
+		43C883461C029D9E004350AF /* AuthChallengeRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C883451C029D9E004350AF /* AuthChallengeRxMessage.swift */; };
+		43C883481C02A40E004350AF /* AuthChallengeTxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C883471C02A40E004350AF /* AuthChallengeTxMessage.swift */; };
+		43C8834A1C02A4C7004350AF /* AuthStatusRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C883491C02A4C7004350AF /* AuthStatusRxMessage.swift */; };
+		43C8834D1C02A5A2004350AF /* Transmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C8834C1C02A5A2004350AF /* Transmitter.swift */; };
+		43C8834F1C0307B2004350AF /* TransmitterTimeTxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C8834E1C0307B2004350AF /* TransmitterTimeTxMessage.swift */; };
+		43C883511C030CF2004350AF /* GlucoseTxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C883501C030CF2004350AF /* GlucoseTxMessage.swift */; };
+		43C883531C030D28004350AF /* DisconnectTxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C883521C030D28004350AF /* DisconnectTxMessage.swift */; };
+		43EA3A5A1BBE2A79009FACB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EA3A591BBE2A79009FACB3 /* AppDelegate.swift */; };
+		43EA3A5C1BBE2A79009FACB3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43EA3A5B1BBE2A79009FACB3 /* ViewController.swift */; };
+		43EA3A5F1BBE2A79009FACB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43EA3A5D1BBE2A79009FACB3 /* Main.storyboard */; };
+		43EA3A611BBE2A79009FACB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43EA3A601BBE2A79009FACB3 /* Assets.xcassets */; };
+		43EA3A641BBE2A79009FACB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43EA3A621BBE2A79009FACB3 /* LaunchScreen.storyboard */; };
+		43FF35961BBE46F900A67D1C /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FF35951BBE46F900A67D1C /* BluetoothManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		435B80DA1BD1D51F00201EBC /* BluetoothServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothServices.swift; sourceTree = "<group>"; };
+		4366568D1BD6C2A500FA7779 /* DiagnosticLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagnosticLogger.swift; sourceTree = "<group>"; };
+		4366568F1BD6C3B600FA7779 /* RemoteSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RemoteSettings.plist; sourceTree = "<group>"; };
+		436656911BD6C57100FA7779 /* NSData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSData.swift; sourceTree = "<group>"; };
+		43A7B3C21C03DFC00036D0A2 /* KeepAliveTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeepAliveTxMessage.swift; sourceTree = "<group>"; };
+		43A7B3C41C03E0BD0036D0A2 /* BondRequestTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BondRequestTxMessage.swift; sourceTree = "<group>"; };
+		43A7B3C61C03EF300036D0A2 /* GlucoseRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlucoseRxMessage.swift; sourceTree = "<group>"; };
+		43A7B3C81C03F3CC0036D0A2 /* TransmitterTimeRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterTimeRxMessage.swift; sourceTree = "<group>"; };
+		43C8833D1C0295C9004350AF /* TransmitterMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterMessage.swift; sourceTree = "<group>"; };
+		43C883401C029846004350AF /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		43C883431C02994E004350AF /* AuthRequestTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRequestTxMessage.swift; sourceTree = "<group>"; };
+		43C883451C029D9E004350AF /* AuthChallengeRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthChallengeRxMessage.swift; sourceTree = "<group>"; };
+		43C883471C02A40E004350AF /* AuthChallengeTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthChallengeTxMessage.swift; sourceTree = "<group>"; };
+		43C883491C02A4C7004350AF /* AuthStatusRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthStatusRxMessage.swift; sourceTree = "<group>"; };
+		43C8834C1C02A5A2004350AF /* Transmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transmitter.swift; sourceTree = "<group>"; };
+		43C8834E1C0307B2004350AF /* TransmitterTimeTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterTimeTxMessage.swift; sourceTree = "<group>"; };
+		43C883501C030CF2004350AF /* GlucoseTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlucoseTxMessage.swift; sourceTree = "<group>"; };
+		43C883521C030D28004350AF /* DisconnectTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisconnectTxMessage.swift; sourceTree = "<group>"; };
+		43EA3A561BBE2A79009FACB3 /* xDripG5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xDripG5.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		43EA3A591BBE2A79009FACB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		43EA3A5B1BBE2A79009FACB3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		43EA3A5E1BBE2A79009FACB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		43EA3A601BBE2A79009FACB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		43EA3A631BBE2A79009FACB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		43EA3A651BBE2A79009FACB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		43FF35951BBE46F900A67D1C /* BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		43EA3A531BBE2A79009FACB3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		43C8834B1C02A500004350AF /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				43C883451C029D9E004350AF /* AuthChallengeRxMessage.swift */,
+				43C883471C02A40E004350AF /* AuthChallengeTxMessage.swift */,
+				43C883431C02994E004350AF /* AuthRequestTxMessage.swift */,
+				43C883491C02A4C7004350AF /* AuthStatusRxMessage.swift */,
+				43A7B3C41C03E0BD0036D0A2 /* BondRequestTxMessage.swift */,
+				43C883521C030D28004350AF /* DisconnectTxMessage.swift */,
+				43A7B3C61C03EF300036D0A2 /* GlucoseRxMessage.swift */,
+				43C883501C030CF2004350AF /* GlucoseTxMessage.swift */,
+				43A7B3C21C03DFC00036D0A2 /* KeepAliveTxMessage.swift */,
+				43C8833D1C0295C9004350AF /* TransmitterMessage.swift */,
+				43C8834E1C0307B2004350AF /* TransmitterTimeTxMessage.swift */,
+				43A7B3C81C03F3CC0036D0A2 /* TransmitterTimeRxMessage.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		43EA3A4D1BBE2A79009FACB3 = {
+			isa = PBXGroup;
+			children = (
+				43EA3A581BBE2A79009FACB3 /* xDripG5 */,
+				43EA3A571BBE2A79009FACB3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		43EA3A571BBE2A79009FACB3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				43EA3A561BBE2A79009FACB3 /* xDripG5.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		43EA3A581BBE2A79009FACB3 /* xDripG5 */ = {
+			isa = PBXGroup;
+			children = (
+				43C883401C029846004350AF /* Bridging-Header.h */,
+				43EA3A651BBE2A79009FACB3 /* Info.plist */,
+				4366568F1BD6C3B600FA7779 /* RemoteSettings.plist */,
+				43EA3A591BBE2A79009FACB3 /* AppDelegate.swift */,
+				43FF35951BBE46F900A67D1C /* BluetoothManager.swift */,
+				435B80DA1BD1D51F00201EBC /* BluetoothServices.swift */,
+				4366568D1BD6C2A500FA7779 /* DiagnosticLogger.swift */,
+				436656911BD6C57100FA7779 /* NSData.swift */,
+				43C8834C1C02A5A2004350AF /* Transmitter.swift */,
+				43EA3A5B1BBE2A79009FACB3 /* ViewController.swift */,
+				43EA3A601BBE2A79009FACB3 /* Assets.xcassets */,
+				43EA3A621BBE2A79009FACB3 /* LaunchScreen.storyboard */,
+				43EA3A5D1BBE2A79009FACB3 /* Main.storyboard */,
+				43C8834B1C02A500004350AF /* Messages */,
+			);
+			path = xDripG5;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		43EA3A551BBE2A79009FACB3 /* xDripG5 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 43EA3A681BBE2A79009FACB3 /* Build configuration list for PBXNativeTarget "xDripG5" */;
+			buildPhases = (
+				43EA3A521BBE2A79009FACB3 /* Sources */,
+				43EA3A531BBE2A79009FACB3 /* Frameworks */,
+				43EA3A541BBE2A79009FACB3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = xDripG5;
+			productName = xDrip5;
+			productReference = 43EA3A561BBE2A79009FACB3 /* xDripG5.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		43EA3A4E1BBE2A79009FACB3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Nathan Racklyeft";
+				TargetAttributes = {
+					43EA3A551BBE2A79009FACB3 = {
+						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = 26AMK8X5DW;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 43EA3A511BBE2A79009FACB3 /* Build configuration list for PBXProject "xDripG5" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 43EA3A4D1BBE2A79009FACB3;
+			productRefGroup = 43EA3A571BBE2A79009FACB3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				43EA3A551BBE2A79009FACB3 /* xDripG5 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		43EA3A541BBE2A79009FACB3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43EA3A641BBE2A79009FACB3 /* LaunchScreen.storyboard in Resources */,
+				43EA3A611BBE2A79009FACB3 /* Assets.xcassets in Resources */,
+				43EA3A5F1BBE2A79009FACB3 /* Main.storyboard in Resources */,
+				436656901BD6C3B600FA7779 /* RemoteSettings.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		43EA3A521BBE2A79009FACB3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43EA3A5C1BBE2A79009FACB3 /* ViewController.swift in Sources */,
+				435B80DB1BD1D51F00201EBC /* BluetoothServices.swift in Sources */,
+				43FF35961BBE46F900A67D1C /* BluetoothManager.swift in Sources */,
+				43C883441C02994E004350AF /* AuthRequestTxMessage.swift in Sources */,
+				43C8833E1C0295C9004350AF /* TransmitterMessage.swift in Sources */,
+				4366568E1BD6C2A500FA7779 /* DiagnosticLogger.swift in Sources */,
+				43C883461C029D9E004350AF /* AuthChallengeRxMessage.swift in Sources */,
+				43C8834F1C0307B2004350AF /* TransmitterTimeTxMessage.swift in Sources */,
+				43C883481C02A40E004350AF /* AuthChallengeTxMessage.swift in Sources */,
+				436656921BD6C57100FA7779 /* NSData.swift in Sources */,
+				43A7B3C31C03DFC00036D0A2 /* KeepAliveTxMessage.swift in Sources */,
+				43C883531C030D28004350AF /* DisconnectTxMessage.swift in Sources */,
+				43A7B3C71C03EF300036D0A2 /* GlucoseRxMessage.swift in Sources */,
+				43C8834D1C02A5A2004350AF /* Transmitter.swift in Sources */,
+				43C8834A1C02A4C7004350AF /* AuthStatusRxMessage.swift in Sources */,
+				43A7B3C51C03E0BD0036D0A2 /* BondRequestTxMessage.swift in Sources */,
+				43A7B3C91C03F3CC0036D0A2 /* TransmitterTimeRxMessage.swift in Sources */,
+				43C883511C030CF2004350AF /* GlucoseTxMessage.swift in Sources */,
+				43EA3A5A1BBE2A79009FACB3 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		43EA3A5D1BBE2A79009FACB3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				43EA3A5E1BBE2A79009FACB3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		43EA3A621BBE2A79009FACB3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				43EA3A631BBE2A79009FACB3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		43EA3A661BBE2A79009FACB3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		43EA3A671BBE2A79009FACB3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		43EA3A691BBE2A79009FACB3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/xDripG5/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.loudnate.xDripG5;
+				PRODUCT_NAME = xDripG5;
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "xDripG5/Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		43EA3A6A1BBE2A79009FACB3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/xDripG5/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.loudnate.xDripG5;
+				PRODUCT_NAME = xDripG5;
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "xDripG5/Bridging-Header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		43EA3A511BBE2A79009FACB3 /* Build configuration list for PBXProject "xDripG5" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43EA3A661BBE2A79009FACB3 /* Debug */,
+				43EA3A671BBE2A79009FACB3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		43EA3A681BBE2A79009FACB3 /* Build configuration list for PBXNativeTarget "xDripG5" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				43EA3A691BBE2A79009FACB3 /* Debug */,
+				43EA3A6A1BBE2A79009FACB3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 43EA3A4E1BBE2A79009FACB3 /* Project object */;
+}
