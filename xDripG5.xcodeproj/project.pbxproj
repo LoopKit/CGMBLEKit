@@ -39,20 +39,20 @@
 		4366568D1BD6C2A500FA7779 /* DiagnosticLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagnosticLogger.swift; sourceTree = "<group>"; };
 		4366568F1BD6C3B600FA7779 /* RemoteSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RemoteSettings.plist; sourceTree = "<group>"; };
 		436656911BD6C57100FA7779 /* NSData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSData.swift; sourceTree = "<group>"; };
-		43A7B3C21C03DFC00036D0A2 /* KeepAliveTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeepAliveTxMessage.swift; path = xDripG5/xDripG5/Messages/KeepAliveTxMessage.swift; sourceTree = "<group>"; };
-		43A7B3C41C03E0BD0036D0A2 /* BondRequestTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BondRequestTxMessage.swift; path = xDripG5/xDripG5/Messages/BondRequestTxMessage.swift; sourceTree = "<group>"; };
-		43A7B3C61C03EF300036D0A2 /* GlucoseRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlucoseRxMessage.swift; path = xDripG5/xDripG5/Messages/GlucoseRxMessage.swift; sourceTree = "<group>"; };
-		43A7B3C81C03F3CC0036D0A2 /* TransmitterTimeRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransmitterTimeRxMessage.swift; path = xDripG5/xDripG5/Messages/TransmitterTimeRxMessage.swift; sourceTree = "<group>"; };
-		43C8833D1C0295C9004350AF /* TransmitterMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransmitterMessage.swift; path = xDripG5/xDripG5/Messages/TransmitterMessage.swift; sourceTree = "<group>"; };
+		43A7B3C21C03DFC00036D0A2 /* KeepAliveTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeepAliveTxMessage.swift; sourceTree = "<group>"; };
+		43A7B3C41C03E0BD0036D0A2 /* BondRequestTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BondRequestTxMessage.swift; sourceTree = "<group>"; };
+		43A7B3C61C03EF300036D0A2 /* GlucoseRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlucoseRxMessage.swift; sourceTree = "<group>"; };
+		43A7B3C81C03F3CC0036D0A2 /* TransmitterTimeRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterTimeRxMessage.swift; sourceTree = "<group>"; };
+		43C8833D1C0295C9004350AF /* TransmitterMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterMessage.swift; sourceTree = "<group>"; };
 		43C883401C029846004350AF /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
-		43C883431C02994E004350AF /* AuthRequestTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthRequestTxMessage.swift; path = xDripG5/xDripG5/Messages/AuthRequestTxMessage.swift; sourceTree = "<group>"; };
-		43C883451C029D9E004350AF /* AuthChallengeRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthChallengeRxMessage.swift; path = xDripG5/xDripG5/Messages/AuthChallengeRxMessage.swift; sourceTree = "<group>"; };
-		43C883471C02A40E004350AF /* AuthChallengeTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthChallengeTxMessage.swift; path = xDripG5/xDripG5/Messages/AuthChallengeTxMessage.swift; sourceTree = "<group>"; };
-		43C883491C02A4C7004350AF /* AuthStatusRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthStatusRxMessage.swift; path = xDripG5/xDripG5/Messages/AuthStatusRxMessage.swift; sourceTree = "<group>"; };
+		43C883431C02994E004350AF /* AuthRequestTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRequestTxMessage.swift; sourceTree = "<group>"; };
+		43C883451C029D9E004350AF /* AuthChallengeRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthChallengeRxMessage.swift; sourceTree = "<group>"; };
+		43C883471C02A40E004350AF /* AuthChallengeTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthChallengeTxMessage.swift; sourceTree = "<group>"; };
+		43C883491C02A4C7004350AF /* AuthStatusRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthStatusRxMessage.swift; sourceTree = "<group>"; };
 		43C8834C1C02A5A2004350AF /* Transmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transmitter.swift; sourceTree = "<group>"; };
-		43C8834E1C0307B2004350AF /* TransmitterTimeTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TransmitterTimeTxMessage.swift; path = xDripG5/xDripG5/Messages/TransmitterTimeTxMessage.swift; sourceTree = "<group>"; };
-		43C883501C030CF2004350AF /* GlucoseTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlucoseTxMessage.swift; path = xDripG5/xDripG5/Messages/GlucoseTxMessage.swift; sourceTree = "<group>"; };
-		43C883521C030D28004350AF /* DisconnectTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DisconnectTxMessage.swift; path = xDripG5/xDripG5/Messages/DisconnectTxMessage.swift; sourceTree = "<group>"; };
+		43C8834E1C0307B2004350AF /* TransmitterTimeTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterTimeTxMessage.swift; sourceTree = "<group>"; };
+		43C883501C030CF2004350AF /* GlucoseTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlucoseTxMessage.swift; sourceTree = "<group>"; };
+		43C883521C030D28004350AF /* DisconnectTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisconnectTxMessage.swift; sourceTree = "<group>"; };
 		43EA3A561BBE2A79009FACB3 /* xDripG5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xDripG5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43EA3A591BBE2A79009FACB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		43EA3A5B1BBE2A79009FACB3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,8 +102,7 @@
 				43C8834E1C0307B2004350AF /* TransmitterTimeTxMessage.swift */,
 				43A7B3C81C03F3CC0036D0A2 /* TransmitterTimeRxMessage.swift */,
 			);
-			name = Messages;
-			path = ../Messages;
+			path = Messages;
 			sourceTree = "<group>";
 		};
 		43EA3A4D1BBE2A79009FACB3 = {
