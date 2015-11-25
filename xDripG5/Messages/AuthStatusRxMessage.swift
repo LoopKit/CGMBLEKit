@@ -10,13 +10,13 @@ import Foundation
 
 
 struct AuthStatusRxMessage: TransmitterRxMessage {
-    let opcode: UInt8 = 0x5
+    static let opcode: UInt8 = 0x5
     let authenticated: UInt8
     let bonded: UInt8
 
     init?(data: NSData) {
         if data.length >= 3 {
-            if data[0] == opcode {
+            if data[0] == self.dynamicType.opcode {
                 self.authenticated = data[1]
                 self.bonded = data[2]
             } else {

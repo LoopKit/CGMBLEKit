@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		433BFB7C1C059A60009CA7A9 /* NSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433BFB7B1C059A60009CA7A9 /* NSUserDefaults.swift */; };
 		435B80DB1BD1D51F00201EBC /* BluetoothServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435B80DA1BD1D51F00201EBC /* BluetoothServices.swift */; };
 		4366568E1BD6C2A500FA7779 /* DiagnosticLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4366568D1BD6C2A500FA7779 /* DiagnosticLogger.swift */; };
 		436656901BD6C3B600FA7779 /* RemoteSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4366568F1BD6C3B600FA7779 /* RemoteSettings.plist */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		433BFB7B1C059A60009CA7A9 /* NSUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaults.swift; sourceTree = "<group>"; };
 		435B80DA1BD1D51F00201EBC /* BluetoothServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothServices.swift; sourceTree = "<group>"; };
 		4366568D1BD6C2A500FA7779 /* DiagnosticLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagnosticLogger.swift; sourceTree = "<group>"; };
 		4366568F1BD6C3B600FA7779 /* RemoteSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RemoteSettings.plist; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				435B80DA1BD1D51F00201EBC /* BluetoothServices.swift */,
 				4366568D1BD6C2A500FA7779 /* DiagnosticLogger.swift */,
 				436656911BD6C57100FA7779 /* NSData.swift */,
+				433BFB7B1C059A60009CA7A9 /* NSUserDefaults.swift */,
 				43C8834C1C02A5A2004350AF /* Transmitter.swift */,
 				43EA3A5B1BBE2A79009FACB3 /* ViewController.swift */,
 				43EA3A601BBE2A79009FACB3 /* Assets.xcassets */,
@@ -221,6 +224,7 @@
 				43A7B3C71C03EF300036D0A2 /* GlucoseRxMessage.swift in Sources */,
 				43C8834D1C02A5A2004350AF /* Transmitter.swift in Sources */,
 				43C8834A1C02A4C7004350AF /* AuthStatusRxMessage.swift in Sources */,
+				433BFB7C1C059A60009CA7A9 /* NSUserDefaults.swift in Sources */,
 				43A7B3C51C03E0BD0036D0A2 /* BondRequestTxMessage.swift in Sources */,
 				43A7B3C91C03F3CC0036D0A2 /* TransmitterTimeRxMessage.swift in Sources */,
 				43C883511C030CF2004350AF /* GlucoseTxMessage.swift in Sources */,

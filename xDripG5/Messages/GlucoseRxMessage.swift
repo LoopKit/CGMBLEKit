@@ -10,7 +10,7 @@ import Foundation
 
 
 struct GlucoseRxMessage: TransmitterRxMessage {
-    let opcode: UInt8 = 0x31
+    static let opcode: UInt8 = 0x31
     let status: UInt8
     let sequence: UInt32
     let timestamp: UInt32
@@ -20,7 +20,7 @@ struct GlucoseRxMessage: TransmitterRxMessage {
 
     init?(data: NSData) {
         if data.length >= 14 {
-            if data[0] == opcode {
+            if data[0] == self.dynamicType.opcode {
                 status = data[1]
                 sequence = data[2...5]
                 timestamp = data[6...9]

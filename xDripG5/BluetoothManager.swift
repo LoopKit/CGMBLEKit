@@ -23,16 +23,27 @@ enum BluetoothManagerError: ErrorType {
 }
 
 
-private struct OperationCondition: OptionSetType {
-    let rawValue: Int
+private enum BluetoothOperationCondition {
+    case NotificationStateUpdate(characteristic: CBCharacteristic, enabled: Bool)
+    case ValueUpdate(characteristic: CBCharacteristic, firstByte: UInt8?)
+    case WriteUpdate(characteristic: CBCharacteristic)
+}
 
-    init(rawValue: Int) {
-        self.rawValue = rawValue
+extension BluetoothOperationCondition: Hashable {
+    var hashValue: Int {
+        switch self {
+        case .NotificationStateUpdate(characteristic: let characteristic, enabled: let enabled):
+            return 1 ^ characteristic.hashValue ^ enabled.hashValue
+        case .ValueUpdate(characteristic: let characteristic, firstByte: let firstByte):
+            return 2 ^ characteristic.hashValue ^ (firstByte?.hashValue ?? -1)
+        case .WriteUpdate(characteristic: let characteristic):
+            return 3 ^ characteristic.hashValue
+        }
     }
+}
 
-    static let NotificationStateUpdate = OperationCondition(rawValue: 0b1)
-    static let ValueUpdate = OperationCondition(rawValue: 0b10)
-    static let WriteUpdate = OperationCondition(rawValue: 0b100)
+private func ==(lhs: BluetoothOperationCondition, rhs: BluetoothOperationCondition) -> Bool {
+    return lhs.hashValue == rhs.hashValue
 }
 
 
@@ -57,6 +68,10 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     // MARK: - Actions
 
     func scanForPeripheral() {
+        guard manager.state == .PoweredOn else {
+            return
+        }
+
         manager.scanForPeripheralsWithServices(
             [
                 CBUUID(string: TransmitterServiceUUID.Advertisement.rawValue)
@@ -97,11 +112,41 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     private let operationLock = NSCondition()
 
     /// The required conditions for the operation to complete
-    private var operationConditions: OperationCondition = []
+    private var operationConditions: Set<BluetoothOperationCondition> = []
 
     /// Any error surfaced during the active operation
     private var operationError: NSError?
 
+    func readValueForCharacteristicAndWait(UUID: CGMServiceCharacteristicUUID, timeout: NSTimeInterval = 2, expectingFirstByte firstByte: UInt8? = nil) throws -> NSData {
+        guard manager.state == .PoweredOn && operationConditions.isEmpty, let peripheral = peripheral else {
+            throw BluetoothManagerError.NotReady
+        }
+
+        guard let characteristic = getCharacteristicWithUUID(UUID) else {
+            throw BluetoothManagerError.UnknownCharacteristic
+        }
+
+        operationLock.lock()
+        operationConditions.insert(.ValueUpdate(characteristic: characteristic, firstByte: firstByte))
+
+        peripheral.readValueForCharacteristic(characteristic)
+
+        let signaled = operationLock.waitUntilDate(NSDate(timeIntervalSinceNow: timeout))
+
+        defer {
+            operationConditions = []
+            operationError = nil
+            operationLock.unlock()
+        }
+
+        if !signaled {
+            throw BluetoothManagerError.Timeout
+        } else if let operationError = operationError {
+            throw BluetoothManagerError.CBPeripheralError(operationError)
+        }
+
+        return characteristic.value ?? NSData()
+    }
 
     func setNotifyEnabledAndWait(enabled: Bool, forCharacteristicUUID UUID: CGMServiceCharacteristicUUID, timeout: NSTimeInterval = 2) throws {
         guard manager.state == .PoweredOn && operationConditions.isEmpty, let peripheral = peripheral else {
@@ -113,7 +158,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         }
 
         operationLock.lock()
-        operationConditions.insert(.NotificationStateUpdate)
+        operationConditions.insert(.NotificationStateUpdate(characteristic: characteristic, enabled: enabled))
 
         peripheral.setNotifyValue(enabled, forCharacteristic: characteristic)
 
@@ -132,21 +177,49 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         }
     }
 
-    func writeValueAndWait(value: NSData, forCharacteristicUUID UUID: CGMServiceCharacteristicUUID, timeout: NSTimeInterval = 2) throws -> NSData {
-        guard manager.state == .PoweredOn && operationConditions.isEmpty, let peripheral = peripheral else {
+    func waitForCharacteristicValueUpdate(UUID: CGMServiceCharacteristicUUID, timeout: NSTimeInterval = 5, expectingFirstByte firstByte: UInt8? = nil) throws -> NSData {
+        guard manager.state == .PoweredOn && operationConditions.isEmpty && peripheral != nil else {
             throw BluetoothManagerError.NotReady
         }
 
-        guard let characteristic = getCharacteristicWithUUID(UUID) where characteristic.properties.contains(.Write) else {
+        guard let characteristic = getCharacteristicWithUUID(UUID) where characteristic.isNotifying else {
             throw BluetoothManagerError.UnknownCharacteristic
         }
 
         operationLock.lock()
+        operationConditions.insert(.ValueUpdate(characteristic: characteristic, firstByte: firstByte))
 
-        operationConditions.insert(.WriteUpdate)
+        let signaled = operationLock.waitUntilDate(NSDate(timeIntervalSinceNow: timeout))
+
+        defer {
+            operationConditions = []
+            operationError = nil
+            operationLock.unlock()
+        }
+
+        if !signaled {
+            throw BluetoothManagerError.Timeout
+        } else if let operationError = operationError {
+            throw BluetoothManagerError.CBPeripheralError(operationError)
+        }
+
+        return characteristic.value ?? NSData()
+    }
+
+    func writeValueAndWait(value: NSData, forCharacteristicUUID UUID: CGMServiceCharacteristicUUID, timeout: NSTimeInterval = 2, expectingFirstByte firstByte: UInt8? = nil) throws -> NSData {
+        guard manager.state == .PoweredOn && operationConditions.isEmpty, let peripheral = peripheral else {
+            throw BluetoothManagerError.NotReady
+        }
+
+        guard let characteristic = getCharacteristicWithUUID(UUID) else {
+            throw BluetoothManagerError.UnknownCharacteristic
+        }
+
+        operationLock.lock()
+        operationConditions.insert(.WriteUpdate(characteristic: characteristic))
 
         if characteristic.isNotifying {
-            operationConditions.insert(.ValueUpdate)
+            operationConditions.insert(.ValueUpdate(characteristic: characteristic, firstByte: firstByte))
         }
 
         peripheral.writeValue(value, forCharacteristic: characteristic, type: .WithResponse)
@@ -170,6 +243,10 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
 
     // MARK: - Accessors
 
+    var isScanning: Bool {
+        return manager.isScanning
+    }
+
     private func getServiceWithUUID(UUID: TransmitterServiceUUID) -> CBService? {
         guard let services = peripheral?.services else {
             return nil
@@ -186,7 +263,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         return characteristics.itemWithUUIDString(UUIDString)
     }
 
-    func getCharacteristicWithUUID(UUID: CGMServiceCharacteristicUUID) -> CBCharacteristic? {
+    private func getCharacteristicWithUUID(UUID: CGMServiceCharacteristicUUID) -> CBCharacteristic? {
         return getCharacteristicForServiceUUID(.CGMService, withUUIDString: UUID.rawValue)
     }
 
@@ -287,7 +364,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
 
         operationLock.lock()
 
-        if operationConditions.remove(.NotificationStateUpdate) != nil {
+        if operationConditions.remove(.NotificationStateUpdate(characteristic: characteristic, enabled: characteristic.isNotifying)) != nil {
             operationError = error
 
             if operationConditions.isEmpty {
@@ -302,7 +379,9 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
 
         operationLock.lock()
 
-        if operationConditions.remove(.ValueUpdate) != nil {
+        if operationConditions.remove(.ValueUpdate(characteristic: characteristic, firstByte: characteristic.value?[0])) != nil ||
+            operationConditions.remove(.ValueUpdate(characteristic: characteristic, firstByte: nil)) != nil
+        {
             operationError = error
 
             if operationConditions.isEmpty {
@@ -317,7 +396,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
 
         self.operationLock.lock()
 
-        if operationConditions.remove(.WriteUpdate) != nil {
+        if operationConditions.remove(.WriteUpdate(characteristic: characteristic)) != nil {
             operationError = error
 
             if operationConditions.isEmpty {

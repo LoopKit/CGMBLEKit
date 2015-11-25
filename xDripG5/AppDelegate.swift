@@ -14,21 +14,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
 
     var window: UIWindow?
 
+    static var sharedDelegate: AppDelegate {
+        return UIApplication.sharedApplication().delegate as! AppDelegate
+    }
+
     let logger = DiagnosticLogger()
+
     var transmitter: Transmitter?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-        var transmitterID: String?
-
-        if let
-            settingsPath = NSBundle.mainBundle().pathForResource("RemoteSettings", ofType: "plist"),
-            settings = NSDictionary(contentsOfFile: settingsPath)
-        {
-            transmitterID = settings["TransmitterID"] as? String
-        }
-
-        transmitter = Transmitter(ID: transmitterID ?? "500000", startTimeInterval: nil)
+        transmitter = Transmitter(
+            ID: NSUserDefaults.standardUserDefaults().transmitterID,
+            startTimeInterval: NSUserDefaults.standardUserDefaults().startTimeInterval,
+            passiveModeEnabled: NSUserDefaults.standardUserDefaults().passiveModeEnabled
+        )
         transmitter?.delegate = self
 
         return true
@@ -50,6 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
+        transmitter?.scan()
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -84,6 +86,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
     func transmitter(transmitter: Transmitter, didReadGlucose glucose: GlucoseRxMessage) {
 
         if let startTime = transmitter.startTimeInterval {
+            NSUserDefaults.standardUserDefaults().startTimeInterval = startTime
+
             logger?.addMessage([
                 "sequence": Int(glucose.sequence),
                 "value": Int(glucose.glucose),
@@ -101,4 +105,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
         }
     }
 }
+
+
 
