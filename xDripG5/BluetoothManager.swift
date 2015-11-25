@@ -63,6 +63,10 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
             ],
             options: nil
         )
+
+        if let peripheral = self.peripheral {
+            self.manager.connectPeripheral(peripheral, options: nil)
+        }
     }
 
     func disconnect() {
@@ -182,7 +186,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         return characteristics.itemWithUUIDString(UUIDString)
     }
 
-    private func getCharacteristicWithUUID(UUID: CGMServiceCharacteristicUUID) -> CBCharacteristic? {
+    func getCharacteristicWithUUID(UUID: CGMServiceCharacteristicUUID) -> CBCharacteristic? {
         return getCharacteristicForServiceUUID(.CGMService, withUUIDString: UUID.rawValue)
     }
 
@@ -222,6 +226,8 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     }
 
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
+        central.stopScan()
+
         let knownServiceUUIDs = peripheral.services?.flatMap({ $0.UUID }) ?? []
 
         let servicesToDiscover = [
@@ -258,10 +264,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
                     CBUUID(string: CGMServiceCharacteristicUUID.Control.rawValue)
                 ]
             case .ServiceB?:
-                characteristicsToDiscover = [
-                    CBUUID(string: ServiceBCharacteristicUUID.CharacteristicE.rawValue),
-                    CBUUID(string: ServiceBCharacteristicUUID.CharacteristicF.rawValue)
-                ]
+                break
             default:
                 break
             }

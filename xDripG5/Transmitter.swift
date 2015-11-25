@@ -18,7 +18,8 @@ protocol TransmitterDelegate: class {
 
 
 enum TransmitterError: ErrorType {
-    case AuthenticationError
+    case AuthenticationError(String)
+    case ControlError(String)
 }
 
 
@@ -51,24 +52,7 @@ class Transmitter: BluetoothManagerDelegate {
         dispatch_async(operationQueue) {
             do {
                 try self.authenticate()
-
-                try manager.setNotifyEnabledAndWait(true, forCharacteristicUUID: .Control)
-
-                if let data = try? manager.writeValueAndWait(TransmitterTimeTxMessage().data, forCharacteristicUUID: .Control),
-                    message = TransmitterTimeRxMessage(data: data)
-                {
-                    self.startTimeInterval = NSDate().timeIntervalSince1970 - NSTimeInterval(message.currentTime)
-                }
-
-                if let data = try? manager.writeValueAndWait(GlucoseTxMessage().data, forCharacteristicUUID: .Control),
-                    message = GlucoseRxMessage(data: data)
-                {
-                    self.delegate?.transmitter(self, didReadGlucose: message)
-                }
-
-                try manager.setNotifyEnabledAndWait(false, forCharacteristicUUID: .Control)
-
-                try manager.writeValueAndWait(DisconnectTxMessage().data, forCharacteristicUUID: .Control)
+                try self.control()
             } catch let error {
                 manager.disconnect()
 
@@ -80,32 +64,122 @@ class Transmitter: BluetoothManagerDelegate {
     // MARK: - Helpers
 
     func authenticate() throws {
-        try bluetoothManager.setNotifyEnabledAndWait(true, forCharacteristicUUID: .Authentication)
-        let authMessage = AuthRequestTxMessage()
-
-        if let
-            data = try? bluetoothManager.writeValueAndWait(authMessage.data, forCharacteristicUUID: .Authentication),
-            response = AuthChallengeRxMessage(data: data)
+        if let characteristic = bluetoothManager.getCharacteristicWithUUID(.Authentication),
+            data = characteristic.value,
+            status = AuthStatusRxMessage(data: data) where status.authenticated == 1 && status.bonded == 1
         {
-            if response.tokenHash == self.calculateHash(authMessage.singleUseToken),
-                let challengeHash = self.calculateHash(response.challenge)
-            {
-                if let data = try? bluetoothManager.writeValueAndWait(AuthChallengeTxMessage(challengeHash: challengeHash).data, forCharacteristicUUID: .Authentication),
-                    response = AuthStatusRxMessage(data: data)
-                {
-                    if response.bonded != 0x1 {
-                        try bluetoothManager.writeValueAndWait(KeepAliveTxMessage(time: 25).data, forCharacteristicUUID: .Authentication)
+            NSLog("Transmitter already authenticated.")
+        } else {
+            do {
+                try bluetoothManager.setNotifyEnabledAndWait(true, forCharacteristicUUID: .Authentication)
+            } catch let error {
+                throw TransmitterError.AuthenticationError("Error enabling notification: \(error)")
+            }
 
+            let authMessage = AuthRequestTxMessage()
+            let data: NSData
+
+            do {
+                data = try bluetoothManager.writeValueAndWait(authMessage.data, forCharacteristicUUID: .Authentication)
+            } catch let error {
+                throw TransmitterError.AuthenticationError("Error writing transmitter challenge: \(error)")
+            }
+
+            guard let response = AuthChallengeRxMessage(data: data) else {
+                throw TransmitterError.AuthenticationError("Unable to parse auth challenge: \(data)")
+            }
+
+            guard response.tokenHash == self.calculateHash(authMessage.singleUseToken) else {
+                throw TransmitterError.AuthenticationError("Transmitter failed auth challenge")
+            }
+
+            if let challengeHash = self.calculateHash(response.challenge) {
+                let data: NSData
+                do {
+                    data = try bluetoothManager.writeValueAndWait(AuthChallengeTxMessage(challengeHash: challengeHash).data, forCharacteristicUUID: .Authentication)
+                } catch let error {
+                    throw TransmitterError.AuthenticationError("Error writing challenge response: \(error)")
+                }
+
+                guard let response = AuthStatusRxMessage(data: data) else {
+                    throw TransmitterError.AuthenticationError("Unable to parse auth status: \(data)")
+                }
+
+                guard response.authenticated == 1 else {
+                    throw TransmitterError.AuthenticationError("Transmitter rejected auth challenge")
+                }
+
+                if response.bonded != 0x1 {
+                    do {
+                        try bluetoothManager.writeValueAndWait(KeepAliveTxMessage(time: 25).data, forCharacteristicUUID: .Authentication)
+                    } catch let error {
+                        throw TransmitterError.AuthenticationError("Error writing keep-alive for bond: \(error)")
+                    }
+
+                    let data: NSData
+                    do {
                         // Wait for the OS dialog to pop-up before continuing.
-                        try bluetoothManager.writeValueAndWait(BondRequestTxMessage().data, forCharacteristicUUID: .Authentication, timeout: 15)
+                        data = try bluetoothManager.writeValueAndWait(BondRequestTxMessage().data, forCharacteristicUUID: .Authentication, timeout: 15)
+                    } catch let error {
+                        throw TransmitterError.AuthenticationError("Error writing bond request: \(error)")
+                    }
+
+                    guard let response = AuthStatusRxMessage(data: data) else {
+                        throw TransmitterError.AuthenticationError("Unable to parse auth status: \(data)")
+                    }
+
+                    guard response.bonded == 0x1 else {
+                        throw TransmitterError.AuthenticationError("Transmitter failed to bond")
                     }
                 }
-            } else {
-                throw TransmitterError.AuthenticationError
+            }
+
+            do {
+                try bluetoothManager.setNotifyEnabledAndWait(false, forCharacteristicUUID: .Authentication)
+            } catch let error {
+                throw TransmitterError.AuthenticationError("Error disabling notification: \(error)")
             }
         }
+    }
 
-        try bluetoothManager.setNotifyEnabledAndWait(false, forCharacteristicUUID: .Authentication)
+    private func control() throws {
+        do {
+            try bluetoothManager.setNotifyEnabledAndWait(true, forCharacteristicUUID: .Control)
+        } catch let error {
+            throw TransmitterError.ControlError("Error enabling notification: \(error)")
+        }
+
+        let timeData: NSData
+        do {
+            timeData = try bluetoothManager.writeValueAndWait(TransmitterTimeTxMessage().data, forCharacteristicUUID: .Control)
+        } catch let error {
+            throw TransmitterError.ControlError("Error writing time request: \(error)")
+        }
+
+        guard let timeMessage = TransmitterTimeRxMessage(data: timeData) else {
+            throw TransmitterError.ControlError("Unable to parse time response: \(timeData)")
+        }
+
+        self.startTimeInterval = NSDate().timeIntervalSince1970 - NSTimeInterval(timeMessage.currentTime)
+
+        let glucoseData: NSData
+        do {
+            glucoseData = try bluetoothManager.writeValueAndWait(GlucoseTxMessage().data, forCharacteristicUUID: .Control)
+        } catch let error {
+            throw TransmitterError.ControlError("Error writing glucose request: \(error)")
+        }
+
+        guard let glucoseMessage = GlucoseRxMessage(data: glucoseData) else {
+            throw TransmitterError.ControlError("Unable to parse glucose response: \(glucoseData)")
+        }
+
+        self.delegate?.transmitter(self, didReadGlucose: glucoseMessage)
+
+        do {
+            try bluetoothManager.setNotifyEnabledAndWait(false, forCharacteristicUUID: .Control)
+            try bluetoothManager.writeValueAndWait(DisconnectTxMessage().data, forCharacteristicUUID: .Control)
+        } catch {
+        }
     }
 
     private var cryptKey: NSData? {
