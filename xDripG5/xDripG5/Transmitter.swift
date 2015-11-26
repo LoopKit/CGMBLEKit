@@ -9,7 +9,7 @@
 import Foundation
 
 
-protocol TransmitterDelegate: class {
+public protocol TransmitterDelegate: class {
 
     func transmitter(transmitter: Transmitter, didReadGlucose glucose: GlucoseRxMessage)
 
@@ -23,20 +23,20 @@ enum TransmitterError: ErrorType {
 }
 
 
-class Transmitter: BluetoothManagerDelegate {
-    var ID: String
+public class Transmitter: BluetoothManagerDelegate {
+    public var ID: String
 
-    var startTimeInterval: NSTimeInterval?
+    public var startTimeInterval: NSTimeInterval?
 
-    var passiveModeEnabled: Bool
+    public var passiveModeEnabled: Bool
 
-    weak var delegate: TransmitterDelegate?
+    public weak var delegate: TransmitterDelegate?
 
     private let bluetoothManager = BluetoothManager()
 
     private var operationQueue = dispatch_queue_create("com.loudnate.xDripG5.transmitterOperationQueue", DISPATCH_QUEUE_SERIAL)
 
-    init(ID: String, startTimeInterval: NSTimeInterval?, passiveModeEnabled: Bool = false) {
+    public init(ID: String, startTimeInterval: NSTimeInterval?, passiveModeEnabled: Bool = false) {
         self.ID = ID
         self.startTimeInterval = startTimeInterval
         self.passiveModeEnabled = passiveModeEnabled
@@ -44,7 +44,7 @@ class Transmitter: BluetoothManagerDelegate {
         bluetoothManager.delegate = self
     }
 
-    func scan() {
+    public func scan() {
         bluetoothManager.scanForPeripheral()
     }
 

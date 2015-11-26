@@ -53,7 +53,5 @@ class DiagnosticLogger {
                 task.resume()
             }
         }
-        
-        
     }
 }
