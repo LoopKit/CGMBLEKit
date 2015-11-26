@@ -35,3 +35,11 @@ public struct GlucoseRxMessage: TransmitterRxMessage {
         }
     }
 }
+
+
+extension GlucoseRxMessage: Equatable {
+}
+
+public func ==(lhs: GlucoseRxMessage, rhs: GlucoseRxMessage) -> Bool {
+    return lhs.sequence == rhs.sequence
+}

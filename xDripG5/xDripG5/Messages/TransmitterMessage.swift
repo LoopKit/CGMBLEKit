@@ -24,6 +24,10 @@ extension TransmitterTxMessage {
 
         for item in byteSequence {
             switch item {
+            case let i as Int8:
+                var value = i
+
+                data.appendBytes(&value, length: 1)
             case let i as UInt8:
                 var value = i
 
@@ -32,6 +36,10 @@ extension TransmitterTxMessage {
                 var value = i
 
                 data.appendBytes(&value, length: 2)
+            case let i as UInt32:
+                var value = i
+
+                data.appendBytes(&value, length: 4)
             case let i as NSData:
                 data.appendData(i)
             default:
