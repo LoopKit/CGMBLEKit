@@ -49,9 +49,11 @@ private func ==(lhs: BluetoothOperationCondition, rhs: BluetoothOperationConditi
 
 class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
 
-    private var manager: CBCentralManager! = nil
+    var stayConnected = true
 
     weak var delegate: BluetoothManagerDelegate?
+
+    private var manager: CBCentralManager! = nil
 
     private var peripheral: CBPeripheral?
 
@@ -85,6 +87,8 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     }
 
     func disconnect() {
+        manager.stopScan()
+
         if let peripheral = peripheral {
             manager.cancelPeripheralConnection(peripheral)
         }
@@ -104,6 +108,11 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
 
             self.scanForPeripheral()
         }
+    }
+
+    deinit {
+        stayConnected = false
+        disconnect()
     }
 
     // MARK: - Operations
@@ -319,11 +328,17 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     }
 
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-        scanAfterDelay()
+
+        if stayConnected {
+            scanAfterDelay()
+        }
     }
 
     func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-        scanAfterDelay()
+
+        if stayConnected {
+            scanAfterDelay()
+        }
     }
 
     // MARK: - CBPeripheralDelegate

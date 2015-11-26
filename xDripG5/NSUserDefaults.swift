@@ -32,6 +32,15 @@ extension NSUserDefaults {
         }
     }
 
+    var stayConnected: Bool {
+        get {
+            return boolForKey("stayConnected") ?? true
+        }
+        set {
+            setBool(newValue, forKey: "stayConnected")
+        }
+    }
+
     var transmitterID: String {
         get {
             return stringForKey("transmitterID") ?? "500000"

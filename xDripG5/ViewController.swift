@@ -16,6 +16,8 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
 
     @IBOutlet weak var passiveModeEnabledSwitch: UISwitch!
 
+    @IBOutlet weak var stayConnectedSwitch: UISwitch!
+
     @IBOutlet weak var transmitterIDField: UITextField!
 
     @IBOutlet weak var scanningIndicatorView: UIActivityIndicatorView!
@@ -25,12 +27,20 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
 
         passiveModeEnabledSwitch.on = AppDelegate.sharedDelegate.transmitter?.passiveModeEnabled ?? false
 
+        stayConnectedSwitch.on = AppDelegate.sharedDelegate.transmitter?.stayConnected ?? false
+
         transmitterIDField.text = AppDelegate.sharedDelegate.transmitter?.ID
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
+        updateIndicatorViewDisplay()
+    }
+
+    // MARK: - Actions
+
+    func updateIndicatorViewDisplay() {
         if let transmitter = AppDelegate.sharedDelegate.transmitter where transmitter.isScanning {
             scanningIndicatorView.startAnimating()
         } else {
@@ -38,7 +48,12 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
         }
     }
 
-    // MARK: - Actions
+    @IBAction func toggleStayConnected(sender: UISwitch) {
+        AppDelegate.sharedDelegate.transmitter?.stayConnected = sender.on
+        NSUserDefaults.standardUserDefaults().stayConnected = sender.on
+
+        updateIndicatorViewDisplay()
+    }
 
     @IBAction func togglePassiveMode(sender: UISwitch) {
         AppDelegate.sharedDelegate.transmitter?.passiveModeEnabled = sender.on

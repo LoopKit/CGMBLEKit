@@ -17,7 +17,7 @@ public protocol TransmitterDelegate: class {
 }
 
 
-enum TransmitterError: ErrorType {
+public enum TransmitterError: ErrorType {
     case AuthenticationError(String)
     case ControlError(String)
 }
@@ -44,12 +44,31 @@ public class Transmitter: BluetoothManagerDelegate {
         bluetoothManager.delegate = self
     }
 
-    public func scan() {
-        bluetoothManager.scanForPeripheral()
+    public func resumeScanning() {
+        if stayConnected {
+            bluetoothManager.scanForPeripheral()
+        }
+    }
+
+    public func stopScanning() {
+        bluetoothManager.disconnect()
     }
 
     var isScanning: Bool {
         return bluetoothManager.isScanning
+    }
+
+    var stayConnected: Bool {
+        get {
+            return bluetoothManager.stayConnected
+        }
+        set {
+            bluetoothManager.stayConnected = newValue
+
+            if newValue {
+                bluetoothManager.scanForPeripheral()
+            }
+        }
     }
 
     // MARK: - BluetoothManagerDelegate
