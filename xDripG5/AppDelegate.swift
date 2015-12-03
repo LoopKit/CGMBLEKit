@@ -13,6 +13,7 @@ import CoreBluetooth
 class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
 
     var window: UIWindow?
+    var app: UIApplication!
 
     static var sharedDelegate: AppDelegate {
         return UIApplication.sharedApplication().delegate as! AppDelegate
@@ -23,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
     var transmitter: Transmitter?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        self.app = application
 
         transmitter = Transmitter(
             ID: NSUserDefaults.standardUserDefaults().transmitterID,
@@ -31,6 +33,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
         )
         transmitter?.stayConnected = NSUserDefaults.standardUserDefaults().stayConnected
         transmitter?.delegate = self
+
+        self.resignFirstResponder()
+
+        // Ask user for notification because we're gonna write to the badge
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Badge, categories: nil))
+
+        // Clear any previous value there
+        application.applicationIconBadgeNumber = -1
+
 
         return true
     }
