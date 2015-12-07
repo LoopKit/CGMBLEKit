@@ -103,10 +103,18 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
         titleLabel.text = NSLocalizedString("Error", comment: "Title displayed during error response")
 
         subtitleLabel.text = "\(error)"
+
+        // get the app and clear the badge value
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.app.applicationIconBadgeNumber = -1
     }
 
     func transmitter(transmitter: Transmitter, didReadGlucose glucose: GlucoseRxMessage) {
         titleLabel.text = NSNumberFormatter.localizedStringFromNumber(NSNumber(short: Int16(glucose.glucose)), numberStyle: .NoStyle)
+
+        // get the app and set the badge value to the current glucose reading
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.app.applicationIconBadgeNumber = Int(glucose.glucose)
 
         if let startTime = transmitter.startTimeInterval {
             let date = NSDate(timeIntervalSince1970: startTime).dateByAddingTimeInterval(NSTimeInterval(glucose.timestamp))
@@ -115,7 +123,7 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
         } else {
             subtitleLabel.text = "Unknown time"
         }
-
+        
     }
 
 }
