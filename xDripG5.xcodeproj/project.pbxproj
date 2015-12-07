@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		433BFB7C1C059A60009CA7A9 /* NSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433BFB7B1C059A60009CA7A9 /* NSUserDefaults.swift */; };
 		435B80DB1BD1D51F00201EBC /* BluetoothServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435B80DA1BD1D51F00201EBC /* BluetoothServices.swift */; };
-		4366568E1BD6C2A500FA7779 /* DiagnosticLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4366568D1BD6C2A500FA7779 /* DiagnosticLogger.swift */; };
-		436656901BD6C3B600FA7779 /* RemoteSettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4366568F1BD6C3B600FA7779 /* RemoteSettings.plist */; };
 		436656921BD6C57100FA7779 /* NSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436656911BD6C57100FA7779 /* NSData.swift */; };
 		43A7B3C31C03DFC00036D0A2 /* KeepAliveTxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A7B3C21C03DFC00036D0A2 /* KeepAliveTxMessage.swift */; };
 		43A7B3C51C03E0BD0036D0A2 /* BondRequestTxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A7B3C41C03E0BD0036D0A2 /* BondRequestTxMessage.swift */; };
@@ -36,8 +34,6 @@
 /* Begin PBXFileReference section */
 		433BFB7B1C059A60009CA7A9 /* NSUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaults.swift; sourceTree = "<group>"; };
 		435B80DA1BD1D51F00201EBC /* BluetoothServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothServices.swift; sourceTree = "<group>"; };
-		4366568D1BD6C2A500FA7779 /* DiagnosticLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagnosticLogger.swift; sourceTree = "<group>"; };
-		4366568F1BD6C3B600FA7779 /* RemoteSettings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = RemoteSettings.plist; sourceTree = "<group>"; };
 		436656911BD6C57100FA7779 /* NSData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSData.swift; sourceTree = "<group>"; };
 		43A7B3C21C03DFC00036D0A2 /* KeepAliveTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeepAliveTxMessage.swift; sourceTree = "<group>"; };
 		43A7B3C41C03E0BD0036D0A2 /* BondRequestTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BondRequestTxMessage.swift; sourceTree = "<group>"; };
@@ -127,9 +123,7 @@
 				433BFB7E1C063B61009CA7A9 /* xDripG5 */,
 				43C883401C029846004350AF /* Bridging-Header.h */,
 				43EA3A651BBE2A79009FACB3 /* Info.plist */,
-				4366568F1BD6C3B600FA7779 /* RemoteSettings.plist */,
 				43EA3A591BBE2A79009FACB3 /* AppDelegate.swift */,
-				4366568D1BD6C2A500FA7779 /* DiagnosticLogger.swift */,
 				433BFB7B1C059A60009CA7A9 /* NSUserDefaults.swift */,
 				43EA3A5B1BBE2A79009FACB3 /* ViewController.swift */,
 				43EA3A601BBE2A79009FACB3 /* Assets.xcassets */,
@@ -222,7 +216,6 @@
 				43FF35961BBE46F900A67D1C /* BluetoothManager.swift in Sources */,
 				43C883441C02994E004350AF /* AuthRequestTxMessage.swift in Sources */,
 				43C8833E1C0295C9004350AF /* TransmitterMessage.swift in Sources */,
-				4366568E1BD6C2A500FA7779 /* DiagnosticLogger.swift in Sources */,
 				43C883461C029D9E004350AF /* AuthChallengeRxMessage.swift in Sources */,
 				43C8834F1C0307B2004350AF /* TransmitterTimeTxMessage.swift in Sources */,
 				43C883481C02A40E004350AF /* AuthChallengeTxMessage.swift in Sources */,

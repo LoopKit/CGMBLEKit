@@ -18,8 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
         return UIApplication.sharedApplication().delegate as! AppDelegate
     }
 
-    let logger = DiagnosticLogger()
-
     var transmitter: Transmitter?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -75,12 +73,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
     }()
 
     func transmitter(transmitter: Transmitter, didError error: ErrorType) {
-        logger?.addMessage([
-            "error": "\(error)",
-            "collectedAt": dateFormatter.stringFromDate(NSDate())
-            ], toCollection: "g5"
-        )
-
         if let vc = window?.rootViewController as? TransmitterDelegate {
             dispatch_async(dispatch_get_main_queue()) {
                 vc.transmitter(transmitter, didError: error)
@@ -92,15 +84,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
 
         if let startTime = transmitter.startTimeInterval {
             NSUserDefaults.standardUserDefaults().startTimeInterval = startTime
-
-            logger?.addMessage([
-                "sequence": Int(glucose.sequence),
-                "value": Int(glucose.glucose),
-                "collectedAt": dateFormatter.stringFromDate(NSDate(timeIntervalSince1970: startTime).dateByAddingTimeInterval(NSTimeInterval(glucose.timestamp))),
-                "state": Int(glucose.state),
-                "trend": Int(glucose.trend)
-                ], toCollection: "g5"
-            )
         }
 
         if let vc = window?.rootViewController as? TransmitterDelegate {

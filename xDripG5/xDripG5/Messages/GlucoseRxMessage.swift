@@ -11,6 +11,7 @@ import Foundation
 
 public struct GlucoseRxMessage: TransmitterRxMessage {
     static let opcode: UInt8 = 0x31
+    let glucoseIsDisplayOnly: Bool = false  // TODO
     let status: UInt8
     let sequence: UInt32
     public let timestamp: UInt32
