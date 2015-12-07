@@ -24,7 +24,7 @@ public struct GlucoseRxMessage: TransmitterRxMessage {
                 status = data[1]
                 sequence = data[2...5]
                 timestamp = data[6...9]
-                glucose = data[10...11]
+                glucose = data[10...11] & 0xfff
                 state = data[12]
                 trend = data[13]
             } else {
