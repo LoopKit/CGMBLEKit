@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CommonCrypto
 
 
 public protocol TransmitterDelegate: class {

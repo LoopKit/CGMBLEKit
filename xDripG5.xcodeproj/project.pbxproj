@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43069DB21C153A5A0016948C /* fixtures.txt in Resources */ = {isa = PBXBuildFile; fileRef = 43069DB11C153A5A0016948C /* fixtures.txt */; };
 		433BFB7C1C059A60009CA7A9 /* NSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433BFB7B1C059A60009CA7A9 /* NSUserDefaults.swift */; };
 		435B80DB1BD1D51F00201EBC /* BluetoothServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435B80DA1BD1D51F00201EBC /* BluetoothServices.swift */; };
 		436656921BD6C57100FA7779 /* NSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436656911BD6C57100FA7779 /* NSData.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43069DB11C153A5A0016948C /* fixtures.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fixtures.txt; sourceTree = "<group>"; };
 		433BFB7B1C059A60009CA7A9 /* NSUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaults.swift; sourceTree = "<group>"; };
 		435B80DA1BD1D51F00201EBC /* BluetoothServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothServices.swift; sourceTree = "<group>"; };
 		436656911BD6C57100FA7779 /* NSData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSData.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		43EA3A4D1BBE2A79009FACB3 = {
 			isa = PBXGroup;
 			children = (
+				43069DB11C153A5A0016948C /* fixtures.txt */,
 				43EA3A581BBE2A79009FACB3 /* xDripG5 */,
 				43EA3A571BBE2A79009FACB3 /* Products */,
 			);
@@ -200,7 +203,7 @@
 				43EA3A641BBE2A79009FACB3 /* LaunchScreen.storyboard in Resources */,
 				43EA3A611BBE2A79009FACB3 /* Assets.xcassets in Resources */,
 				43EA3A5F1BBE2A79009FACB3 /* Main.storyboard in Resources */,
-				436656901BD6C3B600FA7779 /* RemoteSettings.plist in Resources */,
+				43069DB21C153A5A0016948C /* fixtures.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
