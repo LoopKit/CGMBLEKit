@@ -81,7 +81,8 @@
 				43C8834C1C02A5A2004350AF /* Transmitter.swift */,
 				43C8834B1C02A500004350AF /* Messages */,
 			);
-			path = xDripG5;
+			name = xDripG5;
+			path = ../Pod/Classes;
 			sourceTree = "<group>";
 		};
 		43C8834B1C02A500004350AF /* Messages */ = {
