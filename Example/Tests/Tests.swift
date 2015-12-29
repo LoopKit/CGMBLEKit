@@ -1,6 +1,6 @@
 import UIKit
 import XCTest
-@testable import xDripG5
+import xDripG5
 
 class Tests: XCTestCase {
     
