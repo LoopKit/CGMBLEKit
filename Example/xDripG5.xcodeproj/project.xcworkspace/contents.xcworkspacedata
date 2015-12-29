@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/nate/src/github.com/loudnate/xDrip5/xDripG5.xcodeproj">
+      location = "self:xDripG5.xcodeproj">
    </FileRef>
 </Workspace>

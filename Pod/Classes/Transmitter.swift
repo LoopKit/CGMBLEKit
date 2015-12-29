@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RNCryptor
 
 
 public protocol TransmitterDelegate: class {
@@ -54,11 +55,11 @@ public class Transmitter: BluetoothManagerDelegate {
         bluetoothManager.disconnect()
     }
 
-    var isScanning: Bool {
+    public var isScanning: Bool {
         return bluetoothManager.isScanning
     }
 
-    var stayConnected: Bool {
+    public var stayConnected: Bool {
         get {
             return bluetoothManager.stayConnected
         }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import xDripG5
 import CoreBluetooth
 
 @UIApplicationMain
