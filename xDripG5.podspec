@@ -20,7 +20,8 @@ Please note this project is neither created nor backed by Dexcom, Inc. Use of th
   s.platform     = :ios, '9.2'
   s.requires_arc = true
 
-  s.source_files = 'xDripG5/**/*.swift'
+  s.source_files = ['xDripG5/**/*.swift', 'Pod/*.h']
+  s.public_header_files = 'Pod/*.h'
 
   s.frameworks = 'CoreBluetooth'
   s.dependency 'RNCryptor', '~> 4.0'

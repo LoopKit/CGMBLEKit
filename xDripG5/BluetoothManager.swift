@@ -7,7 +7,7 @@
 //
 
 import CoreBluetooth
-import UIKit
+import Foundation
 
 
 protocol BluetoothManagerDelegate: class {
