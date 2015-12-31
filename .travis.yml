@@ -15,13 +15,13 @@ before_deploy:
   - carthage build --no-skip-current
 
 cache: cocoapods
-podfile: Example/Podfile
+# podfile: Example/Podfile
 
 # before_install:
 # - gem install cocoapods # Since Travis is not always on latest version
 # - pod install --project-directory=Example
 
 script:
-# Build the CocoaPods project
-- set -o pipefail && xcodebuild -workspace Example/xDripG5.xcworkspace -scheme xDripG5-Example -sdk iphonesimulator -destination name="iPhone 6" ONLY_ACTIVE_ARCH=NO | xcpretty
+# TODO: Build the CocoaPods project
+# - set -o pipefail && xcodebuild -workspace Example/xDripG5.xcworkspace -scheme xDripG5-Example -sdk iphonesimulator -destination name="iPhone 6" ONLY_ACTIVE_ARCH=NO | xcpretty
 - pod lib lint --allow-warnings

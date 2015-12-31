@@ -24,6 +24,8 @@ xDripG5 is available through [Carthage](https://github.com/Carthage/Carthage). T
 github "loudnate/xDripG5"
 ```
 
+Note that you'll need to confgure your target to link against `CommonCrypto.framework` in addition to `xDripG5.framework`
+
 ### Cocoapods
 
 xDripG5 is available through [CocoaPods](http://cocoapods.org). To install
