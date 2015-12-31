@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RNCryptor
 
 
 public protocol TransmitterDelegate: class {

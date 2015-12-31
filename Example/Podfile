@@ -4,9 +4,3 @@ use_frameworks!
 target 'xDripG5_Example', :exclusive => true do
   pod "xDripG5", :path => "../"
 end
-
-target 'xDripG5_Tests', :exclusive => true do
-  pod "xDripG5", :path => "../"
-
-  
-end
