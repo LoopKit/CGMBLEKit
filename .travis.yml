@@ -1,11 +1,5 @@
 language: objective-c
 osx_image: xcode7.2
-xcode_project: xDripG5.xcodeproj
-xcode_scheme: xDripG5
-xcode_sdk: iphonesimulator9.2
-env:
-  global:
-    - FRAMEWORK_NAME=xDripG5
 before_install:
   - brew update
   - brew install carthage
@@ -24,4 +18,5 @@ cache: cocoapods
 script:
 # TODO: Build the CocoaPods project
 # - set -o pipefail && xcodebuild -workspace Example/xDripG5.xcworkspace -scheme xDripG5-Example -sdk iphonesimulator -destination name="iPhone 6" ONLY_ACTIVE_ARCH=NO | xcpretty
+- xctool -project xDripG5.xcodeproj -scheme xDripG5 -sdk iphonesimulator9.2 build test
 - pod lib lint --allow-warnings
