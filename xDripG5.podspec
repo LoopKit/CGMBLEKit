@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.summary          = "An interface for communicating with the G5 glucose transmitter over Bluetooth."
 
   s.description      = <<-DESC
-This project provides an interface for authenticating and communicating with the G5 glucose transmitter over bluetooth.
+A iOS framework providing an interface for communicating with the G5 glucose transmitter over Bluetooth.
 
 By using this framework in your own app, you can get access to your glucose readings, without the need for internet access or a multi-hour delay.
 
