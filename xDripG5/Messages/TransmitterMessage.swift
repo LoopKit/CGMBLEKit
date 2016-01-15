@@ -52,7 +52,7 @@ extension TransmitterTxMessage {
 }
 
 
-protocol TransmitterRxMessage {
+public protocol TransmitterRxMessage {
 
     init?(data: NSData)
 

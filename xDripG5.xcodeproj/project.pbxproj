@@ -16,7 +16,6 @@
 		43CABE121C350B2800005705 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE0E1C350B2800005705 /* BluetoothManager.swift */; };
 		43CABE131C350B2800005705 /* BluetoothServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE0F1C350B2800005705 /* BluetoothServices.swift */; };
 		43CABE141C350B2800005705 /* NSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE101C350B2800005705 /* NSData.swift */; };
-		43CABE151C350B2800005705 /* Transmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE111C350B2800005705 /* Transmitter.swift */; };
 		43CABE231C350B3D00005705 /* AuthChallengeRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE171C350B3D00005705 /* AuthChallengeRxMessage.swift */; };
 		43CABE241C350B3D00005705 /* AuthChallengeTxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE181C350B3D00005705 /* AuthChallengeTxMessage.swift */; };
 		43CABE251C350B3D00005705 /* AuthRequestTxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE191C350B3D00005705 /* AuthRequestTxMessage.swift */; };
@@ -29,6 +28,8 @@
 		43CABE2C1C350B3D00005705 /* TransmitterMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE201C350B3D00005705 /* TransmitterMessage.swift */; };
 		43CABE2D1C350B3D00005705 /* TransmitterTimeRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE211C350B3D00005705 /* TransmitterTimeRxMessage.swift */; };
 		43CABE2E1C350B3D00005705 /* TransmitterTimeTxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE221C350B3D00005705 /* TransmitterTimeTxMessage.swift */; };
+		956BF8FE1C4526F7005A2723 /* Transmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956BF8FD1C4526F7005A2723 /* Transmitter.swift */; };
+		956BF9011C452DF3005A2723 /* G5Transmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956BF9001C452DF3005A2723 /* G5Transmitter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +66,6 @@
 		43CABE0E1C350B2800005705 /* BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		43CABE0F1C350B2800005705 /* BluetoothServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothServices.swift; sourceTree = "<group>"; };
 		43CABE101C350B2800005705 /* NSData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSData.swift; sourceTree = "<group>"; };
-		43CABE111C350B2800005705 /* Transmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transmitter.swift; sourceTree = "<group>"; };
 		43CABE171C350B3D00005705 /* AuthChallengeRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthChallengeRxMessage.swift; sourceTree = "<group>"; };
 		43CABE181C350B3D00005705 /* AuthChallengeTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthChallengeTxMessage.swift; sourceTree = "<group>"; };
 		43CABE191C350B3D00005705 /* AuthRequestTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthRequestTxMessage.swift; sourceTree = "<group>"; };
@@ -78,6 +78,8 @@
 		43CABE201C350B3D00005705 /* TransmitterMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterMessage.swift; sourceTree = "<group>"; };
 		43CABE211C350B3D00005705 /* TransmitterTimeRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterTimeRxMessage.swift; sourceTree = "<group>"; };
 		43CABE221C350B3D00005705 /* TransmitterTimeTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterTimeTxMessage.swift; sourceTree = "<group>"; };
+		956BF8FD1C4526F7005A2723 /* Transmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transmitter.swift; sourceTree = "<group>"; };
+		956BF9001C452DF3005A2723 /* G5Transmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = G5Transmitter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +130,8 @@
 				43CABE0E1C350B2800005705 /* BluetoothManager.swift */,
 				43CABE0F1C350B2800005705 /* BluetoothServices.swift */,
 				43CABE101C350B2800005705 /* NSData.swift */,
-				43CABE111C350B2800005705 /* Transmitter.swift */,
+				956BF8FD1C4526F7005A2723 /* Transmitter.swift */,
+				956BF9001C452DF3005A2723 /* G5Transmitter.swift */,
 				43CABE161C350B2E00005705 /* Messages */,
 			);
 			path = xDripG5;
@@ -272,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43CABE2D1C350B3D00005705 /* TransmitterTimeRxMessage.swift in Sources */,
+				956BF9011C452DF3005A2723 /* G5Transmitter.swift in Sources */,
 				43CABE291C350B3D00005705 /* GlucoseRxMessage.swift in Sources */,
 				43CABE271C350B3D00005705 /* BondRequestTxMessage.swift in Sources */,
 				43CABE231C350B3D00005705 /* AuthChallengeRxMessage.swift in Sources */,
@@ -280,10 +284,10 @@
 				43CABE2E1C350B3D00005705 /* TransmitterTimeTxMessage.swift in Sources */,
 				43CABE2C1C350B3D00005705 /* TransmitterMessage.swift in Sources */,
 				43CABE131C350B2800005705 /* BluetoothServices.swift in Sources */,
-				43CABE151C350B2800005705 /* Transmitter.swift in Sources */,
 				43CABE281C350B3D00005705 /* DisconnectTxMessage.swift in Sources */,
 				43CABE141C350B2800005705 /* NSData.swift in Sources */,
 				43CABE121C350B2800005705 /* BluetoothManager.swift in Sources */,
+				956BF8FE1C4526F7005A2723 /* Transmitter.swift in Sources */,
 				43CABE2B1C350B3D00005705 /* KeepAliveTxMessage.swift in Sources */,
 				43CABE241C350B3D00005705 /* AuthChallengeTxMessage.swift in Sources */,
 				43CABE251C350B3D00005705 /* AuthRequestTxMessage.swift in Sources */,
