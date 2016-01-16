@@ -28,7 +28,7 @@ protocol BluetoothManagerDelegate: class {
 
      - returns: True if the peripheral should connect
      */
-    func bluetoothManager(manager: BluetoothManager, shouldConnectToPeripheral peripheral: CBPeripheral) -> Bool
+    func bluetoothManager(manager: BluetoothManager, shouldConnectPeripheral peripheral: CBPeripheral) -> Bool
 }
 
 
@@ -311,7 +311,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     func centralManager(central: CBCentralManager, willRestoreState dict: [String : AnyObject]) {
         if peripheral == nil, let peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as? [CBPeripheral] {
             for peripheral in peripherals {
-                if delegate == nil || delegate!.bluetoothManager(self, shouldConnectToPeripheral: peripheral) {
+                if delegate == nil || delegate!.bluetoothManager(self, shouldConnectPeripheral: peripheral) {
                     self.peripheral = peripheral
                     peripheral.delegate = self
                 }
@@ -321,7 +321,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
 
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
 
-        if delegate == nil || delegate!.bluetoothManager(self, shouldConnectToPeripheral: peripheral) {
+        if delegate == nil || delegate!.bluetoothManager(self, shouldConnectPeripheral: peripheral) {
             self.peripheral = peripheral
             peripheral.delegate = self
 

@@ -115,7 +115,7 @@ public class Transmitter: BluetoothManagerDelegate {
         return string.substringFromIndex(string.endIndex.advancedBy(-2, limit: string.startIndex))
     }
 
-    func bluetoothManager(manager: BluetoothManager, shouldConnectToPeripheral peripheral: CBPeripheral) -> Bool {
+    func bluetoothManager(manager: BluetoothManager, shouldConnectPeripheral peripheral: CBPeripheral) -> Bool {
         if let name = peripheral.name where lastTwoCharactersOfString(name) == lastTwoCharactersOfString(ID) {
             return true
         } else {
