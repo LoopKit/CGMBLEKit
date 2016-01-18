@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreBluetooth
 
 
 public protocol TransmitterDelegate: class {
@@ -24,6 +25,7 @@ public enum TransmitterError: ErrorType {
 
 
 public class Transmitter: BluetoothManagerDelegate {
+
     public var ID: String
 
     public var startTimeInterval: NSTimeInterval?
@@ -96,6 +98,28 @@ public class Transmitter: BluetoothManagerDelegate {
                     self.delegate?.transmitter(self, didError: error)
                 }
             }
+        }
+    }
+
+    /**
+     Convenience helper for getting a substring of the last two characters of a string.
+     
+     The Dexcom G5 advertises a peripheral name of "DexcomXX" where "XX" is the last-two characters
+     of the transmitter ID.
+
+     - parameter string: The string to parse
+
+     - returns: A new string, containing the last two characters of the input string
+     */
+    private func lastTwoCharactersOfString(string: String) -> String {
+        return string.substringFromIndex(string.endIndex.advancedBy(-2, limit: string.startIndex))
+    }
+
+    func bluetoothManager(manager: BluetoothManager, shouldConnectPeripheral peripheral: CBPeripheral) -> Bool {
+        if let name = peripheral.name where lastTwoCharactersOfString(name) == lastTwoCharactersOfString(ID) {
+            return true
+        } else {
+            return false
         }
     }
 
