@@ -11,7 +11,24 @@ import Foundation
 
 
 protocol BluetoothManagerDelegate: class {
+
+    /**
+     Tells the delegate that the bluetooth manager has finished connecting to and discovering all required services of its peripheral, or that it failed to do so
+
+     - parameter manager: The bluetooth manager
+     - parameter error:   An error describing why bluetooth setup failed
+     */
     func bluetoothManager(manager: BluetoothManager, isReadyWithError error: NSError?)
+
+    /**
+     Asks the delegate whether the discovered or restored peripheral should be connected
+
+     - parameter manager:    The bluetooth manager
+     - parameter peripheral: The found peripheral
+
+     - returns: True if the peripheral should connect
+     */
+    func bluetoothManager(manager: BluetoothManager, shouldConnectPeripheral peripheral: CBPeripheral) -> Bool
 }
 
 
@@ -294,21 +311,24 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     func centralManager(central: CBCentralManager, willRestoreState dict: [String : AnyObject]) {
         if peripheral == nil, let peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as? [CBPeripheral] {
             for peripheral in peripherals {
-
-                self.peripheral = peripheral
-                peripheral.delegate = self
+                if delegate == nil || delegate!.bluetoothManager(self, shouldConnectPeripheral: peripheral) {
+                    self.peripheral = peripheral
+                    peripheral.delegate = self
+                }
             }
         }
     }
 
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
 
-        self.peripheral = peripheral
-        peripheral.delegate = self
+        if delegate == nil || delegate!.bluetoothManager(self, shouldConnectPeripheral: peripheral) {
+            self.peripheral = peripheral
+            peripheral.delegate = self
 
-        central.connectPeripheral(peripheral, options: nil)
+            central.connectPeripheral(peripheral, options: nil)
 
-        central.stopScan()
+            central.stopScan()
+        }
     }
 
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
