@@ -26,7 +26,7 @@ github "loudnate/xDripG5"
 
 Note that you'll need to confgure your target to link against `CommonCrypto.framework` in addition to `xDripG5.framework`
 
-### Cocoapods
+### CocoaPods
 
 xDripG5 is available through [CocoaPods](http://cocoapods.org). To install
 it, add the following line to your Podfile:
