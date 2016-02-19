@@ -1,3 +1,1 @@
-# github "RNCryptor/RNCryptor" ~> 4.0
-
-github "soffes/Crypto"
+github "loudnate/Crypto" "master"

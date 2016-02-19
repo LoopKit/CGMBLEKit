@@ -21,13 +21,15 @@ extension NSUserDefaults {
 
     var startTimeInterval: NSTimeInterval? {
         get {
-            return doubleForKey("startTimeInterval")
+            let value = doubleForKey("startTimeInterval")
+
+            return value > 0 ? value : nil
         }
         set {
             if let value = newValue {
                 setDouble(value, forKey: "startTimeInterval")
             } else {
-                setNilValueForKey("startTimeInterval")
+                removeObjectforKey("startTimeInterval")
             }
         }
     }

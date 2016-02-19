@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "xDripG5"
-  s.version          = "0.2.1"
+  s.version          = "0.2.2"
   s.summary          = "An interface for communicating with the G5 glucose transmitter over Bluetooth."
 
   s.description      = <<-DESC
