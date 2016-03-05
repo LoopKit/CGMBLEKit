@@ -12,7 +12,6 @@
 		434FD68A1C3523A7000B4E2E /* CommonCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4337D7EA1C351B0B0016851F /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43CABDF71C3506F100005705 /* xDripG5.h in Headers */ = {isa = PBXBuildFile; fileRef = 43CABDF61C3506F100005705 /* xDripG5.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43CABDFE1C3506F100005705 /* xDripG5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* xDripG5.framework */; };
-		43CABE031C3506F100005705 /* xDripG5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE021C3506F100005705 /* xDripG5Tests.swift */; };
 		43CABE121C350B2800005705 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE0E1C350B2800005705 /* BluetoothManager.swift */; };
 		43CABE131C350B2800005705 /* BluetoothServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE0F1C350B2800005705 /* BluetoothServices.swift */; };
 		43CABE141C350B2800005705 /* NSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE101C350B2800005705 /* NSData.swift */; };
@@ -29,6 +28,8 @@
 		43CABE2C1C350B3D00005705 /* TransmitterMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE201C350B3D00005705 /* TransmitterMessage.swift */; };
 		43CABE2D1C350B3D00005705 /* TransmitterTimeRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE211C350B3D00005705 /* TransmitterTimeRxMessage.swift */; };
 		43CABE2E1C350B3D00005705 /* TransmitterTimeTxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE221C350B3D00005705 /* TransmitterTimeTxMessage.swift */; };
+		43DC87C01C8B509B005BC30D /* NSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DC87BF1C8B509B005BC30D /* NSData.swift */; };
+		43DC87C21C8B520F005BC30D /* GlucoseRxMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DC87C11C8B520F005BC30D /* GlucoseRxMessageTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +61,6 @@
 		43CABDF61C3506F100005705 /* xDripG5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xDripG5.h; sourceTree = "<group>"; };
 		43CABDF81C3506F100005705 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43CABDFD1C3506F100005705 /* xDripG5Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xDripG5Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		43CABE021C3506F100005705 /* xDripG5Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = xDripG5Tests.swift; sourceTree = "<group>"; };
 		43CABE041C3506F100005705 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43CABE0E1C350B2800005705 /* BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		43CABE0F1C350B2800005705 /* BluetoothServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothServices.swift; sourceTree = "<group>"; };
@@ -78,6 +78,8 @@
 		43CABE201C350B3D00005705 /* TransmitterMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterMessage.swift; sourceTree = "<group>"; };
 		43CABE211C350B3D00005705 /* TransmitterTimeRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterTimeRxMessage.swift; sourceTree = "<group>"; };
 		43CABE221C350B3D00005705 /* TransmitterTimeTxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterTimeTxMessage.swift; sourceTree = "<group>"; };
+		43DC87BF1C8B509B005BC30D /* NSData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSData.swift; sourceTree = "<group>"; };
+		43DC87C11C8B520F005BC30D /* GlucoseRxMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlucoseRxMessageTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,8 +139,9 @@
 		43CABE011C3506F100005705 /* xDripG5Tests */ = {
 			isa = PBXGroup;
 			children = (
-				43CABE021C3506F100005705 /* xDripG5Tests.swift */,
 				43CABE041C3506F100005705 /* Info.plist */,
+				43DC87C11C8B520F005BC30D /* GlucoseRxMessageTests.swift */,
+				43DC87BF1C8B509B005BC30D /* NSData.swift */,
 			);
 			path = xDripG5Tests;
 			sourceTree = "<group>";
@@ -294,7 +297,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43CABE031C3506F100005705 /* xDripG5Tests.swift in Sources */,
+				43DC87C01C8B509B005BC30D /* NSData.swift in Sources */,
+				43DC87C21C8B520F005BC30D /* GlucoseRxMessageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
