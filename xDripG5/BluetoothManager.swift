@@ -364,7 +364,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     // MARK: - CBPeripheralDelegate
 
     func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
-        for service in peripheral.services ?? [] {
+        for service in peripheral.services ?? [] where service.UUID.UUIDString == TransmitterServiceUUID.CGMService.rawValue {
             var characteristicsToDiscover = [CBUUID]()
             let knownCharacteristics = service.characteristics?.flatMap({ $0.UUID }) ?? []
 
