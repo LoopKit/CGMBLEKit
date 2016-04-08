@@ -16,7 +16,7 @@ struct TransmitterTimeRxMessage: TransmitterRxMessage {
     let sessionStartTime: UInt32
 
     init?(data: NSData) {
-        if data.length >= 10 {
+        if data.length == 12 && data.crcValid() {
             if data[0] == self.dynamicType.opcode {
                 status = TransmitterStatus(rawValue: data[1])
                 currentTime = data[2...5]
