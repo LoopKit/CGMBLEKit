@@ -20,7 +20,7 @@ public struct GlucoseRxMessage: TransmitterRxMessage {
     public let trend: Int8
 
     init?(data: NSData) {
-        if data.length >= 14 {
+        if data.length == 16 && data.crcValid() {
             if data[0] == self.dynamicType.opcode {
                 status = TransmitterStatus(rawValue: data[1])
                 sequence = data[2...5]

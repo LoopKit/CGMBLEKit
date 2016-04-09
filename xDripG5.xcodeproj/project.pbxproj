@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		430D64C51CB7846A00FCA750 /* NSData+CRC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430D64C41CB7846A00FCA750 /* NSData+CRC.swift */; };
 		4337D7EB1C351B0B0016851F /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4337D7EA1C351B0B0016851F /* CommonCrypto.framework */; };
 		4337D7ED1C3521210016851F /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4337D7EA1C351B0B0016851F /* CommonCrypto.framework */; };
 		434FD68A1C3523A7000B4E2E /* CommonCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4337D7EA1C351B0B0016851F /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -64,6 +65,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		430D64C41CB7846A00FCA750 /* NSData+CRC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+CRC.swift"; sourceTree = "<group>"; };
 		4337D7EA1C351B0B0016851F /* CommonCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CommonCrypto.framework; path = Carthage/Build/iOS/CommonCrypto.framework; sourceTree = "<group>"; };
 		43CABDF31C3506F100005705 /* xDripG5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = xDripG5.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CABDF61C3506F100005705 /* xDripG5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xDripG5.h; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				43CABE0E1C350B2800005705 /* BluetoothManager.swift */,
 				43CABE0F1C350B2800005705 /* BluetoothServices.swift */,
 				43CABE101C350B2800005705 /* NSData.swift */,
+				430D64C41CB7846A00FCA750 /* NSData+CRC.swift */,
 				43CABE111C350B2800005705 /* Transmitter.swift */,
 				43CE7CDB1CA77468003CC1B0 /* TransmitterStatus.swift */,
 				43CABE161C350B2E00005705 /* Messages */,
@@ -322,6 +325,7 @@
 				43CABE241C350B3D00005705 /* AuthChallengeTxMessage.swift in Sources */,
 				43CE7CD21CA73CBC003CC1B0 /* CalibrateGlucoseTxMessage.swift in Sources */,
 				43CABE251C350B3D00005705 /* AuthRequestTxMessage.swift in Sources */,
+				430D64C51CB7846A00FCA750 /* NSData+CRC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
