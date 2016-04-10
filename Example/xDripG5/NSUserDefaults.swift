@@ -29,7 +29,7 @@ extension NSUserDefaults {
             if let value = newValue {
                 setDouble(value, forKey: "startTimeInterval")
             } else {
-                removeObjectforKey("startTimeInterval")
+                setObject(nil, forKey: "startTimeInterval")
             }
         }
     }
