@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00298666BB5CABA3F4CF110B /* Pods_xDripG5_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11B5350EE0D9F43E82677418 /* Pods_xDripG5_Example.framework */; };
+		06C991A3D94948120AD2A278 /* Pods_xDripG5_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42011659993839B43D24C553 /* Pods_xDripG5_Example.framework */; };
 		439FCA211C332AA4007DE84C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 439FCA1F1C332AA4007DE84C /* LaunchScreen.storyboard */; };
 		439FCA231C332AE5007DE84C /* NSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439FCA221C332AE5007DE84C /* NSUserDefaults.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -17,12 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		11B5350EE0D9F43E82677418 /* Pods_xDripG5_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xDripG5_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3855E7EFE1C90F1090FF20F1 /* Pods-xDripG5_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xDripG5_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-xDripG5_Example/Pods-xDripG5_Example.release.xcconfig"; sourceTree = "<group>"; };
-		3EA0D036130743E8A1223BED /* Pods_xDripG5_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xDripG5_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		42011659993839B43D24C553 /* Pods_xDripG5_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xDripG5_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		439FCA201C332AA4007DE84C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		439FCA221C332AE5007DE84C /* NSUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaults.swift; sourceTree = "<group>"; };
-		4ECB11EA87493CED7DEA2749 /* Pods-xDripG5_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xDripG5_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-xDripG5_Tests/Pods-xDripG5_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		598554A3C216FA3B8F8CD6BE /* xDripG5.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = xDripG5.podspec; path = ../xDripG5.podspec; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* xDripG5_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xDripG5_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -30,9 +27,9 @@
 		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CFBD776BFE02F42998A8820B /* Pods-xDripG5_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xDripG5_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-xDripG5_Example/Pods-xDripG5_Example.release.xcconfig"; sourceTree = "<group>"; };
 		D5D93ACFC3BB0465B3F5E4EC /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		F3B8C3FF0E83D9E223170918 /* Pods-xDripG5_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xDripG5_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xDripG5_Tests/Pods-xDripG5_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		F572587A045E79CBF9C165F3 /* Pods-xDripG5_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xDripG5_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xDripG5_Example/Pods-xDripG5_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		F3147B948B4F90A741304461 /* Pods-xDripG5_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-xDripG5_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-xDripG5_Example/Pods-xDripG5_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		FE032190446F27C4005989E9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -41,18 +38,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00298666BB5CABA3F4CF110B /* Pods_xDripG5_Example.framework in Frameworks */,
+				06C991A3D94948120AD2A278 /* Pods_xDripG5_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		44E96EDE8E5C09C72EE96CBC /* Frameworks */ = {
+		34954A068C4B6DF9520CE4A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				11B5350EE0D9F43E82677418 /* Pods_xDripG5_Example.framework */,
-				3EA0D036130743E8A1223BED /* Pods_xDripG5_Tests.framework */,
+				42011659993839B43D24C553 /* Pods_xDripG5_Example.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -63,8 +59,8 @@
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for xDripG5 */,
 				607FACD11AFB9204008FA782 /* Products */,
-				AEA94E734B56A9F956B5CB64 /* Pods */,
-				44E96EDE8E5C09C72EE96CBC /* Frameworks */,
+				9B5F5984038242D4DB623E80 /* Pods */,
+				34954A068C4B6DF9520CE4A1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,13 +105,11 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		AEA94E734B56A9F956B5CB64 /* Pods */ = {
+		9B5F5984038242D4DB623E80 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F572587A045E79CBF9C165F3 /* Pods-xDripG5_Example.debug.xcconfig */,
-				3855E7EFE1C90F1090FF20F1 /* Pods-xDripG5_Example.release.xcconfig */,
-				F3B8C3FF0E83D9E223170918 /* Pods-xDripG5_Tests.debug.xcconfig */,
-				4ECB11EA87493CED7DEA2749 /* Pods-xDripG5_Tests.release.xcconfig */,
+				F3147B948B4F90A741304461 /* Pods-xDripG5_Example.debug.xcconfig */,
+				CFBD776BFE02F42998A8820B /* Pods-xDripG5_Example.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -127,12 +121,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "xDripG5_Example" */;
 			buildPhases = (
-				52C41101D39376A3A7B10F16 /* Check Pods Manifest.lock */,
+				1A9A76347F38888700DA6FA9 /* 📦 Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				D38E70FFC91C82FBABCFB864 /* Embed Pods Frameworks */,
-				88ECBE7F63F2C6E32E13D72E /* Copy Pods Resources */,
+				4B912A9AD16911278D3DAA5C /* 📦 Embed Pods Frameworks */,
+				2FC4228A9369221D367ED688 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -195,14 +189,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		52C41101D39376A3A7B10F16 /* Check Pods Manifest.lock */ = {
+		1A9A76347F38888700DA6FA9 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,14 +204,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		88ECBE7F63F2C6E32E13D72E /* Copy Pods Resources */ = {
+		2FC4228A9369221D367ED688 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,14 +219,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xDripG5_Example/Pods-xDripG5_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D38E70FFC91C82FBABCFB864 /* Embed Pods Frameworks */ = {
+		4B912A9AD16911278D3DAA5C /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,7 +306,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -350,7 +344,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -359,7 +353,7 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F572587A045E79CBF9C165F3 /* Pods-xDripG5_Example.debug.xcconfig */;
+			baseConfigurationReference = F3147B948B4F90A741304461 /* Pods-xDripG5_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = xDripG5/Info.plist;
@@ -373,7 +367,7 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3855E7EFE1C90F1090FF20F1 /* Pods-xDripG5_Example.release.xcconfig */;
+			baseConfigurationReference = CFBD776BFE02F42998A8820B /* Pods-xDripG5_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = xDripG5/Info.plist;
