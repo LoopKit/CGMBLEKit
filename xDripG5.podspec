@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "xDripG5"
-  s.version          = "0.4.0"
+  s.version          = "0.4.1"
   s.summary          = "An interface for communicating with the G5 glucose transmitter over Bluetooth."
 
   s.description      = <<-DESC
@@ -17,7 +17,7 @@ Please note this project is neither created nor backed by Dexcom, Inc. Use of th
   s.source           = { :git => "https://github.com/loudnate/xDripG5.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/loudnate'
 
-  s.platform     = :ios, '9.2'
+  s.platform     = :ios, '9.3'
   s.requires_arc = true
 
   s.source_files = ['xDripG5/**/*.swift', 'Pod/*.h']
