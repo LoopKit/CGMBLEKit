@@ -16,16 +16,16 @@ struct TransmitterTimeRxMessage: TransmitterRxMessage {
     let sessionStartTime: UInt32
 
     init?(data: NSData) {
-        if data.length == 16 && data.crcValid() {
-            if data[0] == self.dynamicType.opcode {
-                status = TransmitterStatus(rawValue: data[1])
-                currentTime = data[2...5]
-                sessionStartTime = data[6...9]
-            } else {
-                return nil
-            }
-        } else {
+        guard data.length == 16 && data.crcValid() else {
             return nil
         }
+
+        guard data[0] == self.dynamicType.opcode else {
+            return nil
+        }
+
+        status = TransmitterStatus(rawValue: data[1])
+        currentTime = data[2...5]
+        sessionStartTime = data[6...9]
     }
 }

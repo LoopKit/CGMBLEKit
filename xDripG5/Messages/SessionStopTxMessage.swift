@@ -9,6 +9,11 @@
 import Foundation
 
 
-struct SessionStopTxMessage {
+struct SessionStopTxMessage: TransmitterTxMessage {
     let opcode: UInt8 = 0x28
+    let stopTime: UInt32
+
+    var byteSequence: [Any] {
+        return [opcode, stopTime]
+    }
 }

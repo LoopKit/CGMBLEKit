@@ -9,6 +9,11 @@
 import Foundation
 
 
-struct SessionStartTxMessage {
+struct SessionStartTxMessage: TransmitterTxMessage {
     let opcode: UInt8 = 0x26
+    let startTime: UInt32
+
+    var byteSequence: [Any] {
+        return [opcode, startTime]
+    }
 }
