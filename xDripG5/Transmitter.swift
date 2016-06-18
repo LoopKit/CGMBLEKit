@@ -284,31 +284,17 @@ public class Transmitter: BluetoothManagerDelegate {
     }
 
     private func calculateHash(data: NSData) -> NSData? {
-        guard data.length == 8, let key = cryptKey, outData = NSMutableData(length: 16) else {
+        guard data.length == 8, let key = cryptKey else {
             return nil
         }
 
         let doubleData = NSMutableData(data: data)
         doubleData.appendData(data)
 
-        let status = CCCrypt(
-            0, // kCCEncrypt
-            0, // kCCAlgorithmAES
-            0x0002, // kCCOptionECBMode
-            key.bytes,
-            key.length,
-            nil,
-            doubleData.bytes,
-            doubleData.length,
-            outData.mutableBytes,
-            outData.length,
-            nil
-        )
-
-        if status != 0 { // kCCSuccess
+        guard let outData = try? AESCrypt.encryptData(doubleData, usingKey: key) else {
             return nil
-        } else {
-            return outData[0..<8]
         }
+
+        return outData[0..<8]
     }
 }
