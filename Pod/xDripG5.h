@@ -6,4 +6,5 @@
 //  Copyright © 2015 Nathan Racklyeft. All rights reserved.
 //
 
-@import RNCryptor;
+
+#import <xDripG5/AESCrypt.h>
