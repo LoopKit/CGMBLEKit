@@ -1,20 +1,16 @@
 language: objective-c
 osx_image: xcode7.3
-#before_install:
-#  - brew update
-#  - brew install carthage
 before_deploy:
   - carthage build --no-skip-current
 
 cache: cocoapods
-# podfile: Example/Podfile
+podfile: Example/Podfile
 
-# before_install:
+before_install:
 # - gem install cocoapods # Since Travis is not always on latest version
-# - pod install --project-directory=Example
+- pod install --project-directory=Example
 
 script:
-# TODO: Build the CocoaPods project
-# - set -o pipefail && xcodebuild -workspace Example/xDripG5.xcworkspace -scheme xDripG5-Example -sdk iphonesimulator -destination name="iPhone 6" ONLY_ACTIVE_ARCH=NO | xcpretty
+- set -o pipefail && xcodebuild -workspace Example/xDripG5.xcworkspace -scheme xDripG5-Example -sdk iphonesimulator -destination name="iPhone 6" ONLY_ACTIVE_ARCH=NO | xcpretty
 - xctool -project xDripG5.xcodeproj -scheme xDripG5 -sdk iphonesimulator9.3 build test
-- pod lib lint --allow-warnings
+- pod lib lint
