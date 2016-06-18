@@ -121,12 +121,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "xDripG5_Example" */;
 			buildPhases = (
-				1A9A76347F38888700DA6FA9 /* 📦 Check Pods Manifest.lock */,
+				1A9A76347F38888700DA6FA9 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				4B912A9AD16911278D3DAA5C /* 📦 Embed Pods Frameworks */,
-				2FC4228A9369221D367ED688 /* 📦 Copy Pods Resources */,
+				4B912A9AD16911278D3DAA5C /* [CP] Embed Pods Frameworks */,
+				2FC4228A9369221D367ED688 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -189,14 +189,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1A9A76347F38888700DA6FA9 /* 📦 Check Pods Manifest.lock */ = {
+		1A9A76347F38888700DA6FA9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,14 +204,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		2FC4228A9369221D367ED688 /* 📦 Copy Pods Resources */ = {
+		2FC4228A9369221D367ED688 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,14 +219,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-xDripG5_Example/Pods-xDripG5_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4B912A9AD16911278D3DAA5C /* 📦 Embed Pods Frameworks */ = {
+		4B912A9AD16911278D3DAA5C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
