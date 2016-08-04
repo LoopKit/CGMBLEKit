@@ -19,9 +19,9 @@ public enum TransmitterStatus {
         case 0:
             self = .OK
         case 0x81:
-            self = LowBattery
+            self = .LowBattery
         default:
-            self = Unknown(rawValue)
+            self = .Unknown(rawValue)
         }
     }
 }
