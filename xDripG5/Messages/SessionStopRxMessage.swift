@@ -11,7 +11,7 @@ import Foundation
 
 struct SessionStopRxMessage {
     static let opcode: UInt8 = 0x29
-    let status: TransmitterStatus
+    let status: UInt8
     let received: UInt8
     let sessionStopTime: UInt32
     let sessionStartTime: UInt32
@@ -26,7 +26,7 @@ struct SessionStopRxMessage {
             return nil
         }
 
-        status = TransmitterStatus(rawValue: data[1])
+        status = data[1]
         received = data[2]
         sessionStopTime = data[3...6]
         sessionStartTime = data[7...10]

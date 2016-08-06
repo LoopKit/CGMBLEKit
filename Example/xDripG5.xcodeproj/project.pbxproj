@@ -10,6 +10,7 @@
 		06C991A3D94948120AD2A278 /* Pods_xDripG5_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42011659993839B43D24C553 /* Pods_xDripG5_Example.framework */; };
 		439FCA211C332AA4007DE84C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 439FCA1F1C332AA4007DE84C /* LaunchScreen.storyboard */; };
 		439FCA231C332AE5007DE84C /* NSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439FCA221C332AE5007DE84C /* NSUserDefaults.swift */; };
+		43E3979F1D569B340028E321 /* HKUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E3979E1D569B340028E321 /* HKUnit.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 		42011659993839B43D24C553 /* Pods_xDripG5_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_xDripG5_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		439FCA201C332AA4007DE84C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		439FCA221C332AE5007DE84C /* NSUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaults.swift; sourceTree = "<group>"; };
+		43E3979E1D569B340028E321 /* HKUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HKUnit.swift; path = ../../xDripG5/HKUnit.swift; sourceTree = "<group>"; };
 		598554A3C216FA3B8F8CD6BE /* xDripG5.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = xDripG5.podspec; path = ../xDripG5.podspec; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* xDripG5_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = xDripG5_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
+				43E3979E1D569B340028E321 /* HKUnit.swift */,
 				439FCA221C332AE5007DE84C /* NSUserDefaults.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACDC1AFB9204008FA782 /* Assets.xcassets */,
@@ -243,6 +246,7 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				43E3979F1D569B340028E321 /* HKUnit.swift in Sources */,
 				439FCA231C332AE5007DE84C /* NSUserDefaults.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

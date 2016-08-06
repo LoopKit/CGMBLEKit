@@ -11,7 +11,7 @@ import Foundation
 
 struct SessionStartRxMessage {
     static let opcode: UInt8 = 0x27
-    let status: TransmitterStatus
+    let status: UInt8
     let received: UInt8
 
     // I've only seen examples of these 2 values matching
@@ -29,7 +29,7 @@ struct SessionStartRxMessage {
             return nil
         }
 
-        status = TransmitterStatus(rawValue: data[1])
+        status = data[1]
         received = data[2]
         requestedStartTime = data[3...6]
         sessionStartTime = data[7...10]
