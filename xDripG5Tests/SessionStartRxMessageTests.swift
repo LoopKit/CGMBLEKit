@@ -16,7 +16,7 @@ class SessionStartRxMessageTests: XCTestCase {
         var data = NSData(hexadecimalString: "2700014bf871004bf87100e9f8710095d9")!
         var message = SessionStartRxMessage(data: data)!
 
-        XCTAssertEqual(TransmitterStatus.OK, message.status)
+        XCTAssertEqual(0, message.status)
         XCTAssertEqual(1, message.received)
         XCTAssertEqual(7469131, message.requestedStartTime)
         XCTAssertEqual(7469131, message.sessionStartTime)
@@ -25,7 +25,7 @@ class SessionStartRxMessageTests: XCTestCase {
         data = NSData(hexadecimalString: "2700012bfd71002bfd710096fd71000f6a")!
         message = SessionStartRxMessage(data: data)!
 
-        XCTAssertEqual(TransmitterStatus.OK, message.status)
+        XCTAssertEqual(0, message.status)
         XCTAssertEqual(1, message.received)
         XCTAssertEqual(7470379, message.requestedStartTime)
         XCTAssertEqual(7470379, message.sessionStartTime)
@@ -34,7 +34,7 @@ class SessionStartRxMessageTests: XCTestCase {
         data = NSData(hexadecimalString: "2700017cff71007cff7100eeff7100aeed")!
         message = SessionStartRxMessage(data: data)!
 
-        XCTAssertEqual(TransmitterStatus.OK, message.status)
+        XCTAssertEqual(0, message.status)
         XCTAssertEqual(1, message.received)
         XCTAssertEqual(7470972, message.requestedStartTime)
         XCTAssertEqual(7470972, message.sessionStartTime)
