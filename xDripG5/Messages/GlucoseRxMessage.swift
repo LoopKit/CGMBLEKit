@@ -46,5 +46,5 @@ extension GlucoseRxMessage: Equatable {
 }
 
 public func ==(lhs: GlucoseRxMessage, rhs: GlucoseRxMessage) -> Bool {
-    return lhs.sequence == rhs.sequence
+    return lhs.sequence == rhs.sequence && lhs.timestamp == rhs.timestamp
 }
