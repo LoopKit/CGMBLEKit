@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
 
         transmitter = Transmitter(
             ID: NSUserDefaults.standardUserDefaults().transmitterID,
-            startTimeInterval: NSUserDefaults.standardUserDefaults().startTimeInterval,
             passiveModeEnabled: NSUserDefaults.standardUserDefaults().passiveModeEnabled
         )
         transmitter?.stayConnected = NSUserDefaults.standardUserDefaults().stayConnected
@@ -81,19 +80,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
         }
     }
 
-    func transmitter(transmitter: Transmitter, didReadGlucose glucose: GlucoseRxMessage) {
-
-        if let startTime = transmitter.startTimeInterval {
-            NSUserDefaults.standardUserDefaults().startTimeInterval = startTime
-        }
-
+    func transmitter(transmitter: Transmitter, didRead glucose: Glucose) {
         if let vc = window?.rootViewController as? TransmitterDelegate {
             dispatch_async(dispatch_get_main_queue()) {
-                vc.transmitter(transmitter, didReadGlucose: glucose)
+                vc.transmitter(transmitter, didRead: glucose)
             }
         }
     }
 }
-
-
-

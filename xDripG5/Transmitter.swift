@@ -11,10 +11,9 @@ import CoreBluetooth
 
 
 public protocol TransmitterDelegate: class {
-
-    func transmitter(transmitter: Transmitter, didReadGlucose glucose: GlucoseRxMessage)
-
     func transmitter(transmitter: Transmitter, didError error: ErrorType)
+
+    func transmitter(transmitter: Transmitter, didRead glucose: Glucose)
 }
 
 
@@ -26,9 +25,11 @@ public enum TransmitterError: ErrorType {
 
 public class Transmitter: BluetoothManagerDelegate {
 
+    /// The ID of the transmitter to connect to
     public var ID: String
 
-    public var startTimeInterval: NSTimeInterval?
+    /// The initial activation date of the transmitter
+    public private(set) var activationDate: NSDate?
 
     public var passiveModeEnabled: Bool
 
@@ -38,9 +39,8 @@ public class Transmitter: BluetoothManagerDelegate {
 
     private var operationQueue = dispatch_queue_create("com.loudnate.xDripG5.transmitterOperationQueue", DISPATCH_QUEUE_SERIAL)
 
-    public init(ID: String, startTimeInterval: NSTimeInterval?, passiveModeEnabled: Bool = false) {
+    public init(ID: String, passiveModeEnabled: Bool = false) {
         self.ID = ID
-        self.startTimeInterval = startTimeInterval
         self.passiveModeEnabled = passiveModeEnabled
 
         bluetoothManager.delegate = self
@@ -210,20 +210,18 @@ public class Transmitter: BluetoothManagerDelegate {
             throw TransmitterError.ControlError("Error enabling notification: \(error)")
         }
 
-        if startTimeInterval == nil {
-            let timeData: NSData
-            do {
-                timeData = try bluetoothManager.writeValueAndWait(TransmitterTimeTxMessage().data, forCharacteristicUUID: .Control, expectingFirstByte: TransmitterTimeRxMessage.opcode)
-            } catch let error {
-                throw TransmitterError.ControlError("Error writing time request: \(error)")
-            }
-
-            guard let timeMessage = TransmitterTimeRxMessage(data: timeData) else {
-                throw TransmitterError.ControlError("Unable to parse time response: \(timeData)")
-            }
-
-            self.startTimeInterval = NSDate().timeIntervalSince1970 - NSTimeInterval(timeMessage.currentTime)
+        let timeData: NSData
+        do {
+            timeData = try bluetoothManager.writeValueAndWait(TransmitterTimeTxMessage().data, forCharacteristicUUID: .Control, expectingFirstByte: TransmitterTimeRxMessage.opcode)
+        } catch let error {
+            throw TransmitterError.ControlError("Error writing time request: \(error)")
         }
+
+        guard let timeMessage = TransmitterTimeRxMessage(data: timeData) else {
+            throw TransmitterError.ControlError("Unable to parse time response: \(timeData)")
+        }
+
+        let activationDate = NSDate(timeIntervalSinceNow: -NSTimeInterval(timeMessage.currentTime))
 
         let glucoseData: NSData
         do {
@@ -236,7 +234,9 @@ public class Transmitter: BluetoothManagerDelegate {
             throw TransmitterError.ControlError("Unable to parse glucose response: \(glucoseData)")
         }
 
-        self.delegate?.transmitter(self, didReadGlucose: glucoseMessage)
+        // Update and notify
+        self.activationDate = activationDate
+        self.delegate?.transmitter(self, didRead: Glucose(glucoseMessage: glucoseMessage, timeMessage: timeMessage, activationDate: activationDate))
 
         do {
             try bluetoothManager.setNotifyEnabledAndWait(false, forCharacteristicUUID: .Control)
@@ -263,7 +263,7 @@ public class Transmitter: BluetoothManagerDelegate {
             throw TransmitterError.ControlError("Unable to parse time response: \(timeData)")
         }
 
-        self.startTimeInterval = NSDate().timeIntervalSince1970 - NSTimeInterval(timeMessage.currentTime)
+        let activationDate = NSDate(timeIntervalSinceNow: -NSTimeInterval(timeMessage.currentTime))
 
         let glucoseData: NSData
         do {
@@ -276,7 +276,9 @@ public class Transmitter: BluetoothManagerDelegate {
             throw TransmitterError.ControlError("Unable to parse glucose response: \(glucoseData)")
         }
 
-        self.delegate?.transmitter(self, didReadGlucose: glucoseMessage)
+        // Update and notify
+        self.activationDate = activationDate
+        self.delegate?.transmitter(self, didRead: Glucose(glucoseMessage: glucoseMessage, timeMessage: timeMessage, activationDate: activationDate))
     }
 
     private var cryptKey: NSData? {

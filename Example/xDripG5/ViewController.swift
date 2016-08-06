@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HealthKit
 import xDripG5
 
 class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate {
@@ -106,19 +107,18 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
         subtitleLabel.text = "\(error)"
     }
 
-    func transmitter(transmitter: Transmitter, didReadGlucose glucose: GlucoseRxMessage) {
-        titleLabel.text = NSNumberFormatter.localizedStringFromNumber(NSNumber(short: Int16(glucose.glucose)), numberStyle: .NoStyle)
-
-        if let startTime = transmitter.startTimeInterval {
-            let date = NSDate(timeIntervalSince1970: startTime).dateByAddingTimeInterval(NSTimeInterval(glucose.timestamp))
-
-            subtitleLabel.text = NSDateFormatter.localizedStringFromDate(date, dateStyle: .NoStyle, timeStyle: .LongStyle)
+    func transmitter(transmitter: Transmitter, didRead glucose: Glucose) {
+        let unit = HKUnit.milligramsPerDeciliter()
+        if let value = glucose.glucose?.doubleValueForUnit(unit) {
+            titleLabel.text = "\(value) \(unit.unitString)"
         } else {
-            subtitleLabel.text = "Unknown time"
+            titleLabel.text = String(glucose.state)
         }
 
-    }
 
+        let date = glucose.readDate
+        subtitleLabel.text = NSDateFormatter.localizedStringFromDate(date, dateStyle: .NoStyle, timeStyle: .LongStyle)
+    }
 }
 
 

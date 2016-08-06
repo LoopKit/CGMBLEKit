@@ -11,7 +11,7 @@ import Foundation
 
 struct TransmitterTimeRxMessage: TransmitterRxMessage {
     static let opcode: UInt8 = 0x25
-    let status: TransmitterStatus
+    let status: UInt8
     let currentTime: UInt32
     let sessionStartTime: UInt32
 
@@ -24,8 +24,14 @@ struct TransmitterTimeRxMessage: TransmitterRxMessage {
             return nil
         }
 
-        status = TransmitterStatus(rawValue: data[1])
+        status = data[1]
         currentTime = data[2...5]
         sessionStartTime = data[6...9]
     }
+}
+
+extension TransmitterTimeRxMessage: Equatable { }
+
+func ==(lhs: TransmitterTimeRxMessage, rhs: TransmitterTimeRxMessage) -> Bool {
+    return lhs.currentTime == rhs.currentTime
 }

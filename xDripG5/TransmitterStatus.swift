@@ -10,18 +10,20 @@ import Foundation
 
 
 public enum TransmitterStatus {
+    public typealias RawValue = UInt8
+
     case OK
     case LowBattery
-    case Unknown(UInt8)
+    case Unknown(RawValue)
 
-    init(rawValue: UInt8) {
+    init(rawValue: RawValue) {
         switch rawValue {
         case 0:
             self = .OK
         case 0x81:
-            self = LowBattery
+            self = .LowBattery
         default:
-            self = Unknown(rawValue)
+            self = .Unknown(rawValue)
         }
     }
 }

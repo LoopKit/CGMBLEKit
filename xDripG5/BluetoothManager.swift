@@ -72,7 +72,17 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
 
     private var manager: CBCentralManager! = nil
 
-    private var peripheral: CBPeripheral?
+    private var peripheral: CBPeripheral? {
+        didSet {
+            if let oldValue = oldValue {
+                oldValue.delegate = nil
+            }
+
+            if let newValue = peripheral {
+                newValue.delegate = self
+            }
+        }
+    }
 
     // MARK: - GCD Management
 
@@ -91,12 +101,18 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
             return
         }
 
-        manager.scanForPeripheralsWithServices(
-            [
-                CBUUID(string: TransmitterServiceUUID.Advertisement.rawValue)
-            ],
-            options: nil
-        )
+        if let peripheral = manager.retrieveConnectedPeripheralsWithServices([
+            CBUUID(string: TransmitterServiceUUID.Advertisement.rawValue),
+            CBUUID(string: TransmitterServiceUUID.CGMService.rawValue)
+        ]).first where delegate == nil || delegate!.bluetoothManager(self, shouldConnectPeripheral: peripheral) {
+            self.peripheral = peripheral
+        } else {
+            manager.scanForPeripheralsWithServices([
+                    CBUUID(string: TransmitterServiceUUID.Advertisement.rawValue)
+                ],
+                options: nil
+            )
+        }
 
         if let peripheral = self.peripheral {
             self.manager.connectPeripheral(peripheral, options: nil)
@@ -313,17 +329,14 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
             for peripheral in peripherals {
                 if delegate == nil || delegate!.bluetoothManager(self, shouldConnectPeripheral: peripheral) {
                     self.peripheral = peripheral
-                    peripheral.delegate = self
                 }
             }
         }
     }
 
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
-
         if delegate == nil || delegate!.bluetoothManager(self, shouldConnectPeripheral: peripheral) {
             self.peripheral = peripheral
-            peripheral.delegate = self
 
             central.connectPeripheral(peripheral, options: nil)
 
@@ -348,14 +361,12 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     }
 
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-
         if stayConnected {
             scanAfterDelay()
         }
     }
 
     func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-
         if stayConnected {
             scanAfterDelay()
         }

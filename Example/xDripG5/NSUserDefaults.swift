@@ -19,21 +19,6 @@ extension NSUserDefaults {
         }
     }
 
-    var startTimeInterval: NSTimeInterval? {
-        get {
-            let value = doubleForKey("startTimeInterval")
-
-            return value > 0 ? value : nil
-        }
-        set {
-            if let value = newValue {
-                setDouble(value, forKey: "startTimeInterval")
-            } else {
-                setObject(nil, forKey: "startTimeInterval")
-            }
-        }
-    }
-
     var stayConnected: Bool {
         get {
             return boolForKey("stayConnected") ?? true
