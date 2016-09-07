@@ -126,8 +126,8 @@ public class Transmitter: BluetoothManagerDelegate {
     // MARK: - Helpers
 
     private func authenticate() throws {
-        if let data = try? bluetoothManager.readValueForCharacteristicAndWait(.Authentication),
-            status = AuthStatusRxMessage(data: data) where status.authenticated == 1 && status.bonded == 1
+        if  let data = try? bluetoothManager.readValueForCharacteristicAndWait(.Authentication),
+            let status = AuthStatusRxMessage(data: data) where status.authenticated == 1 && status.bonded == 1
         {
             NSLog("Transmitter already authenticated.")
         } else {
