@@ -13,7 +13,7 @@ import XCTest
 class SessionStopRxMessageTests: XCTestCase {
     
     func testSuccessfulStop() {
-        var data = NSData(hexadecimalString: "29000128027200ffffffff47027200ba85")!
+        var data = Data(hexadecimalString: "29000128027200ffffffff47027200ba85")!
         var message = SessionStopRxMessage(data: data)!
 
         XCTAssertEqual(0, message.status)
@@ -22,7 +22,7 @@ class SessionStopRxMessageTests: XCTestCase {
         XCTAssertEqual(0xffffffff, message.sessionStartTime)
         XCTAssertEqual(7471687, message.transmitterTime)
 
-        data = NSData(hexadecimalString: "2900013ffe7100ffffffffc2fe71008268")!
+        data = Data(hexadecimalString: "2900013ffe7100ffffffffc2fe71008268")!
         message = SessionStopRxMessage(data: data)!
 
         XCTAssertEqual(0, message.status)
@@ -31,7 +31,7 @@ class SessionStopRxMessageTests: XCTestCase {
         XCTAssertEqual(0xffffffff, message.sessionStartTime)
         XCTAssertEqual(7470786, message.transmitterTime)
 
-        data = NSData(hexadecimalString: "290001f5fb7100ffffffff6afc7100fa8a")!
+        data = Data(hexadecimalString: "290001f5fb7100ffffffff6afc7100fa8a")!
         message = SessionStopRxMessage(data: data)!
 
         XCTAssertEqual(0, message.status)
