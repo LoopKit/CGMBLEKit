@@ -15,18 +15,18 @@ struct TransmitterTimeRxMessage: TransmitterRxMessage {
     let currentTime: UInt32
     let sessionStartTime: UInt32
 
-    init?(data: NSData) {
-        guard data.length == 16 && data.crcValid() else {
+    init?(data: Data) {
+        guard data.count == 16 && data.crcValid() else {
             return nil
         }
 
-        guard data[0] == self.dynamicType.opcode else {
+        guard data[0] == type(of: self).opcode else {
             return nil
         }
 
         status = data[1]
-        currentTime = data[2...5]
-        sessionStartTime = data[6...9]
+        currentTime = data[2..<6]
+        sessionStartTime = data[6..<10]
     }
 }
 

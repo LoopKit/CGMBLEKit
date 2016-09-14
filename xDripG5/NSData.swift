@@ -9,8 +9,8 @@
 import Foundation
 
 
-public extension NSData {
-    @nonobjc subscript(index: Int) -> Int8 {
+public extension Data {
+    /*@nonobjc subscript(index: Int) -> Int8 {
         let bytes: [Int8] = self[index...index]
 
         return bytes[0]
@@ -21,44 +21,52 @@ public extension NSData {
 
         return bytes[0]
     }
-
+*/
     @nonobjc subscript(range: Range<Int>) -> UInt16 {
-        return self[range][0]
+        var dataArray: UInt16 = 0
+        let buffer = UnsafeMutableBufferPointer(start: &dataArray, count: range.count)
+        _ = self.copyBytes(to: buffer, from: range)
+
+        return dataArray
     }
 
     @nonobjc subscript(range: Range<Int>) -> UInt32 {
-        return self[range][0]
-    }
+        var dataArray: UInt32 = 0
+        let buffer = UnsafeMutableBufferPointer(start: &dataArray, count: range.count)
+        _ = self.copyBytes(to: buffer, from: range)
 
+        return dataArray
+    }
+/*
     subscript(range: Range<Int>) -> [Int8] {
-        var dataArray = [Int8](count: range.count, repeatedValue: 0)
-        self.getBytes(&dataArray, range: NSRange(range))
+        var dataArray = [Int8](repeating: 0, count: range.count)
+        let buffer = UnsafeMutableBufferPointer(start: &dataArray, count: range.count)
+        _ = self.copyBytes(to: buffer, from: range)
 
         return dataArray
     }
 
     subscript(range: Range<Int>) -> [UInt8] {
-        var dataArray = [UInt8](count: range.count, repeatedValue: 0)
-        self.getBytes(&dataArray, range: NSRange(range))
+        var dataArray = [UInt8](repeating: 0, count: range.count)
+        self.copyBytes(to: &dataArray, from: range)
 
         return dataArray
     }
 
     subscript(range: Range<Int>) -> [UInt16] {
-        var dataArray = [UInt16](count: range.count / 2, repeatedValue: 0)
-        self.getBytes(&dataArray, range: NSRange(range))
+        var dataArray = [UInt16](repeating: 0, count: range.count / 2)
+        let buffer = UnsafeMutableBufferPointer(start: &dataArray, count: range.count)
+        _ = self.copyBytes(to: buffer, from: range)
 
         return dataArray
     }
 
     subscript(range: Range<Int>) -> [UInt32] {
-        var dataArray = [UInt32](count: range.count / 4, repeatedValue: 0)
-        self.getBytes(&dataArray, range: NSRange(range))
+        var dataArray = [UInt32](repeating: 0, count: range.count / 4)
+        let buffer = UnsafeMutableBufferPointer(start: &dataArray, count: range.count)
+        _ = self.copyBytes(to: buffer, from: range)
 
         return dataArray
     }
-
-    subscript(range: Range<Int>) -> NSData {
-        return subdataWithRange(NSRange(range))
-    }
+ */
 }

@@ -11,15 +11,15 @@ import Foundation
 
 struct AuthRequestTxMessage: TransmitterTxMessage {
     let opcode: UInt8 = 0x1
-    let singleUseToken: NSData
+    let singleUseToken: Data
     let endByte: UInt8 = 0x2
 
     init() {
-        var UUIDBytes = [UInt8](count: 16, repeatedValue: 0)
+        var UUIDBytes = [UInt8](repeating: 0, count: 16)
 
-        NSUUID().getUUIDBytes(&UUIDBytes)
+        NSUUID().getBytes(&UUIDBytes)
 
-        singleUseToken = NSData(bytes: &UUIDBytes, length: 8)
+        singleUseToken = Data(bytes: UUIDBytes)
     }
 
     var byteSequence: [Any] {

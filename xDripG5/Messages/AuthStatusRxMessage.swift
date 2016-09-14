@@ -14,16 +14,16 @@ struct AuthStatusRxMessage: TransmitterRxMessage {
     let authenticated: UInt8
     let bonded: UInt8
 
-    init?(data: NSData) {
-        if data.length >= 3 {
-            if data[0] == self.dynamicType.opcode {
-                self.authenticated = data[1]
-                self.bonded = data[2]
-            } else {
-                return nil
-            }
-        } else {
+    init?(data: Data) {
+        guard data.count >= 3 else {
             return nil
         }
+
+        guard data[0] == type(of: self).opcode else {
+            return nil
+        }
+
+        authenticated = data[1]
+        bonded = data[2]
     }
 }

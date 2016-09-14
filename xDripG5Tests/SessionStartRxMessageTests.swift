@@ -13,7 +13,7 @@ import XCTest
 class SessionStartRxMessageTests: XCTestCase {
 
     func testSuccessfulStart() {
-        var data = NSData(hexadecimalString: "2700014bf871004bf87100e9f8710095d9")!
+        var data = Data(hexadecimalString: "2700014bf871004bf87100e9f8710095d9")!
         var message = SessionStartRxMessage(data: data)!
 
         XCTAssertEqual(0, message.status)
@@ -22,7 +22,7 @@ class SessionStartRxMessageTests: XCTestCase {
         XCTAssertEqual(7469131, message.sessionStartTime)
         XCTAssertEqual(7469289, message.transmitterTime)
 
-        data = NSData(hexadecimalString: "2700012bfd71002bfd710096fd71000f6a")!
+        data = Data(hexadecimalString: "2700012bfd71002bfd710096fd71000f6a")!
         message = SessionStartRxMessage(data: data)!
 
         XCTAssertEqual(0, message.status)
@@ -31,7 +31,7 @@ class SessionStartRxMessageTests: XCTestCase {
         XCTAssertEqual(7470379, message.sessionStartTime)
         XCTAssertEqual(7470486, message.transmitterTime)
 
-        data = NSData(hexadecimalString: "2700017cff71007cff7100eeff7100aeed")!
+        data = Data(hexadecimalString: "2700017cff71007cff7100eeff7100aeed")!
         message = SessionStartRxMessage(data: data)!
 
         XCTAssertEqual(0, message.status)

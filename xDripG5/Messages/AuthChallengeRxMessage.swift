@@ -11,19 +11,19 @@ import Foundation
 
 struct AuthChallengeRxMessage: TransmitterRxMessage {
     static let opcode: UInt8 = 0x3
-    let tokenHash: NSData
-    let challenge: NSData
+    let tokenHash: Data
+    let challenge: Data
 
-    init?(data: NSData) {
-        if data.length >= 17 {
-            if data[0] == self.dynamicType.opcode {
-                tokenHash = data[1..<9]
-                challenge = data[9..<17]
-            } else {
-                return nil
-            }
-        } else {
+    init?(data: Data) {
+        guard data.count >= 17 else {
             return nil
         }
+
+        guard data[0] == type(of: self).opcode else {
+            return nil
+        }
+
+        tokenHash = data.subdata(in: 1..<9)
+        challenge = data.subdata(in: 9..<17)
     }
 }
