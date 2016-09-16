@@ -14,23 +14,23 @@ public struct Glucose {
     public let glucoseMessage: GlucoseRxMessage
     let timeMessage: TransmitterTimeRxMessage
 
-    init(glucoseMessage: GlucoseRxMessage, timeMessage: TransmitterTimeRxMessage, activationDate: NSDate) {
+    init(glucoseMessage: GlucoseRxMessage, timeMessage: TransmitterTimeRxMessage, activationDate: Date) {
         self.glucoseMessage = glucoseMessage
         self.timeMessage = timeMessage
 
         status = TransmitterStatus(rawValue: glucoseMessage.status)
         state = CalibrationState(rawValue: glucoseMessage.state)
-        sessionStartDate = activationDate.dateByAddingTimeInterval(NSTimeInterval(timeMessage.sessionStartTime))
-        readDate = activationDate.dateByAddingTimeInterval(NSTimeInterval(glucoseMessage.timestamp))
+        sessionStartDate = activationDate.addingTimeInterval(TimeInterval(timeMessage.sessionStartTime))
+        readDate = activationDate.addingTimeInterval(TimeInterval(glucoseMessage.timestamp))
     }
 
     // MARK: - Transmitter Info
     public let status: TransmitterStatus
-    public let sessionStartDate: NSDate
+    public let sessionStartDate: Date
 
     // MARK: - Glucose Info
     public let state: CalibrationState
-    public let readDate: NSDate
+    public let readDate: Date
 
     public var isDisplayOnly: Bool {
         return glucoseMessage.glucoseIsDisplayOnly

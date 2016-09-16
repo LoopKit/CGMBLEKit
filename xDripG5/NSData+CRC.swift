@@ -16,12 +16,10 @@ import Foundation
  
  [http://web.mit.edu/6.115/www/amulet/xmodem.htm]()
  */
-func CRCCCITTXModem(bytes: [UInt8], count: Int? = nil) -> UInt16 {
-    let count = count ?? bytes.count
-
+private func CRCCCITTXModem(_ bytes: Data) -> UInt16 {
     var crc: UInt16 = 0
 
-    for byte in bytes[0..<count] {
+    for byte in bytes {
         crc ^= UInt16(byte) << 8
 
         for _ in 0..<8 {
@@ -39,17 +37,17 @@ func CRCCCITTXModem(bytes: [UInt8], count: Int? = nil) -> UInt16 {
 
 extension UInt8 {
     func crc16() -> UInt16 {
-        return CRCCCITTXModem([self])
+        return CRCCCITTXModem(Data(bytes: [self]))
     }
 }
 
 
-extension NSData {
+extension Data {
     func crc16() -> UInt16 {
-        return CRCCCITTXModem(self[0..<length])
+        return CRCCCITTXModem(self)
     }
 
     func crcValid() -> Bool {
-        return CRCCCITTXModem(self[0..<length-2]) == self[length-2..<length]
+        return CRCCCITTXModem(subdata(in: 0..<count-2)) == self[count-2..<count]
     }
 }

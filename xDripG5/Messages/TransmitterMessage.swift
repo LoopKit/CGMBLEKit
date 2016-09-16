@@ -13,13 +13,13 @@ protocol TransmitterTxMessage {
 
     var byteSequence: [Any] { get }
 
-    var data: NSData { get }
+    var data: Data { get }
 
 }
 
 
 extension TransmitterTxMessage {
-    var data: NSData {
+    var data: Data {
         let data = NSMutableData()
 
         for item in byteSequence {
@@ -27,33 +27,33 @@ extension TransmitterTxMessage {
             case let i as Int8:
                 var value = i
 
-                data.appendBytes(&value, length: 1)
+                data.append(&value, length: 1)
             case let i as UInt8:
                 var value = i
 
-                data.appendBytes(&value, length: 1)
+                data.append(&value, length: 1)
             case let i as UInt16:
                 var value = i
 
-                data.appendBytes(&value, length: 2)
+                data.append(&value, length: 2)
             case let i as UInt32:
                 var value = i
 
-                data.appendBytes(&value, length: 4)
-            case let i as NSData:
-                data.appendData(i)
+                data.append(&value, length: 4)
+            case let i as Data:
+                data.append(i)
             default:
                 fatalError("\(item) not supported")
             }
         }
 
-        return data
+        return data as Data
     }
 }
 
 
 protocol TransmitterRxMessage {
 
-    init?(data: NSData)
+    init?(data: Data)
 
 }

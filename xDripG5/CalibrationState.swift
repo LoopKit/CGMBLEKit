@@ -12,35 +12,35 @@ import Foundation
 public enum CalibrationState {
     public typealias RawValue = UInt8
 
-    case Stopped
-    case Warmup
-    case NeedFirstInitialCalibration
-    case NeedSecondInitialCalibration
-    case OK
-    case NeedCalibration
-    case Unknown(RawValue)
+    case stopped
+    case warmup
+    case needFirstInitialCalibration
+    case needSecondInitialCalibration
+    case ok
+    case needCalibration
+    case unknown(RawValue)
 
     init(rawValue: UInt8) {
         switch rawValue {
         case 1:
-            self = .Stopped
+            self = .stopped
         case 2:
-            self = .Warmup
+            self = .warmup
         case 4:
-            self = .NeedFirstInitialCalibration
+            self = .needFirstInitialCalibration
         case 5:
-            self = .NeedSecondInitialCalibration
+            self = .needSecondInitialCalibration
         case 6:
-            self = .OK
+            self = .ok
         case 7:
-            self = .NeedCalibration
+            self = .needCalibration
         default:
-            self = .Unknown(rawValue)
+            self = .unknown(rawValue)
         }
     }
 
     public var hasReliableGlucose: Bool {
-        return self == .OK || self == .NeedCalibration
+        return self == .ok || self == .needCalibration
     }
 }
 
@@ -48,9 +48,9 @@ extension CalibrationState: Equatable { }
 
 public func ==(lhs: CalibrationState, rhs: CalibrationState) -> Bool {
     switch (lhs, rhs) {
-    case (.Stopped, .Stopped), (.Warmup, .Warmup), (.NeedFirstInitialCalibration, .NeedFirstInitialCalibration), (.NeedSecondInitialCalibration, .NeedSecondInitialCalibration), (.OK, .OK), (.NeedCalibration, .NeedCalibration):
+    case (.stopped, .stopped), (.warmup, .warmup), (.needFirstInitialCalibration, .needFirstInitialCalibration), (.needSecondInitialCalibration, .needSecondInitialCalibration), (.ok, .ok), (.needCalibration, .needCalibration):
         return true
-    case let (.Unknown(lhsRaw), .Unknown(rhsRaw)):
+    case let (.unknown(lhsRaw), .unknown(rhsRaw)):
         return lhsRaw == rhsRaw
     default:
         return false

@@ -11,6 +11,6 @@ import HealthKit
 
 extension HKUnit {
     static func milligramsPerDeciliter() -> HKUnit {
-        return HKUnit.gramUnitWithMetricPrefix(.Milli).unitDividedByUnit(HKUnit.literUnitWithMetricPrefix(.Deci))
+        return HKUnit.gramUnit(with: .milli).unitDivided(by: HKUnit.literUnit(with: .deci))
     }
 }

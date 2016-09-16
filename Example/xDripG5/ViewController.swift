@@ -27,14 +27,14 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        passiveModeEnabledSwitch.on = AppDelegate.sharedDelegate.transmitter?.passiveModeEnabled ?? false
+        passiveModeEnabledSwitch.isOn = AppDelegate.sharedDelegate.transmitter?.passiveModeEnabled ?? false
 
-        stayConnectedSwitch.on = AppDelegate.sharedDelegate.transmitter?.stayConnected ?? false
+        stayConnectedSwitch.isOn = AppDelegate.sharedDelegate.transmitter?.stayConnected ?? false
 
         transmitterIDField.text = AppDelegate.sharedDelegate.transmitter?.ID
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         updateIndicatorViewDisplay()
@@ -43,36 +43,36 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
     // MARK: - Actions
 
     func updateIndicatorViewDisplay() {
-        if let transmitter = AppDelegate.sharedDelegate.transmitter where transmitter.isScanning {
+        if let transmitter = AppDelegate.sharedDelegate.transmitter, transmitter.isScanning {
             scanningIndicatorView.startAnimating()
         } else {
             scanningIndicatorView.stopAnimating()
         }
     }
 
-    @IBAction func toggleStayConnected(sender: UISwitch) {
-        AppDelegate.sharedDelegate.transmitter?.stayConnected = sender.on
-        NSUserDefaults.standardUserDefaults().stayConnected = sender.on
+    @IBAction func toggleStayConnected(_ sender: UISwitch) {
+        AppDelegate.sharedDelegate.transmitter?.stayConnected = sender.isOn
+        UserDefaults.standard.stayConnected = sender.isOn
 
         updateIndicatorViewDisplay()
     }
 
-    @IBAction func togglePassiveMode(sender: UISwitch) {
-        AppDelegate.sharedDelegate.transmitter?.passiveModeEnabled = sender.on
-        NSUserDefaults.standardUserDefaults().passiveModeEnabled = sender.on
+    @IBAction func togglePassiveMode(_ sender: UISwitch) {
+        AppDelegate.sharedDelegate.transmitter?.passiveModeEnabled = sender.isOn
+        UserDefaults.standard.passiveModeEnabled = sender.isOn
     }
 
     // MARK: - UITextFieldDelegate
 
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let text = textField.text {
-            let newString = text.stringByReplacingCharactersInRange(range.rangeOfString(text), withString: string)
+            let newString = text.replacingCharacters(in: range.rangeOfString(text), with: string)
 
             if newString.characters.count > 6 {
                 return false
             } else if newString.characters.count == 6 {
                 AppDelegate.sharedDelegate.transmitter?.ID = newString
-                NSUserDefaults.standardUserDefaults().transmitterID = newString
+                UserDefaults.standard.transmitterID = newString
 
                 textField.text = newString
 
@@ -85,47 +85,47 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
         return true
     }
 
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.text?.characters.count != 6 {
-            textField.text = NSUserDefaults.standardUserDefaults().transmitterID
+            textField.text = UserDefaults.standard.transmitterID
         }
     }
 
-    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         return true
     }
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return true
     }
 
     // MARK: - TransmitterDelegate
 
-    func transmitter(transmitter: Transmitter, didError error: ErrorType) {
+    func transmitter(_ transmitter: Transmitter, didError error: Error) {
         titleLabel.text = NSLocalizedString("Error", comment: "Title displayed during error response")
 
         subtitleLabel.text = "\(error)"
     }
 
-    func transmitter(transmitter: Transmitter, didRead glucose: Glucose) {
+    func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose) {
         let unit = HKUnit.milligramsPerDeciliter()
-        if let value = glucose.glucose?.doubleValueForUnit(unit) {
+        if let value = glucose.glucose?.doubleValue(for: unit) {
             titleLabel.text = "\(value) \(unit.unitString)"
         } else {
-            titleLabel.text = String(glucose.state)
+            titleLabel.text = String(describing: glucose.state)
         }
 
 
         let date = glucose.readDate
-        subtitleLabel.text = NSDateFormatter.localizedStringFromDate(date, dateStyle: .NoStyle, timeStyle: .LongStyle)
+        subtitleLabel.text = DateFormatter.localizedString(from: date, dateStyle: .none, timeStyle: .long)
     }
 }
 
 
 private extension NSRange {
-    func rangeOfString(string: String) -> Range<String.Index> {
-        let startIndex = string.startIndex.advancedBy(location)
-        let endIndex = startIndex.advancedBy(length)
+    func rangeOfString(_ string: String) -> Range<String.Index> {
+        let startIndex = string.characters.index(string.startIndex, offsetBy: location)
+        let endIndex = string.characters.index(startIndex, offsetBy: length)
         return startIndex..<endIndex
     }
 }

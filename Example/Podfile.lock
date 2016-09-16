@@ -1,5 +1,5 @@
 PODS:
-  - xDripG5 (0.6.0)
+  - xDripG5 (0.7.0)
 
 DEPENDENCIES:
   - xDripG5 (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  xDripG5: ef0c18aa2916c968645fc20313e402b13eb5c845
+  xDripG5: b0bfa28e1dc510799d919ab6a67badb56a024247
 
 PODFILE CHECKSUM: 6b30cba971694d5258509315fb52eb645c9bc5e3
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.0.beta.2

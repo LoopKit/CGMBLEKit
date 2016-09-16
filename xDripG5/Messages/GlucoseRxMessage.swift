@@ -19,25 +19,25 @@ public struct GlucoseRxMessage: TransmitterRxMessage {
     public let state: UInt8
     public let trend: Int8
 
-    init?(data: NSData) {
-        if data.length == 16 && data.crcValid() {
-            if data[0] == self.dynamicType.opcode {
-                status = data[1]
-                sequence = data[2...5]
-                timestamp = data[6...9]
-
-                let glucoseBytes: UInt16 = data[10...11]
-                glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
-                glucose = glucoseBytes & 0xfff
-
-                state = data[12]
-                trend = data[13]
-            } else {
-                return nil
-            }
-        } else {
+    init?(data: Data) {
+        guard data.count == 16 && data.crcValid() else {
             return nil
         }
+
+        guard data[0] == type(of: self).opcode else {
+            return nil
+        }
+
+        status = data[1]
+        sequence = data[2..<6]
+        timestamp = data[6..<10]
+
+        let glucoseBytes: UInt16 = data[10..<12]
+        glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
+        glucose = glucoseBytes & 0xfff
+
+        state = data[12]
+        trend = Int8(bitPattern: data[13])
     }
 }
 

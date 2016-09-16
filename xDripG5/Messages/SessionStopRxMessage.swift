@@ -17,19 +17,19 @@ struct SessionStopRxMessage {
     let sessionStartTime: UInt32
     let transmitterTime: UInt32
 
-    init?(data: NSData) {
-        guard data.length == 17 && data.crcValid() else {
+    init?(data: Data) {
+        guard data.count == 17 && data.crcValid() else {
             return nil
         }
 
-        guard data[0] == self.dynamicType.opcode else {
+        guard data[0] == type(of: self).opcode else {
             return nil
         }
 
         status = data[1]
         received = data[2]
-        sessionStopTime = data[3...6]
-        sessionStartTime = data[7...10]
-        transmitterTime = data[11...14]
+        sessionStopTime = data[3..<7]
+        sessionStartTime = data[7..<11]
+        transmitterTime = data[11..<15]
     }
 }
