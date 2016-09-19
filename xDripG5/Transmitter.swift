@@ -14,6 +14,8 @@ public protocol TransmitterDelegate: class {
     func transmitter(_ transmitter: Transmitter, didError error: Error)
 
     func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose)
+
+    func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data)
 }
 
 
@@ -30,6 +32,8 @@ public final class Transmitter: BluetoothManagerDelegate {
 
     /// The initial activation date of the transmitter
     public private(set) var activationDate: Date?
+
+    private var lastTimeMessage: TransmitterTimeRxMessage?
 
     public var passiveModeEnabled: Bool
 
@@ -121,6 +125,35 @@ public final class Transmitter: BluetoothManagerDelegate {
         } else {
             return false
         }
+    }
+
+    func bluetoothManager(_ manager: BluetoothManager, didReceiveControlResponse response: Data) {
+        guard passiveModeEnabled else { return }
+
+        guard response.count > 0 else { return }
+
+        switch response[0] {
+        case GlucoseRxMessage.opcode:
+            if  let glucoseMessage = GlucoseRxMessage(data: response),
+                let timeMessage = lastTimeMessage,
+                let activationDate = activationDate
+            {
+                self.delegate?.transmitter(self, didRead: Glucose(glucoseMessage: glucoseMessage, timeMessage: timeMessage, activationDate: activationDate))
+                return
+            }
+        case CalibrationDataRxMessage.opcode, SessionStartRxMessage.opcode, SessionStopRxMessage.opcode:
+            return // Ignore these messages
+        case TransmitterTimeRxMessage.opcode:
+            if let timeMessage = TransmitterTimeRxMessage(data: response) {
+                self.activationDate = Date(timeIntervalSinceNow: -TimeInterval(timeMessage.currentTime))
+                self.lastTimeMessage = timeMessage
+                return
+            }
+        default:
+            break
+        }
+
+        delegate?.transmitter(self, didReadUnknownData: response)
     }
 
     // MARK: - Helpers
@@ -235,6 +268,7 @@ public final class Transmitter: BluetoothManagerDelegate {
         }
 
         // Update and notify
+        self.lastTimeMessage = timeMessage
         self.activationDate = activationDate
         self.delegate?.transmitter(self, didRead: Glucose(glucoseMessage: glucoseMessage, timeMessage: timeMessage, activationDate: activationDate))
 
@@ -251,34 +285,6 @@ public final class Transmitter: BluetoothManagerDelegate {
         } catch let error {
             throw TransmitterError.controlError("Error enabling notification: \(error)")
         }
-
-        let timeData: Data
-        do {
-            timeData = try bluetoothManager.waitForCharacteristicValueUpdate(.Control, expectingFirstByte: TransmitterTimeRxMessage.opcode)
-        } catch let error {
-            throw TransmitterError.controlError("Error waiting for time response: \(error)")
-        }
-
-        guard let timeMessage = TransmitterTimeRxMessage(data: timeData) else {
-            throw TransmitterError.controlError("Unable to parse time response: \(timeData)")
-        }
-
-        let activationDate = Date(timeIntervalSinceNow: -TimeInterval(timeMessage.currentTime))
-
-        let glucoseData: Data
-        do {
-            glucoseData = try bluetoothManager.waitForCharacteristicValueUpdate(.Control, expectingFirstByte: GlucoseRxMessage.opcode)
-        } catch let error {
-            throw TransmitterError.controlError("Error waiting for glucose response: \(error)")
-        }
-
-        guard let glucoseMessage = GlucoseRxMessage(data: glucoseData) else {
-            throw TransmitterError.controlError("Unable to parse glucose response: \(glucoseData)")
-        }
-
-        // Update and notify
-        self.activationDate = activationDate
-        self.delegate?.transmitter(self, didRead: Glucose(glucoseMessage: glucoseMessage, timeMessage: timeMessage, activationDate: activationDate))
     }
 
     private var cryptKey: Data? {

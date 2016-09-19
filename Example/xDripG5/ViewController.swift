@@ -119,6 +119,11 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
         let date = glucose.readDate
         subtitleLabel.text = DateFormatter.localizedString(from: date, dateStyle: .none, timeStyle: .long)
     }
+
+    func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data) {
+        titleLabel.text = NSLocalizedString("Unknown Data", comment: "Title displayed during unknown data response")
+        subtitleLabel.text = data.hexadecimalString
+    }
 }
 
 

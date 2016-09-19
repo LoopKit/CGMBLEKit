@@ -87,4 +87,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
             }
         }
     }
+
+    func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data) {
+        if let vc = window?.rootViewController as? TransmitterDelegate {
+            DispatchQueue.main.async {
+                vc.transmitter(transmitter, didReadUnknownData: data)
+            }
+        }
+    }
 }
