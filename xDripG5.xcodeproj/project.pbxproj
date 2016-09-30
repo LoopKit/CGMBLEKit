@@ -293,7 +293,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0800;
-				ORGANIZATIONNAME = "Nathan Racklyeft";
+				ORGANIZATIONNAME = "LoopKit Authors";
 				TargetAttributes = {
 					43CABDF21C3506F100005705 = {
 						CreatedOnToolsVersion = 7.2;

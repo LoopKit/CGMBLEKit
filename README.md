@@ -1,6 +1,6 @@
 # xDripG5
 
-[![CI Status](http://img.shields.io/travis/loudnate/xDripG5.svg?style=flat)](https://travis-ci.org/loudnate/xDripG5)
+[![CI Status](http://img.shields.io/travis/LoopKit/xDripG5.svg?style=flat)](https://travis-ci.org/LoopKit/xDripG5)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Version](https://img.shields.io/cocoapods/v/xDripG5.svg?style=flat)](http://cocoapods.org/pods/xDripG5)
 [![License](https://img.shields.io/cocoapods/l/xDripG5.svg?style=flat)](http://cocoapods.org/pods/xDripG5)
@@ -21,7 +21,7 @@ This framework connects to a G5 Mobile Transmitter via Bluetooth LE. It does not
 xDripG5 is available through [Carthage](https://github.com/Carthage/Carthage). To install it, add the following line to your Cartfile:
 
 ```ruby
-github "loudnate/xDripG5"
+github "LoopKit/xDripG5"
 ```
 
 Note that you'll need to confgure your target to link against `CommonCrypto.framework` in addition to `xDripG5.framework`
@@ -48,7 +48,7 @@ If you plan to run your app alongside the G5 Mobile application, make sure to se
 
 ## Code of Conduct
 
-Please note that this project is released with a [Contributor Code of Conduct](https://github.com/loudnate/LoopKit/blob/master/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of Conduct](https://github.com/LoopKit/LoopKit/blob/master/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 ## License
 
