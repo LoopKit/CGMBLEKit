@@ -11,4 +11,6 @@ import Foundation
 
 struct BatteryStatusTxMessage {
     let opcode: UInt8 = 0x22
+
+    // Response: 23003c012f01cd021f247bae
 }
