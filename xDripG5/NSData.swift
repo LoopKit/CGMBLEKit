@@ -45,14 +45,14 @@ public extension Data {
 
         return dataArray
     }
-
+*/
     subscript(range: Range<Int>) -> [UInt8] {
         var dataArray = [UInt8](repeating: 0, count: range.count)
         self.copyBytes(to: &dataArray, from: range)
 
         return dataArray
     }
-
+/*
     subscript(range: Range<Int>) -> [UInt16] {
         var dataArray = [UInt16](repeating: 0, count: range.count / 2)
         let buffer = UnsafeMutableBufferPointer(start: &dataArray, count: range.count)

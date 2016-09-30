@@ -29,6 +29,12 @@ protocol BluetoothManagerDelegate: class {
      - returns: True if the peripheral should connect
      */
     func bluetoothManager(_ manager: BluetoothManager, shouldConnectPeripheral peripheral: CBPeripheral) -> Bool
+
+    /// Tells the delegate that the bluetooth manager received new data in the control characteristic.
+    ///
+    /// - parameter manager:                   The bluetooth manager
+    /// - parameter didReceiveControlResponse: The data received on the control characteristic
+    func bluetoothManager(_ manager: BluetoothManager, didReceiveControlResponse response: Data)
 }
 
 
@@ -422,7 +428,6 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     }
 
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-
         operationLock.lock()
 
         if operationConditions.remove(.valueUpdate(characteristic: characteristic, firstByte: characteristic.value?[0])) != nil ||
@@ -436,11 +441,15 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         }
 
         operationLock.unlock()
+
+        if let data = characteristic.value {
+            delegate?.bluetoothManager(self, didReceiveControlResponse: data)
+        }
     }
 
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
 
-        self.operationLock.lock()
+        operationLock.lock()
 
         if operationConditions.remove(.writeUpdate(characteristic: characteristic)) != nil {
             operationError = error
@@ -450,7 +459,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
             }
         }
         
-        self.operationLock.unlock()
+        operationLock.unlock()
     }
 }
 
