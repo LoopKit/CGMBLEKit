@@ -13,7 +13,7 @@
 
 + (NSData *)encryptData:(NSData *)data usingKey:(NSData *)key error:(NSError * _Nullable __autoreleasing *)error
 {
-    NSMutableData *dataOut = [[NSMutableData alloc] initWithCapacity:16];
+    NSMutableData *dataOut = [NSMutableData dataWithLength: data.length + kCCBlockSizeAES128];
 
     CCCryptorStatus status = CCCrypt(kCCEncrypt,
                                      kCCAlgorithmAES,
