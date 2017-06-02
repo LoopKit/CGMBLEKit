@@ -19,7 +19,7 @@ struct AuthRequestTxMessage: TransmitterTxMessage {
 
         NSUUID().getBytes(&UUIDBytes)
 
-        singleUseToken = Data(bytes: UUIDBytes)
+        singleUseToken = Data(bytes: UUIDBytes[0..<8])
     }
 
     var byteSequence: [Any] {
