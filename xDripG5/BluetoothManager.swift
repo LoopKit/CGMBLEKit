@@ -452,7 +452,10 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         operationLock.lock()
 
         if operationConditions.remove(.writeUpdate(characteristic: characteristic)) != nil {
-            operationError = error
+            if let error = error {
+                operationError = error
+                operationConditions = []
+            }
 
             if operationConditions.isEmpty {
                 operationLock.broadcast()
