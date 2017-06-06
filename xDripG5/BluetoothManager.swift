@@ -143,7 +143,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
      */
     fileprivate func scanAfterDelay() {
         DispatchQueue.global(qos: DispatchQoS.QoSClass.utility).async {
-            Thread.sleep(forTimeInterval: 2)
+            Thread.sleep(forTimeInterval: 10)
 
             self.scanForPeripheral()
         }
