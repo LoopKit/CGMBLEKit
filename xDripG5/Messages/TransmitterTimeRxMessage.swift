@@ -25,8 +25,8 @@ struct TransmitterTimeRxMessage: TransmitterRxMessage {
         }
 
         status = data[1]
-        currentTime = data[2..<6]
-        sessionStartTime = data[6..<10]
+        currentTime = data.subdata(in: 2..<6).withUnsafeBytes { $0.pointee }
+        sessionStartTime = data.subdata(in: 6..<10).withUnsafeBytes { $0.pointee }
     }
 }
 

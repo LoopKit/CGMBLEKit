@@ -31,8 +31,8 @@ struct SessionStartRxMessage {
 
         status = data[1]
         received = data[2]
-        requestedStartTime = data[3..<7]
-        sessionStartTime = data[7..<11]
-        transmitterTime = data[11..<15]
+        requestedStartTime = data.subdata(in: 3..<7).withUnsafeBytes { $0.pointee }
+        sessionStartTime = data.subdata(in: 7..<11).withUnsafeBytes { $0.pointee }
+        transmitterTime = data.subdata(in: 11..<15).withUnsafeBytes { $0.pointee }
     }
 }
