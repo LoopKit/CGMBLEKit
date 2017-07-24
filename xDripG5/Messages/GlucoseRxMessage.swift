@@ -29,10 +29,10 @@ public struct GlucoseRxMessage: TransmitterRxMessage {
         }
 
         status = data[1]
-        sequence = data[2..<6]
-        timestamp = data[6..<10]
+        sequence = data.subdata(in: 2..<6).withUnsafeBytes { $0.pointee }
+        timestamp = data.subdata(in: 6..<10).withUnsafeBytes { $0.pointee }
 
-        let glucoseBytes: UInt16 = data[10..<12]
+        let glucoseBytes: UInt16 = data.subdata(in: 10..<12).withUnsafeBytes { $0.pointee }
         glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
         glucose = glucoseBytes & 0xfff
 

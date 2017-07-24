@@ -8,6 +8,7 @@
 
 import CoreBluetooth
 import Foundation
+import os.log
 
 
 protocol BluetoothManagerDelegate: class {
@@ -76,6 +77,8 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
 
     weak var delegate: BluetoothManagerDelegate?
 
+    private let log: OSLog
+
     private var manager: CBCentralManager! = nil
 
     private var peripheral: CBPeripheral? {
@@ -95,6 +98,8 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     private var managerQueue = DispatchQueue(label: "com.loudnate.xDripG5.bluetoothManagerQueue", qos: .userInitiated)
 
     override init() {
+        log = OSLog(subsystem: Bundle(for: BluetoothManager.self).bundleIdentifier!, category: "BluetoothManager")
+
         super.init()
 
         manager = CBCentralManager(delegate: self, queue: managerQueue, options: [CBCentralManagerOptionRestoreIdentifierKey: "com.loudnate.xDripG5"])
@@ -107,26 +112,31 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
             return
         }
 
-        if let peripheral = manager.retrieveConnectedPeripherals(withServices: [
+        if let peripheralID = self.peripheral?.identifier, let peripheral = manager.retrievePeripherals(withIdentifiers: [peripheralID]).first {
+            log.info("Re-connecting to known peripheral %{public}@", peripheral.identifier.uuidString)
+            self.peripheral = peripheral
+            self.manager.connect(peripheral, options: nil)
+        } else if let peripheral = manager.retrieveConnectedPeripherals(withServices: [
             CBUUID(string: TransmitterServiceUUID.Advertisement.rawValue),
             CBUUID(string: TransmitterServiceUUID.CGMService.rawValue)
-        ]).first , delegate == nil || delegate!.bluetoothManager(self, shouldConnectPeripheral: peripheral) {
+        ]).first, delegate == nil || delegate!.bluetoothManager(self, shouldConnectPeripheral: peripheral) {
+            log.info("Found system-connected peripheral: %{public}@", peripheral.identifier.uuidString)
             self.peripheral = peripheral
+            self.manager.connect(peripheral, options: nil)
         } else {
+            log.info("Scanning for peripherals")
             manager.scanForPeripherals(withServices: [
                     CBUUID(string: TransmitterServiceUUID.Advertisement.rawValue)
                 ],
                 options: nil
             )
         }
-
-        if let peripheral = self.peripheral {
-            self.manager.connect(peripheral, options: nil)
-        }
     }
 
     func disconnect() {
-        manager.stopScan()
+        if manager.isScanning {
+            manager.stopScan()
+        }
 
         if let peripheral = peripheral {
             manager.cancelPeripheralConnection(peripheral)
@@ -320,20 +330,19 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state {
         case .poweredOn:
-            if let peripheral = peripheral {
-                central.connect(peripheral, options: nil)
-            } else {
-                scanForPeripheral()
-            }
+            scanForPeripheral()
         case .resetting, .poweredOff, .unauthorized, .unknown, .unsupported:
-            central.stopScan()
+            if central.isScanning {
+                central.stopScan()
+            }
         }
     }
 
     func centralManager(_ central: CBCentralManager, willRestoreState dict: [String : Any]) {
-        if peripheral == nil, let peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as? [CBPeripheral] {
+        if let peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as? [CBPeripheral] {
             for peripheral in peripherals {
                 if delegate == nil || delegate!.bluetoothManager(self, shouldConnectPeripheral: peripheral) {
+                    log.info("Restoring peripheral from state: %{public}@", peripheral.identifier.uuidString)
                     self.peripheral = peripheral
                 }
             }
@@ -351,7 +360,9 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     }
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        central.stopScan()
+        if central.isScanning {
+            central.stopScan()
+        }
 
         let knownServiceUUIDs = peripheral.services?.flatMap({ $0.uuid }) ?? []
 
@@ -360,6 +371,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         ].filter({ !knownServiceUUIDs.contains($0) })
 
         if servicesToDiscover.count > 0 {
+            log.info("Discovering services")
             peripheral.discoverServices(servicesToDiscover)
         } else {
             self.peripheral(peripheral, didDiscoverServices: nil)
@@ -401,6 +413,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
             characteristicsToDiscover = characteristicsToDiscover.filter({ !knownCharacteristics.contains($0) })
 
             if characteristicsToDiscover.count > 0 {
+                log.info("Discovering characteristics")
                 peripheral.discoverCharacteristics(characteristicsToDiscover, for: service)
             } else {
                 self.peripheral(peripheral, didDiscoverCharacteristicsFor: service, error: nil)
@@ -409,6 +422,10 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     }
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+        if let error = error {
+            log.error("Error discovering characteristics: %{public}@", String(describing: error))
+        }
+
         self.delegate?.bluetoothManager(self, isReadyWithError: error)
     }
 

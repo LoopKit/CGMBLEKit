@@ -24,7 +24,7 @@ struct TransmitterVersionRxMessage: TransmitterRxMessage {
         }
 
         status = data[1]
-        firmwareVersion = data[2..<6]
+        firmwareVersion = data.subdata(in: 2..<6).map({ $0 })
     }
 
 }
