@@ -121,7 +121,11 @@ public final class Transmitter: BluetoothManagerDelegate {
      - returns: A new string, containing the last two characters of the input string
      */
     private func lastTwoCharactersOfString(_ string: String) -> String {
-        return string.substring(from: string.characters.index(string.endIndex, offsetBy: -2, limitedBy: string.startIndex)!)
+        #if swift(>=4)
+            return String(string[string.index(string.endIndex, offsetBy: -2)...])
+        #else
+            return string.substring(from: string.characters.index(string.endIndex, offsetBy: -2, limitedBy: string.startIndex)!)
+        #endif
     }
 
     func bluetoothManager(_ manager: BluetoothManager, shouldConnectPeripheral peripheral: CBPeripheral) -> Bool {
