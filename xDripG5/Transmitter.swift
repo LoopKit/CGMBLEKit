@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreBluetooth
+import os.log
 
 
 public protocol TransmitterDelegate: class {
@@ -39,6 +40,8 @@ public final class Transmitter: BluetoothManagerDelegate {
 
     public weak var delegate: TransmitterDelegate?
 
+    private let log: OSLog
+
     private let bluetoothManager = BluetoothManager()
 
     private var operationQueue = DispatchQueue(label: "com.loudnate.xDripG5.transmitterOperationQueue")
@@ -46,6 +49,8 @@ public final class Transmitter: BluetoothManagerDelegate {
     public init(ID: String, passiveModeEnabled: Bool = false) {
         self.ID = ID
         self.passiveModeEnabled = passiveModeEnabled
+
+        log = OSLog(subsystem: Bundle(for: Transmitter.self).bundleIdentifier!, category: "Transmitter")
 
         bluetoothManager.delegate = self
     }
@@ -116,7 +121,11 @@ public final class Transmitter: BluetoothManagerDelegate {
      - returns: A new string, containing the last two characters of the input string
      */
     private func lastTwoCharactersOfString(_ string: String) -> String {
-        return string.substring(from: string.characters.index(string.endIndex, offsetBy: -2, limitedBy: string.startIndex)!)
+        #if swift(>=4)
+            return String(string[string.index(string.endIndex, offsetBy: -2)...])
+        #else
+            return string.substring(from: string.characters.index(string.endIndex, offsetBy: -2, limitedBy: string.startIndex)!)
+        #endif
     }
 
     func bluetoothManager(_ manager: BluetoothManager, shouldConnectPeripheral peripheral: CBPeripheral) -> Bool {
@@ -283,6 +292,7 @@ public final class Transmitter: BluetoothManagerDelegate {
         do {
             try bluetoothManager.setNotifyEnabledAndWait(true, forCharacteristicUUID: .Control)
         } catch let error {
+            log.error("Error enabling notification: %{public}@", String(describing: error))
             throw TransmitterError.controlError("Error enabling notification: \(error)")
         }
     }

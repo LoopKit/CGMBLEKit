@@ -48,6 +48,6 @@ extension Data {
     }
 
     func crcValid() -> Bool {
-        return CRCCCITTXModem(subdata(in: 0..<count-2)) == self[count-2..<count]
+        return CRCCCITTXModem(subdata(in: 0..<count-2)) == self.subdata(in: count-2..<count).withUnsafeBytes { $0.pointee }
     }
 }

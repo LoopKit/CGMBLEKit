@@ -9,47 +9,42 @@
 import Foundation
 
 
+// String conversion methods, adapted from https://stackoverflow.com/questions/40276322/hex-binary-string-conversion-in-swift/40278391#40278391
 extension Data {
-    public init?(hexadecimalString: String) {
-        guard let chars = hexadecimalString.cString(using: String.Encoding.utf8) else {
-            return nil
-        }
+    init?(hexadecimalString: String) {
+        self.init(capacity: hexadecimalString.utf16.count / 2)
 
-        self.init(capacity: chars.count / 2)
-
-        for i in 0..<chars.count / 2 {
-            var num: UInt8 = 0
-            var multi: UInt8 = 16
-
-            for j in 0..<2 {
-                let c = chars[i * 2 + j]
-                var offset: UInt8
-
-                switch c {
-                case 48...57:   // '0'-'9'
-                    offset = 48
-                case 65...70:   // 'A'-'F'
-                    offset = 65 - 10         // 10 since 'A' is 10, not 0
-                case 97...102:  // 'a'-'f'
-                    offset = 97 - 10         // 10 since 'a' is 10, not 0
-                default:
-                    return nil
-                }
-
-                num += (UInt8(c) - offset) * multi
-                multi = 1
+        // Convert 0 ... 9, a ... f, A ...F to their decimal value,
+        // return nil for all other input characters
+        func decodeNibble(u: UInt16) -> UInt8? {
+            switch u {
+            case 0x30 ... 0x39:  // '0'-'9'
+                return UInt8(u - 0x30)
+            case 0x41 ... 0x46:  // 'A'-'F'
+                return UInt8(u - 0x41 + 10)  // 10 since 'A' is 10, not 0
+            case 0x61 ... 0x66:  // 'a'-'f'
+                return UInt8(u - 0x61 + 10)  // 10 since 'a' is 10, not 0
+            default:
+                return nil
             }
-            append(num)
         }
+
+        var even = true
+        var byte: UInt8 = 0
+        for c in hexadecimalString.utf16 {
+            guard let val = decodeNibble(u: c) else { return nil }
+            if even {
+                byte = val << 4
+            } else {
+                byte += val
+                self.append(byte)
+            }
+            even = !even
+        }
+        guard even else { return nil }
     }
 
-    public var hexadecimalString: String {
-        let string = NSMutableString(capacity: count * 2)
-
-        for byte in self {
-            string.appendFormat("%02x", byte)
-        }
-
-        return string as String
+    var hexadecimalString: String {
+        return map { String(format: "%02hhx", $0) }.joined()
     }
 }
