@@ -86,7 +86,7 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.text?.characters.count != 6 {
+        if textField.text?.count != 6 {
             textField.text = UserDefaults.standard.transmitterID
         }
     }
