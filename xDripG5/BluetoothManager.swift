@@ -156,6 +156,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
             Thread.sleep(forTimeInterval: 2)
 
             self.scanForPeripheral()
+
         }
     }
 
@@ -297,6 +298,18 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         }
 
         return characteristic.value ?? Data()
+    }
+
+    func waitForTime(timeout: TimeInterval = 2) {
+        operationLock.lock()
+
+        operationLock.wait(until: Date(timeIntervalSinceNow: timeout))
+
+        defer {
+            operationLock.unlock()
+        }
+
+        return
     }
 
     // MARK: - Accessors

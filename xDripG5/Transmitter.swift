@@ -168,79 +168,71 @@ public final class Transmitter: BluetoothManagerDelegate {
     // MARK: - Helpers
 
     private func authenticate() throws {
-        if  let data = try? bluetoothManager.readValueForCharacteristicAndWait(.Authentication),
-            let status = AuthStatusRxMessage(data: data), status.authenticated == 1 && status.bonded == 1
-        {
-            NSLog("Transmitter already authenticated.")
-        } else {
-            do {
-                try bluetoothManager.setNotifyEnabledAndWait(true, forCharacteristicUUID: .Authentication)
-            } catch let error {
-                throw TransmitterError.authenticationError("Error enabling notification: \(error)")
-            }
+        let authMessage = AuthRequestTxMessage()
+        let data: Data
 
-            let authMessage = AuthRequestTxMessage()
+        do {
+            _ = try bluetoothManager.writeValueAndWait(authMessage.data, forCharacteristicUUID: .Authentication)
+            data = try bluetoothManager.readValueForCharacteristicAndWait(.Authentication, expectingFirstByte: AuthChallengeRxMessage.opcode)
+        } catch let error {
+            throw TransmitterError.authenticationError("Error writing transmitter challenge: \(error)")
+        }
+
+        guard let response = AuthChallengeRxMessage(data: data) else {
+            throw TransmitterError.authenticationError("Unable to parse auth challenge: \(data)")
+        }
+
+        guard response.tokenHash == self.calculateHash(authMessage.singleUseToken) else {
+            throw TransmitterError.authenticationError("Transmitter failed auth challenge")
+        }
+
+        if let challengeHash = self.calculateHash(response.challenge) {
             let data: Data
-
             do {
-                data = try bluetoothManager.writeValueAndWait(authMessage.data, forCharacteristicUUID: .Authentication, expectingFirstByte: AuthChallengeRxMessage.opcode)
+                _ = try bluetoothManager.writeValueAndWait(AuthChallengeTxMessage(challengeHash: challengeHash).data, forCharacteristicUUID: .Authentication)
+                data = try bluetoothManager.readValueForCharacteristicAndWait(.Authentication, expectingFirstByte: AuthStatusRxMessage.opcode)
             } catch let error {
-                throw TransmitterError.authenticationError("Error writing transmitter challenge: \(error)")
+                throw TransmitterError.authenticationError("Error writing challenge response: \(error)")
             }
 
-            guard let response = AuthChallengeRxMessage(data: data) else {
-                throw TransmitterError.authenticationError("Unable to parse auth challenge: \(data)")
+            guard let response = AuthStatusRxMessage(data: data) else {
+                throw TransmitterError.authenticationError("Unable to parse auth status: \(data)")
             }
 
-            guard response.tokenHash == self.calculateHash(authMessage.singleUseToken) else {
-                throw TransmitterError.authenticationError("Transmitter failed auth challenge")
+            guard response.authenticated == 1 else {
+                throw TransmitterError.authenticationError("Transmitter rejected auth challenge")
             }
 
-            if let challengeHash = self.calculateHash(response.challenge) {
+            if response.bonded != 0x1 {
+                do {
+                    _ = try bluetoothManager.writeValueAndWait(KeepAliveTxMessage(time: 25).data, forCharacteristicUUID: .Authentication)
+                } catch let error {
+                    throw TransmitterError.authenticationError("Error writing keep-alive for bond: \(error)")
+                }
+
                 let data: Data
                 do {
-                    data = try bluetoothManager.writeValueAndWait(AuthChallengeTxMessage(challengeHash: challengeHash).data, forCharacteristicUUID: .Authentication, expectingFirstByte: AuthStatusRxMessage.opcode)
+                    _ = try bluetoothManager.writeValueAndWait(BondRequestTxMessage().data, forCharacteristicUUID: .Authentication)
                 } catch let error {
-                    throw TransmitterError.authenticationError("Error writing challenge response: \(error)")
+                    throw TransmitterError.authenticationError("Error writing bond request: \(error)")
+                }
+
+                // Wait for the OS dialog to pop-up before continuing.
+                bluetoothManager.waitForTime(timeout: 5)
+
+                do {
+                    data = try bluetoothManager.readValueForCharacteristicAndWait(.Authentication, expectingFirstByte: AuthStatusRxMessage.opcode)
+                } catch let error {
+                    throw TransmitterError.authenticationError("Error reading status after bond request: \(error)")
                 }
 
                 guard let response = AuthStatusRxMessage(data: data) else {
                     throw TransmitterError.authenticationError("Unable to parse auth status: \(data)")
                 }
 
-                guard response.authenticated == 1 else {
-                    throw TransmitterError.authenticationError("Transmitter rejected auth challenge")
+                guard response.bonded == 0x1 else {
+                    throw TransmitterError.authenticationError("Transmitter failed to bond")
                 }
-
-                if response.bonded != 0x1 {
-                    do {
-                        _ = try bluetoothManager.writeValueAndWait(KeepAliveTxMessage(time: 25).data, forCharacteristicUUID: .Authentication)
-                    } catch let error {
-                        throw TransmitterError.authenticationError("Error writing keep-alive for bond: \(error)")
-                    }
-
-                    let data: Data
-                    do {
-                        // Wait for the OS dialog to pop-up before continuing.
-                        data = try bluetoothManager.writeValueAndWait(BondRequestTxMessage().data, forCharacteristicUUID: .Authentication, timeout: 15, expectingFirstByte: AuthStatusRxMessage.opcode)
-                    } catch let error {
-                        throw TransmitterError.authenticationError("Error writing bond request: \(error)")
-                    }
-
-                    guard let response = AuthStatusRxMessage(data: data) else {
-                        throw TransmitterError.authenticationError("Unable to parse auth status: \(data)")
-                    }
-
-                    guard response.bonded == 0x1 else {
-                        throw TransmitterError.authenticationError("Transmitter failed to bond")
-                    }
-                }
-            }
-
-            do {
-                try bluetoothManager.setNotifyEnabledAndWait(false, forCharacteristicUUID: .Authentication)
-            } catch let error {
-                throw TransmitterError.authenticationError("Error disabling notification: \(error)")
             }
         }
     }
