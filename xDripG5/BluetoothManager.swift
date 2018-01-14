@@ -156,7 +156,6 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
             Thread.sleep(forTimeInterval: 2)
 
             self.scanForPeripheral()
-
         }
     }
 
