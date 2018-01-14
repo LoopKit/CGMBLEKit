@@ -218,7 +218,11 @@ public final class Transmitter: BluetoothManagerDelegate {
                 }
 
                 // Wait for the OS dialog to pop-up before continuing.
-                bluetoothManager.waitForTime(timeout: 5)
+                do {
+                    try bluetoothManager.waitForTime(timeout: 5)
+                } catch let error {
+                    throw TransmitterError.authenticationError("Error waiting for bond request response: \(error)")
+                }
 
                 do {
                     data = try bluetoothManager.readValueForCharacteristicAndWait(.Authentication, expectingFirstByte: AuthStatusRxMessage.opcode)
