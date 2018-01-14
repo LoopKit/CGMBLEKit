@@ -299,6 +299,22 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         return characteristic.value ?? Data()
     }
 
+    func waitForTime(timeout: TimeInterval = 2) throws {
+        guard manager.state == .poweredOn && operationConditions.isEmpty, let peripheral = peripheral else {
+            throw BluetoothManagerError.notReady
+        }
+
+        operationLock.lock()
+
+        operationLock.wait(until: Date(timeIntervalSinceNow: timeout))
+
+        defer {
+            operationLock.unlock()
+        }
+
+        return
+    }
+
     // MARK: - Accessors
 
     var isScanning: Bool {

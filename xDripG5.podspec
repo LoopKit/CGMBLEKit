@@ -14,9 +14,9 @@ Please note this project is neither created nor backed by Dexcom, Inc. Use of th
   s.homepage         = "https://github.com/LoopKit/xDripG5"
   s.license          = 'MIT'
   s.author           = { "Nathan Racklyeft" => "loudnate@gmail.com" }
-  s.source           = { :git => "https://github.com/LoopKit/xDripG5.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/LoopKit/xDripG5.git", :tag => "v" + s.version.to_s }
 
-  s.platform     = :ios, '9.3'
+  s.platform     = :ios, '10.3'
   s.requires_arc = true
 
   s.source_files = ['xDripG5/**/*.swift', 'xDripG5/AESCrypt.{h,m}', 'Pod/*.h']

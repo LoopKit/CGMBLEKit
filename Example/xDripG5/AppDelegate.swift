@@ -73,24 +73,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
     }()
 
     func transmitter(_ transmitter: Transmitter, didError error: Error) {
-        if let vc = window?.rootViewController as? TransmitterDelegate {
-            DispatchQueue.main.async {
+        DispatchQueue.main.async {
+            if let vc = self.window?.rootViewController as? TransmitterDelegate {
                 vc.transmitter(transmitter, didError: error)
             }
         }
     }
 
     func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose) {
-        if let vc = window?.rootViewController as? TransmitterDelegate {
-            DispatchQueue.main.async {
+        DispatchQueue.main.async {
+            if let vc = self.window?.rootViewController as? TransmitterDelegate {
                 vc.transmitter(transmitter, didRead: glucose)
             }
         }
     }
 
     func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data) {
-        if let vc = window?.rootViewController as? TransmitterDelegate {
-            DispatchQueue.main.async {
+        DispatchQueue.main.async {
+            if let vc = self.window?.rootViewController as? TransmitterDelegate {
                 vc.transmitter(transmitter, didReadUnknownData: data)
             }
         }
