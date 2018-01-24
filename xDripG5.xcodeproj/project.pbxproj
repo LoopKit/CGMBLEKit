@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		430D64C51CB7846A00FCA750 /* NSData+CRC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430D64C41CB7846A00FCA750 /* NSData+CRC.swift */; };
+		431CE7631F8EEF6D00255374 /* CBPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431CE7621F8EEF6D00255374 /* CBPeripheral.swift */; };
+		431CE7671F91D0B300255374 /* PeripheralManager+G5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431CE7661F91D0B300255374 /* PeripheralManager+G5.swift */; };
 		4323115F1EFC870300B95E62 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4323115E1EFC870300B95E62 /* OSLog.swift */; };
+		43460F88200B30D10030C0E3 /* TransmitterIDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43460F87200B30D10030C0E3 /* TransmitterIDTests.swift */; };
+		435535D41FB2C1B000CE5A23 /* PeripheralManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435535D31FB2C1B000CE5A23 /* PeripheralManagerError.swift */; };
 		43846AC61D8F896C00799272 /* CalibrationDataRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43846AC51D8F896C00799272 /* CalibrationDataRxMessage.swift */; };
 		43846AC81D8F89BE00799272 /* CalibrationDataRxMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43846AC71D8F89BE00799272 /* CalibrationDataRxMessageTests.swift */; };
 		43880F981D9E19FC009061A8 /* TransmitterVersionRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43880F971D9E19FC009061A8 /* TransmitterVersionRxMessage.swift */; };
@@ -45,6 +49,7 @@
 		43E3978F1D566B170028E321 /* Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E3978E1D566B170028E321 /* Glucose.swift */; };
 		43E397911D5692080028E321 /* GlucoseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E397901D5692080028E321 /* GlucoseTests.swift */; };
 		43E397931D56950C0028E321 /* HKUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E397921D56950C0028E321 /* HKUnit.swift */; };
+		43E4B1F21F8AF9790038823E /* PeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B1F11F8AF9790038823E /* PeripheralManager.swift */; };
 		43EEA7111D14DC0800CBBDA0 /* AESCrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EEA70F1D14DC0800CBBDA0 /* AESCrypt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43EEA7121D14DC0800CBBDA0 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EEA7101D14DC0800CBBDA0 /* AESCrypt.m */; };
 		43F82BCC1D035AA4006F5DD7 /* TransmitterTimeRxMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F82BCB1D035AA4006F5DD7 /* TransmitterTimeRxMessageTests.swift */; };
@@ -78,7 +83,11 @@
 
 /* Begin PBXFileReference section */
 		430D64C41CB7846A00FCA750 /* NSData+CRC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+CRC.swift"; sourceTree = "<group>"; };
+		431CE7621F8EEF6D00255374 /* CBPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBPeripheral.swift; sourceTree = "<group>"; };
+		431CE7661F91D0B300255374 /* PeripheralManager+G5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PeripheralManager+G5.swift"; sourceTree = "<group>"; };
 		4323115E1EFC870300B95E62 /* OSLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSLog.swift; sourceTree = "<group>"; };
+		43460F87200B30D10030C0E3 /* TransmitterIDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmitterIDTests.swift; sourceTree = "<group>"; };
+		435535D31FB2C1B000CE5A23 /* PeripheralManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralManagerError.swift; sourceTree = "<group>"; };
 		43846AC51D8F896C00799272 /* CalibrationDataRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalibrationDataRxMessage.swift; sourceTree = "<group>"; };
 		43846AC71D8F89BE00799272 /* CalibrationDataRxMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalibrationDataRxMessageTests.swift; sourceTree = "<group>"; };
 		43880F971D9E19FC009061A8 /* TransmitterVersionRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterVersionRxMessage.swift; sourceTree = "<group>"; };
@@ -118,6 +127,7 @@
 		43E3978E1D566B170028E321 /* Glucose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Glucose.swift; sourceTree = "<group>"; };
 		43E397901D5692080028E321 /* GlucoseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlucoseTests.swift; sourceTree = "<group>"; };
 		43E397921D56950C0028E321 /* HKUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKUnit.swift; sourceTree = "<group>"; };
+		43E4B1F11F8AF9790038823E /* PeripheralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralManager.swift; sourceTree = "<group>"; };
 		43EEA70F1D14DC0800CBBDA0 /* AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESCrypt.h; sourceTree = "<group>"; };
 		43EEA7101D14DC0800CBBDA0 /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
 		43F82BCB1D035AA4006F5DD7 /* TransmitterTimeRxMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterTimeRxMessageTests.swift; sourceTree = "<group>"; };
@@ -173,12 +183,16 @@
 				43EEA7101D14DC0800CBBDA0 /* AESCrypt.m */,
 				43CABE0E1C350B2800005705 /* BluetoothManager.swift */,
 				43CABE0F1C350B2800005705 /* BluetoothServices.swift */,
+				431CE7621F8EEF6D00255374 /* CBPeripheral.swift */,
 				43E3978A1D5668BD0028E321 /* CalibrationState.swift */,
 				43E3978E1D566B170028E321 /* Glucose.swift */,
 				43E397921D56950C0028E321 /* HKUnit.swift */,
 				43CABDF81C3506F100005705 /* Info.plist */,
 				430D64C41CB7846A00FCA750 /* NSData+CRC.swift */,
 				4323115E1EFC870300B95E62 /* OSLog.swift */,
+				43E4B1F11F8AF9790038823E /* PeripheralManager.swift */,
+				435535D31FB2C1B000CE5A23 /* PeripheralManagerError.swift */,
+				431CE7661F91D0B300255374 /* PeripheralManager+G5.swift */,
 				43CABE111C350B2800005705 /* Transmitter.swift */,
 				43CE7CDB1CA77468003CC1B0 /* TransmitterStatus.swift */,
 				43CABDF61C3506F100005705 /* xDripG5.h */,
@@ -197,6 +211,7 @@
 				43DC87BF1C8B509B005BC30D /* NSData.swift */,
 				43F82BD31D037227006F5DD7 /* SessionStartRxMessageTests.swift */,
 				43F82BD11D037040006F5DD7 /* SessionStopRxMessageTests.swift */,
+				43460F87200B30D10030C0E3 /* TransmitterIDTests.swift */,
 				43F82BCB1D035AA4006F5DD7 /* TransmitterTimeRxMessageTests.swift */,
 				43880F991D9E1BD7009061A8 /* TransmitterVersionRxMessageTests.swift */,
 			);
@@ -347,17 +362,20 @@
 			files = (
 				43CE7CCA1CA73B94003CC1B0 /* TransmitterVersionTxMessage.swift in Sources */,
 				43E3978B1D5668BD0028E321 /* CalibrationState.swift in Sources */,
+				431CE7631F8EEF6D00255374 /* CBPeripheral.swift in Sources */,
 				43CABE2D1C350B3D00005705 /* TransmitterTimeRxMessage.swift in Sources */,
 				43CABE291C350B3D00005705 /* GlucoseRxMessage.swift in Sources */,
 				43CE7CDC1CA77468003CC1B0 /* TransmitterStatus.swift in Sources */,
 				43CABE271C350B3D00005705 /* BondRequestTxMessage.swift in Sources */,
 				4323115F1EFC870300B95E62 /* OSLog.swift in Sources */,
+				43E4B1F21F8AF9790038823E /* PeripheralManager.swift in Sources */,
 				43CABE231C350B3D00005705 /* AuthChallengeRxMessage.swift in Sources */,
 				43CABE261C350B3D00005705 /* AuthStatusRxMessage.swift in Sources */,
 				43CE7CD41CA73CE8003CC1B0 /* GlucoseHistoryTxMessage.swift in Sources */,
 				43E397931D56950C0028E321 /* HKUnit.swift in Sources */,
 				43846AC61D8F896C00799272 /* CalibrationDataRxMessage.swift in Sources */,
 				43CE7CD01CA73C57003CC1B0 /* SessionStopTxMessage.swift in Sources */,
+				431CE7671F91D0B300255374 /* PeripheralManager+G5.swift in Sources */,
 				43CABE2A1C350B3D00005705 /* GlucoseTxMessage.swift in Sources */,
 				43CE7CC81CA73AEB003CC1B0 /* FirmwareVersionTxMessage.swift in Sources */,
 				43CE7CCC1CA73BCC003CC1B0 /* BatteryStatusTxMessage.swift in Sources */,
@@ -376,6 +394,7 @@
 				43CE7CD21CA73CBC003CC1B0 /* CalibrateGlucoseTxMessage.swift in Sources */,
 				43F82BD01D035D68006F5DD7 /* SessionStopRxMessage.swift in Sources */,
 				43F82BCE1D035D5C006F5DD7 /* SessionStartRxMessage.swift in Sources */,
+				435535D41FB2C1B000CE5A23 /* PeripheralManagerError.swift in Sources */,
 				43CABE251C350B3D00005705 /* AuthRequestTxMessage.swift in Sources */,
 				430D64C51CB7846A00FCA750 /* NSData+CRC.swift in Sources */,
 			);
@@ -385,6 +404,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43460F88200B30D10030C0E3 /* TransmitterIDTests.swift in Sources */,
 				43F82BCC1D035AA4006F5DD7 /* TransmitterTimeRxMessageTests.swift in Sources */,
 				43F82BD41D037227006F5DD7 /* SessionStartRxMessageTests.swift in Sources */,
 				43846AC81D8F89BE00799272 /* CalibrationDataRxMessageTests.swift in Sources */,
@@ -461,6 +481,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Debug;
 		};
@@ -512,6 +533,7 @@
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
@@ -530,7 +552,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.loudnate.xDripG5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos watchos watchsimulator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2,4";
 			};
 			name = Debug;
 		};
@@ -549,6 +573,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.loudnate.xDripG5;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos watchos watchsimulator";
+				TARGETED_DEVICE_FAMILY = "1,2,4";
 			};
 			name = Release;
 		};
