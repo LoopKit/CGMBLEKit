@@ -175,7 +175,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     /// Any error surfaced during the active operation
     private var operationError: Error?
 
-    func readValueForCharacteristicAndWait(_ UUID: CGMServiceCharacteristicUUID, timeout: TimeInterval = 2, expectingFirstByte firstByte: UInt8? = nil) throws -> Data {
+    func readValueForCharacteristicAndWait(_ UUID: CGMServiceCharacteristicUUID, timeout: TimeInterval = 10, expectingFirstByte firstByte: UInt8? = nil) throws -> Data {
         guard manager.state == .poweredOn && operationConditions.isEmpty, let peripheral = peripheral else {
             throw BluetoothManagerError.notReady
         }
@@ -206,7 +206,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         return characteristic.value ?? Data()
     }
 
-    func setNotifyEnabledAndWait(_ enabled: Bool, forCharacteristicUUID UUID: CGMServiceCharacteristicUUID, timeout: TimeInterval = 2) throws {
+    func setNotifyEnabledAndWait(_ enabled: Bool, forCharacteristicUUID UUID: CGMServiceCharacteristicUUID, timeout: TimeInterval = 10) throws {
         guard manager.state == .poweredOn && operationConditions.isEmpty, let peripheral = peripheral else {
             throw BluetoothManagerError.notReady
         }
@@ -264,7 +264,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         return characteristic.value ?? Data()
     }
 
-    func writeValueAndWait(_ value: Data, forCharacteristicUUID UUID: CGMServiceCharacteristicUUID, timeout: TimeInterval = 2, expectingFirstByte firstByte: UInt8? = nil) throws -> Data {
+    func writeValueAndWait(_ value: Data, forCharacteristicUUID UUID: CGMServiceCharacteristicUUID, timeout: TimeInterval = 10, expectingFirstByte firstByte: UInt8? = nil) throws -> Data {
         guard manager.state == .poweredOn && operationConditions.isEmpty, let peripheral = peripheral else {
             throw BluetoothManagerError.notReady
         }
@@ -299,7 +299,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
         return characteristic.value ?? Data()
     }
 
-    func waitForTime(timeout: TimeInterval = 2) throws {
+    func waitForTime(timeout: TimeInterval = 10) throws {
         guard manager.state == .poweredOn && operationConditions.isEmpty, let peripheral = peripheral else {
             throw BluetoothManagerError.notReady
         }
