@@ -30,7 +30,12 @@ public final class Transmitter: BluetoothManagerDelegate {
 
     /// The ID of the transmitter to connect to
     public var ID: String {
-        return id.id
+        get {
+            return id.id
+        }
+        set(newID) {
+            id = TransmitterID(id: newID)
+        }
     }
 
     private var id: TransmitterID
