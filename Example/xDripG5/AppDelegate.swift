@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         transmitter = Transmitter(
-            ID: UserDefaults.standard.transmitterID,
+            id: UserDefaults.standard.transmitterID,
             passiveModeEnabled: UserDefaults.standard.passiveModeEnabled
         )
         transmitter?.stayConnected = UserDefaults.standard.stayConnected
