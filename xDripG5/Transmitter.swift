@@ -256,7 +256,7 @@ fileprivate extension PeripheralManager {
 
     func control() throws -> Glucose {
         do {
-            // Wait for the up to 15s for the user to respond to the pairing request.
+            // Wait for up to 15s for the user to respond to the pairing request.
             try setNotifyValue(true, for: .control, timeout: 15)
         } catch let error {
             throw TransmitterError.controlError("Error enabling notification: \(error)")
