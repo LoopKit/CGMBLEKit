@@ -54,7 +54,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 
-        transmitter?.resumeScanning()
+        if let transmitter = transmitter , !transmitter.stayConnected {
+            transmitter.resumeScanning()
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
