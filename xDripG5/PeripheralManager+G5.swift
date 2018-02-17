@@ -65,12 +65,14 @@ extension PeripheralManager {
             peripheral.writeValue(value, for: characteristic, type: type)
         }
 
-        guard let value = characteristic.value else {
+        let value = characteristic.value
+
+        guard !characteristic.isNotifying || value != nil else {
             // TODO: This is an "unknown value" issue, not a timeout
             throw PeripheralManagerError.timeout
         }
 
-        return value
+        return value ?? Data()
     }
 }
 
