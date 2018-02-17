@@ -106,7 +106,7 @@ class BluetoothManager: NSObject {
         #endif
 
         if let peripheralID = self.peripheral?.identifier, let peripheral = manager.retrievePeripherals(withIdentifiers: [peripheralID]).first {
-            log.info("Re-connecting to known peripheral %{public}@ in %zds", peripheral.identifier.uuidString, delay)
+            log.info("Re-connecting to known peripheral %{public}@ in %.1f s", peripheral.identifier.uuidString, delay)
             self.peripheral = peripheral
             self.manager.connect(peripheral, options: connectOptions)
         } else if let peripheral = manager.retrieveConnectedPeripherals(withServices: [
