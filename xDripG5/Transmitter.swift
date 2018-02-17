@@ -247,27 +247,17 @@ fileprivate extension PeripheralManager {
             throw TransmitterError.authenticationError("Error writing keep-alive for bond: \(error)")
         }
 
-        let data: Data
         do {
-            // Wait for the OS dialog to pop-up before continuing.
             _ = try writeValue(BondRequestTxMessage().data, for: .authentication)
-            data = try readValue(for: .authentication, timeout: 15, expectingFirstByte: AuthStatusRxMessage.opcode)
         } catch let error {
             throw TransmitterError.authenticationError("Error writing bond request: \(error)")
-        }
-
-        guard let response = AuthStatusRxMessage(data: data) else {
-            throw TransmitterError.authenticationError("Unable to parse auth status: \(data)")
-        }
-
-        guard response.bonded == 0x1 else {
-            throw TransmitterError.authenticationError("Transmitter failed to bond")
         }
     }
 
     func control() throws -> Glucose {
         do {
-            try setNotifyValue(true, for: .control)
+            // Wait for the up to 15s for the user to respond to the pairing request.
+            try setNotifyValue(true, for: .control, timeout: 15)
         } catch let error {
             throw TransmitterError.controlError("Error enabling notification: \(error)")
         }
