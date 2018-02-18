@@ -95,18 +95,18 @@ class BluetoothManager: NSObject {
             return
         }
 
-        var connectOptions: [String: Any] = [:]
+        let currentState = peripheral?.state ?? .disconnected
+        guard currentState == .disconnected else {
+            return
+        }
 
-        #if swift(>=4.0.3)
+        var connectOptions: [String: Any] = [:]
         if #available(iOS 11.2, watchOS 4.1, *), delay > 0 {
             connectOptions[CBConnectPeripheralOptionStartDelayKey] = delay
         }
-        #else
-        connectOptions[""] = 0
-        #endif
 
         if let peripheralID = self.peripheral?.identifier, let peripheral = manager.retrievePeripherals(withIdentifiers: [peripheralID]).first {
-            log.info("Re-connecting to known peripheral %{public}@ in %zds", peripheral.identifier.uuidString, delay)
+            log.info("Re-connecting to known peripheral %{public}@ in %.1fs", peripheral.identifier.uuidString, delay)
             self.peripheral = peripheral
             self.manager.connect(peripheral, options: connectOptions)
         } else if let peripheral = manager.retrieveConnectedPeripherals(withServices: [
@@ -195,6 +195,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
     }
 
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        log.info("%{public}@: %{public}@", #function, peripheral)
         if delegate == nil || delegate!.bluetoothManager(self, shouldConnectPeripheral: peripheral) {
             self.peripheral = peripheral
 

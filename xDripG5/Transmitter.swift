@@ -105,14 +105,19 @@ public final class Transmitter: BluetoothManagerDelegate {
                 }
             } else {
                 do {
-                    try peripheral.authenticate(id: self.id)
-                    let glucose = try peripheral.control()
-                    self.delegateQueue.async {
-                        self.delegate?.transmitter(self, didRead: glucose)
+                    let status = try peripheral.authenticate(id: self.id)
+
+                    if status.bonded != 0x1 {
+                        try peripheral.requestBond()
+
+                        self.log.info("Bonding request sent. Waiting user to respond.")
+                    } else {
+                        let glucose = try peripheral.control()
+                        self.delegateQueue.async {
+                            self.delegate?.transmitter(self, didRead: glucose)
+                        }
                     }
                 } catch let error {
-                    manager.disconnect()
-
                     self.delegateQueue.async {
                         self.delegate?.transmitter(self, didError: error)
                     }
@@ -196,12 +201,12 @@ struct TransmitterID {
 
 // MARK: - Helpers
 fileprivate extension PeripheralManager {
-    func authenticate(id: TransmitterID) throws {
+    fileprivate func authenticate(id: TransmitterID) throws -> AuthStatusRxMessage {
         let authMessage = AuthRequestTxMessage()
         let authRequestRx: Data
 
         do {
-            _ = try writeValue(authMessage.data, for: .authentication)
+            try writeValue(authMessage.data, for: .authentication)
             authRequestRx = try readValue(for: .authentication, expectingFirstByte: AuthChallengeRxMessage.opcode)
         } catch let error {
             throw TransmitterError.authenticationError("Error writing transmitter challenge: \(error)")
@@ -221,7 +226,7 @@ fileprivate extension PeripheralManager {
 
         let statusData: Data
         do {
-            _ = try writeValue(AuthChallengeTxMessage(challengeHash: challengeHash).data, for: .authentication)
+            try writeValue(AuthChallengeTxMessage(challengeHash: challengeHash).data, for: .authentication)
             statusData = try readValue(for: .authentication, expectingFirstByte: AuthStatusRxMessage.opcode)
         } catch let error {
             throw TransmitterError.authenticationError("Error writing challenge response: \(error)")
@@ -235,37 +240,24 @@ fileprivate extension PeripheralManager {
             throw TransmitterError.authenticationError("Transmitter rejected auth challenge")
         }
 
-        if status.bonded != 0x1 {
-            try bond()
-        }
+        return status
     }
 
-    private func bond() throws {
+    fileprivate func requestBond() throws {
         do {
-            _ = try writeValue(KeepAliveTxMessage(time: 25).data, for: .authentication)
+            try writeValue(KeepAliveTxMessage(time: 25).data, for: .authentication)
         } catch let error {
             throw TransmitterError.authenticationError("Error writing keep-alive for bond: \(error)")
         }
 
-        let data: Data
         do {
-            // Wait for the OS dialog to pop-up before continuing.
-            _ = try writeValue(BondRequestTxMessage().data, for: .authentication)
-            data = try readValue(for: .authentication, timeout: 15, expectingFirstByte: AuthStatusRxMessage.opcode)
+            try writeValue(BondRequestTxMessage().data, for: .authentication)
         } catch let error {
             throw TransmitterError.authenticationError("Error writing bond request: \(error)")
         }
-
-        guard let response = AuthStatusRxMessage(data: data) else {
-            throw TransmitterError.authenticationError("Unable to parse auth status: \(data)")
-        }
-
-        guard response.bonded == 0x1 else {
-            throw TransmitterError.authenticationError("Transmitter failed to bond")
-        }
     }
 
-    func control() throws -> Glucose {
+    fileprivate func control() throws -> Glucose {
         do {
             try setNotifyValue(true, for: .control)
         } catch let error {
@@ -299,7 +291,7 @@ fileprivate extension PeripheralManager {
         defer {
             do {
                 try setNotifyValue(false, for: .control)
-                _ = try writeValue(DisconnectTxMessage().data, for: .control)
+                try writeValue(DisconnectTxMessage().data, for: .control)
             } catch {
             }
         }
@@ -308,7 +300,7 @@ fileprivate extension PeripheralManager {
         return Glucose(glucoseMessage: glucoseMessage, timeMessage: timeMessage, activationDate: activationDate)
     }
 
-    func listenToControl() throws {
+    fileprivate func listenToControl() throws {
         do {
             try setNotifyValue(true, for: .control)
         } catch let error {

@@ -43,11 +43,12 @@ extension PeripheralManager {
         return value
     }
 
+    /// - Throws: PeripheralManagerError
     func writeValue(_ value: Data,
         for characteristicUUID: CGMServiceCharacteristicUUID,
         type: CBCharacteristicWriteType = .withResponse,
         timeout: TimeInterval = 2,
-        expectingFirstByte firstByte: UInt8? = nil) throws -> Data
+        expectingFirstByte firstByte: UInt8?) throws -> Data
     {
         guard let characteristic = peripheral.getCharacteristicWithUUID(characteristicUUID) else {
             throw PeripheralManagerError.unknownCharacteristic
@@ -71,6 +72,19 @@ extension PeripheralManager {
         }
 
         return value
+    }
+
+    /// - Throws: PeripheralManagerError
+    func writeValue(_ value: Data,
+        for characteristicUUID: CGMServiceCharacteristicUUID,
+        type: CBCharacteristicWriteType = .withResponse,
+        timeout: TimeInterval = 2) throws
+    {
+        guard let characteristic = peripheral.getCharacteristicWithUUID(characteristicUUID) else {
+            throw PeripheralManagerError.unknownCharacteristic
+        }
+
+        try writeValue(value, for: characteristic, type: type, timeout: timeout)
     }
 }
 
