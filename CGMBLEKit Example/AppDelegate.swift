@@ -19,16 +19,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
 
+    var transmitterID: String? {
+        didSet {
+            if let id = transmitterID {
+                transmitter = Transmitter(
+                    id: id,
+                    passiveModeEnabled: UserDefaults.standard.passiveModeEnabled
+                )
+                transmitter?.stayConnected = UserDefaults.standard.stayConnected
+                transmitter?.delegate = self
+
+                UserDefaults.standard.transmitterID = id
+            }
+        }
+    }
+
     var transmitter: Transmitter?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        transmitter = Transmitter(
-            ID: UserDefaults.standard.transmitterID,
-            passiveModeEnabled: UserDefaults.standard.passiveModeEnabled
-        )
-        transmitter?.stayConnected = UserDefaults.standard.stayConnected
-        transmitter?.delegate = self
+        transmitterID = UserDefaults.standard.transmitterID
 
         return true
     }
@@ -42,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 
-        if let transmitter = transmitter , !transmitter.stayConnected {
+        if let transmitter = transmitter, !transmitter.stayConnected {
             transmitter.stopScanning()
         }
     }
@@ -73,24 +83,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
     }()
 
     func transmitter(_ transmitter: Transmitter, didError error: Error) {
-        if let vc = window?.rootViewController as? TransmitterDelegate {
-            DispatchQueue.main.async {
+        DispatchQueue.main.async {
+            if let vc = self.window?.rootViewController as? TransmitterDelegate {
                 vc.transmitter(transmitter, didError: error)
             }
         }
     }
 
     func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose) {
-        if let vc = window?.rootViewController as? TransmitterDelegate {
-            DispatchQueue.main.async {
+        DispatchQueue.main.async {
+            if let vc = self.window?.rootViewController as? TransmitterDelegate {
                 vc.transmitter(transmitter, didRead: glucose)
             }
         }
     }
 
     func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data) {
-        if let vc = window?.rootViewController as? TransmitterDelegate {
-            DispatchQueue.main.async {
+        DispatchQueue.main.async {
+            if let vc = self.window?.rootViewController as? TransmitterDelegate {
                 vc.transmitter(transmitter, didReadUnknownData: data)
             }
         }
