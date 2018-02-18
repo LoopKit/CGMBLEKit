@@ -68,12 +68,10 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
         if let text = textField.text {
             let newString = text.replacingCharacters(in: range.rangeOfString(text), with: string)
 
-            if newString.characters.count > 6 {
+            if newString.count > 6 {
                 return false
-            } else if newString.characters.count == 6 {
-                AppDelegate.sharedDelegate.transmitter?.ID = newString
-                UserDefaults.standard.transmitterID = newString
-
+            } else if newString.count == 6 {
+                AppDelegate.sharedDelegate.transmitterID = newString
                 textField.text = newString
 
                 textField.resignFirstResponder()
@@ -86,7 +84,7 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.text?.characters.count != 6 {
+        if textField.text?.count != 6 {
             textField.text = UserDefaults.standard.transmitterID
         }
     }
@@ -102,6 +100,7 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
     // MARK: - TransmitterDelegate
 
     func transmitter(_ transmitter: Transmitter, didError error: Error) {
+        print("Transmitter Error: \(error)")
         titleLabel.text = NSLocalizedString("Error", comment: "Title displayed during error response")
 
         subtitleLabel.text = "\(error)"
@@ -129,8 +128,8 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
 
 private extension NSRange {
     func rangeOfString(_ string: String) -> Range<String.Index> {
-        let startIndex = string.characters.index(string.startIndex, offsetBy: location)
-        let endIndex = string.characters.index(startIndex, offsetBy: length)
+        let startIndex = string.index(string.startIndex, offsetBy: location)
+        let endIndex = string.index(startIndex, offsetBy: length)
         return startIndex..<endIndex
     }
 }
