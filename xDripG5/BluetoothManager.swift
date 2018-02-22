@@ -156,11 +156,6 @@ class BluetoothManager: NSObject {
         }
     }
 
-    deinit {
-        stayConnected = false
-        disconnect()
-    }
-
     // MARK: - Accessors
 
     var isScanning: Bool {
