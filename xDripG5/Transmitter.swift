@@ -111,11 +111,10 @@ public final class Transmitter: BluetoothManagerDelegate {
                         try peripheral.requestBond()
 
                         self.log.info("Bonding request sent. Waiting user to respond.")
-                    } else {
-                        let glucose = try peripheral.control()
-                        self.delegateQueue.async {
-                            self.delegate?.transmitter(self, didRead: glucose)
-                        }
+                    }
+                    let glucose = try peripheral.control(shouldWaitForBond: status.bonded != 0x1)
+                    self.delegateQueue.async {
+                        self.delegate?.transmitter(self, didRead: glucose)
                     }
                 } catch let error {
                     self.delegateQueue.async {
@@ -257,9 +256,13 @@ fileprivate extension PeripheralManager {
         }
     }
 
-    fileprivate func control() throws -> Glucose {
+    fileprivate func control(shouldWaitForBond: Bool = false) throws -> Glucose {
         do {
-            try setNotifyValue(true, for: .control)
+            if shouldWaitForBond {
+                try setNotifyValue(true, for: .control, timeout: 15)
+            } else {
+                try setNotifyValue(true, for: .control)
+            }
         } catch let error {
             throw TransmitterError.controlError("Error enabling notification: \(error)")
         }
