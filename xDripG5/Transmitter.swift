@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreBluetooth
+import HealthKit
 import os.log
 
 
@@ -50,6 +51,8 @@ public final class Transmitter: BluetoothManagerDelegate {
 
     private var delegateQueue = DispatchQueue(label: "com.loudnate.xDripG5.delegateQueue", qos: .utility)
 
+    private var messageQueue = MessageQueue()
+
     public init(id: String, passiveModeEnabled: Bool = false) {
         self.id = TransmitterID(id: id)
         self.passiveModeEnabled = passiveModeEnabled
@@ -84,6 +87,19 @@ public final class Transmitter: BluetoothManagerDelegate {
         }
     }
 
+    public func startSensor() {
+        messageQueue.enqueue(SessionStartTxMessage(date: Date()))
+    }
+
+    public func calibrateSensor(_ glucose: HKQuantity) {
+        let unit = HKUnit.milligramsPerDeciliter()
+        messageQueue.enqueue(CalibrateGlucoseTxMessage(date: Date(), glucose: UInt16(glucose.doubleValue(for: unit))))
+    }
+
+    public func stopSensor() {
+        messageQueue.enqueue(SessionStopTxMessage(date: Date()))
+    }
+
     // MARK: - BluetoothManagerDelegate
 
     func bluetoothManager(_ manager: BluetoothManager, isReadyWithError error: Error?) {
@@ -112,7 +128,7 @@ public final class Transmitter: BluetoothManagerDelegate {
 
                         self.log.info("Bonding request sent. Waiting user to respond.")
                     }
-                    let glucose = try peripheral.control(shouldWaitForBond: status.bonded != 0x1)
+                    let glucose = try peripheral.control(shouldWaitForBond: status.bonded != 0x1, getMessage: { self.messageQueue.dequeue() })
                     self.delegateQueue.async {
                         self.delegate?.transmitter(self, didRead: glucose)
                     }
@@ -168,6 +184,26 @@ public final class Transmitter: BluetoothManagerDelegate {
     }
 }
 
+struct MessageQueue {
+    var list = [TimedTransmitterTxMessage]()
+
+    var isEmpty: Bool {
+        return list.isEmpty
+    }
+
+    mutating func enqueue(_ element: TimedTransmitterTxMessage) {
+        print("enqueuing element \(element)")
+        list.append(element)
+    }
+
+    mutating func dequeue() -> TimedTransmitterTxMessage? {
+        if !list.isEmpty {
+            return list.removeFirst()
+        } else {
+            return nil
+        }
+    }
+}
 
 struct TransmitterID {
     let id: String
@@ -256,7 +292,7 @@ fileprivate extension PeripheralManager {
         }
     }
 
-    fileprivate func control(shouldWaitForBond: Bool = false) throws -> Glucose {
+    fileprivate func control(shouldWaitForBond: Bool = false, getMessage: () -> TimedTransmitterTxMessage?) throws -> Glucose {
         do {
             if shouldWaitForBond {
                 try setNotifyValue(true, for: .control, timeout: 15)
@@ -279,6 +315,19 @@ fileprivate extension PeripheralManager {
         }
 
         let activationDate = Date(timeIntervalSinceNow: -TimeInterval(timeMessage.currentTime))
+
+        while var message = getMessage() {
+            let data: Data
+            do {
+                data = try writeValue(message.data(activationDate: activationDate), for: .control, expectingFirstByte: message.opcode + 1)
+            } catch let error {
+                throw TransmitterError.controlError("Error writing \(String(describing: type(of: message))): \(error)")
+            }
+
+            guard let messageRx = type(of: message).createRxMessage(data: data) else {
+                throw TransmitterError.controlError("Unable to parse \(String(describing: type(of: message))) response: \(data)")
+            }
+        }
 
         let glucoseData: Data
         do {

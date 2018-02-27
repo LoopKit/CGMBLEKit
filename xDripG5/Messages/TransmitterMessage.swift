@@ -15,11 +15,23 @@ protocol TransmitterTxMessage {
 
     var data: Data { get }
 
-}
+    var hasCRC: Bool { get }
 
+}
 
 extension TransmitterTxMessage {
     var data: Data {
+        return Data.fromByteSequence(byteSequence, hasCRC: hasCRC)
+    }
+
+    var hasCRC: Bool {
+        return false
+    }
+}
+
+
+extension Data {
+    static func fromByteSequence(_ byteSequence: [Any], hasCRC: Bool = false) -> Data {
         let data = NSMutableData()
 
         for item in byteSequence {
@@ -47,8 +59,24 @@ extension TransmitterTxMessage {
             }
         }
 
+        if hasCRC {
+            var value = (data as Data).crc16() as UInt16
+            data.append(&value, length: 2)
+        }
+
         return data as Data
     }
+}
+
+
+protocol TimedTransmitterTxMessage {
+
+    static func createRxMessage(data: Data) -> TransmitterRxMessage?
+
+    var opcode: UInt8 { get }
+
+    func data(activationDate: Date) -> Data
+
 }
 
 

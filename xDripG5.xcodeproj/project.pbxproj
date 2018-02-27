@@ -68,6 +68,7 @@
 		C19084BB203932BD00AA47F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C19084B9203932BD00AA47F3 /* Main.storyboard */; };
 		C1CD8B0B203931AD00A8F498 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD8B09203931AD00A8F498 /* Data.swift */; };
 		C1CD8B0C203931AD00A8F498 /* NSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD8B0A203931AD00A8F498 /* NSUserDefaults.swift */; };
+		E75DB6AE20419B5D00FBE04E /* CalibrateGlucoseRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75DB6AD20419B5D00FBE04E /* CalibrateGlucoseRxMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,6 +175,7 @@
 		C19084BA203932BD00AA47F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C1CD8B09203931AD00A8F498 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		C1CD8B0A203931AD00A8F498 /* NSUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaults.swift; sourceTree = "<group>"; };
+		E75DB6AD20419B5D00FBE04E /* CalibrateGlucoseRxMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrateGlucoseRxMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,6 +304,7 @@
 				43CE7CCB1CA73BCC003CC1B0 /* BatteryStatusTxMessage.swift */,
 				43CABE1B1C350B3D00005705 /* BondRequestTxMessage.swift */,
 				43CE7CD11CA73CBC003CC1B0 /* CalibrateGlucoseTxMessage.swift */,
+				E75DB6AD20419B5D00FBE04E /* CalibrateGlucoseRxMessage.swift */,
 				43846AC51D8F896C00799272 /* CalibrationDataRxMessage.swift */,
 				43CABE1C1C350B3D00005705 /* DisconnectTxMessage.swift */,
 				43CE7CC71CA73AEB003CC1B0 /* FirmwareVersionTxMessage.swift */,
@@ -510,6 +513,7 @@
 				43CABE2E1C350B3D00005705 /* TransmitterTimeTxMessage.swift in Sources */,
 				43880F981D9E19FC009061A8 /* TransmitterVersionRxMessage.swift in Sources */,
 				43CABE2C1C350B3D00005705 /* TransmitterMessage.swift in Sources */,
+				E75DB6AE20419B5D00FBE04E /* CalibrateGlucoseRxMessage.swift in Sources */,
 				43CABE131C350B2800005705 /* BluetoothServices.swift in Sources */,
 				43E3978F1D566B170028E321 /* Glucose.swift in Sources */,
 				43CABE151C350B2800005705 /* Transmitter.swift in Sources */,

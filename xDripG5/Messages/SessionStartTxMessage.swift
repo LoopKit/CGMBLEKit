@@ -9,11 +9,18 @@
 import Foundation
 
 
-struct SessionStartTxMessage: TransmitterTxMessage {
-    let opcode: UInt8 = 0x26
-    let startTime: UInt32
+struct SessionStartTxMessage: TimedTransmitterTxMessage {
+    static func createRxMessage(data: Data) -> TransmitterRxMessage? {
+        return SessionStartRxMessage(data: data)
+    }
 
-    var byteSequence: [Any] {
-        return [opcode, startTime]
+    let opcode: UInt8 = 0x26
+    let date: Date
+
+    func data(activationDate: Date) -> Data {
+        let startTime: UInt32 = UInt32(date.timeIntervalSince(activationDate))
+        let startTimeEpoch: UInt32 = UInt32(date.timeIntervalSince1970)
+        let byteSequence: [Any] = [opcode, startTime, startTimeEpoch]
+        return Data.fromByteSequence(byteSequence, hasCRC: true)
     }
 }

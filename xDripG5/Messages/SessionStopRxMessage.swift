@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct SessionStopRxMessage {
+struct SessionStopRxMessage: TransmitterRxMessage {
     static let opcode: UInt8 = 0x29
     let status: UInt8
     let received: UInt8

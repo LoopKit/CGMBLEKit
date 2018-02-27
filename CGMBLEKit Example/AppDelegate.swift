@@ -31,10 +31,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
 
                 UserDefaults.standard.transmitterID = id
             }
+            glucose = nil
         }
     }
 
     var transmitter: Transmitter?
+
+    var glucose: Glucose?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
@@ -91,6 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
     }
 
     func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose) {
+        self.glucose = glucose
         DispatchQueue.main.async {
             if let vc = self.window?.rootViewController as? TransmitterDelegate {
                 vc.transmitter(transmitter, didRead: glucose)

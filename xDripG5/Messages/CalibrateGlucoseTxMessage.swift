@@ -9,6 +9,18 @@
 import Foundation
 
 
-struct CalibrateGlucoseTxMessage {
+struct CalibrateGlucoseTxMessage: TimedTransmitterTxMessage {
+    static func createRxMessage(data: Data) -> TransmitterRxMessage? {
+        return CalibrateGlucoseRxMessage(data: data)
+    }
+
     let opcode: UInt8 = 0x34
+    let date: Date
+    let glucose: UInt16
+
+    func data(activationDate: Date) -> Data {
+        let calibrationTime = UInt32(date.timeIntervalSince(activationDate))
+        let byteSequence: [Any] = [opcode, glucose, calibrationTime]
+        return Data.fromByteSequence(byteSequence, hasCRC: true)
+    }
 }
