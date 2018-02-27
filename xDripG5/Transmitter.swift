@@ -316,7 +316,7 @@ fileprivate extension PeripheralManager {
 
         let activationDate = Date(timeIntervalSinceNow: -TimeInterval(timeMessage.currentTime))
 
-        while var message = getMessage() {
+        while let message = getMessage() {
             let data: Data
             do {
                 data = try writeValue(message.data(activationDate: activationDate), for: .control, expectingFirstByte: message.opcode + 1)
