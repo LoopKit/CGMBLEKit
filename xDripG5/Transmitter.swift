@@ -192,7 +192,6 @@ struct MessageQueue {
     }
 
     mutating func enqueue(_ element: TimedTransmitterTxMessage) {
-        print("enqueuing element \(element)")
         list.append(element)
     }
 
