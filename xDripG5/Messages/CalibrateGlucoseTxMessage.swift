@@ -10,5 +10,5 @@ import Foundation
 
 
 struct CalibrateGlucoseTxMessage {
-    let opcode: UInt8 = 0x34
+    let opcode: Opcode = .calibrateGlucoseTx
 }

@@ -9,6 +9,45 @@
 import Foundation
 
 
+extension Data {
+    func to<T: FixedWidthInteger>(_: T.Type) -> T {
+        return self.withUnsafeBytes { (bytes: UnsafePointer<T>) in
+            return T(littleEndian: bytes.pointee)
+        }
+    }
+
+    func toInt<T: FixedWidthInteger>() -> T {
+        return to(T.self)
+    }
+
+    func toBigEndian<T: FixedWidthInteger>(_: T.Type) -> T {
+        return self.withUnsafeBytes {
+            return T(bigEndian: $0.pointee)
+        }
+    }
+
+    mutating func append<T: FixedWidthInteger>(_ newElement: T) {
+        var element = newElement.littleEndian
+        append(UnsafeBufferPointer(start: &element, count: 1))
+    }
+
+    mutating func appendBigEndian<T: FixedWidthInteger>(_ newElement: T) {
+        var element = newElement.bigEndian
+        append(UnsafeBufferPointer(start: &element, count: 1))
+    }
+
+    init<T: FixedWidthInteger>(_ value: T) {
+        var value = value.littleEndian
+        self.init(buffer: UnsafeBufferPointer(start: &value, count: 1))
+    }
+
+    init<T: FixedWidthInteger>(bigEndian value: T) {
+        var value = value.bigEndian
+        self.init(buffer: UnsafeBufferPointer(start: &value, count: 1))
+    }
+}
+
+
 // String conversion methods, adapted from https://stackoverflow.com/questions/40276322/hex-binary-string-conversion-in-swift/40278391#40278391
 extension Data {
     init?(hexadecimalString: String) {

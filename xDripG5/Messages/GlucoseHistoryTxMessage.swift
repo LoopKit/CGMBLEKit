@@ -10,5 +10,5 @@ import Foundation
 
 
 struct GlucoseHistoryTxMessage {
-    let opcode: UInt8 = 0x3e
+    let opcode: Opcode = .glucoseHistoryTx
 }
