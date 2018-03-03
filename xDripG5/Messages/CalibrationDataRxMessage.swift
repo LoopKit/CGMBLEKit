@@ -10,14 +10,12 @@ import Foundation
 
 
 struct CalibrationDataRxMessage: TransmitterRxMessage {
-    static let opcode: UInt8 = 0x33
-
     init?(data: Data) {
-        guard data.count == 19 && data.crcValid() else {
+        guard data.count == 19 && data.isCRCValid else {
             return nil
         }
 
-        guard data[0] == type(of: self).opcode else {
+        guard data.starts(with: .calibrationDataRx) else {
             return nil
         }
     }

@@ -10,7 +10,6 @@ import Foundation
 
 
 public struct GlucoseRxMessage: TransmitterRxMessage {
-    static let opcode: UInt8 = 0x31
     public let status: UInt8
     public let sequence: UInt32
     public let timestamp: UInt32
@@ -20,19 +19,19 @@ public struct GlucoseRxMessage: TransmitterRxMessage {
     public let trend: Int8
 
     init?(data: Data) {
-        guard data.count == 16 && data.crcValid() else {
+        guard data.count == 16 && data.isCRCValid else {
             return nil
         }
 
-        guard data[0] == type(of: self).opcode else {
+        guard data.starts(with: .glucoseRx) else {
             return nil
         }
 
         status = data[1]
-        sequence = data.subdata(in: 2..<6).withUnsafeBytes { $0.pointee }
-        timestamp = data.subdata(in: 6..<10).withUnsafeBytes { $0.pointee }
+        sequence = data[2..<6].toInt()
+        timestamp = data[6..<10].toInt()
 
-        let glucoseBytes: UInt16 = data.subdata(in: 10..<12).withUnsafeBytes { $0.pointee }
+        let glucoseBytes = data[10..<12].to(UInt16.self)
         glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
         glucose = glucoseBytes & 0xfff
 

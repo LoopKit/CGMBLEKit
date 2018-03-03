@@ -10,10 +10,11 @@ import Foundation
 
 
 struct KeepAliveTxMessage: TransmitterTxMessage {
-    let opcode: UInt8 = 0x6
     let time: UInt8
 
-    var byteSequence: [Any] {
-        return [opcode, time]
+    var data: Data {
+        var data = Data(for: .keepAlive)
+        data.append(time)
+        return data
     }
 }

@@ -10,7 +10,6 @@ import Foundation
 
 
 struct AuthRequestTxMessage: TransmitterTxMessage {
-    let opcode: UInt8 = 0x1
     let singleUseToken: Data
     let endByte: UInt8 = 0x2
 
@@ -21,7 +20,10 @@ struct AuthRequestTxMessage: TransmitterTxMessage {
                                       uuid.4, uuid.5, uuid.6, uuid.7])
     }
 
-    var byteSequence: [Any] {
-        return [opcode, singleUseToken, endByte]
+    var data: Data {
+        var data = Data(for: .authRequestTx)
+        data.append(singleUseToken)
+        data.append(endByte)
+        return data
     }
 }

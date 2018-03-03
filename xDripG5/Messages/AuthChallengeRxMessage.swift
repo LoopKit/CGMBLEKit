@@ -10,20 +10,19 @@ import Foundation
 
 
 struct AuthChallengeRxMessage: TransmitterRxMessage {
-    static let opcode: UInt8 = 0x3
-    let tokenHash: Data
-    let challenge: Data
+    let authenticated: UInt8
+    let bonded: UInt8
 
     init?(data: Data) {
-        guard data.count >= 17 else {
+        guard data.count >= 3 else {
             return nil
         }
 
-        guard data[0] == type(of: self).opcode else {
+        guard data.starts(with: .authChallengeRx) else {
             return nil
         }
 
-        tokenHash = data.subdata(in: 1..<9)
-        challenge = data.subdata(in: 9..<17)
+        authenticated = data[1]
+        bonded = data[2]
     }
 }

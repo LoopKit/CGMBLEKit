@@ -9,11 +9,14 @@
 import Foundation
 
 
-struct SessionStartTxMessage: TransmitterTxMessage {
-    let opcode: UInt8 = 0x26
+struct SessionStartTxMessage: RespondableMessage {
+    typealias Response = SessionStartRxMessage
+
     let startTime: UInt32
 
-    var byteSequence: [Any] {
-        return [opcode, startTime]
+    var data: Data {
+        var data = Data(for: .sessionStartTx)
+        data.append(startTime)
+        return data
     }
 }

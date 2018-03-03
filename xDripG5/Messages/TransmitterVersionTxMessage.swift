@@ -10,5 +10,7 @@ import Foundation
 
 
 struct TransmitterVersionTxMessage {
-    let opcode: UInt8 = 0x4a
+    typealias Response = TransmitterVersionRxMessage
+
+    let opcode: Opcode = .transmitterVersionTx
 }
