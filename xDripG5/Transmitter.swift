@@ -177,6 +177,14 @@ public final class Transmitter: BluetoothManagerDelegate {
                     }
                     let glucose = try peripheral.control(shouldWaitForBond: status.bonded != 0x1, getCommand: {
                         self.delegate?.dequeuePendingCommand(for: self)
+                    }, didFail: {(command: Command, error: Error) -> Void in
+                        self.delegateQueue.async {
+                            self.delegate?.transmitter(self, didFail: command, with: error)
+                        }
+                    }, didComplete: {(command: Command) -> Void in
+                        self.delegateQueue.async {
+                            self.delegate?.transmitter(self, didComplete: command)
+                        }
                     })
                     self.delegateQueue.async {
                         self.delegate?.transmitter(self, didRead: glucose)
@@ -324,7 +332,7 @@ fileprivate extension PeripheralManager {
         }
     }
 
-    fileprivate func control(shouldWaitForBond: Bool = false, getCommand: () -> Command?) throws -> Glucose {
+    fileprivate func control(shouldWaitForBond: Bool = false, getCommand: () -> Command?, didFail: (_ command: Command, _ error: Error ) -> Void, didComplete: (_ command: Command) -> Void) throws -> Glucose {
         do {
             if shouldWaitForBond {
                 try setNotifyValue(true, for: .control, timeout: 15)
@@ -353,7 +361,9 @@ fileprivate extension PeripheralManager {
                 let sessionStartResponse: SessionStartRxMessage
                 do {
                     sessionStartResponse = try writeMessage(SessionStartTxMessage(startTime: startTime, startTimeEpoch: startTimeEpoch), for: .control)
+                    didComplete(command)
                 } catch let error {
+                    didFail(command, error)
                     throw TransmitterError.controlError("Error starting session: \(error)")
                 }
             case .stopSensor(let date):
@@ -362,7 +372,9 @@ fileprivate extension PeripheralManager {
                 let sessionStopResponse: SessionStopRxMessage
                 do {
                     sessionStopResponse = try writeMessage(SessionStopTxMessage(stopTime: stopTime), for: .control)
+                    didComplete(command)
                 } catch let error {
+                    didFail(command, error)
                     throw TransmitterError.controlError("Error stopping session: \(error)")
                 }
             case .calibrateSensor(let glucose, let date):
@@ -373,7 +385,9 @@ fileprivate extension PeripheralManager {
                 let calibrateGlucoseResponse: CalibrateGlucoseRxMessage
                 do {
                     calibrateGlucoseResponse = try writeMessage(CalibrateGlucoseTxMessage(time: time, glucose: glucoseValue), for: .control)
+                    didComplete(command)
                 } catch let error {
+                    didFail(command, error)
                     throw TransmitterError.controlError("Error calibrating sensor: \(error)")
                 }
             }
