@@ -8,10 +8,73 @@
 
 import Foundation
 import CoreBluetooth
+import HealthKit
 import os.log
 
 
+public enum Command: RawRepresentable {
+    case startSensor(at: Date)
+    case stopSensor(at: Date)
+    case calibrateSensor(to: HKQuantity, at: Date)
+
+    public typealias RawValue = [String: Any]
+
+    public init?(rawValue: RawValue) {
+        guard let command = rawValue["command"] as? Int else {
+            return nil
+        }
+
+        switch command {
+        case 0:
+            guard let date = rawValue["date"] as? Date else {
+                return nil
+            }
+            self = .startSensor(at: date)
+        case 1:
+            guard let date = rawValue["date"] as? Date else {
+                return nil
+            }
+            self = .stopSensor(at: date)
+        case 2:
+            guard let date = rawValue["date"] as? Date, let glucose = rawValue["glucose"] as? HKQuantity else {
+                return nil
+            }
+            self = .calibrateSensor(to: glucose, at: date)
+        default:
+            return nil
+        }
+    }
+
+    public var rawValue: RawValue {
+        switch self {
+        case .startSensor(let date):
+            return [
+                "command": 0,
+                "date": date
+            ]
+        case .stopSensor(let date):
+            return [
+                "command": 1,
+                "date": date
+            ]
+        case .calibrateSensor(let glucose, let date):
+            return [
+                "command": 2,
+                "date": date,
+                "glucose": glucose
+            ]
+        }
+    }
+}
+
+
 public protocol TransmitterDelegate: class {
+    func dequeuePendingCommand(for transmitter: Transmitter) -> Command?
+
+    func transmitter(_ transmitter: Transmitter, didFail command: Command, with error: Error)
+
+    func transmitter(_ transmitter: Transmitter, didComplete command: Command)
+
     func transmitter(_ transmitter: Transmitter, didError error: Error)
 
     func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose)
@@ -112,7 +175,9 @@ public final class Transmitter: BluetoothManagerDelegate {
 
                         self.log.info("Bonding request sent. Waiting user to respond.")
                     }
-                    let glucose = try peripheral.control(shouldWaitForBond: status.bonded != 0x1)
+                    let glucose = try peripheral.control(shouldWaitForBond: status.bonded != 0x1, getCommand: {
+                        self.delegate?.dequeuePendingCommand(for: self)
+                    })
                     self.delegateQueue.async {
                         self.delegate?.transmitter(self, didRead: glucose)
                     }
@@ -259,7 +324,7 @@ fileprivate extension PeripheralManager {
         }
     }
 
-    fileprivate func control(shouldWaitForBond: Bool = false) throws -> Glucose {
+    fileprivate func control(shouldWaitForBond: Bool = false, getCommand: () -> Command?) throws -> Glucose {
         do {
             if shouldWaitForBond {
                 try setNotifyValue(true, for: .control, timeout: 15)
@@ -278,6 +343,41 @@ fileprivate extension PeripheralManager {
         }
 
         let activationDate = Date(timeIntervalSinceNow: -TimeInterval(timeMessage.currentTime))
+
+        while let command = getCommand() {
+            switch command {
+            case .startSensor(let date):
+                let startTime = UInt32(date.timeIntervalSince(activationDate))
+                let startTimeEpoch = UInt32(date.timeIntervalSince1970)
+
+                let sessionStartResponse: SessionStartRxMessage
+                do {
+                    sessionStartResponse = try writeMessage(SessionStartTxMessage(startTime: startTime, startTimeEpoch: startTimeEpoch), for: .control)
+                } catch let error {
+                    throw TransmitterError.controlError("Error starting session: \(error)")
+                }
+            case .stopSensor(let date):
+                let stopTime = UInt32(date.timeIntervalSince(activationDate))
+
+                let sessionStopResponse: SessionStopRxMessage
+                do {
+                    sessionStopResponse = try writeMessage(SessionStopTxMessage(stopTime: stopTime), for: .control)
+                } catch let error {
+                    throw TransmitterError.controlError("Error stopping session: \(error)")
+                }
+            case .calibrateSensor(let glucose, let date):
+                let unit = HKUnit.milligramsPerDeciliter()
+                let glucoseValue = UInt16(glucose.doubleValue(for: unit))
+                let time = UInt32(date.timeIntervalSince(activationDate))
+
+                let calibrateGlucoseResponse: CalibrateGlucoseRxMessage
+                do {
+                    calibrateGlucoseResponse = try writeMessage(CalibrateGlucoseTxMessage(time: time, glucose: glucoseValue), for: .control)
+                } catch let error {
+                    throw TransmitterError.controlError("Error calibrating sensor: \(error)")
+                }
+            }
+        }
 
         let glucoseMessage: GlucoseRxMessage
         do {

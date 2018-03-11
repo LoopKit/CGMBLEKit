@@ -82,6 +82,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
         return dateFormatter
     }()
 
+    func dequeuePendingCommand(for transmitter: Transmitter) -> Command? {
+        return nil
+    }
+
+    func transmitter(_ transmitter: Transmitter, didFail command: Command, with error: Error) {
+        DispatchQueue.main.async {
+            if let vc = self.window?.rootViewController as? TransmitterDelegate {
+                vc.transmitter(transmitter, didFail: command, with: error)
+            }
+        }
+    }
+
+    func transmitter(_ transmitter: Transmitter, didComplete command: Command) {
+        DispatchQueue.main.async {
+            if let vc = self.window?.rootViewController as? TransmitterDelegate {
+                vc.transmitter(transmitter, didComplete: command)
+            }
+        }
+    }
+
     func transmitter(_ transmitter: Transmitter, didError error: Error) {
         DispatchQueue.main.async {
             if let vc = self.window?.rootViewController as? TransmitterDelegate {
