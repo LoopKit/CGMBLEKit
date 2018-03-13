@@ -10,9 +10,7 @@ import Foundation
 
 
 struct DisconnectTxMessage: TransmitterTxMessage {
-    let opcode: UInt8 = 0x09
-
-    var byteSequence: [Any] {
-        return [opcode]
+    var data: Data {
+        return Data(for: .disconnectTx)
     }
 }

@@ -9,11 +9,10 @@
 import Foundation
 
 
-struct TransmitterTimeTxMessage: TransmitterTxMessage {
-    let opcode: UInt8 = 0x24
-    let hasCRC = true
+struct TransmitterTimeTxMessage: RespondableMessage {
+    typealias Response = TransmitterTimeRxMessage
 
-    var byteSequence: [Any] {
-        return [opcode]
+    var data: Data {
+        return Data(for: .transmitterTimeTx).appendingCRC()
     }
 }

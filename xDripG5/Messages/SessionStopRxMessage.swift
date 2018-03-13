@@ -10,7 +10,6 @@ import Foundation
 
 
 struct SessionStopRxMessage: TransmitterRxMessage {
-    static let opcode: UInt8 = 0x29
     let status: UInt8
     let received: UInt8
     let sessionStopTime: UInt32
@@ -18,18 +17,18 @@ struct SessionStopRxMessage: TransmitterRxMessage {
     let transmitterTime: UInt32
 
     init?(data: Data) {
-        guard data.count == 17 && data.crcValid() else {
+        guard data.count == 17 && data.isCRCValid else {
             return nil
         }
 
-        guard data[0] == type(of: self).opcode else {
+        guard data.starts(with: .sessionStopRx) else {
             return nil
         }
 
         status = data[1]
         received = data[2]
-        sessionStopTime = data.subdata(in: 3..<7).withUnsafeBytes { $0.pointee }
-        sessionStartTime = data.subdata(in: 7..<11).withUnsafeBytes { $0.pointee }
-        transmitterTime = data.subdata(in: 11..<15).withUnsafeBytes { $0.pointee }
+        sessionStopTime = data[3..<7].toInt()
+        sessionStartTime = data[7..<11].toInt()
+        transmitterTime = data[11..<15].toInt()
     }
 }

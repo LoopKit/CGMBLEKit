@@ -6,6 +6,10 @@
 //
 
 import CoreBluetooth
+import os.log
+
+
+private let log = OSLog(category: "PeripheralManager+G5")
 
 
 extension PeripheralManager {
@@ -20,39 +24,58 @@ extension PeripheralManager {
         try setNotifyValue(enabled, for: characteristic, timeout: timeout)
     }
 
-    func readValue(
+    func readMessage<R: TransmitterRxMessage>(
         for characteristicUUID: CGMServiceCharacteristicUUID,
-        timeout: TimeInterval = 2,
-        expectingFirstByte firstByte: UInt8? = nil) throws -> Data
+        timeout: TimeInterval = 2
+    ) throws -> R
     {
         guard let characteristic = peripheral.getCharacteristicWithUUID(characteristicUUID) else {
             throw PeripheralManagerError.unknownCharacteristic
         }
 
+        var capturedResponse: R?
+
         try runCommand(timeout: timeout) {
-            addCondition(.makeValueUpdate(characteristic: characteristic, matchingFirstByte: firstByte))
+            addCondition(.valueUpdate(characteristic: characteristic, matching: { (data) -> Bool in
+                guard let value = data else {
+                    return false
+                }
+
+                guard let response = R(data: value) else {
+                    // We don't recognize the contents. Keep listening.
+                    return false
+                }
+
+                capturedResponse = response
+                return true
+            }))
 
             peripheral.readValue(for: characteristic)
         }
 
-        guard let value = characteristic.value else {
+        guard let response = capturedResponse else {
             // TODO: This is an "unknown value" issue, not a timeout
+            if let value = characteristic.value {
+                log.error("Unknown response data: %{public}@", value.hexadecimalString)
+            }
             throw PeripheralManagerError.timeout
         }
 
-        return value
+        return response
     }
 
     /// - Throws: PeripheralManagerError
-    func writeValue(_ value: Data,
+    func writeMessage<T: RespondableMessage>(_ message: T,
         for characteristicUUID: CGMServiceCharacteristicUUID,
         type: CBCharacteristicWriteType = .withResponse,
-        timeout: TimeInterval = 2,
-        expectingFirstByte firstByte: UInt8?) throws -> Data
+        timeout: TimeInterval = 2
+    ) throws -> T.Response
     {
         guard let characteristic = peripheral.getCharacteristicWithUUID(characteristicUUID) else {
             throw PeripheralManagerError.unknownCharacteristic
         }
+
+        var capturedResponse: T.Response?
 
         try runCommand(timeout: timeout) {
             if case .withResponse = type {
@@ -60,22 +83,37 @@ extension PeripheralManager {
             }
 
             if characteristic.isNotifying {
-                addCondition(.makeValueUpdate(characteristic: characteristic, matchingFirstByte: firstByte))
+                addCondition(.valueUpdate(characteristic: characteristic, matching: { (data) -> Bool in
+                    guard let value = data else {
+                        return false
+                    }
+
+                    guard let response = T.Response(data: value) else {
+                        // We don't recognize the contents. Keep listening.
+                        return false
+                    }
+
+                    capturedResponse = response
+                    return true
+                }))
             }
 
-            peripheral.writeValue(value, for: characteristic, type: type)
+            peripheral.writeValue(message.data, for: characteristic, type: type)
         }
 
-        guard let value = characteristic.value else {
+        guard let response = capturedResponse else {
             // TODO: This is an "unknown value" issue, not a timeout
+            if let value = characteristic.value {
+                log.error("Unknown response data: %{public}@", value.hexadecimalString)
+            }
             throw PeripheralManagerError.timeout
         }
 
-        return value
+        return response
     }
 
     /// - Throws: PeripheralManagerError
-    func writeValue(_ value: Data,
+    func writeMessage(_ message: TransmitterTxMessage,
         for characteristicUUID: CGMServiceCharacteristicUUID,
         type: CBCharacteristicWriteType = .withResponse,
         timeout: TimeInterval = 2) throws
@@ -84,24 +122,7 @@ extension PeripheralManager {
             throw PeripheralManagerError.unknownCharacteristic
         }
 
-        try writeValue(value, for: characteristic, type: type, timeout: timeout)
-    }
-}
-
-
-fileprivate extension PeripheralManager.CommandCondition {
-    static func makeValueUpdate(characteristic: CBCharacteristic, matchingFirstByte firstByte: UInt8?) -> PeripheralManager.CommandCondition {
-        return .valueUpdate(characteristic: characteristic, matching: { value in
-            if let firstByte = firstByte {
-                if let value = value, value.count > 0, value[0] == firstByte {
-                    return true
-                } else {
-                    return false
-                }
-            } else { // No condition on response
-                return true
-            }
-        })
+        try writeValue(message.data, for: characteristic, type: type, timeout: timeout)
     }
 }
 

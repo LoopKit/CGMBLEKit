@@ -9,17 +9,14 @@
 import Foundation
 
 
-struct SessionStopTxMessage: TimedTransmitterTxMessage {
-    static func createRxMessage(data: Data) -> TransmitterRxMessage? {
-        return SessionStopRxMessage(data: data)
-    }
+struct SessionStopTxMessage: RespondableMessage {
+    typealias Response = SessionStopRxMessage
 
-    let opcode: UInt8 = 0x28
-    let date: Date
+    let stopTime: UInt32
 
-    func data(activationDate: Date) -> Data {
-        let stopTime = UInt32(date.timeIntervalSince(activationDate))
-        let byteSequence: [Any] = [opcode, stopTime]
-        return Data.fromByteSequence(byteSequence, hasCRC: true)
+    var data: Data {
+        var data = Data(for: .sessionStopTx)
+        data.append(stopTime)
+        return data
     }
 }

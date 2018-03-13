@@ -9,10 +9,9 @@
 import Foundation
 
 
+/// Initiates a bond with the central
 struct BondRequestTxMessage: TransmitterTxMessage {
-    let opcode: UInt8 = 0x7
-
-    var byteSequence: [Any] {
-        return [opcode]
+    var data: Data {
+        return Data(for: .bondRequest)
     }
 }

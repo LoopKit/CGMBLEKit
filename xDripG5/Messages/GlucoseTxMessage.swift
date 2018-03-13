@@ -9,11 +9,10 @@
 import Foundation
 
 
-struct GlucoseTxMessage: TransmitterTxMessage {
-    let opcode: UInt8 = 0x30
-    let hasCRC = true
+struct GlucoseTxMessage: RespondableMessage {
+    typealias Response = GlucoseRxMessage
 
-    var byteSequence: [Any] {
-        return [opcode]
+    var data: Data {
+        return Data(for: .glucoseTx).appendingCRC()
     }
 }

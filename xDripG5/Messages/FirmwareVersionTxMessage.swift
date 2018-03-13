@@ -10,5 +10,5 @@ import Foundation
 
 
 struct FirmwareVersionTxMessage {
-    let opcode: UInt8 = 0x20
+    let opcode: Opcode = .firmwareVersionTx
 }
