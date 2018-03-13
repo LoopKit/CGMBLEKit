@@ -33,66 +33,66 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
 
         transmitterIDField.text = AppDelegate.sharedDelegate.transmitter?.ID
 
-        titleLabel.isUserInteractionEnabled = true
+//        titleLabel.isUserInteractionEnabled = true
 
-        let glucoseTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.chooseAction))
-        titleLabel.addGestureRecognizer(glucoseTapGestureRecognizer)
+//        let glucoseTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.chooseAction))
+//        titleLabel.addGestureRecognizer(glucoseTapGestureRecognizer)
     }
 
-    @objc func chooseAction(sender: UITapGestureRecognizer) {
-        guard let glucose = AppDelegate.sharedDelegate.glucose else {
-            return
-        }
+//    @objc func chooseAction(sender: UITapGestureRecognizer) {
+//        guard let glucose = AppDelegate.sharedDelegate.glucose else {
+//            return
+//        }
+//
+//        switch glucose.state {
+//        case .stopped:
+//            startSensor()
+//        case .needFirstInitialCalibration, .needSecondInitialCalibration, .ok, .needCalibration:
+//            calibrateSensor()
+//        default:
+//            break
+//        }
+//    }
 
-        switch glucose.state {
-        case .stopped:
-            startSensor()
-        case .needFirstInitialCalibration, .needSecondInitialCalibration, .ok, .needCalibration:
-            calibrateSensor()
-        default:
-            break
-        }
-    }
-
-    func startSensor() {
-        let dialog = UIAlertController(title: "Confirm", message: "Start sensor session.", preferredStyle: .alert)
-
-        dialog.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
-            self.titleLabel.text = "starting..."
-            AppDelegate.sharedDelegate.transmitter?.startSensor()
-        }))
-
-        dialog.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-
-        present(dialog, animated: true, completion: nil)
-    }
-
-    func calibrateSensor() {
-        let dialog = UIAlertController(title: "Enter BG", message: "Calibrate sensor.", preferredStyle: .alert)
-
-        dialog.addTextField { (textField : UITextField!) in
-            textField.placeholder = "Enter BG"
-            textField.keyboardType = .numberPad
-        }
-
-        dialog.addAction(UIAlertAction(title: "Calibrate", style: .default, handler: { (action: UIAlertAction!) in
-            let textField = dialog.textFields![0] as UITextField
-
-            if let text = textField.text, let entry = Int(text) {
-                guard entry >= 40 && entry <= 400 else {
-                    // TODO: notify the user if the glucose is not in range
-                    return
-                }
-                let unit = HKUnit.milligramsPerDeciliter()
-                let glucose = HKQuantity(unit: unit, doubleValue: Double(entry))
-                AppDelegate.sharedDelegate.transmitter?.calibrateSensor(glucose)
-            }
-        }))
-
-        dialog.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-
-        present(dialog, animated: true, completion: nil)
-    }
+//    func startSensor() {
+//        let dialog = UIAlertController(title: "Confirm", message: "Start sensor session.", preferredStyle: .alert)
+//
+//        dialog.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+//            self.titleLabel.text = "starting..."
+//            AppDelegate.sharedDelegate.transmitter?.startSensor()
+//        }))
+//
+//        dialog.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+//
+//        present(dialog, animated: true, completion: nil)
+//    }
+//
+//    func calibrateSensor() {
+//        let dialog = UIAlertController(title: "Enter BG", message: "Calibrate sensor.", preferredStyle: .alert)
+//
+//        dialog.addTextField { (textField : UITextField!) in
+//            textField.placeholder = "Enter BG"
+//            textField.keyboardType = .numberPad
+//        }
+//
+//        dialog.addAction(UIAlertAction(title: "Calibrate", style: .default, handler: { (action: UIAlertAction!) in
+//            let textField = dialog.textFields![0] as UITextField
+//
+//            if let text = textField.text, let entry = Int(text) {
+//                guard entry >= 40 && entry <= 400 else {
+//                    // TODO: notify the user if the glucose is not in range
+//                    return
+//                }
+//                let unit = HKUnit.milligramsPerDeciliter()
+//                let glucose = HKQuantity(unit: unit, doubleValue: Double(entry))
+//                AppDelegate.sharedDelegate.transmitter?.calibrateSensor(glucose)
+//            }
+//        }))
+//
+//        dialog.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+//
+//        present(dialog, animated: true, completion: nil)
+//    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
