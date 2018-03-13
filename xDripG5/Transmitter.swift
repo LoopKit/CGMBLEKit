@@ -8,7 +8,6 @@
 
 import Foundation
 import CoreBluetooth
-import HealthKit
 import os.log
 
 
@@ -84,7 +83,6 @@ public final class Transmitter: BluetoothManagerDelegate {
             }
         }
     }
-
 
     // MARK: - BluetoothManagerDelegate
 

@@ -17,6 +17,7 @@ protocol TransmitterTxMessage {
 
 }
 
+
 protocol RespondableMessage: TransmitterTxMessage {
     associatedtype Response: TransmitterRxMessage
 }
