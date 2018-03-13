@@ -32,6 +32,7 @@ enum Opcode: UInt8 {
 
     case calibrationDataRx = 0x33
     case calibrateGlucoseTx = 0x34
+    case calibrateGlucoseRx = 0x35
 
     case glucoseHistoryTx = 0x3e
 
