@@ -180,14 +180,14 @@ extension BluetoothManager: CBCentralManagerDelegate {
     }
 
     func centralManager(_ central: CBCentralManager, willRestoreState dict: [String : Any]) {
-//        if let peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as? [CBPeripheral] {
-//            for peripheral in peripherals {
-//                if delegate == nil || delegate!.bluetoothManager(self, shouldConnectPeripheral: peripheral) {
-//                    log.info("Restoring peripheral from state: %{public}@", peripheral.identifier.uuidString)
-//                    self.peripheral = peripheral
-//                }
-//            }
-//        }
+        if let peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as? [CBPeripheral] {
+            for peripheral in peripherals {
+                if delegate == nil || delegate!.bluetoothManager(self, shouldConnectPeripheral: peripheral) {
+                    log.info("Restoring peripheral from state: %{public}@", peripheral.identifier.uuidString)
+                    self.peripheral = peripheral
+                }
+            }
+        }
     }
 
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
