@@ -534,6 +534,7 @@
 				43CABE241C350B3D00005705 /* AuthChallengeTxMessage.swift in Sources */,
 				43CE7CD21CA73CBC003CC1B0 /* CalibrateGlucoseTxMessage.swift in Sources */,
 				43F82BD01D035D68006F5DD7 /* SessionStopRxMessage.swift in Sources */,
+				E7AF81A0204B4EE600E3C971 /* CalibrateGlucoseRxMessage.swift in Sources */,
 				43F82BCE1D035D5C006F5DD7 /* SessionStartRxMessage.swift in Sources */,
 				435535D41FB2C1B000CE5A23 /* PeripheralManagerError.swift in Sources */,
 				43D140CF2047AA940032346D /* Data.swift in Sources */,

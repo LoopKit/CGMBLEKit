@@ -12,13 +12,13 @@ import Foundation
 struct SessionStartTxMessage: RespondableMessage {
     typealias Response = SessionStartRxMessage
 
-    let startTime: UInt32
-    let startTimeEpoch: UInt32
+    let time: UInt32
+    let timeEpoch: UInt32
 
     var data: Data {
         var data = Data(for: .sessionStartTx)
-        data.append(startTime)
-        data.append(startTimeEpoch)
+        data.append(time)
+        data.append(timeEpoch)
         return data.appendingCRC()
     }
 }
