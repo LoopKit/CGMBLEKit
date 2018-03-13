@@ -159,6 +159,18 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
 
     // MARK: - TransmitterDelegate
 
+    func dequeuePendingCommand(for transmitter: Transmitter) -> Command? {
+        return nil
+    }
+
+    func transmitter(_ transmitter: Transmitter, didFail command: Command, with error: Error) {
+        // TODO: implement
+    }
+
+    func transmitter(_ transmitter: Transmitter, didComplete command: Command) {
+        // TODO: implement
+    }
+
     func transmitter(_ transmitter: Transmitter, didError error: Error) {
         print("Transmitter Error: \(error)")
         titleLabel.text = NSLocalizedString("Error", comment: "Title displayed during error response")

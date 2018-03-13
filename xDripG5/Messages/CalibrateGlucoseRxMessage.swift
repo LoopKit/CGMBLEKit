@@ -10,14 +10,12 @@ import Foundation
 
 
 public struct CalibrateGlucoseRxMessage: TransmitterRxMessage {
-    static let opcode: UInt8 = 0x35
-
     init?(data: Data) {
-        guard data.count == 5 && data.crcValid() else {
+        guard data.count == 5 && data.isCRCValid else {
             return nil
         }
 
-        guard data[0] == type(of: self).opcode else {
+        guard data.starts(with: .calibrateGlucoseRx) else {
             return nil
         }
     }
