@@ -33,10 +33,6 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
 
         transmitterIDField.text = AppDelegate.sharedDelegate.transmitter?.ID
 
-//        titleLabel.isUserInteractionEnabled = true
-
-//        let glucoseTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.chooseAction))
-//        titleLabel.addGestureRecognizer(glucoseTapGestureRecognizer)
     }
 
 //    @objc func chooseAction(sender: UITapGestureRecognizer) {
@@ -68,30 +64,6 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
 //    }
 //
 //    func calibrateSensor() {
-//        let dialog = UIAlertController(title: "Enter BG", message: "Calibrate sensor.", preferredStyle: .alert)
-//
-//        dialog.addTextField { (textField : UITextField!) in
-//            textField.placeholder = "Enter BG"
-//            textField.keyboardType = .numberPad
-//        }
-//
-//        dialog.addAction(UIAlertAction(title: "Calibrate", style: .default, handler: { (action: UIAlertAction!) in
-//            let textField = dialog.textFields![0] as UITextField
-//
-//            if let text = textField.text, let entry = Int(text) {
-//                guard entry >= 40 && entry <= 400 else {
-//                    // TODO: notify the user if the glucose is not in range
-//                    return
-//                }
-//                let unit = HKUnit.milligramsPerDeciliter()
-//                let glucose = HKQuantity(unit: unit, doubleValue: Double(entry))
-//                AppDelegate.sharedDelegate.transmitter?.calibrateSensor(glucose)
-//            }
-//        }))
-//
-//        dialog.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-//
-//        present(dialog, animated: true, completion: nil)
 //    }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -120,6 +92,33 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
     @IBAction func togglePassiveMode(_ sender: UISwitch) {
         AppDelegate.sharedDelegate.transmitter?.passiveModeEnabled = sender.isOn
         UserDefaults.standard.passiveModeEnabled = sender.isOn
+    }
+
+    @IBAction func calibrate(_ sender: UIButton) {
+        let dialog = UIAlertController(title: "Enter BG", message: "Calibrate sensor.", preferredStyle: .alert)
+
+        dialog.addTextField { (textField : UITextField!) in
+            textField.placeholder = "Enter BG"
+            textField.keyboardType = .numberPad
+        }
+
+        dialog.addAction(UIAlertAction(title: "Calibrate", style: .default, handler: { (action: UIAlertAction!) in
+            let textField = dialog.textFields![0] as UITextField
+
+            if let text = textField.text, let entry = Int(text) {
+                guard entry >= 40 && entry <= 400 else {
+                    // TODO: notify the user if the glucose is not in range
+                    return
+                }
+                let unit = HKUnit.milligramsPerDeciliter()
+                let glucose = HKQuantity(unit: unit, doubleValue: Double(entry))
+                AppDelegate.sharedDelegate.commandQueue.enqueue(.calibrateSensor(to: glucose, at: Date()))
+            }
+        }))
+
+        dialog.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        present(dialog, animated: true, completion: nil)
     }
 
     // MARK: - UITextFieldDelegate

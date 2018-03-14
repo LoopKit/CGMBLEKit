@@ -37,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
 
     var transmitter: Transmitter?
 
+    var commandQueue = CommandQueue()
+
     var glucose: Glucose?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -86,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
     }()
 
     func dequeuePendingCommand(for transmitter: Transmitter) -> Command? {
-        return nil
+        return commandQueue.dequeue()
     }
 
     func transmitter(_ transmitter: Transmitter, didFail command: Command, with error: Error) {
@@ -127,6 +129,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
             if let vc = self.window?.rootViewController as? TransmitterDelegate {
                 vc.transmitter(transmitter, didReadUnknownData: data)
             }
+        }
+    }
+}
+
+struct CommandQueue {
+    var list = [Command]()
+
+    var isEmpty: Bool {
+        return list.isEmpty
+    }
+
+    mutating func enqueue(_ element: Command) {
+        list.append(element)
+    }
+
+    mutating func dequeue() -> Command? {
+        if !list.isEmpty {
+            return list.removeFirst()
+        } else {
+            return nil
         }
     }
 }
