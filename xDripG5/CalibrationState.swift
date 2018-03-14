@@ -18,6 +18,8 @@ public enum CalibrationState {
     case needSecondInitialCalibration
     case ok
     case needCalibration
+    case needCalibrationNow
+    case questionMarks
     case unknown(RawValue)
 
     init(rawValue: UInt8) {
@@ -34,13 +36,17 @@ public enum CalibrationState {
             self = .ok
         case 7:
             self = .needCalibration
+        case 14:
+            self = .needCalibrationNow
+        case 18:
+            self = .questionMarks
         default:
             self = .unknown(rawValue)
         }
     }
 
     public var hasReliableGlucose: Bool {
-        return self == .ok || self == .needCalibration
+        return self == .ok || self == .needCalibration || self == .needCalibrationNow
     }
 }
 
@@ -48,7 +54,7 @@ extension CalibrationState: Equatable { }
 
 public func ==(lhs: CalibrationState, rhs: CalibrationState) -> Bool {
     switch (lhs, rhs) {
-    case (.stopped, .stopped), (.warmup, .warmup), (.needFirstInitialCalibration, .needFirstInitialCalibration), (.needSecondInitialCalibration, .needSecondInitialCalibration), (.ok, .ok), (.needCalibration, .needCalibration):
+    case (.stopped, .stopped), (.warmup, .warmup), (.needFirstInitialCalibration, .needFirstInitialCalibration), (.needSecondInitialCalibration, .needSecondInitialCalibration), (.ok, .ok), (.needCalibration, .needCalibration), (.needCalibrationNow, .needCalibrationNow), (.questionMarks, .questionMarks):
         return true
     case let (.unknown(lhsRaw), .unknown(rhsRaw)):
         return lhsRaw == rhsRaw
