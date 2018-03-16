@@ -103,6 +103,8 @@ class BluetoothManager: NSObject {
         var connectOptions: [String: Any] = [:]
         if #available(iOS 11.2, watchOS 4.1, *), delay > 0 {
             connectOptions[CBConnectPeripheralOptionStartDelayKey] = delay
+        } else {
+            // do nothing
         }
 
         if let peripheralID = self.peripheral?.identifier, let peripheral = manager.retrievePeripherals(withIdentifiers: [peripheralID]).first {
