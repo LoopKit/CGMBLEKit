@@ -79,6 +79,8 @@ public protocol TransmitterDelegate: class {
 
     func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose)
 
+    func transmitter(_ transmitter: Transmitter, didRead calibration: Calibration)
+
     func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data)
 }
 
@@ -201,6 +203,11 @@ public final class Transmitter: BluetoothManagerDelegate {
                     let glucose = try peripheral.readGlucose(timeMessage: timeMessage, activationDate: activationDate)
                     self.delegateQueue.async {
                         self.delegate?.transmitter(self, didRead: glucose)
+                    }
+
+                    let calibrationData = try peripheral.readCalibrationData(activationDate: activationDate)
+                    self.delegateQueue.async {
+                        self.delegate?.transmitter(self, didRead: calibrationData)
                     }
                 } catch let error {
                     self.delegateQueue.async {
@@ -386,6 +393,7 @@ fileprivate extension PeripheralManager {
             }
         case .calibrateSensor(let glucose, let date):
             let unit = HKUnit.milligramsPerDeciliter()
+            // TODO: this cast will always round down; better to round explicitly
             let glucoseValue = UInt16(glucose.doubleValue(for: unit))
             let time = UInt32(date.timeIntervalSince(activationDate))
 
@@ -408,6 +416,17 @@ fileprivate extension PeripheralManager {
 
         // Update and notify
         return Glucose(glucoseMessage: glucoseMessage, timeMessage: timeMessage, activationDate: activationDate)
+    }
+
+    fileprivate func readCalibrationData(activationDate: Date) throws -> Calibration {
+        let calibrationDataMessage: CalibrationDataRxMessage
+        do {
+            calibrationDataMessage = try writeMessage(CalibrationDataTxMessage(), for: .control)
+        } catch let error {
+            throw TransmitterError.controlError("Error getting calibration data: \(error)")
+        }
+
+        return Calibration(calibrationDataMessage: calibrationDataMessage, activationDate: activationDate)
     }
 
     fileprivate func disconnect() {

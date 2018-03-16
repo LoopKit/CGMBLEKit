@@ -124,6 +124,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
         }
     }
 
+    func transmitter(_ transmitter: Transmitter, didRead calibration: Calibration) {
+        DispatchQueue.main.async {
+            if let vc = self.window?.rootViewController as? TransmitterDelegate {
+                vc.transmitter(transmitter, didRead: calibration)
+            }
+        }
+    }
+
     func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data) {
         DispatchQueue.main.async {
             if let vc = self.window?.rootViewController as? TransmitterDelegate {

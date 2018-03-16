@@ -71,6 +71,8 @@
 		C19084BB203932BD00AA47F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C19084B9203932BD00AA47F3 /* Main.storyboard */; };
 		C1CD8B0C203931AD00A8F498 /* NSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD8B0A203931AD00A8F498 /* NSUserDefaults.swift */; };
 		E75DB6AE20419B5D00FBE04E /* CalibrateGlucoseRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75DB6AD20419B5D00FBE04E /* CalibrateGlucoseRxMessage.swift */; };
+		E76FD69C205C75780056DA5B /* Calibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76FD69B205C75780056DA5B /* Calibration.swift */; };
+		E76FD69E205C7A200056DA5B /* CalibrationDataTxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76FD69D205C7A200056DA5B /* CalibrationDataTxMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,6 +180,8 @@
 		C19084BA203932BD00AA47F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C1CD8B0A203931AD00A8F498 /* NSUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaults.swift; sourceTree = "<group>"; };
 		E75DB6AD20419B5D00FBE04E /* CalibrateGlucoseRxMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrateGlucoseRxMessage.swift; sourceTree = "<group>"; };
+		E76FD69B205C75780056DA5B /* Calibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calibration.swift; sourceTree = "<group>"; };
+		E76FD69D205C7A200056DA5B /* CalibrationDataTxMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationDataTxMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +268,7 @@
 				431CE7621F8EEF6D00255374 /* CBPeripheral.swift */,
 				43E3978A1D5668BD0028E321 /* CalibrationState.swift */,
 				43E3978E1D566B170028E321 /* Glucose.swift */,
+				E76FD69B205C75780056DA5B /* Calibration.swift */,
 				43E397921D56950C0028E321 /* HKUnit.swift */,
 				43CABDF81C3506F100005705 /* Info.plist */,
 				430D64C41CB7846A00FCA750 /* NSData+CRC.swift */,
@@ -307,6 +312,7 @@
 				43CABE1B1C350B3D00005705 /* BondRequestTxMessage.swift */,
 				43CE7CD11CA73CBC003CC1B0 /* CalibrateGlucoseTxMessage.swift */,
 				E75DB6AD20419B5D00FBE04E /* CalibrateGlucoseRxMessage.swift */,
+				E76FD69D205C7A200056DA5B /* CalibrationDataTxMessage.swift */,
 				43846AC51D8F896C00799272 /* CalibrationDataRxMessage.swift */,
 				43CABE1C1C350B3D00005705 /* DisconnectTxMessage.swift */,
 				43CE7CC71CA73AEB003CC1B0 /* FirmwareVersionTxMessage.swift */,
@@ -500,8 +506,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				43CE7CCA1CA73B94003CC1B0 /* TransmitterVersionTxMessage.swift in Sources */,
+				E76FD69C205C75780056DA5B /* Calibration.swift in Sources */,
 				43E3978B1D5668BD0028E321 /* CalibrationState.swift in Sources */,
 				431CE7631F8EEF6D00255374 /* CBPeripheral.swift in Sources */,
+				E76FD69E205C7A200056DA5B /* CalibrationDataTxMessage.swift in Sources */,
 				43CABE2D1C350B3D00005705 /* TransmitterTimeRxMessage.swift in Sources */,
 				43CABE291C350B3D00005705 /* GlucoseRxMessage.swift in Sources */,
 				43CE7CDC1CA77468003CC1B0 /* TransmitterStatus.swift in Sources */,
@@ -534,7 +542,6 @@
 				43CABE241C350B3D00005705 /* AuthChallengeTxMessage.swift in Sources */,
 				43CE7CD21CA73CBC003CC1B0 /* CalibrateGlucoseTxMessage.swift in Sources */,
 				43F82BD01D035D68006F5DD7 /* SessionStopRxMessage.swift in Sources */,
-				E7AF81A0204B4EE600E3C971 /* CalibrateGlucoseRxMessage.swift in Sources */,
 				43F82BCE1D035D5C006F5DD7 /* SessionStartRxMessage.swift in Sources */,
 				435535D41FB2C1B000CE5A23 /* PeripheralManagerError.swift in Sources */,
 				43D140CF2047AA940032346D /* Data.swift in Sources */,
