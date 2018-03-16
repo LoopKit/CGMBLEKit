@@ -181,7 +181,7 @@ public final class Transmitter: BluetoothManagerDelegate {
                         peripheral.disconnect()
                     }
 
-                    let timeMessage = try peripheral.synchronize()
+                    let timeMessage = try peripheral.readTimeMessage()
 
                     let activationDate = Date(timeIntervalSinceNow: -TimeInterval(timeMessage.currentTime))
 
@@ -357,7 +357,7 @@ fileprivate extension PeripheralManager {
         }
     }
 
-    fileprivate func synchronize() throws -> TransmitterTimeRxMessage {
+    fileprivate func readTimeMessage() throws -> TransmitterTimeRxMessage {
         do {
             return try writeMessage(TransmitterTimeTxMessage(), for: .control)
         } catch let error {
