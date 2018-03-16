@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import HealthKit
 
 
 extension UserDefaults {
@@ -35,5 +36,9 @@ extension UserDefaults {
         set {
             set(newValue, forKey: "transmitterID")
         }
+    }
+
+    var glucoseUnit: HKUnit {
+        return HKUnit.milligramsPerDeciliter()
     }
 }

@@ -97,20 +97,23 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
     @IBAction func calibrate(_ sender: UIButton) {
         let dialog = UIAlertController(title: "Enter BG", message: "Calibrate sensor.", preferredStyle: .alert)
 
+        let unit = UserDefaults.standard.glucoseUnit
+
         dialog.addTextField { (textField : UITextField!) in
-            textField.placeholder = "Enter BG"
+            textField.placeholder = unit.glucoseUnitDisplayString
             textField.keyboardType = .numberPad
         }
 
         dialog.addAction(UIAlertAction(title: "Calibrate", style: .default, handler: { (action: UIAlertAction!) in
             let textField = dialog.textFields![0] as UITextField
+            let minGlucose = HKQuantity(unit: HKUnit.millimolesPerLiter(), doubleValue: 40)
+            let maxGlucose = HKQuantity(unit: HKUnit.millimolesPerLiter(), doubleValue: 400)
 
-            if let text = textField.text, let entry = Int(text) {
-                guard entry >= 40 && entry <= 400 else {
+            if let text = textField.text, let entry = Double(text) {
+                guard entry >= minGlucose.doubleValue(for: unit) && entry <= maxGlucose.doubleValue(for: unit) else {
                     // TODO: notify the user if the glucose is not in range
                     return
                 }
-                let unit = HKUnit.milligramsPerDeciliter()
                 let glucose = HKQuantity(unit: unit, doubleValue: Double(entry))
                 AppDelegate.sharedDelegate.commandQueue.enqueue(.calibrateSensor(to: glucose, at: Date()))
             }
@@ -178,7 +181,7 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
     }
 
     func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose) {
-        let unit = HKUnit.milligramsPerDeciliter()
+        let unit = UserDefaults.standard.glucoseUnit
         if let value = glucose.glucose?.doubleValue(for: unit) {
             titleLabel.text = "\(value) \(unit.unitString)"
         } else {
