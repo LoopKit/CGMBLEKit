@@ -12,7 +12,10 @@ import Foundation
 struct SessionStartTxMessage: RespondableMessage {
     typealias Response = SessionStartRxMessage
 
+    /// Time since activation in Dex seconds
     let time: UInt32
+
+    /// Time in seconds since Unix Epoch
     let timeEpoch: UInt32
 
     var data: Data {
