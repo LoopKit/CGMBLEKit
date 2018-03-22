@@ -107,7 +107,7 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
     }
 
     func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose) {
-        let unit = HKUnit.milligramsPerDeciliter()
+        let unit = HKUnit.milligramsPerDeciliter
         if let value = glucose.glucose?.doubleValue(for: unit) {
             titleLabel.text = "\(value) \(unit.unitString)"
         } else {
@@ -123,6 +123,13 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
         titleLabel.text = NSLocalizedString("Unknown Data", comment: "Title displayed during unknown data response")
         subtitleLabel.text = data.hexadecimalString
     }
+    
+    func transmitter(_ transmitter: Transmitter, didReadBackfill glucose: [Glucose]) {
+        titleLabel.text = NSLocalizedString("Backfill", comment: "Title displayed during backfill response")
+        subtitleLabel.text = String(describing: glucose.map { $0.glucose })
+    }
+    
+
 }
 
 

@@ -16,6 +16,8 @@ public protocol TransmitterDelegate: class {
 
     func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose)
 
+    func transmitter(_ transmitter: Transmitter, didReadBackfill glucose: [Glucose])
+
     func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data)
 }
 
@@ -35,20 +37,36 @@ public final class Transmitter: BluetoothManagerDelegate {
 
     private var id: TransmitterID
 
-    /// The initial activation date of the transmitter
-    public private(set) var activationDate: Date?
-
-    private var lastTimeMessage: TransmitterTimeRxMessage?
-
     public var passiveModeEnabled: Bool
 
     public weak var delegate: TransmitterDelegate?
+
+    // MARK: - Passive observation state, confined to `bluetoothManager.managerQueue`
+
+    /// The initial activation date of the transmitter
+    private var activationDate: Date?
+
+    /// The last-seen time message
+    private var lastTimeMessage: TransmitterTimeRxMessage? {
+        didSet {
+            if let time = lastTimeMessage {
+                activationDate = Date(timeIntervalSinceNow: -TimeInterval(time.currentTime))
+            } else {
+                activationDate = nil
+            }
+        }
+    }
+
+    /// The backfill data buffer
+    private var backfillBuffer: GlucoseBackfillFrameBuffer?
+
+    // MARK: -
 
     private let log = OSLog(category: "Transmitter")
 
     private let bluetoothManager = BluetoothManager()
 
-    private var delegateQueue = DispatchQueue(label: "com.loudnate.xDripG5.delegateQueue", qos: .utility)
+    private let delegateQueue = DispatchQueue(label: "com.loudnate.xDripG5.delegateQueue", qos: .utility)
 
     public init(id: String, passiveModeEnabled: Bool = false) {
         self.id = TransmitterID(id: id)
@@ -112,7 +130,13 @@ public final class Transmitter: BluetoothManagerDelegate {
 
                         self.log.info("Bonding request sent. Waiting user to respond.")
                     }
-                    let glucose = try peripheral.control(shouldWaitForBond: status.bonded != 0x1)
+                    let (timeMessage, activationDate, glucoseMessage) = try peripheral.control(shouldWaitForBond: status.bonded != 0x1)
+                    let glucose = Glucose(
+                        transmitterID: self.id.id,
+                        glucoseMessage: glucoseMessage,
+                        timeMessage: timeMessage,
+                        activationDate: activationDate
+                    )
                     self.delegateQueue.async {
                         self.delegate?.transmitter(self, didRead: glucose)
                     }
@@ -148,23 +172,70 @@ public final class Transmitter: BluetoothManagerDelegate {
                 let activationDate = activationDate
             {
                 delegateQueue.async {
-                    self.delegate?.transmitter(self, didRead: Glucose(glucoseMessage: glucoseMessage, timeMessage: timeMessage, activationDate: activationDate))
+                    self.delegate?.transmitter(self, didRead: Glucose(transmitterID: self.id.id, glucoseMessage: glucoseMessage, timeMessage: timeMessage, activationDate: activationDate))
                 }
             }
         case .transmitterTimeRx?:
             if let timeMessage = TransmitterTimeRxMessage(data: response) {
-                self.activationDate = Date(timeIntervalSinceNow: -TimeInterval(timeMessage.currentTime))
                 self.lastTimeMessage = timeMessage
                 return
             }
+        case .glucoseBackfillRx?:
+            guard let backfillMessage = GlucoseBackfillRxMessage(data: response) else {
+                break
+            }
+
+            guard let backfillBuffer = backfillBuffer else {
+                log.error("Received GlucoseBackfillRxMessage %{public}@ but backfillBuffer is nil", String(describing: backfillMessage))
+                break
+            }
+
+            guard let timeMessage = lastTimeMessage, let activationDate = activationDate else {
+                log.error("Received GlucoseBackfillRxMessage %{public}@ but activationDate is unknown", String(describing: backfillMessage))
+                break
+            }
+
+            guard backfillMessage.bufferLength == backfillBuffer.count else {
+                log.error("GlucoseBackfillRxMessage expected buffer length %d, but was %d", backfillMessage.bufferLength, backfillBuffer.count)
+                break
+            }
+
+            guard backfillMessage.bufferCRC == backfillBuffer.crc16 else {
+                log.error("GlucoseBackfillRxMessage expected CRC %04x, but was %04x", backfillMessage.bufferCRC, backfillBuffer.crc16)
+                break
+            }
+
+            let glucose = backfillBuffer.glucose.map {
+                Glucose(transmitterID: id.id, status: backfillMessage.status, glucoseMessage: $0, timeMessage: timeMessage, activationDate: activationDate)
+            }
+
+            if glucose.count > 0 {
+                delegateQueue.async {
+                    self.delegate?.transmitter(self, didReadBackfill: glucose)
+                }
+            }
         case .none:
             delegateQueue.async {
-               self.delegate?.transmitter(self, didReadUnknownData: response)
+                self.delegate?.transmitter(self, didReadUnknownData: response)
             }
         default:
             // We ignore all other known opcodes
             break
         }
+    }
+
+    func bluetoothManager(_ manager: BluetoothManager, didReceiveBackfillResponse response: Data) {
+        guard response.count > 2 else {
+            return
+        }
+
+        if response[0] == 1 {
+            log.info("Starting new backfill buffer with ID %d", response[1])
+
+            self.backfillBuffer = GlucoseBackfillFrameBuffer(identifier: response[1])
+        }
+
+        self.backfillBuffer?.append(response)
     }
 }
 
@@ -224,7 +295,6 @@ fileprivate extension PeripheralManager {
             throw TransmitterError.authenticationError("Failed to compute challenge hash for transmitter ID")
         }
 
-
         do {
             try writeMessage(AuthChallengeTxMessage(challengeHash: challengeHash), for: .authentication)
         } catch let error {
@@ -259,7 +329,7 @@ fileprivate extension PeripheralManager {
         }
     }
 
-    fileprivate func control(shouldWaitForBond: Bool = false) throws -> Glucose {
+    fileprivate func control(shouldWaitForBond: Bool = false) throws -> (time: TransmitterTimeRxMessage, activationDate: Date, glucose: GlucoseRxMessage) {
         do {
             if shouldWaitForBond {
                 try setNotifyValue(true, for: .control, timeout: 15)
@@ -294,13 +364,13 @@ fileprivate extension PeripheralManager {
             }
         }
 
-        // Update and notify
-        return Glucose(glucoseMessage: glucoseMessage, timeMessage: timeMessage, activationDate: activationDate)
+        return (time: timeMessage, activationDate: activationDate, glucose: glucoseMessage)
     }
 
     fileprivate func listenToControl() throws {
         do {
             try setNotifyValue(true, for: .control)
+            try setNotifyValue(true, for: .backfill)
         } catch let error {
             throw TransmitterError.controlError("Error enabling notification: \(error)")
         }
