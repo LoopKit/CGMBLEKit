@@ -11,35 +11,39 @@ import HealthKit
 
 
 public enum Command: RawRepresentable {
+    public typealias RawValue = [String: Any]
+
     case startSensor(at: Date)
     case stopSensor(at: Date)
     case calibrateSensor(to: HKQuantity, at: Date)
 
-    public typealias RawValue = [String: Any]
+    private enum Action: UInt8 {
+        case startSensor = 0
+        case stopSensor = 1
+        case calibrateSensor = 2
+    }
 
     public init?(rawValue: RawValue) {
-        guard let command = rawValue["command"] as? Int else {
+        guard let action = rawValue["action"] as? Action else {
             return nil
         }
 
-        switch command {
-        case 0:
+        switch action {
+        case .startSensor:
             guard let date = rawValue["date"] as? Date else {
                 return nil
             }
             self = .startSensor(at: date)
-        case 1:
+        case .stopSensor:
             guard let date = rawValue["date"] as? Date else {
                 return nil
             }
             self = .stopSensor(at: date)
-        case 2:
+        case .calibrateSensor:
             guard let date = rawValue["date"] as? Date, let glucose = rawValue["glucose"] as? HKQuantity else {
                 return nil
             }
             self = .calibrateSensor(to: glucose, at: date)
-        default:
-            return nil
         }
     }
 
@@ -47,17 +51,17 @@ public enum Command: RawRepresentable {
         switch self {
         case .startSensor(let date):
             return [
-                "command": 0,
+                "action": Action.startSensor,
                 "date": date
             ]
         case .stopSensor(let date):
             return [
-                "command": 1,
+                "action": Action.stopSensor,
                 "date": date
             ]
         case .calibrateSensor(let glucose, let date):
             return [
-                "command": 2,
+                "action": Action.calibrateSensor,
                 "date": date,
                 "glucose": glucose
             ]
