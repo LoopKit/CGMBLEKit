@@ -48,7 +48,7 @@ enum CGMServiceCharacteristicUUID: String, CBUUIDRawValue {
     case authentication = "F8083535-849E-531C-C594-30F1F86A4EA5"
 
     // Read/Write/Notify
-    case probablyBackfill = "F8083536-849E-531C-C594-30F1F86A4EA5"
+    case backfill = "F8083536-849E-531C-C594-30F1F86A4EA5"
 }
 
 
@@ -67,7 +67,8 @@ extension PeripheralManager.Configuration {
                 TransmitterServiceUUID.cgmService.cbUUID: [
                     CGMServiceCharacteristicUUID.communication.cbUUID,
                     CGMServiceCharacteristicUUID.authentication.cbUUID,
-                    CGMServiceCharacteristicUUID.control.cbUUID
+                    CGMServiceCharacteristicUUID.control.cbUUID,
+                    CGMServiceCharacteristicUUID.backfill.cbUUID,
                 ]
             ],
             notifyingCharacteristics: [:],

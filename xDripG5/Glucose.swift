@@ -11,25 +11,46 @@ import HealthKit
 
 
 public struct Glucose {
-    public let glucoseMessage: GlucoseRxMessage
+    let glucoseMessage: GlucoseSubMessage
     let timeMessage: TransmitterTimeRxMessage
 
-    init(glucoseMessage: GlucoseRxMessage, timeMessage: TransmitterTimeRxMessage, activationDate: Date) {
+    init(
+        transmitterID: String,
+        glucoseMessage: GlucoseRxMessage,
+        timeMessage: TransmitterTimeRxMessage,
+        activationDate: Date
+    ) {
+        self.init(
+            transmitterID: transmitterID,
+            status: glucoseMessage.status,
+            glucoseMessage: glucoseMessage.glucose,
+            timeMessage: timeMessage,
+            activationDate: activationDate
+        )
+    }
+
+    init(
+        transmitterID: String,
+        status: UInt8,
+        glucoseMessage: GlucoseSubMessage,
+        timeMessage: TransmitterTimeRxMessage,
+        activationDate: Date
+    ) {
+        self.transmitterID = transmitterID
         self.glucoseMessage = glucoseMessage
         self.timeMessage = timeMessage
+        self.status = TransmitterStatus(rawValue: status)
 
-        status = TransmitterStatus(rawValue: glucoseMessage.status)
-        state = CalibrationState(rawValue: glucoseMessage.state)
         sessionStartDate = activationDate.addingTimeInterval(TimeInterval(timeMessage.sessionStartTime))
         readDate = activationDate.addingTimeInterval(TimeInterval(glucoseMessage.timestamp))
     }
 
     // MARK: - Transmitter Info
+    public let transmitterID: String
     public let status: TransmitterStatus
     public let sessionStartDate: Date
 
     // MARK: - Glucose Info
-    public let state: CalibrationState
     public let readDate: Date
 
     public var isDisplayOnly: Bool {
@@ -41,20 +62,28 @@ public struct Glucose {
             return nil
         }
 
-        let unit = HKUnit.milligramsPerDeciliter()
+        let unit = HKUnit.milligramsPerDeciliter
 
         return HKQuantity(unit: unit, doubleValue: Double(glucoseMessage.glucose))
+    }
+
+    public var state: CalibrationState {
+        return CalibrationState(rawValue: glucoseMessage.state)
     }
 
     public var trend: Int {
         return Int(glucoseMessage.trend)
     }
+
+    // An identifier for this reading thatʼs consistent between backfill/live data
+    public var syncIdentifier: String {
+        return "\(transmitterID) \(glucoseMessage.timestamp)"
+    }
 }
 
 
-extension Glucose: Equatable { }
-
-
-public func ==(lhs: Glucose, rhs: Glucose) -> Bool {
-    return lhs.glucoseMessage == rhs.glucoseMessage && lhs.timeMessage == rhs.timeMessage
+extension Glucose: Equatable {
+    public static func ==(lhs: Glucose, rhs: Glucose) -> Bool {
+        return lhs.glucoseMessage == rhs.glucoseMessage && lhs.syncIdentifier == rhs.syncIdentifier
+    }
 }

@@ -9,14 +9,45 @@
 import Foundation
 
 
-public struct GlucoseRxMessage: TransmitterRxMessage {
-    public let status: UInt8
-    public let sequence: UInt32
+public struct GlucoseSubMessage: TransmitterRxMessage {
+    static let size = 8
+
     public let timestamp: UInt32
     public let glucoseIsDisplayOnly: Bool
     public let glucose: UInt16
     public let state: UInt8
     public let trend: Int8
+
+    init?(data: Data) {
+        guard data.count == GlucoseSubMessage.size else {
+            return nil
+        }
+
+        var start = data.startIndex
+        var end = start.advanced(by: 4)
+        timestamp = data[start..<end].toInt()
+
+        start = end
+        end = start.advanced(by: 2)
+        let glucoseBytes = data[start..<end].to(UInt16.self)
+        glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
+        glucose = glucoseBytes & 0xfff
+
+        start = end
+        end = start.advanced(by: 1)
+        state = data[start]
+
+        start = end
+        end = start.advanced(by: 1)
+        trend = Int8(bitPattern: data[start])
+    }
+}
+
+
+public struct GlucoseRxMessage: TransmitterRxMessage {
+    public let status: UInt8
+    public let sequence: UInt32
+    public let glucose: GlucoseSubMessage
 
     init?(data: Data) {
         guard data.count == 16 && data.isCRCValid else {
@@ -29,21 +60,29 @@ public struct GlucoseRxMessage: TransmitterRxMessage {
 
         status = data[1]
         sequence = data[2..<6].toInt()
-        timestamp = data[6..<10].toInt()
 
-        let glucoseBytes = data[10..<12].to(UInt16.self)
-        glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
-        glucose = glucoseBytes & 0xfff
+        guard let glucose = GlucoseSubMessage(data: data[6..<14]) else {
+            return nil
+        }
+        self.glucose = glucose
+    }
+}
 
-        state = data[12]
-        trend = Int8(bitPattern: data[13])
+extension GlucoseSubMessage: Equatable {
+    public static func ==(lhs: GlucoseSubMessage, rhs: GlucoseSubMessage) -> Bool {
+        return lhs.timestamp == rhs.timestamp &&
+            lhs.glucoseIsDisplayOnly == rhs.glucoseIsDisplayOnly &&
+            lhs.glucose == rhs.glucose &&
+            lhs.state == rhs.state &&
+            lhs.trend == rhs.trend
     }
 }
 
 
 extension GlucoseRxMessage: Equatable {
-}
-
-public func ==(lhs: GlucoseRxMessage, rhs: GlucoseRxMessage) -> Bool {
-    return lhs.sequence == rhs.sequence && lhs.timestamp == rhs.timestamp
+    public static func ==(lhs: GlucoseRxMessage, rhs: GlucoseRxMessage) -> Bool {
+        return lhs.status == rhs.status &&
+            lhs.sequence == rhs.sequence &&
+            lhs.glucose == rhs.glucose
+    }
 }
