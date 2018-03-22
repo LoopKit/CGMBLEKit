@@ -12,7 +12,7 @@ import CoreBluetooth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
-
+    
     var window: UIWindow?
 
     static var sharedDelegate: AppDelegate {
@@ -102,6 +102,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
         DispatchQueue.main.async {
             if let vc = self.window?.rootViewController as? TransmitterDelegate {
                 vc.transmitter(transmitter, didReadUnknownData: data)
+            }
+        }
+    }
+    
+    func transmitter(_ transmitter: Transmitter, didReadBackfill glucose: [Glucose]) {
+        DispatchQueue.main.async {
+            if let vc = self.window?.rootViewController as? TransmitterDelegate {
+                vc.transmitter(transmitter, didReadBackfill: glucose)
             }
         }
     }

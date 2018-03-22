@@ -15,7 +15,7 @@ enum Opcode: UInt8 {
     case authChallengeRx = 0x05
     case keepAlive = 0x06
     case bondRequest = 0x07
-
+    
     // Control
     case disconnectTx = 0x09
 
@@ -44,10 +44,12 @@ enum Opcode: UInt8 {
     case calibrationDataRx = 0x33
     case calibrateGlucoseTx = 0x34
     case calibrateGlucoseRx = 0x35
+    
+    case glucoseHistoryTx = 0x3e
 
     case eraseTx = 0x42
     case eraseRx = 0x43
-
+    
     case transmitterVersionTx = 0x4a
     case transmitterVersionRx = 0x4b
 
