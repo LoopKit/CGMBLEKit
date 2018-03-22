@@ -337,8 +337,7 @@ fileprivate extension PeripheralManager {
             }
         case .calibrateSensor(let glucose, let date):
             let unit = HKUnit.milligramsPerDeciliter()
-            // TODO: this cast will always round down; better to round explicitly
-            let glucoseValue = UInt16(glucose.doubleValue(for: unit))
+            let glucoseValue = UInt16(glucose.doubleValue(for: unit).rounded())
             let time = UInt32(date.timeIntervalSince(activationDate))
 
             do {
