@@ -32,39 +32,7 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
         stayConnectedSwitch.isOn = AppDelegate.sharedDelegate.transmitter?.stayConnected ?? false
 
         transmitterIDField.text = AppDelegate.sharedDelegate.transmitter?.ID
-
     }
-
-//    @objc func chooseAction(sender: UITapGestureRecognizer) {
-//        guard let glucose = AppDelegate.sharedDelegate.glucose else {
-//            return
-//        }
-//
-//        switch glucose.state {
-//        case .stopped:
-//            startSensor()
-//        case .needFirstInitialCalibration, .needSecondInitialCalibration, .ok, .needCalibration:
-//            calibrateSensor()
-//        default:
-//            break
-//        }
-//    }
-
-//    func startSensor() {
-//        let dialog = UIAlertController(title: "Confirm", message: "Start sensor session.", preferredStyle: .alert)
-//
-//        dialog.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
-//            self.titleLabel.text = "starting..."
-//            AppDelegate.sharedDelegate.transmitter?.startSensor()
-//        }))
-//
-//        dialog.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-//
-//        present(dialog, animated: true, completion: nil)
-//    }
-//
-//    func calibrateSensor() {
-//    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -100,14 +68,14 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
         let unit = UserDefaults.standard.glucoseUnit
 
         dialog.addTextField { (textField : UITextField!) in
-            textField.placeholder = unit.glucoseUnitDisplayString
+            textField.placeholder = unit.unitString
             textField.keyboardType = .numberPad
         }
 
         dialog.addAction(UIAlertAction(title: "Calibrate", style: .default, handler: { (action: UIAlertAction!) in
             let textField = dialog.textFields![0] as UITextField
-            let minGlucose = HKQuantity(unit: HKUnit.millimolesPerLiter(), doubleValue: 40)
-            let maxGlucose = HKQuantity(unit: HKUnit.millimolesPerLiter(), doubleValue: 400)
+            let minGlucose = HKQuantity(unit: HKUnit.milligramsPerDeciliter(), doubleValue: 40)
+            let maxGlucose = HKQuantity(unit: HKUnit.milligramsPerDeciliter(), doubleValue: 400)
 
             if let text = textField.text, let entry = Double(text) {
                 guard entry >= minGlucose.doubleValue(for: unit) && entry <= maxGlucose.doubleValue(for: unit) else {
