@@ -17,51 +17,51 @@ public enum Command: RawRepresentable {
     case stopSensor(at: Date)
     case calibrateSensor(to: HKQuantity, at: Date)
 
-    private enum Action: UInt8 {
-        case startSensor = 0
-        case stopSensor = 1
-        case calibrateSensor = 2
-    }
-
     public init?(rawValue: RawValue) {
-        guard let action = rawValue["action"] as? Action else {
+        guard let action = rawValue["action"] as? UInt8 else {
             return nil
         }
 
-        switch action {
-        case .startSensor:
+        switch Action(rawValue: action) {
+        case .startSensor?:
             guard let date = rawValue["date"] as? Date else {
                 return nil
             }
             self = .startSensor(at: date)
-        case .stopSensor:
+        case .stopSensor?:
             guard let date = rawValue["date"] as? Date else {
                 return nil
             }
             self = .stopSensor(at: date)
-        case .calibrateSensor:
+        case .calibrateSensor?:
             guard let date = rawValue["date"] as? Date, let glucose = rawValue["glucose"] as? HKQuantity else {
                 return nil
             }
             self = .calibrateSensor(to: glucose, at: date)
+        case .none:
+            return nil
         }
+    }
+
+    private enum Action: UInt8 {
+        case startSensor, stopSensor, calibrateSensor
     }
 
     public var rawValue: RawValue {
         switch self {
         case .startSensor(let date):
             return [
-                "action": Action.startSensor,
+                "action": Action.startSensor.rawValue,
                 "date": date
             ]
         case .stopSensor(let date):
             return [
-                "action": Action.stopSensor,
+                "action": Action.stopSensor.rawValue,
                 "date": date
             ]
         case .calibrateSensor(let glucose, let date):
             return [
-                "action": Action.calibrateSensor,
+                "action": Action.calibrateSensor.rawValue,
                 "date": date,
                 "glucose": glucose
             ]
