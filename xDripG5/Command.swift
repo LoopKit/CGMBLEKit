@@ -18,7 +18,7 @@ public enum Command: RawRepresentable {
     case calibrateSensor(to: HKQuantity, at: Date)
 
     public init?(rawValue: RawValue) {
-        guard let action = rawValue["action"] as? UInt8 else {
+        guard let action = rawValue["action"] as? Int else {
             return nil
         }
 
@@ -43,7 +43,7 @@ public enum Command: RawRepresentable {
         }
     }
 
-    private enum Action: UInt8 {
+    private enum Action: Int {
         case startSensor, stopSensor, calibrateSensor
     }
 
