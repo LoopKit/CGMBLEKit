@@ -65,7 +65,7 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
     @IBAction func calibrate(_ sender: UIButton) {
         let dialog = UIAlertController(title: "Enter BG", message: "Calibrate sensor.", preferredStyle: .alert)
 
-        let unit = UserDefaults.standard.glucoseUnit
+        let unit = HKUnit.milligramsPerDeciliter()
 
         dialog.addTextField { (textField : UITextField!) in
             textField.placeholder = unit.unitString
@@ -162,7 +162,7 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
     }
 
     func transmitter(_ transmitter: Transmitter, didRead calibration: Calibration) {
-        let unit = UserDefaults.standard.glucoseUnit
+        let unit = HKUnit.milligramsPerDeciliter()
         print("Last calibrated to \(calibration.glucose.doubleValue(for: unit)) \(unit.unitString) at \(calibration.date)")
     }
 

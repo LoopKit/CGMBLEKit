@@ -37,8 +37,4 @@ extension UserDefaults {
             set(newValue, forKey: "transmitterID")
         }
     }
-
-    var glucoseUnit: HKUnit {
-        return HKUnit.milligramsPerDeciliter()
-    }
 }
