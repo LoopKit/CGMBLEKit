@@ -22,7 +22,7 @@ struct CalibrationDataRxMessage: TransmitterRxMessage {
             return nil
         }
 
-        glucose = data[11..<13].to(UInt16.self)
+        glucose = data[11..<13].toInt()
         timestamp = data[13..<17].toInt()
     }
 }
