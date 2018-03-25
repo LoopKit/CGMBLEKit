@@ -320,10 +320,10 @@ fileprivate extension PeripheralManager {
         switch command {
         case .startSensor(let date):
             let startTime = UInt32(date.timeIntervalSince(activationDate))
-            let startTimeEpoch = UInt32(date.timeIntervalSince1970)
+            let secondsSince1970 = UInt32(date.timeIntervalSince1970)
 
             do {
-                return try writeMessage(SessionStartTxMessage(time: startTime, timeEpoch: startTimeEpoch), for: .control)
+                return try writeMessage(SessionStartTxMessage(startTime: startTime, secondsSince1970: secondsSince1970), for: .control)
             } catch let error {
                 throw TransmitterError.controlError("Error starting session: \(error)")
             }
@@ -331,7 +331,7 @@ fileprivate extension PeripheralManager {
             let stopTime = UInt32(date.timeIntervalSince(activationDate))
 
             do {
-                return try writeMessage(SessionStopTxMessage(time: stopTime), for: .control)
+                return try writeMessage(SessionStopTxMessage(stopTime: stopTime), for: .control)
             } catch let error {
                 throw TransmitterError.controlError("Error stopping session: \(error)")
             }

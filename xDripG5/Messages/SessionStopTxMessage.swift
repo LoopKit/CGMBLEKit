@@ -12,11 +12,11 @@ import Foundation
 struct SessionStopTxMessage: RespondableMessage {
     typealias Response = SessionStopRxMessage
 
-    let time: UInt32
+    let stopTime: UInt32
 
     var data: Data {
         var data = Data(for: .sessionStopTx)
-        data.append(time)
+        data.append(stopTime)
         return data.appendingCRC()
     }
 }
