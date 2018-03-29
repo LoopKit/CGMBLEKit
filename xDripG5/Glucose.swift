@@ -14,7 +14,7 @@ public struct Glucose {
     public let glucoseMessage: GlucoseRxMessage
     let timeMessage: TransmitterTimeRxMessage
 
-    init(glucoseMessage: GlucoseRxMessage, timeMessage: TransmitterTimeRxMessage, calibrationMessage: CalibrationDataRxMessage?, activationDate: Date) {
+    init(glucoseMessage: GlucoseRxMessage, timeMessage: TransmitterTimeRxMessage, calibrationMessage: CalibrationDataRxMessage? = nil, activationDate: Date) {
         self.glucoseMessage = glucoseMessage
         self.timeMessage = timeMessage
 
