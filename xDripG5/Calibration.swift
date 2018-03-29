@@ -16,7 +16,7 @@ public struct Calibration {
             return nil
         }
 
-        let unit = HKUnit.milligramsPerDeciliter()
+        let unit = HKUnit.milligramsPerDeciliter
 
         glucose = HKQuantity(unit: unit, doubleValue: Double(calibrationMessage.glucose))
         date = activationDate.addingTimeInterval(TimeInterval(calibrationMessage.timestamp))

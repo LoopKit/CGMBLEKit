@@ -31,11 +31,19 @@ protocol BluetoothManagerDelegate: class {
      */
     func bluetoothManager(_ manager: BluetoothManager, shouldConnectPeripheral peripheral: CBPeripheral) -> Bool
 
-    /// Tells the delegate that the bluetooth manager received new data in the control characteristic.
+    /// Informs the delegate that the bluetooth manager received new data in the control characteristic
     ///
-    /// - parameter manager:                   The bluetooth manager
-    /// - parameter didReceiveControlResponse: The data received on the control characteristic
+    /// - Parameters:
+    ///   - manager: The bluetooth manager
+    ///   - response: The data received on the control characteristic
     func bluetoothManager(_ manager: BluetoothManager, didReceiveControlResponse response: Data)
+
+    /// Informs the delegate that the bluetooth manager received new data in the backfill characteristic
+    ///
+    /// - Parameters:
+    ///   - manager: The bluetooth manager
+    ///   - response: The data received on the backfill characteristic
+    func bluetoothManager(_ manager: BluetoothManager, didReceiveBackfillResponse response: Data)
 }
 
 
@@ -96,7 +104,7 @@ class BluetoothManager: NSObject {
         }
 
         let currentState = peripheral?.state ?? .disconnected
-        guard currentState == .disconnected else {
+        guard currentState != .connected else {
             return
         }
 
@@ -255,6 +263,13 @@ extension BluetoothManager: PeripheralManagerDelegate {
             return
         }
 
-        self.delegate?.bluetoothManager(self, didReceiveControlResponse: value)
+        switch CGMServiceCharacteristicUUID(rawValue: characteristic.uuid.uuidString.uppercased()) {
+        case .none, .communication?, .authentication?:
+            return
+        case .control?:
+            self.delegate?.bluetoothManager(self, didReceiveControlResponse: value)
+        case .backfill?:
+            self.delegate?.bluetoothManager(self, didReceiveBackfillResponse: value)
+        }
     }
 }

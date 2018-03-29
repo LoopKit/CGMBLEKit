@@ -65,7 +65,7 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
     @IBAction func calibrate(_ sender: UIButton) {
         let dialog = UIAlertController(title: "Enter BG", message: "Calibrate sensor.", preferredStyle: .alert)
 
-        let unit = HKUnit.milligramsPerDeciliter()
+        let unit = HKUnit.milligramsPerDeciliter
 
         dialog.addTextField { (textField : UITextField!) in
             textField.placeholder = unit.unitString
@@ -74,8 +74,8 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
 
         dialog.addAction(UIAlertAction(title: "Calibrate", style: .default, handler: { (action: UIAlertAction!) in
             let textField = dialog.textFields![0] as UITextField
-            let minGlucose = HKQuantity(unit: HKUnit.milligramsPerDeciliter(), doubleValue: 40)
-            let maxGlucose = HKQuantity(unit: HKUnit.milligramsPerDeciliter(), doubleValue: 400)
+            let minGlucose = HKQuantity(unit: HKUnit.milligramsPerDeciliter, doubleValue: 40)
+            let maxGlucose = HKQuantity(unit: HKUnit.milligramsPerDeciliter, doubleValue: 400)
 
             if let text = textField.text, let entry = Double(text) {
                 guard entry >= minGlucose.doubleValue(for: unit) && entry <= maxGlucose.doubleValue(for: unit) else {
@@ -137,7 +137,7 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
     }
 
     func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose) {
-        let unit = HKUnit.milligramsPerDeciliter()
+        let unit = HKUnit.milligramsPerDeciliter
         if let value = glucose.glucose?.doubleValue(for: unit) {
             titleLabel.text = "\(value) \(unit.unitString)"
         } else {
@@ -153,6 +153,13 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
         titleLabel.text = NSLocalizedString("Unknown Data", comment: "Title displayed during unknown data response")
         subtitleLabel.text = data.hexadecimalString
     }
+    
+    func transmitter(_ transmitter: Transmitter, didReadBackfill glucose: [Glucose]) {
+        titleLabel.text = NSLocalizedString("Backfill", comment: "Title displayed during backfill response")
+        subtitleLabel.text = String(describing: glucose.map { $0.glucose })
+    }
+    
+
 }
 
 

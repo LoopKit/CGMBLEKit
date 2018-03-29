@@ -11,7 +11,7 @@ import xDripG5
 import CoreBluetooth
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate, TransmitterCommandSource {
 
     var window: UIWindow?
 
@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
                 )
                 transmitter?.stayConnected = UserDefaults.standard.stayConnected
                 transmitter?.delegate = self
+                transmitter?.commandSource = self
 
                 UserDefaults.standard.transmitterID = id
             }
@@ -92,19 +93,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
     }
 
     func transmitter(_ transmitter: Transmitter, didFail command: Command, with error: Error) {
-        DispatchQueue.main.async {
-            if let vc = self.window?.rootViewController as? TransmitterDelegate {
-                vc.transmitter(transmitter, didFail: command, with: error)
-            }
-        }
+        // TODO: implement
     }
 
     func transmitter(_ transmitter: Transmitter, didComplete command: Command) {
-        DispatchQueue.main.async {
-            if let vc = self.window?.rootViewController as? TransmitterDelegate {
-                vc.transmitter(transmitter, didComplete: command)
-            }
-        }
+        // TODO: implement
     }
 
     func transmitter(_ transmitter: Transmitter, didError error: Error) {
@@ -124,18 +117,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
         }
     }
 
-    func transmitter(_ transmitter: Transmitter, didRead calibration: Calibration) {
-        DispatchQueue.main.async {
-            if let vc = self.window?.rootViewController as? TransmitterDelegate {
-                vc.transmitter(transmitter, didRead: calibration)
-            }
-        }
-    }
-
     func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data) {
         DispatchQueue.main.async {
             if let vc = self.window?.rootViewController as? TransmitterDelegate {
                 vc.transmitter(transmitter, didReadUnknownData: data)
+            }
+        }
+    }
+    
+    func transmitter(_ transmitter: Transmitter, didReadBackfill glucose: [Glucose]) {
+        DispatchQueue.main.async {
+            if let vc = self.window?.rootViewController as? TransmitterDelegate {
+                vc.transmitter(transmitter, didReadBackfill: glucose)
             }
         }
     }
