@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import HealthKit
 
 
 extension UserDefaults {
