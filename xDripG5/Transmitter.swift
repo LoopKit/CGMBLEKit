@@ -13,21 +13,21 @@ import os.log
 
 
 public protocol TransmitterDelegate: class {
+    func transmitter(_ transmitter: Transmitter, didError error: Error)
+
+    func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose)
+
+    func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data)
+}
+
+/// These methods are called on a private background queue. It is the responsibility of the client to ensure thread-safety.
+public protocol TransmitterCommandSource: class {
     func dequeuePendingCommand(for transmitter: Transmitter) -> Command?
 
     func transmitter(_ transmitter: Transmitter, didFail command: Command, with error: Error)
 
     func transmitter(_ transmitter: Transmitter, didComplete command: Command)
-
-    func transmitter(_ transmitter: Transmitter, didError error: Error)
-
-    func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose)
-
-    func transmitter(_ transmitter: Transmitter, didRead calibration: Calibration)
-
-    func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data)
 }
-
 
 public enum TransmitterError: Error {
     case authenticationError(String)
@@ -52,6 +52,8 @@ public final class Transmitter: BluetoothManagerDelegate {
     public var passiveModeEnabled: Bool
 
     public weak var delegate: TransmitterDelegate?
+
+    public weak var commandSource: TransmitterCommandSource?
 
     private let log = OSLog(category: "Transmitter")
 
@@ -131,27 +133,32 @@ public final class Transmitter: BluetoothManagerDelegate {
 
                     let activationDate = Date(timeIntervalSinceNow: -TimeInterval(timeMessage.currentTime))
 
-                    while let command = self.delegate?.dequeuePendingCommand(for: self) {
+                    while let command: Command = {
+                        var c: Command?
+                        self.delegateQueue.sync {
+                            c = self.commandSource?.dequeuePendingCommand(for: self)
+                        }
+                        return c
+                    }() {
                         do {
                             _ = try peripheral.sendCommand(command, activationDate: activationDate)
                             self.delegateQueue.async {
-                                self.delegate?.transmitter(self, didComplete: command)
+                                self.commandSource?.transmitter(self, didComplete: command)
                             }
                         } catch let error {
                             self.delegateQueue.async {
-                                self.delegate?.transmitter(self, didFail: command, with: error)
+                                self.commandSource?.transmitter(self, didFail: command, with: error)
                             }
                         }
                     }
 
-                    let glucose = try peripheral.readGlucose(timeMessage: timeMessage, activationDate: activationDate)
+                    let glucoseMessage = try peripheral.readGlucose()
+                    let calibrationMessage = try? peripheral.readCalibrationData()
+
+                    let glucose = Glucose(glucoseMessage: glucoseMessage, timeMessage: timeMessage, calibrationMessage: calibrationMessage, activationDate: activationDate)
+
                     self.delegateQueue.async {
                         self.delegate?.transmitter(self, didRead: glucose)
-                    }
-
-                    let calibrationData = try peripheral.readCalibrationData(activationDate: activationDate)
-                    self.delegateQueue.async {
-                        self.delegate?.transmitter(self, didRead: calibrationData)
                     }
                 } catch let error {
                     self.delegateQueue.async {
@@ -349,27 +356,20 @@ fileprivate extension PeripheralManager {
 
     }
 
-    fileprivate func readGlucose(timeMessage: TransmitterTimeRxMessage, activationDate: Date) throws -> Glucose {
-        let glucoseMessage: GlucoseRxMessage
+    fileprivate func readGlucose() throws -> GlucoseRxMessage {
         do {
-            glucoseMessage = try writeMessage(GlucoseTxMessage(), for: .control)
+            return try writeMessage(GlucoseTxMessage(), for: .control)
         } catch let error {
             throw TransmitterError.controlError("Error getting glucose: \(error)")
         }
-
-        // Update and notify
-        return Glucose(glucoseMessage: glucoseMessage, timeMessage: timeMessage, activationDate: activationDate)
     }
 
-    fileprivate func readCalibrationData(activationDate: Date) throws -> Calibration {
-        let calibrationDataMessage: CalibrationDataRxMessage
+    fileprivate func readCalibrationData() throws -> CalibrationDataRxMessage {
         do {
-            calibrationDataMessage = try writeMessage(CalibrationDataTxMessage(), for: .control)
+            return try writeMessage(CalibrationDataTxMessage(), for: .control)
         } catch let error {
             throw TransmitterError.controlError("Error getting calibration data: \(error)")
         }
-
-        return Calibration(calibrationDataMessage: calibrationDataMessage, activationDate: activationDate)
     }
 
     fileprivate func disconnect() {
