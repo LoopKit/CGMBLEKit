@@ -14,7 +14,7 @@ public struct Glucose {
     public let glucoseMessage: GlucoseRxMessage
     let timeMessage: TransmitterTimeRxMessage
 
-    init(glucoseMessage: GlucoseRxMessage, timeMessage: TransmitterTimeRxMessage, activationDate: Date) {
+    init(glucoseMessage: GlucoseRxMessage, timeMessage: TransmitterTimeRxMessage, calibrationMessage: CalibrationDataRxMessage?, activationDate: Date) {
         self.glucoseMessage = glucoseMessage
         self.timeMessage = timeMessage
 
@@ -22,6 +22,7 @@ public struct Glucose {
         state = CalibrationState(rawValue: glucoseMessage.state)
         sessionStartDate = activationDate.addingTimeInterval(TimeInterval(timeMessage.sessionStartTime))
         readDate = activationDate.addingTimeInterval(TimeInterval(glucoseMessage.timestamp))
+        lastCalibration = calibrationMessage != nil ? Calibration(calibrationMessage: calibrationMessage!, activationDate: activationDate) : nil
     }
 
     // MARK: - Transmitter Info
@@ -29,6 +30,7 @@ public struct Glucose {
     public let sessionStartDate: Date
 
     // MARK: - Glucose Info
+    public let lastCalibration: Calibration?
     public let state: CalibrationState
     public let readDate: Date
 

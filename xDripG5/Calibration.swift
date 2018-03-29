@@ -11,11 +11,15 @@ import HealthKit
 
 
 public struct Calibration {
-    init(calibrationDataMessage: CalibrationDataRxMessage, activationDate: Date) {
+    init?(calibrationMessage: CalibrationDataRxMessage, activationDate: Date) {
+        guard calibrationMessage.glucose > 0 else {
+            return nil
+        }
+
         let unit = HKUnit.milligramsPerDeciliter()
 
-        glucose = HKQuantity(unit: unit, doubleValue: Double(calibrationDataMessage.glucose))
-        date = activationDate.addingTimeInterval(TimeInterval(calibrationDataMessage.timestamp))
+        glucose = HKQuantity(unit: unit, doubleValue: Double(calibrationMessage.glucose))
+        date = activationDate.addingTimeInterval(TimeInterval(calibrationMessage.timestamp))
     }
 
     public let glucose: HKQuantity
