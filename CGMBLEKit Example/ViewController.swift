@@ -129,18 +129,6 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
 
     // MARK: - TransmitterDelegate
 
-    func dequeuePendingCommand(for transmitter: Transmitter) -> Command? {
-        return nil
-    }
-
-    func transmitter(_ transmitter: Transmitter, didFail command: Command, with error: Error) {
-        // TODO: implement
-    }
-
-    func transmitter(_ transmitter: Transmitter, didComplete command: Command) {
-        // TODO: implement
-    }
-
     func transmitter(_ transmitter: Transmitter, didError error: Error) {
         print("Transmitter Error: \(error)")
         titleLabel.text = NSLocalizedString("Error", comment: "Title displayed during error response")
@@ -149,7 +137,7 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
     }
 
     func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose) {
-        let unit = UserDefaults.standard.glucoseUnit
+        let unit = HKUnit.milligramsPerDeciliter()
         if let value = glucose.glucose?.doubleValue(for: unit) {
             titleLabel.text = "\(value) \(unit.unitString)"
         } else {
@@ -159,11 +147,6 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
 
         let date = glucose.readDate
         subtitleLabel.text = DateFormatter.localizedString(from: date, dateStyle: .none, timeStyle: .long)
-    }
-
-    func transmitter(_ transmitter: Transmitter, didRead calibration: Calibration) {
-        let unit = HKUnit.milligramsPerDeciliter()
-        print("Last calibrated to \(calibration.glucose.doubleValue(for: unit)) \(unit.unitString) at \(calibration.date)")
     }
 
     func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data) {

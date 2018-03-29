@@ -70,6 +70,7 @@
 		43F82BD41D037227006F5DD7 /* SessionStartRxMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F82BD31D037227006F5DD7 /* SessionStartRxMessageTests.swift */; };
 		C19084BB203932BD00AA47F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C19084B9203932BD00AA47F3 /* Main.storyboard */; };
 		C1CD8B0C203931AD00A8F498 /* NSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD8B0A203931AD00A8F498 /* NSUserDefaults.swift */; };
+		E71BFF7E20673BD700C876A2 /* CommandQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71BFF7D20673BD700C876A2 /* CommandQueue.swift */; };
 		E752B4102063C31B0063027D /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = E752B40F2063C31B0063027D /* Command.swift */; };
 		E75DB6AE20419B5D00FBE04E /* CalibrateGlucoseRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75DB6AD20419B5D00FBE04E /* CalibrateGlucoseRxMessage.swift */; };
 		E76FD69C205C75780056DA5B /* Calibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76FD69B205C75780056DA5B /* Calibration.swift */; };
@@ -180,6 +181,7 @@
 		43F82BD31D037227006F5DD7 /* SessionStartRxMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionStartRxMessageTests.swift; sourceTree = "<group>"; };
 		C19084BA203932BD00AA47F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C1CD8B0A203931AD00A8F498 /* NSUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaults.swift; sourceTree = "<group>"; };
+		E71BFF7D20673BD700C876A2 /* CommandQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandQueue.swift; sourceTree = "<group>"; };
 		E752B40F2063C31B0063027D /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		E75DB6AD20419B5D00FBE04E /* CalibrateGlucoseRxMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrateGlucoseRxMessage.swift; sourceTree = "<group>"; };
 		E76FD69B205C75780056DA5B /* Calibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calibration.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			children = (
 				C1CD8B0A203931AD00A8F498 /* NSUserDefaults.swift */,
 				437AFEF92038EC43008C4892 /* AppDelegate.swift */,
+				E71BFF7D20673BD700C876A2 /* CommandQueue.swift */,
 				437AFF0E2038ED71008C4892 /* HKUnit.swift */,
 				437AFEFB2038EC43008C4892 /* ViewController.swift */,
 				437AFF002038EC43008C4892 /* Assets.xcassets */,
@@ -268,10 +271,10 @@
 				43CABE0E1C350B2800005705 /* BluetoothManager.swift */,
 				43CABE0F1C350B2800005705 /* BluetoothServices.swift */,
 				431CE7621F8EEF6D00255374 /* CBPeripheral.swift */,
+				E76FD69B205C75780056DA5B /* Calibration.swift */,
 				43E3978A1D5668BD0028E321 /* CalibrationState.swift */,
 				E752B40F2063C31B0063027D /* Command.swift */,
 				43E3978E1D566B170028E321 /* Glucose.swift */,
-				E76FD69B205C75780056DA5B /* Calibration.swift */,
 				43E397921D56950C0028E321 /* HKUnit.swift */,
 				43CABDF81C3506F100005705 /* Info.plist */,
 				430D64C41CB7846A00FCA750 /* NSData+CRC.swift */,
@@ -497,6 +500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1CD8B0C203931AD00A8F498 /* NSUserDefaults.swift in Sources */,
+				E71BFF7E20673BD700C876A2 /* CommandQueue.swift in Sources */,
 				43D140CE2047AA930032346D /* Data.swift in Sources */,
 				437AFEFC2038EC43008C4892 /* ViewController.swift in Sources */,
 				437AFEFA2038EC43008C4892 /* AppDelegate.swift in Sources */,

@@ -140,23 +140,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate {
         }
     }
 }
-
-struct CommandQueue {
-    var list = [Command]()
-
-    var isEmpty: Bool {
-        return list.isEmpty
-    }
-
-    mutating func enqueue(_ element: Command) {
-        list.append(element)
-    }
-
-    mutating func dequeue() -> Command? {
-        if !list.isEmpty {
-            return list.removeFirst()
-        } else {
-            return nil
-        }
-    }
-}
