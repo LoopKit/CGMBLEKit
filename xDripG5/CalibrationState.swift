@@ -93,3 +93,14 @@ extension CalibrationState: Equatable {
         }
     }
 }
+
+extension CalibrationState: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .known(let state):
+            return "\(state)"
+        default:
+            return "\(self)"
+        }
+    }
+}
