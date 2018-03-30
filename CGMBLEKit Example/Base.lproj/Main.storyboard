@@ -114,7 +114,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEQ-Bp-kx7" userLabel="Start">
                                                 <rect key="frame" x="0.0" y="0.0" width="62" height="30"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="Start"/>
                                                 <connections>
                                                     <action selector="start:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CoA-cH-SFe"/>
                                                 </connections>
@@ -128,7 +128,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JAM-9K-KeE" userLabel="Stop">
                                                 <rect key="frame" x="164" y="0.0" width="62" height="30"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="Stop"/>
                                                 <connections>
                                                     <action selector="stop:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hWH-qi-m3s"/>
                                                 </connections>
