@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate, Tran
 
     var transmitter: Transmitter?
 
-    var commandQueue = CommandQueue()
+    let commandQueue = CommandQueue()
 
     var glucose: Glucose?
 
