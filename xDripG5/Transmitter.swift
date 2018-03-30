@@ -151,22 +151,12 @@ public final class Transmitter: BluetoothManagerDelegate {
 
                     let activationDate = Date(timeIntervalSinceNow: -TimeInterval(timeMessage.currentTime))
 
-                    while let command: Command = {
-                        var c: Command?
-                        self.delegateQueue.sync {
-                            c = self.commandSource?.dequeuePendingCommand(for: self)
-                        }
-                        return c
-                    }() {
+                    while let command = self.commandSource?.dequeuePendingCommand(for: self) {
                         do {
                             _ = try peripheral.sendCommand(command, activationDate: activationDate)
-                            self.delegateQueue.async {
-                                self.commandSource?.transmitter(self, didComplete: command)
-                            }
+                            self.commandSource?.transmitter(self, didComplete: command)
                         } catch let error {
-                            self.delegateQueue.async {
-                                self.commandSource?.transmitter(self, didFail: command, with: error)
-                            }
+                            self.commandSource?.transmitter(self, didFail: command, with: error)
                         }
                     }
 
