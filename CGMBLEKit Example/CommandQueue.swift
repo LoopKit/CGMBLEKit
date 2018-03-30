@@ -14,10 +14,6 @@ class CommandQueue {
     private var list = Array<Command>()
     private var lock = os_unfair_lock()
 
-    var isEmpty: Bool {
-        return list.isEmpty
-    }
-
     func enqueue(_ element: Command) {
         os_unfair_lock_lock(&lock)
         list.append(element)
@@ -25,11 +21,11 @@ class CommandQueue {
     }
 
     func dequeue() -> Command? {
+        os_unfair_lock_lock(&lock)
+        defer {
+            os_unfair_lock_unlock(&lock)
+        }
         if !list.isEmpty {
-            os_unfair_lock_lock(&lock)
-            defer {
-                os_unfair_lock_unlock(&lock)
-            }
             return list.removeFirst()
         } else {
             return nil
