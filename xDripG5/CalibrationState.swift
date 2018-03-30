@@ -98,9 +98,9 @@ extension CalibrationState: CustomStringConvertible {
     public var description: String {
         switch self {
         case .known(let state):
-            return "\(state)"
-        default:
-            return "\(self)"
+            return String(describing: state)
+        case .unknown:
+            return String(describing: self)
         }
     }
 }
