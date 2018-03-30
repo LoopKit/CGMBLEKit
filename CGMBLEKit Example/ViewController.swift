@@ -62,6 +62,18 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
         UserDefaults.standard.passiveModeEnabled = sender.isOn
     }
 
+    @IBAction func start(_ sender: UIButton) {
+        let dialog = UIAlertController(title: "Confirm", message: "Start sensor session.", preferredStyle: .alert)
+
+        dialog.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+            AppDelegate.sharedDelegate.commandQueue.enqueue(.startSensor(at: Date()))
+        }))
+
+        dialog.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        present(dialog, animated: true, completion: nil)
+    }
+
     @IBAction func calibrate(_ sender: UIButton) {
         let dialog = UIAlertController(title: "Enter BG", message: "Calibrate sensor.", preferredStyle: .alert)
 
@@ -85,6 +97,18 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
                 let glucose = HKQuantity(unit: unit, doubleValue: Double(entry))
                 AppDelegate.sharedDelegate.commandQueue.enqueue(.calibrateSensor(to: glucose, at: Date()))
             }
+        }))
+
+        dialog.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        present(dialog, animated: true, completion: nil)
+    }
+
+    @IBAction func stop(_ sender: UIButton) {
+        let dialog = UIAlertController(title: "Confirm", message: "Stop sensor session.", preferredStyle: .alert)
+
+        dialog.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+            AppDelegate.sharedDelegate.commandQueue.enqueue(.stopSensor(at: Date()))
         }))
 
         dialog.addAction(UIAlertAction(title: "Cancel", style: .cancel))
