@@ -19,11 +19,6 @@ enum Opcode: UInt8 {
     // Control
     case disconnectTx = 0x09
 
-
-
-
-
-
     case firmwareVersionTx = 0x20
     case firmwareVersionRx = 0x21
     case batteryStatusTx = 0x22
@@ -35,9 +30,6 @@ enum Opcode: UInt8 {
     case sessionStopTx = 0x28
     case sessionStopRx = 0x29
 
-
-
-
     case glucoseTx = 0x30
     case glucoseRx = 0x31
     case calibrationDataTx = 0x32
@@ -47,16 +39,14 @@ enum Opcode: UInt8 {
 
     case glucoseHistoryTx = 0x3e
 
-    case eraseTx = 0x42
-    case eraseRx = 0x43
+    case resetTx = 0x42
+    case resetRx = 0x43
 
     case transmitterVersionTx = 0x4a
     case transmitterVersionRx = 0x4b
 
     case glucoseBackfillTx = 0x50
     case glucoseBackfillRx = 0x51
-
-
 }
 
 
