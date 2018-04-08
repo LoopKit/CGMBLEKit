@@ -17,6 +17,6 @@ struct SessionStopTxMessage: RespondableMessage {
     var data: Data {
         var data = Data(for: .sessionStopTx)
         data.append(stopTime)
-        return data
+        return data.appendingCRC()
     }
 }

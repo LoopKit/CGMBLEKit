@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreBluetooth
+import HealthKit
 import os.log
 
 
@@ -21,6 +22,14 @@ public protocol TransmitterDelegate: class {
     func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data)
 }
 
+/// These methods are called on a private background queue. It is the responsibility of the client to ensure thread-safety.
+public protocol TransmitterCommandSource: class {
+    func dequeuePendingCommand(for transmitter: Transmitter) -> Command?
+
+    func transmitter(_ transmitter: Transmitter, didFail command: Command, with error: Error)
+
+    func transmitter(_ transmitter: Transmitter, didComplete command: Command)
+}
 
 public enum TransmitterError: Error {
     case authenticationError(String)
@@ -40,6 +49,8 @@ public final class Transmitter: BluetoothManagerDelegate {
     public var passiveModeEnabled: Bool
 
     public weak var delegate: TransmitterDelegate?
+
+    public weak var commandSource: TransmitterCommandSource?
 
     // MARK: - Passive observation state, confined to `bluetoothManager.managerQueue`
 
@@ -130,13 +141,36 @@ public final class Transmitter: BluetoothManagerDelegate {
 
                         self.log.info("Bonding request sent. Waiting user to respond.")
                     }
-                    let (timeMessage, activationDate, glucoseMessage) = try peripheral.control(shouldWaitForBond: status.bonded != 0x1)
+
+                    try peripheral.enableNotify(shouldWaitForBond: status.bonded != 0x1)
+                    defer {
+                        peripheral.disconnect()
+                    }
+
+                    let timeMessage = try peripheral.readTimeMessage()
+
+                    let activationDate = Date(timeIntervalSinceNow: -TimeInterval(timeMessage.currentTime))
+
+                    while let command = self.commandSource?.dequeuePendingCommand(for: self) {
+                        do {
+                            _ = try peripheral.sendCommand(command, activationDate: activationDate)
+                            self.commandSource?.transmitter(self, didComplete: command)
+                        } catch let error {
+                            self.commandSource?.transmitter(self, didFail: command, with: error)
+                        }
+                    }
+
+                    let glucoseMessage = try peripheral.readGlucose()
+                    let calibrationMessage = try? peripheral.readCalibrationData()
+
                     let glucose = Glucose(
                         transmitterID: self.id.id,
                         glucoseMessage: glucoseMessage,
                         timeMessage: timeMessage,
+                        calibrationMessage: calibrationMessage,
                         activationDate: activationDate
                     )
+
                     self.delegateQueue.async {
                         self.delegate?.transmitter(self, didRead: glucose)
                     }
@@ -329,7 +363,7 @@ fileprivate extension PeripheralManager {
         }
     }
 
-    fileprivate func control(shouldWaitForBond: Bool = false) throws -> (time: TransmitterTimeRxMessage, activationDate: Date, glucose: GlucoseRxMessage) {
+    fileprivate func enableNotify(shouldWaitForBond: Bool = false) throws {
         do {
             if shouldWaitForBond {
                 try setNotifyValue(true, for: .control, timeout: 15)
@@ -339,32 +373,71 @@ fileprivate extension PeripheralManager {
         } catch let error {
             throw TransmitterError.controlError("Error enabling notification: \(error)")
         }
+    }
 
-        let timeMessage: TransmitterTimeRxMessage
+    fileprivate func readTimeMessage() throws -> TransmitterTimeRxMessage {
         do {
-            timeMessage = try writeMessage(TransmitterTimeTxMessage(), for: .control)
+            return try writeMessage(TransmitterTimeTxMessage(), for: .control)
         } catch let error {
             throw TransmitterError.controlError("Error getting time: \(error)")
         }
+    }
 
-        let activationDate = Date(timeIntervalSinceNow: -TimeInterval(timeMessage.currentTime))
+    fileprivate func sendCommand(_ command: Command, activationDate: Date) throws -> TransmitterRxMessage {
+        switch command {
+        case .startSensor(let date):
+            let startTime = UInt32(date.timeIntervalSince(activationDate))
+            let secondsSince1970 = UInt32(date.timeIntervalSince1970)
 
-        let glucoseMessage: GlucoseRxMessage
-        do {
-            glucoseMessage = try writeMessage(GlucoseTxMessage(), for: .control)
-        } catch let error {
-            throw TransmitterError.controlError("Error getting glucose: \(error)")
-        }
-
-        defer {
             do {
-                try setNotifyValue(false, for: .control)
-                try writeMessage(DisconnectTxMessage(), for: .control)
-            } catch {
+                return try writeMessage(SessionStartTxMessage(startTime: startTime, secondsSince1970: secondsSince1970), for: .control)
+            } catch let error {
+                throw TransmitterError.controlError("Error starting session: \(error)")
+            }
+        case .stopSensor(let date):
+            let stopTime = UInt32(date.timeIntervalSince(activationDate))
+
+            do {
+                return try writeMessage(SessionStopTxMessage(stopTime: stopTime), for: .control)
+            } catch let error {
+                throw TransmitterError.controlError("Error stopping session: \(error)")
+            }
+        case .calibrateSensor(let glucose, let date):
+            let unit = HKUnit.milligramsPerDeciliter
+            let glucoseValue = UInt16(glucose.doubleValue(for: unit).rounded())
+            let time = UInt32(date.timeIntervalSince(activationDate))
+
+            do {
+                return try writeMessage(CalibrateGlucoseTxMessage(time: time, glucose: glucoseValue), for: .control)
+            } catch let error {
+                throw TransmitterError.controlError("Error calibrating sensor: \(error)")
             }
         }
 
-        return (time: timeMessage, activationDate: activationDate, glucose: glucoseMessage)
+    }
+
+    fileprivate func readGlucose() throws -> GlucoseRxMessage {
+        do {
+            return try writeMessage(GlucoseTxMessage(), for: .control)
+        } catch let error {
+            throw TransmitterError.controlError("Error getting glucose: \(error)")
+        }
+    }
+
+    fileprivate func readCalibrationData() throws -> CalibrationDataRxMessage {
+        do {
+            return try writeMessage(CalibrationDataTxMessage(), for: .control)
+        } catch let error {
+            throw TransmitterError.controlError("Error getting calibration data: \(error)")
+        }
+    }
+
+    fileprivate func disconnect() {
+        do {
+            try setNotifyValue(false, for: .control)
+            try writeMessage(DisconnectTxMessage(), for: .control)
+        } catch {
+        }
     }
 
     fileprivate func listenToControl() throws {

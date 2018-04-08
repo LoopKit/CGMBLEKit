@@ -175,7 +175,7 @@ class BluetoothManager: NSObject {
 extension BluetoothManager: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         peripheralManager?.centralManagerDidUpdateState(central)
-        log.info("%{public}@: %{public}@", #function, String(describing: central.state))
+        log.info("%{public}@: %{public}@", #function, String(describing: central.state.rawValue))
 
         switch central.state {
         case .poweredOn:

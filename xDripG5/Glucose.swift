@@ -18,6 +18,7 @@ public struct Glucose {
         transmitterID: String,
         glucoseMessage: GlucoseRxMessage,
         timeMessage: TransmitterTimeRxMessage,
+        calibrationMessage: CalibrationDataRxMessage? = nil,
         activationDate: Date
     ) {
         self.init(
@@ -25,6 +26,7 @@ public struct Glucose {
             status: glucoseMessage.status,
             glucoseMessage: glucoseMessage.glucose,
             timeMessage: timeMessage,
+            calibrationMessage: calibrationMessage,
             activationDate: activationDate
         )
     }
@@ -34,6 +36,7 @@ public struct Glucose {
         status: UInt8,
         glucoseMessage: GlucoseSubMessage,
         timeMessage: TransmitterTimeRxMessage,
+        calibrationMessage: CalibrationDataRxMessage? = nil,
         activationDate: Date
     ) {
         self.transmitterID = transmitterID
@@ -43,6 +46,7 @@ public struct Glucose {
 
         sessionStartDate = activationDate.addingTimeInterval(TimeInterval(timeMessage.sessionStartTime))
         readDate = activationDate.addingTimeInterval(TimeInterval(glucoseMessage.timestamp))
+        lastCalibration = calibrationMessage != nil ? Calibration(calibrationMessage: calibrationMessage!, activationDate: activationDate) : nil
     }
 
     // MARK: - Transmitter Info
@@ -51,6 +55,7 @@ public struct Glucose {
     public let sessionStartDate: Date
 
     // MARK: - Glucose Info
+    public let lastCalibration: Calibration?
     public let readDate: Date
 
     public var isDisplayOnly: Bool {

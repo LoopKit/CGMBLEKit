@@ -62,6 +62,60 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
         UserDefaults.standard.passiveModeEnabled = sender.isOn
     }
 
+    @IBAction func start(_ sender: UIButton) {
+        let dialog = UIAlertController(title: "Confirm", message: "Start sensor session.", preferredStyle: .alert)
+
+        dialog.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+            AppDelegate.sharedDelegate.commandQueue.enqueue(.startSensor(at: Date()))
+        }))
+
+        dialog.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        present(dialog, animated: true, completion: nil)
+    }
+
+    @IBAction func calibrate(_ sender: UIButton) {
+        let dialog = UIAlertController(title: "Enter BG", message: "Calibrate sensor.", preferredStyle: .alert)
+
+        let unit = HKUnit.milligramsPerDeciliter
+
+        dialog.addTextField { (textField : UITextField!) in
+            textField.placeholder = unit.unitString
+            textField.keyboardType = .numberPad
+        }
+
+        dialog.addAction(UIAlertAction(title: "Calibrate", style: .default, handler: { (action: UIAlertAction!) in
+            let textField = dialog.textFields![0] as UITextField
+            let minGlucose = HKQuantity(unit: HKUnit.milligramsPerDeciliter, doubleValue: 40)
+            let maxGlucose = HKQuantity(unit: HKUnit.milligramsPerDeciliter, doubleValue: 400)
+
+            if let text = textField.text, let entry = Double(text) {
+                guard entry >= minGlucose.doubleValue(for: unit) && entry <= maxGlucose.doubleValue(for: unit) else {
+                    // TODO: notify the user if the glucose is not in range
+                    return
+                }
+                let glucose = HKQuantity(unit: unit, doubleValue: Double(entry))
+                AppDelegate.sharedDelegate.commandQueue.enqueue(.calibrateSensor(to: glucose, at: Date()))
+            }
+        }))
+
+        dialog.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        present(dialog, animated: true, completion: nil)
+    }
+
+    @IBAction func stop(_ sender: UIButton) {
+        let dialog = UIAlertController(title: "Confirm", message: "Stop sensor session.", preferredStyle: .alert)
+
+        dialog.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+            AppDelegate.sharedDelegate.commandQueue.enqueue(.stopSensor(at: Date()))
+        }))
+
+        dialog.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        present(dialog, animated: true, completion: nil)
+    }
+
     // MARK: - UITextFieldDelegate
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
