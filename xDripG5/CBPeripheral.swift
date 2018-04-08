@@ -11,12 +11,12 @@ import CoreBluetooth
 // MARK: - Discovery helpers.
 extension CBPeripheral {
     func servicesToDiscover(from serviceUUIDs: [CBUUID]) -> [CBUUID] {
-        let knownServiceUUIDs = services?.flatMap({ $0.uuid }) ?? []
+        let knownServiceUUIDs = services?.compactMap({ $0.uuid }) ?? []
         return serviceUUIDs.filter({ !knownServiceUUIDs.contains($0) })
     }
 
     func characteristicsToDiscover(from characteristicUUIDs: [CBUUID], for service: CBService) -> [CBUUID] {
-        let knownCharacteristicUUIDs = service.characteristics?.flatMap({ $0.uuid }) ?? []
+        let knownCharacteristicUUIDs = service.characteristics?.compactMap({ $0.uuid }) ?? []
         return characteristicUUIDs.filter({ !knownCharacteristicUUIDs.contains($0) })
     }
 }

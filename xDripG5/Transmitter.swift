@@ -36,6 +36,17 @@ public enum TransmitterError: Error {
     case controlError(String)
 }
 
+extension TransmitterError: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .authenticationError(let description):
+            return description
+        case .controlError(let description):
+            return description
+        }
+    }
+}
+
 
 public final class Transmitter: BluetoothManagerDelegate {
 
@@ -125,6 +136,7 @@ public final class Transmitter: BluetoothManagerDelegate {
 
         manager.peripheralManager?.perform { (peripheral) in
             if self.passiveModeEnabled {
+                self.log.debug("Listening for control commands in passive mode")
                 do {
                     try peripheral.listenToControl()
                 } catch let error {
@@ -134,24 +146,30 @@ public final class Transmitter: BluetoothManagerDelegate {
                 }
             } else {
                 do {
+                    self.log.debug("Authenticating with transmitter")
                     let status = try peripheral.authenticate(id: self.id)
 
                     if status.bonded != 0x1 {
+                        self.log.debug("Requesting bond")
                         try peripheral.requestBond()
 
-                        self.log.info("Bonding request sent. Waiting user to respond.")
+                        self.log.debug("Bonding request sent. Waiting user to respond.")
                     }
 
                     try peripheral.enableNotify(shouldWaitForBond: status.bonded != 0x1)
                     defer {
+                        self.log.debug("Initiating a disconnect")
                         peripheral.disconnect()
                     }
 
+                    self.log.debug("Reading time")
                     let timeMessage = try peripheral.readTimeMessage()
 
                     let activationDate = Date(timeIntervalSinceNow: -TimeInterval(timeMessage.currentTime))
+                    self.log.debug("Determined activation date: %@", String(describing: activationDate))
 
                     while let command = self.commandSource?.dequeuePendingCommand(for: self) {
+                        self.log.debug("Sending command: %@", String(describing: command))
                         do {
                             _ = try peripheral.sendCommand(command, activationDate: activationDate)
                             self.commandSource?.transmitter(self, didComplete: command)
@@ -160,7 +178,9 @@ public final class Transmitter: BluetoothManagerDelegate {
                         }
                     }
 
+                    self.log.debug("Reading glucose")
                     let glucoseMessage = try peripheral.readGlucose()
+                    self.log.debug("Reading calibration data")
                     let calibrationMessage = try? peripheral.readCalibrationData()
 
                     let glucose = Glucose(
@@ -383,37 +403,27 @@ fileprivate extension PeripheralManager {
         }
     }
 
+    /// - Throws: TransmitterError.controlError
     fileprivate func sendCommand(_ command: Command, activationDate: Date) throws -> TransmitterRxMessage {
-        switch command {
-        case .startSensor(let date):
-            let startTime = UInt32(date.timeIntervalSince(activationDate))
-            let secondsSince1970 = UInt32(date.timeIntervalSince1970)
-
-            do {
+        do {
+            switch command {
+            case .startSensor(let date):
+                let startTime = UInt32(date.timeIntervalSince(activationDate))
+                let secondsSince1970 = UInt32(date.timeIntervalSince1970)
                 return try writeMessage(SessionStartTxMessage(startTime: startTime, secondsSince1970: secondsSince1970), for: .control)
-            } catch let error {
-                throw TransmitterError.controlError("Error starting session: \(error)")
-            }
-        case .stopSensor(let date):
-            let stopTime = UInt32(date.timeIntervalSince(activationDate))
-
-            do {
+            case .stopSensor(let date):
+                let stopTime = UInt32(date.timeIntervalSince(activationDate))
                 return try writeMessage(SessionStopTxMessage(stopTime: stopTime), for: .control)
-            } catch let error {
-                throw TransmitterError.controlError("Error stopping session: \(error)")
-            }
-        case .calibrateSensor(let glucose, let date):
-            let unit = HKUnit.milligramsPerDeciliter
-            let glucoseValue = UInt16(glucose.doubleValue(for: unit).rounded())
-            let time = UInt32(date.timeIntervalSince(activationDate))
-
-            do {
+            case .calibrateSensor(let glucose, let date):
+                let glucoseValue = UInt16(glucose.doubleValue(for: .milligramsPerDeciliter).rounded())
+                let time = UInt32(date.timeIntervalSince(activationDate))
                 return try writeMessage(CalibrateGlucoseTxMessage(time: time, glucose: glucoseValue), for: .control)
-            } catch let error {
-                throw TransmitterError.controlError("Error calibrating sensor: \(error)")
+            case .resetTransmitter:
+                return try writeMessage(ResetTxMessage(), for: .control)
             }
+        } catch let error {
+            throw TransmitterError.controlError("Error during \(command): \(error)")
         }
-
     }
 
     fileprivate func readGlucose() throws -> GlucoseRxMessage {

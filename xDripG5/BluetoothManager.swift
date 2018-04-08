@@ -210,6 +210,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
     }
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        log.info("%{public}@: %{public}@", #function, peripheral)
         if central.isScanning {
             central.stopScan()
         }
