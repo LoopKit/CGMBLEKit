@@ -10,21 +10,20 @@ import Foundation
 
 
 struct TransmitterVersionRxMessage: TransmitterRxMessage {
-    static let opcode: UInt8 = 0x4b
     let status: UInt8
     let firmwareVersion: [UInt8]
 
     init?(data: Data) {
-        guard data.count == 19 && data.crcValid() else {
+        guard data.count == 19 && data.isCRCValid else {
             return nil
         }
 
-        guard data[0] == type(of: self).opcode else {
+        guard data.starts(with: .transmitterVersionRx) else {
             return nil
         }
 
         status = data[1]
-        firmwareVersion = data[2..<6]
+        firmwareVersion = data[2..<6].map { $0 }
     }
 
 }

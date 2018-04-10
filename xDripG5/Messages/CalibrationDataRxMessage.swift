@@ -10,15 +10,19 @@ import Foundation
 
 
 struct CalibrationDataRxMessage: TransmitterRxMessage {
-    static let opcode: UInt8 = 0x33
+    let glucose: UInt16
+    let timestamp: UInt32
 
     init?(data: Data) {
-        guard data.count == 19 && data.crcValid() else {
+        guard data.count == 19 && data.isCRCValid else {
             return nil
         }
 
-        guard data[0] == type(of: self).opcode else {
+        guard data.starts(with: .calibrationDataRx) else {
             return nil
         }
+
+        glucose = data[11..<13].toInt() & 0xfff
+        timestamp = data[13..<17].toInt()
     }
 }

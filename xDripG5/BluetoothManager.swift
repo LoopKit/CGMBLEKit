@@ -8,6 +8,7 @@
 
 import CoreBluetooth
 import Foundation
+import os.log
 
 
 protocol BluetoothManagerDelegate: class {
@@ -30,69 +31,64 @@ protocol BluetoothManagerDelegate: class {
      */
     func bluetoothManager(_ manager: BluetoothManager, shouldConnectPeripheral peripheral: CBPeripheral) -> Bool
 
-    /// Tells the delegate that the bluetooth manager received new data in the control characteristic.
+    /// Informs the delegate that the bluetooth manager received new data in the control characteristic
     ///
-    /// - parameter manager:                   The bluetooth manager
-    /// - parameter didReceiveControlResponse: The data received on the control characteristic
+    /// - Parameters:
+    ///   - manager: The bluetooth manager
+    ///   - response: The data received on the control characteristic
     func bluetoothManager(_ manager: BluetoothManager, didReceiveControlResponse response: Data)
+
+    /// Informs the delegate that the bluetooth manager received new data in the backfill characteristic
+    ///
+    /// - Parameters:
+    ///   - manager: The bluetooth manager
+    ///   - response: The data received on the backfill characteristic
+    func bluetoothManager(_ manager: BluetoothManager, didReceiveBackfillResponse response: Data)
 }
 
 
-enum BluetoothManagerError: Error {
-    case notReady
-    case unknownCharacteristic
-    case cbPeripheralError(Error)
-    case timeout
-}
-
-
-private enum BluetoothOperationCondition {
-    case notificationStateUpdate(characteristic: CBCharacteristic, enabled: Bool)
-    case valueUpdate(characteristic: CBCharacteristic, firstByte: UInt8?)
-    case writeUpdate(characteristic: CBCharacteristic)
-}
-
-extension BluetoothOperationCondition: Hashable {
-    var hashValue: Int {
-        switch self {
-        case .notificationStateUpdate(characteristic: let characteristic, enabled: let enabled):
-            return 1 ^ characteristic.hashValue ^ enabled.hashValue
-        case .valueUpdate(characteristic: let characteristic, firstByte: let firstByte):
-            return 2 ^ characteristic.hashValue ^ (firstByte?.hashValue ?? -1)
-        case .writeUpdate(characteristic: let characteristic):
-            return 3 ^ characteristic.hashValue
-        }
-    }
-}
-
-private func ==(lhs: BluetoothOperationCondition, rhs: BluetoothOperationCondition) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-}
-
-
-class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
+class BluetoothManager: NSObject {
 
     var stayConnected = true
 
     weak var delegate: BluetoothManagerDelegate?
 
+    private let log = OSLog(category: "BluetoothManager")
+
     private var manager: CBCentralManager! = nil
 
     private var peripheral: CBPeripheral? {
-        didSet {
-            if let oldValue = oldValue {
-                oldValue.delegate = nil
+        get {
+            return peripheralManager?.peripheral
+        }
+        set {
+            guard let peripheral = newValue else {
+                peripheralManager = nil
+                return
             }
 
-            if let newValue = peripheral {
-                newValue.delegate = self
+            if let peripheralManager = peripheralManager {
+                peripheralManager.peripheral = peripheral
+            } else {
+                peripheralManager = PeripheralManager(
+                    peripheral: peripheral,
+                    configuration: .dexcomG5,
+                    centralManager: manager
+                )
             }
+        }
+    }
+
+    var peripheralManager: PeripheralManager? {
+        didSet {
+            oldValue?.delegate = nil
+            peripheralManager?.delegate = self
         }
     }
 
     // MARK: - GCD Management
 
-    private var managerQueue = DispatchQueue(label: "com.loudnate.xDripG5.bluetoothManagerQueue", qos: .userInitiated)
+    private let managerQueue = DispatchQueue(label: "com.loudnate.xDripG5.bluetoothManagerQueue", qos: .utility)
 
     override init() {
         super.init()
@@ -102,31 +98,46 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
 
     // MARK: - Actions
 
-    func scanForPeripheral() {
+    func scanForPeripheral(after delay: TimeInterval = 0) {
         guard manager.state == .poweredOn else {
             return
         }
 
-        if let peripheral = manager.retrieveConnectedPeripherals(withServices: [
-            CBUUID(string: TransmitterServiceUUID.Advertisement.rawValue),
-            CBUUID(string: TransmitterServiceUUID.CGMService.rawValue)
-        ]).first , delegate == nil || delegate!.bluetoothManager(self, shouldConnectPeripheral: peripheral) {
+        let currentState = peripheral?.state ?? .disconnected
+        guard currentState != .connected else {
+            return
+        }
+
+        var connectOptions: [String: Any] = [:]
+        if #available(iOS 11.2, watchOS 4.1, *), delay > 0 {
+            connectOptions[CBConnectPeripheralOptionStartDelayKey] = delay
+        }
+
+        if let peripheralID = self.peripheral?.identifier, let peripheral = manager.retrievePeripherals(withIdentifiers: [peripheralID]).first {
+            log.info("Re-connecting to known peripheral %{public}@ in %.1fs", peripheral.identifier.uuidString, delay)
             self.peripheral = peripheral
+            self.manager.connect(peripheral, options: connectOptions)
+        } else if let peripheral = manager.retrieveConnectedPeripherals(withServices: [
+                TransmitterServiceUUID.advertisement.cbUUID,
+                TransmitterServiceUUID.cgmService.cbUUID
+            ]).first, delegate == nil || delegate!.bluetoothManager(self, shouldConnectPeripheral: peripheral) {
+            log.info("Found system-connected peripheral: %{public}@", peripheral.identifier.uuidString)
+            self.peripheral = peripheral
+            self.manager.connect(peripheral, options: connectOptions)
         } else {
+            log.info("Scanning for peripherals")
             manager.scanForPeripherals(withServices: [
-                    CBUUID(string: TransmitterServiceUUID.Advertisement.rawValue)
+                    TransmitterServiceUUID.advertisement.cbUUID
                 ],
                 options: nil
             )
         }
-
-        if let peripheral = self.peripheral {
-            self.manager.connect(peripheral, options: nil)
-        }
     }
 
     func disconnect() {
-        manager.stopScan()
+        if manager.isScanning {
+            manager.stopScan()
+        }
 
         if let peripheral = peripheral {
             manager.cancelPeripheralConnection(peripheral)
@@ -142,151 +153,15 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
 
      */
     fileprivate func scanAfterDelay() {
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.utility).async {
-            Thread.sleep(forTimeInterval: 2)
+        if #available(iOS 11.2, watchOS 4.1, *) {
+            self.scanForPeripheral(after: TimeInterval(60 * 3))
+        } else {
+            DispatchQueue.global(qos: DispatchQoS.QoSClass.utility).async {
+                Thread.sleep(forTimeInterval: 2)
 
-            self.scanForPeripheral()
+                self.scanForPeripheral()
+            }
         }
-    }
-
-    deinit {
-        stayConnected = false
-        disconnect()
-    }
-
-    // MARK: - Operations
-
-    /// The locking signal for the active operation
-    private let operationLock = NSCondition()
-
-    /// The required conditions for the operation to complete
-    private var operationConditions: Set<BluetoothOperationCondition> = []
-
-    /// Any error surfaced during the active operation
-    private var operationError: Error?
-
-    func readValueForCharacteristicAndWait(_ UUID: CGMServiceCharacteristicUUID, timeout: TimeInterval = 2, expectingFirstByte firstByte: UInt8? = nil) throws -> Data {
-        guard manager.state == .poweredOn && operationConditions.isEmpty, let peripheral = peripheral else {
-            throw BluetoothManagerError.notReady
-        }
-
-        guard let characteristic = getCharacteristicWithUUID(UUID) else {
-            throw BluetoothManagerError.unknownCharacteristic
-        }
-
-        operationLock.lock()
-        operationConditions.insert(.valueUpdate(characteristic: characteristic, firstByte: firstByte))
-
-        peripheral.readValue(for: characteristic)
-
-        let signaled = operationLock.wait(until: Date(timeIntervalSinceNow: timeout))
-
-        defer {
-            operationConditions = []
-            operationError = nil
-            operationLock.unlock()
-        }
-
-        if !signaled {
-            throw BluetoothManagerError.timeout
-        } else if let operationError = operationError {
-            throw BluetoothManagerError.cbPeripheralError(operationError)
-        }
-
-        return characteristic.value ?? Data()
-    }
-
-    func setNotifyEnabledAndWait(_ enabled: Bool, forCharacteristicUUID UUID: CGMServiceCharacteristicUUID, timeout: TimeInterval = 2) throws {
-        guard manager.state == .poweredOn && operationConditions.isEmpty, let peripheral = peripheral else {
-            throw BluetoothManagerError.notReady
-        }
-
-        guard let characteristic = getCharacteristicWithUUID(UUID) else {
-            throw BluetoothManagerError.unknownCharacteristic
-        }
-
-        operationLock.lock()
-        operationConditions.insert(.notificationStateUpdate(characteristic: characteristic, enabled: enabled))
-
-        peripheral.setNotifyValue(enabled, for: characteristic)
-
-        let signaled = operationLock.wait(until: Date(timeIntervalSinceNow: timeout))
-
-        defer {
-            operationConditions = []
-            operationError = nil
-            operationLock.unlock()
-        }
-
-        if !signaled {
-            throw BluetoothManagerError.timeout
-        } else if let operationError = operationError {
-            throw BluetoothManagerError.cbPeripheralError(operationError)
-        }
-    }
-
-    func waitForCharacteristicValueUpdate(_ UUID: CGMServiceCharacteristicUUID, timeout: TimeInterval = 5, expectingFirstByte firstByte: UInt8? = nil) throws -> Data {
-        guard manager.state == .poweredOn && operationConditions.isEmpty && peripheral != nil else {
-            throw BluetoothManagerError.notReady
-        }
-
-        guard let characteristic = getCharacteristicWithUUID(UUID) , characteristic.isNotifying else {
-            throw BluetoothManagerError.unknownCharacteristic
-        }
-
-        operationLock.lock()
-        operationConditions.insert(.valueUpdate(characteristic: characteristic, firstByte: firstByte))
-
-        let signaled = operationLock.wait(until: Date(timeIntervalSinceNow: timeout))
-
-        defer {
-            operationConditions = []
-            operationError = nil
-            operationLock.unlock()
-        }
-
-        if !signaled {
-            throw BluetoothManagerError.timeout
-        } else if let operationError = operationError {
-            throw BluetoothManagerError.cbPeripheralError(operationError)
-        }
-
-        return characteristic.value ?? Data()
-    }
-
-    func writeValueAndWait(_ value: Data, forCharacteristicUUID UUID: CGMServiceCharacteristicUUID, timeout: TimeInterval = 2, expectingFirstByte firstByte: UInt8? = nil) throws -> Data {
-        guard manager.state == .poweredOn && operationConditions.isEmpty, let peripheral = peripheral else {
-            throw BluetoothManagerError.notReady
-        }
-
-        guard let characteristic = getCharacteristicWithUUID(UUID) else {
-            throw BluetoothManagerError.unknownCharacteristic
-        }
-
-        operationLock.lock()
-        operationConditions.insert(.writeUpdate(characteristic: characteristic))
-
-        if characteristic.isNotifying {
-            operationConditions.insert(.valueUpdate(characteristic: characteristic, firstByte: firstByte))
-        }
-
-        peripheral.writeValue(value, for: characteristic, type: .withResponse)
-
-        let signaled = operationLock.wait(until: Date(timeIntervalSinceNow: timeout))
-
-        defer {
-            operationConditions = []
-            operationError = nil
-            operationLock.unlock()
-        }
-
-        if !signaled {
-            throw BluetoothManagerError.timeout
-        } else if let operationError = operationError {
-            throw BluetoothManagerError.cbPeripheralError(operationError)
-        }
-
-        return characteristic.value ?? Data()
     }
 
     // MARK: - Accessors
@@ -294,46 +169,29 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     var isScanning: Bool {
         return manager.isScanning
     }
+}
 
-    private func getServiceWithUUID(_ UUID: TransmitterServiceUUID) -> CBService? {
-        guard let services = peripheral?.services else {
-            return nil
-        }
 
-        return services.itemWithUUIDString(UUID.rawValue)
-    }
-
-    private func getCharacteristicForServiceUUID(_ serviceUUID: TransmitterServiceUUID, withUUIDString UUIDString: String) -> CBCharacteristic? {
-        guard let characteristics = getServiceWithUUID(serviceUUID)?.characteristics else {
-            return nil
-        }
-
-        return characteristics.itemWithUUIDString(UUIDString)
-    }
-
-    private func getCharacteristicWithUUID(_ UUID: CGMServiceCharacteristicUUID) -> CBCharacteristic? {
-        return getCharacteristicForServiceUUID(.CGMService, withUUIDString: UUID.rawValue)
-    }
-
-    // MARK: - CBCentralManagerDelegate
-
+extension BluetoothManager: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        peripheralManager?.centralManagerDidUpdateState(central)
+        log.info("%{public}@: %{public}@", #function, String(describing: central.state.rawValue))
+
         switch central.state {
         case .poweredOn:
-            if let peripheral = peripheral {
-                central.connect(peripheral, options: nil)
-            } else {
-                scanForPeripheral()
-            }
+            scanForPeripheral()
         case .resetting, .poweredOff, .unauthorized, .unknown, .unsupported:
-            central.stopScan()
+            if central.isScanning {
+                central.stopScan()
+            }
         }
     }
 
     func centralManager(_ central: CBCentralManager, willRestoreState dict: [String : Any]) {
-        if peripheral == nil, let peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as? [CBPeripheral] {
+        if let peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as? [CBPeripheral] {
             for peripheral in peripherals {
                 if delegate == nil || delegate!.bluetoothManager(self, shouldConnectPeripheral: peripheral) {
+                    log.info("Restoring peripheral from state: %{public}@", peripheral.identifier.uuidString)
                     self.peripheral = peripheral
                 }
             }
@@ -341,6 +199,7 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     }
 
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        log.info("%{public}@: %{public}@", #function, peripheral)
         if delegate == nil || delegate!.bluetoothManager(self, shouldConnectPeripheral: peripheral) {
             self.peripheral = peripheral
 
@@ -351,129 +210,67 @@ class BluetoothManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate
     }
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        central.stopScan()
+        log.info("%{public}@: %{public}@", #function, peripheral)
+        if central.isScanning {
+            central.stopScan()
+        }
 
-        let knownServiceUUIDs = peripheral.services?.flatMap({ $0.uuid }) ?? []
+        peripheralManager?.centralManager(central, didConnect: peripheral)
 
-        let servicesToDiscover = [
-            CBUUID(string: TransmitterServiceUUID.CGMService.rawValue)
-        ].filter({ !knownServiceUUIDs.contains($0) })
-
-        if servicesToDiscover.count > 0 {
-            peripheral.discoverServices(servicesToDiscover)
-        } else {
-            self.peripheral(peripheral, didDiscoverServices: nil)
+        if case .poweredOn = manager.state, case .connected = peripheral.state {
+            self.delegate?.bluetoothManager(self, isReadyWithError: nil)
         }
     }
 
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        // Ignore errors indicating the peripheral disconnected remotely, as that's expected behavior
+        if let error = error as NSError?, CBError(_nsError: error).code != .peripheralDisconnected {
+            log.error("%{public}@: %{public}@", #function, error)
+            self.delegate?.bluetoothManager(self, isReadyWithError: error)
+        }
+
         if stayConnected {
             scanAfterDelay()
         }
     }
 
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        if let error = error {
+            self.delegate?.bluetoothManager(self, isReadyWithError: error)
+        }
+
         if stayConnected {
             scanAfterDelay()
         }
     }
-
-    // MARK: - CBPeripheralDelegate
-
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        for service in peripheral.services ?? [] where service.uuid.uuidString == TransmitterServiceUUID.CGMService.rawValue {
-            var characteristicsToDiscover = [CBUUID]()
-            let knownCharacteristics = service.characteristics?.flatMap({ $0.uuid }) ?? []
-
-            switch TransmitterServiceUUID(rawValue: service.uuid.uuidString) {
-            case .CGMService?:
-                characteristicsToDiscover = [
-                    CBUUID(string: CGMServiceCharacteristicUUID.Communication.rawValue),
-                    CBUUID(string: CGMServiceCharacteristicUUID.Authentication.rawValue),
-                    CBUUID(string: CGMServiceCharacteristicUUID.Control.rawValue)
-                ]
-            case .ServiceB?:
-                break
-            default:
-                break
-            }
-
-            characteristicsToDiscover = characteristicsToDiscover.filter({ !knownCharacteristics.contains($0) })
-
-            if characteristicsToDiscover.count > 0 {
-                peripheral.discoverCharacteristics(characteristicsToDiscover, for: service)
-            } else {
-                self.peripheral(peripheral, didDiscoverCharacteristicsFor: service, error: nil)
-            }
-        }
-    }
-
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        self.delegate?.bluetoothManager(self, isReadyWithError: error)
-    }
-
-    func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
-
-        operationLock.lock()
-
-        if operationConditions.remove(.notificationStateUpdate(characteristic: characteristic, enabled: characteristic.isNotifying)) != nil {
-            operationError = error
-
-            if operationConditions.isEmpty {
-                operationLock.broadcast()
-            }
-        }
-
-        operationLock.unlock()
-    }
-
-    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        operationLock.lock()
-
-        if operationConditions.remove(.valueUpdate(characteristic: characteristic, firstByte: characteristic.value?[0])) != nil ||
-            operationConditions.remove(.valueUpdate(characteristic: characteristic, firstByte: nil)) != nil
-        {
-            operationError = error
-
-            if operationConditions.isEmpty {
-                operationLock.broadcast()
-            }
-        }
-
-        operationLock.unlock()
-
-        if let data = characteristic.value {
-            delegate?.bluetoothManager(self, didReceiveControlResponse: data)
-        }
-    }
-
-    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-
-        operationLock.lock()
-
-        if operationConditions.remove(.writeUpdate(characteristic: characteristic)) != nil {
-            operationError = error
-
-            if operationConditions.isEmpty {
-                operationLock.broadcast()
-            }
-        }
-        
-        operationLock.unlock()
-    }
 }
 
 
-private extension Array where Element: CBAttribute {
-
-    func itemWithUUIDString(_ UUIDString: String) -> Element? {
-        for attribute in self {
-            if attribute.uuid.uuidString == UUIDString {
-                return attribute
-            }
-        }
-
-        return nil
+extension BluetoothManager: PeripheralManagerDelegate {
+    func peripheralManager(_ manager: PeripheralManager, didReadRSSI RSSI: NSNumber, error: Error?) {
+        
     }
 
+    func peripheralManagerDidUpdateName(_ manager: PeripheralManager) {
+
+    }
+
+    func completeConfiguration(for manager: PeripheralManager) throws {
+
+    }
+
+    func peripheralManager(_ manager: PeripheralManager, didUpdateValueFor characteristic: CBCharacteristic) {
+        guard let value = characteristic.value else {
+            return
+        }
+
+        switch CGMServiceCharacteristicUUID(rawValue: characteristic.uuid.uuidString.uppercased()) {
+        case .none, .communication?, .authentication?:
+            return
+        case .control?:
+            self.delegate?.bluetoothManager(self, didReceiveControlResponse: value)
+        case .backfill?:
+            self.delegate?.bluetoothManager(self, didReceiveBackfillResponse: value)
+        }
+    }
 }

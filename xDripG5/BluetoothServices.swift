@@ -6,6 +6,8 @@
 //  Copyright © 2015 Nathan Racklyeft. All rights reserved.
 //
 
+import CoreBluetooth
+
 /*
 G5 BLE attributes, retrieved using LightBlue on 2015-10-01
 
@@ -13,38 +15,64 @@ These are the G4 details, for reference:
 https://github.com/StephenBlackWasAlreadyTaken/xDrip/blob/af20e32652d19aa40becc1a39f6276cad187fdce/app/src/main/java/com/eveningoutpost/dexdrip/UtilityModels/DexShareAttributes.java
 */
 
-enum TransmitterServiceUUID: String {
-    case DeviceInfo = "180A"
-    case Advertisement = "FEBC"
-    case CGMService = "F8083532-849E-531C-C594-30F1F86A4EA5"
-
-    case ServiceB = "F8084532-849E-531C-C594-30F1F86A4EA5"
+protocol CBUUIDRawValue: RawRepresentable {}
+extension CBUUIDRawValue where RawValue == String {
+    var cbUUID: CBUUID {
+        return CBUUID(string: rawValue)
+    }
 }
 
 
-enum DeviceInfoCharacteristicUUID: String {
+enum TransmitterServiceUUID: String, CBUUIDRawValue {
+    case deviceInfo = "180A"
+    case advertisement = "FEBC"
+    case cgmService = "F8083532-849E-531C-C594-30F1F86A4EA5"
+
+    case serviceB = "F8084532-849E-531C-C594-30F1F86A4EA5"
+}
+
+
+enum DeviceInfoCharacteristicUUID: String, CBUUIDRawValue {
     // Read
     // "DexcomUN"
-    case ManufacturerNameString = "2A29"
+    case manufacturerNameString = "2A29"
 }
 
 
-enum CGMServiceCharacteristicUUID: String {
+enum CGMServiceCharacteristicUUID: String, CBUUIDRawValue {
     // Read/Notify
-    case Communication = "F8083533-849E-531C-C594-30F1F86A4EA5"
+    case communication = "F8083533-849E-531C-C594-30F1F86A4EA5"
     // Write/Indicate
-    case Control = "F8083534-849E-531C-C594-30F1F86A4EA5"
+    case control = "F8083534-849E-531C-C594-30F1F86A4EA5"
     // Read/Write/Indicate
-    case Authentication = "F8083535-849E-531C-C594-30F1F86A4EA5"
+    case authentication = "F8083535-849E-531C-C594-30F1F86A4EA5"
 
     // Read/Write/Notify
-    case ProbablyBackfill = "F8083536-849E-531C-C594-30F1F86A4EA5"
+    case backfill = "F8083536-849E-531C-C594-30F1F86A4EA5"
 }
 
 
-enum ServiceBCharacteristicUUID: String {
+enum ServiceBCharacteristicUUID: String, CBUUIDRawValue {
     // Write/Indicate
-    case CharacteristicE = "F8084533-849E-531C-C594-30F1F86A4EA5"
+    case characteristicE = "F8084533-849E-531C-C594-30F1F86A4EA5"
     // Read/Write/Notify
-    case CharacteristicF = "F8084534-849E-531C-C594-30F1F86A4EA5"
+    case characteristicF = "F8084534-849E-531C-C594-30F1F86A4EA5"
+}
+
+
+extension PeripheralManager.Configuration {
+    static var dexcomG5: PeripheralManager.Configuration {
+        return PeripheralManager.Configuration(
+            serviceCharacteristics: [
+                TransmitterServiceUUID.cgmService.cbUUID: [
+                    CGMServiceCharacteristicUUID.communication.cbUUID,
+                    CGMServiceCharacteristicUUID.authentication.cbUUID,
+                    CGMServiceCharacteristicUUID.control.cbUUID,
+                    CGMServiceCharacteristicUUID.backfill.cbUUID,
+                ]
+            ],
+            notifyingCharacteristics: [:],
+            valueUpdateMacros: [:]
+        )
+    }
 }

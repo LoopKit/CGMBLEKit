@@ -10,19 +10,20 @@ import Foundation
 
 
 struct AuthRequestTxMessage: TransmitterTxMessage {
-    let opcode: UInt8 = 0x1
     let singleUseToken: Data
     let endByte: UInt8 = 0x2
 
     init() {
-        var UUIDBytes = [UInt8](repeating: 0, count: 16)
+        let uuid = UUID().uuid
 
-        NSUUID().getBytes(&UUIDBytes)
-
-        singleUseToken = Data(bytes: UUIDBytes)
+        singleUseToken = Data(bytes: [uuid.0, uuid.1, uuid.2, uuid.3,
+                                      uuid.4, uuid.5, uuid.6, uuid.7])
     }
 
-    var byteSequence: [Any] {
-        return [opcode, singleUseToken, endByte]
+    var data: Data {
+        var data = Data(for: .authRequestTx)
+        data.append(singleUseToken)
+        data.append(endByte)
+        return data
     }
 }

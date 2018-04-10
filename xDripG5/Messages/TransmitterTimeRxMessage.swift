@@ -10,23 +10,22 @@ import Foundation
 
 
 struct TransmitterTimeRxMessage: TransmitterRxMessage {
-    static let opcode: UInt8 = 0x25
     let status: UInt8
     let currentTime: UInt32
     let sessionStartTime: UInt32
 
     init?(data: Data) {
-        guard data.count == 16 && data.crcValid() else {
+        guard data.count == 16 && data.isCRCValid else {
             return nil
         }
 
-        guard data[0] == type(of: self).opcode else {
+        guard data.starts(with: .transmitterTimeRx) else {
             return nil
         }
 
         status = data[1]
-        currentTime = data[2..<6]
-        sessionStartTime = data[6..<10]
+        currentTime = data[2..<6].toInt()
+        sessionStartTime = data[6..<10].toInt()
     }
 }
 

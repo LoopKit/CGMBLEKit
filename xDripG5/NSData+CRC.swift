@@ -16,38 +16,46 @@ import Foundation
  
  [http://web.mit.edu/6.115/www/amulet/xmodem.htm]()
  */
-private func CRCCCITTXModem(_ bytes: Data) -> UInt16 {
-    var crc: UInt16 = 0
+extension Collection where Element == UInt8 {
+    private var crcCCITTXModem: UInt16 {
+        var crc: UInt16 = 0
 
-    for byte in bytes {
-        crc ^= UInt16(byte) << 8
+        for byte in self {
+            crc ^= UInt16(byte) << 8
 
-        for _ in 0..<8 {
-            if crc & 0x8000 != 0 {
-                crc = crc << 1 ^ 0x1021
-            } else {
-                crc = crc << 1
+            for _ in 0..<8 {
+                if crc & 0x8000 != 0 {
+                    crc = crc << 1 ^ 0x1021
+                } else {
+                    crc = crc << 1
+                }
             }
         }
+
+        return crc
     }
 
-    return crc
+    var crc16: UInt16 {
+        return crcCCITTXModem
+    }
 }
 
 
 extension UInt8 {
-    func crc16() -> UInt16 {
-        return CRCCCITTXModem(Data(bytes: [self]))
+    var crc16: UInt16 {
+        return [self].crc16
     }
 }
 
 
 extension Data {
-    func crc16() -> UInt16 {
-        return CRCCCITTXModem(self)
+    var isCRCValid: Bool {
+        return dropLast(2).crc16 == suffix(2).toInt()
     }
 
-    func crcValid() -> Bool {
-        return CRCCCITTXModem(subdata(in: 0..<count-2)) == self[count-2..<count]
+    func appendingCRC() -> Data {
+        var data = self
+        data.append(crc16)
+        return data
     }
 }

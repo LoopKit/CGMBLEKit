@@ -8,6 +8,8 @@
 
 import Foundation
 import CoreBluetooth
+import HealthKit
+import os.log
 
 
 public protocol TransmitterDelegate: class {
@@ -15,36 +17,81 @@ public protocol TransmitterDelegate: class {
 
     func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose)
 
+    func transmitter(_ transmitter: Transmitter, didReadBackfill glucose: [Glucose])
+
     func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data)
 }
 
+/// These methods are called on a private background queue. It is the responsibility of the client to ensure thread-safety.
+public protocol TransmitterCommandSource: class {
+    func dequeuePendingCommand(for transmitter: Transmitter) -> Command?
+
+    func transmitter(_ transmitter: Transmitter, didFail command: Command, with error: Error)
+
+    func transmitter(_ transmitter: Transmitter, didComplete command: Command)
+}
 
 public enum TransmitterError: Error {
     case authenticationError(String)
     case controlError(String)
 }
 
+extension TransmitterError: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .authenticationError(let description):
+            return description
+        case .controlError(let description):
+            return description
+        }
+    }
+}
+
 
 public final class Transmitter: BluetoothManagerDelegate {
 
     /// The ID of the transmitter to connect to
-    public var ID: String
+    public var ID: String {
+        return id.id
+    }
 
-    /// The initial activation date of the transmitter
-    public private(set) var activationDate: Date?
-
-    private var lastTimeMessage: TransmitterTimeRxMessage?
+    private var id: TransmitterID
 
     public var passiveModeEnabled: Bool
 
     public weak var delegate: TransmitterDelegate?
 
+    public weak var commandSource: TransmitterCommandSource?
+
+    // MARK: - Passive observation state, confined to `bluetoothManager.managerQueue`
+
+    /// The initial activation date of the transmitter
+    private var activationDate: Date?
+
+    /// The last-seen time message
+    private var lastTimeMessage: TransmitterTimeRxMessage? {
+        didSet {
+            if let time = lastTimeMessage {
+                activationDate = Date(timeIntervalSinceNow: -TimeInterval(time.currentTime))
+            } else {
+                activationDate = nil
+            }
+        }
+    }
+
+    /// The backfill data buffer
+    private var backfillBuffer: GlucoseBackfillFrameBuffer?
+
+    // MARK: -
+
+    private let log = OSLog(category: "Transmitter")
+
     private let bluetoothManager = BluetoothManager()
 
-    private var operationQueue = DispatchQueue(label: "com.loudnate.xDripG5.transmitterOperationQueue")
+    private let delegateQueue = DispatchQueue(label: "com.loudnate.xDripG5.delegateQueue", qos: .utility)
 
-    public init(ID: String, passiveModeEnabled: Bool = false) {
-        self.ID = ID
+    public init(id: String, passiveModeEnabled: Bool = false) {
+        self.id = TransmitterID(id: id)
         self.passiveModeEnabled = passiveModeEnabled
 
         bluetoothManager.delegate = self
@@ -81,48 +128,88 @@ public final class Transmitter: BluetoothManagerDelegate {
 
     func bluetoothManager(_ manager: BluetoothManager, isReadyWithError error: Error?) {
         if let error = error {
-            self.delegate?.transmitter(self, didError: error)
+            delegateQueue.async {
+                self.delegate?.transmitter(self, didError: error)
+            }
             return
         }
 
-        operationQueue.async {
+        manager.peripheralManager?.perform { (peripheral) in
             if self.passiveModeEnabled {
+                self.log.debug("Listening for control commands in passive mode")
                 do {
-                    try self.listenToControl()
+                    try peripheral.listenToControl()
                 } catch let error {
-                    self.delegate?.transmitter(self, didError: error)
+                    self.delegateQueue.async {
+                        self.delegate?.transmitter(self, didError: error)
+                    }
                 }
             } else {
                 do {
-                    try self.authenticate()
-                    try self.control()
-                } catch let error {
-                    manager.disconnect()
+                    self.log.debug("Authenticating with transmitter")
+                    let status = try peripheral.authenticate(id: self.id)
 
-                    self.delegate?.transmitter(self, didError: error)
+                    if status.bonded != 0x1 {
+                        self.log.debug("Requesting bond")
+                        try peripheral.requestBond()
+
+                        self.log.debug("Bonding request sent. Waiting user to respond.")
+                    }
+
+                    try peripheral.enableNotify(shouldWaitForBond: status.bonded != 0x1)
+                    defer {
+                        self.log.debug("Initiating a disconnect")
+                        peripheral.disconnect()
+                    }
+
+                    self.log.debug("Reading time")
+                    let timeMessage = try peripheral.readTimeMessage()
+
+                    let activationDate = Date(timeIntervalSinceNow: -TimeInterval(timeMessage.currentTime))
+                    self.log.debug("Determined activation date: %@", String(describing: activationDate))
+
+                    while let command = self.commandSource?.dequeuePendingCommand(for: self) {
+                        self.log.debug("Sending command: %@", String(describing: command))
+                        do {
+                            _ = try peripheral.sendCommand(command, activationDate: activationDate)
+                            self.commandSource?.transmitter(self, didComplete: command)
+                        } catch let error {
+                            self.commandSource?.transmitter(self, didFail: command, with: error)
+                        }
+                    }
+
+                    self.log.debug("Reading glucose")
+                    let glucoseMessage = try peripheral.readGlucose()
+                    self.log.debug("Reading calibration data")
+                    let calibrationMessage = try? peripheral.readCalibrationData()
+
+                    let glucose = Glucose(
+                        transmitterID: self.id.id,
+                        glucoseMessage: glucoseMessage,
+                        timeMessage: timeMessage,
+                        calibrationMessage: calibrationMessage,
+                        activationDate: activationDate
+                    )
+
+                    self.delegateQueue.async {
+                        self.delegate?.transmitter(self, didRead: glucose)
+                    }
+                } catch let error {
+                    self.delegateQueue.async {
+                        self.delegate?.transmitter(self, didError: error)
+                    }
                 }
             }
         }
     }
 
-    /**
-     Convenience helper for getting a substring of the last two characters of a string.
-     
-     The Dexcom G5 advertises a peripheral name of "DexcomXX" where "XX" is the last-two characters
-     of the transmitter ID.
-
-     - parameter string: The string to parse
-
-     - returns: A new string, containing the last two characters of the input string
-     */
-    private func lastTwoCharactersOfString(_ string: String) -> String {
-        return string.substring(from: string.characters.index(string.endIndex, offsetBy: -2, limitedBy: string.startIndex)!)
-    }
-
     func bluetoothManager(_ manager: BluetoothManager, shouldConnectPeripheral peripheral: CBPeripheral) -> Bool {
-        if let name = peripheral.name , lastTwoCharactersOfString(name) == lastTwoCharactersOfString(ID) {
+        /// The Dexcom G5 advertises a peripheral name of "DexcomXX"
+        /// where "XX" is the last-two characters of the transmitter ID.
+        if let name = peripheral.name, name.suffix(2) == id.id.suffix(2) {
             return true
         } else {
+            self.log.info("Not connecting to peripheral: %{public}@", peripheral.name ?? String(describing: peripheral))
             return false
         }
     }
@@ -132,166 +219,93 @@ public final class Transmitter: BluetoothManagerDelegate {
 
         guard response.count > 0 else { return }
 
-        switch response[0] {
-        case GlucoseRxMessage.opcode:
+        switch Opcode(rawValue: response[0]) {
+        case .glucoseRx?:
             if  let glucoseMessage = GlucoseRxMessage(data: response),
                 let timeMessage = lastTimeMessage,
                 let activationDate = activationDate
             {
-                self.delegate?.transmitter(self, didRead: Glucose(glucoseMessage: glucoseMessage, timeMessage: timeMessage, activationDate: activationDate))
-                return
+                delegateQueue.async {
+                    self.delegate?.transmitter(self, didRead: Glucose(transmitterID: self.id.id, glucoseMessage: glucoseMessage, timeMessage: timeMessage, activationDate: activationDate))
+                }
             }
-        case CalibrationDataRxMessage.opcode, SessionStartRxMessage.opcode, SessionStopRxMessage.opcode:
-            return // Ignore these messages
-        case TransmitterTimeRxMessage.opcode:
+        case .transmitterTimeRx?:
             if let timeMessage = TransmitterTimeRxMessage(data: response) {
-                self.activationDate = Date(timeIntervalSinceNow: -TimeInterval(timeMessage.currentTime))
                 self.lastTimeMessage = timeMessage
                 return
             }
+        case .glucoseBackfillRx?:
+            guard let backfillMessage = GlucoseBackfillRxMessage(data: response) else {
+                break
+            }
+
+            guard let backfillBuffer = backfillBuffer else {
+                log.error("Received GlucoseBackfillRxMessage %{public}@ but backfillBuffer is nil", String(describing: backfillMessage))
+                break
+            }
+
+            guard let timeMessage = lastTimeMessage, let activationDate = activationDate else {
+                log.error("Received GlucoseBackfillRxMessage %{public}@ but activationDate is unknown", String(describing: backfillMessage))
+                break
+            }
+
+            guard backfillMessage.bufferLength == backfillBuffer.count else {
+                log.error("GlucoseBackfillRxMessage expected buffer length %d, but was %d", backfillMessage.bufferLength, backfillBuffer.count)
+                break
+            }
+
+            guard backfillMessage.bufferCRC == backfillBuffer.crc16 else {
+                log.error("GlucoseBackfillRxMessage expected CRC %04x, but was %04x", backfillMessage.bufferCRC, backfillBuffer.crc16)
+                break
+            }
+
+            let glucose = backfillBuffer.glucose.map {
+                Glucose(transmitterID: id.id, status: backfillMessage.status, glucoseMessage: $0, timeMessage: timeMessage, activationDate: activationDate)
+            }
+
+            if glucose.count > 0 {
+                delegateQueue.async {
+                    self.delegate?.transmitter(self, didReadBackfill: glucose)
+                }
+            }
+        case .none:
+            delegateQueue.async {
+                self.delegate?.transmitter(self, didReadUnknownData: response)
+            }
         default:
+            // We ignore all other known opcodes
             break
         }
-
-        delegate?.transmitter(self, didReadUnknownData: response)
     }
 
-    // MARK: - Helpers
-
-    private func authenticate() throws {
-        if  let data = try? bluetoothManager.readValueForCharacteristicAndWait(.Authentication),
-            let status = AuthStatusRxMessage(data: data), status.authenticated == 1 && status.bonded == 1
-        {
-            NSLog("Transmitter already authenticated.")
-        } else {
-            do {
-                try bluetoothManager.setNotifyEnabledAndWait(true, forCharacteristicUUID: .Authentication)
-            } catch let error {
-                throw TransmitterError.authenticationError("Error enabling notification: \(error)")
-            }
-
-            let authMessage = AuthRequestTxMessage()
-            let data: Data
-
-            do {
-                data = try bluetoothManager.writeValueAndWait(authMessage.data, forCharacteristicUUID: .Authentication, expectingFirstByte: AuthChallengeRxMessage.opcode)
-            } catch let error {
-                throw TransmitterError.authenticationError("Error writing transmitter challenge: \(error)")
-            }
-
-            guard let response = AuthChallengeRxMessage(data: data) else {
-                throw TransmitterError.authenticationError("Unable to parse auth challenge: \(data)")
-            }
-
-            guard response.tokenHash == self.calculateHash(authMessage.singleUseToken) else {
-                throw TransmitterError.authenticationError("Transmitter failed auth challenge")
-            }
-
-            if let challengeHash = self.calculateHash(response.challenge) {
-                let data: Data
-                do {
-                    data = try bluetoothManager.writeValueAndWait(AuthChallengeTxMessage(challengeHash: challengeHash).data, forCharacteristicUUID: .Authentication, expectingFirstByte: AuthStatusRxMessage.opcode)
-                } catch let error {
-                    throw TransmitterError.authenticationError("Error writing challenge response: \(error)")
-                }
-
-                guard let response = AuthStatusRxMessage(data: data) else {
-                    throw TransmitterError.authenticationError("Unable to parse auth status: \(data)")
-                }
-
-                guard response.authenticated == 1 else {
-                    throw TransmitterError.authenticationError("Transmitter rejected auth challenge")
-                }
-
-                if response.bonded != 0x1 {
-                    do {
-                        _ = try bluetoothManager.writeValueAndWait(KeepAliveTxMessage(time: 25).data, forCharacteristicUUID: .Authentication)
-                    } catch let error {
-                        throw TransmitterError.authenticationError("Error writing keep-alive for bond: \(error)")
-                    }
-
-                    let data: Data
-                    do {
-                        // Wait for the OS dialog to pop-up before continuing.
-                        data = try bluetoothManager.writeValueAndWait(BondRequestTxMessage().data, forCharacteristicUUID: .Authentication, timeout: 15, expectingFirstByte: AuthStatusRxMessage.opcode)
-                    } catch let error {
-                        throw TransmitterError.authenticationError("Error writing bond request: \(error)")
-                    }
-
-                    guard let response = AuthStatusRxMessage(data: data) else {
-                        throw TransmitterError.authenticationError("Unable to parse auth status: \(data)")
-                    }
-
-                    guard response.bonded == 0x1 else {
-                        throw TransmitterError.authenticationError("Transmitter failed to bond")
-                    }
-                }
-            }
-
-            do {
-                try bluetoothManager.setNotifyEnabledAndWait(false, forCharacteristicUUID: .Authentication)
-            } catch let error {
-                throw TransmitterError.authenticationError("Error disabling notification: \(error)")
-            }
+    func bluetoothManager(_ manager: BluetoothManager, didReceiveBackfillResponse response: Data) {
+        guard response.count > 2 else {
+            return
         }
+
+        if response[0] == 1 {
+            log.info("Starting new backfill buffer with ID %d", response[1])
+
+            self.backfillBuffer = GlucoseBackfillFrameBuffer(identifier: response[1])
+        }
+
+        self.backfillBuffer?.append(response)
     }
+}
 
-    private func control() throws {
-        do {
-            try bluetoothManager.setNotifyEnabledAndWait(true, forCharacteristicUUID: .Control)
-        } catch let error {
-            throw TransmitterError.controlError("Error enabling notification: \(error)")
-        }
 
-        let timeData: Data
-        do {
-            timeData = try bluetoothManager.writeValueAndWait(TransmitterTimeTxMessage().data, forCharacteristicUUID: .Control, expectingFirstByte: TransmitterTimeRxMessage.opcode)
-        } catch let error {
-            throw TransmitterError.controlError("Error writing time request: \(error)")
-        }
+struct TransmitterID {
+    let id: String
 
-        guard let timeMessage = TransmitterTimeRxMessage(data: timeData) else {
-            throw TransmitterError.controlError("Unable to parse time response: \(timeData)")
-        }
-
-        let activationDate = Date(timeIntervalSinceNow: -TimeInterval(timeMessage.currentTime))
-
-        let glucoseData: Data
-        do {
-            glucoseData = try bluetoothManager.writeValueAndWait(GlucoseTxMessage().data, forCharacteristicUUID: .Control, expectingFirstByte: GlucoseRxMessage.opcode)
-        } catch let error {
-            throw TransmitterError.controlError("Error writing glucose request: \(error)")
-        }
-
-        guard let glucoseMessage = GlucoseRxMessage(data: glucoseData) else {
-            throw TransmitterError.controlError("Unable to parse glucose response: \(glucoseData)")
-        }
-
-        // Update and notify
-        self.lastTimeMessage = timeMessage
-        self.activationDate = activationDate
-        self.delegate?.transmitter(self, didRead: Glucose(glucoseMessage: glucoseMessage, timeMessage: timeMessage, activationDate: activationDate))
-
-        do {
-            try bluetoothManager.setNotifyEnabledAndWait(false, forCharacteristicUUID: .Control)
-            _ = try bluetoothManager.writeValueAndWait(DisconnectTxMessage().data, forCharacteristicUUID: .Control)
-        } catch {
-        }
-    }
-
-    private func listenToControl() throws {
-        do {
-            try bluetoothManager.setNotifyEnabledAndWait(true, forCharacteristicUUID: .Control)
-        } catch let error {
-            throw TransmitterError.controlError("Error enabling notification: \(error)")
-        }
+    init(id: String) {
+        self.id = id
     }
 
     private var cryptKey: Data? {
-        return "00\(ID)00\(ID)".data(using: .utf8)
+        return "00\(id)00\(id)".data(using: .utf8)
     }
 
-    private func calculateHash(_ data: Data) -> Data? {
+    func computeHash(of data: Data) -> Data? {
         guard data.count == 8, let key = cryptKey else {
             return nil
         }
@@ -304,6 +318,144 @@ public final class Transmitter: BluetoothManagerDelegate {
             return nil
         }
 
-        return outData.subdata(in: 0..<8)
+        return outData[0..<8]
+    }
+}
+
+
+// MARK: - Helpers
+fileprivate extension PeripheralManager {
+    fileprivate func authenticate(id: TransmitterID) throws -> AuthChallengeRxMessage {
+        let authMessage = AuthRequestTxMessage()
+
+        do {
+            try writeMessage(authMessage, for: .authentication)
+        } catch let error {
+            throw TransmitterError.authenticationError("Error writing transmitter challenge: \(error)")
+        }
+
+        let authResponse: AuthRequestRxMessage
+        do {
+            authResponse = try readMessage(for: .authentication)
+        } catch let error {
+            throw TransmitterError.authenticationError("Unable to parse auth challenge: \(error)")
+        }
+
+        guard authResponse.tokenHash == id.computeHash(of: authMessage.singleUseToken) else {
+            throw TransmitterError.authenticationError("Transmitter failed auth challenge")
+        }
+
+        guard let challengeHash = id.computeHash(of: authResponse.challenge) else {
+            throw TransmitterError.authenticationError("Failed to compute challenge hash for transmitter ID")
+        }
+
+        do {
+            try writeMessage(AuthChallengeTxMessage(challengeHash: challengeHash), for: .authentication)
+        } catch let error {
+            throw TransmitterError.authenticationError("Error writing challenge response: \(error)")
+        }
+
+        let challengeResponse: AuthChallengeRxMessage
+        do {
+            challengeResponse = try readMessage(for: .authentication)
+        } catch let error {
+            throw TransmitterError.authenticationError("Unable to parse auth status: \(error)")
+        }
+
+        guard challengeResponse.authenticated == 1 else {
+            throw TransmitterError.authenticationError("Transmitter rejected auth challenge")
+        }
+
+        return challengeResponse
+    }
+
+    fileprivate func requestBond() throws {
+        do {
+            try writeMessage(KeepAliveTxMessage(time: 25), for: .authentication)
+        } catch let error {
+            throw TransmitterError.authenticationError("Error writing keep-alive for bond: \(error)")
+        }
+
+        do {
+            try writeMessage(BondRequestTxMessage(), for: .authentication)
+        } catch let error {
+            throw TransmitterError.authenticationError("Error writing bond request: \(error)")
+        }
+    }
+
+    fileprivate func enableNotify(shouldWaitForBond: Bool = false) throws {
+        do {
+            if shouldWaitForBond {
+                try setNotifyValue(true, for: .control, timeout: 15)
+            } else {
+                try setNotifyValue(true, for: .control)
+            }
+        } catch let error {
+            throw TransmitterError.controlError("Error enabling notification: \(error)")
+        }
+    }
+
+    fileprivate func readTimeMessage() throws -> TransmitterTimeRxMessage {
+        do {
+            return try writeMessage(TransmitterTimeTxMessage(), for: .control)
+        } catch let error {
+            throw TransmitterError.controlError("Error getting time: \(error)")
+        }
+    }
+
+    /// - Throws: TransmitterError.controlError
+    fileprivate func sendCommand(_ command: Command, activationDate: Date) throws -> TransmitterRxMessage {
+        do {
+            switch command {
+            case .startSensor(let date):
+                let startTime = UInt32(date.timeIntervalSince(activationDate))
+                let secondsSince1970 = UInt32(date.timeIntervalSince1970)
+                return try writeMessage(SessionStartTxMessage(startTime: startTime, secondsSince1970: secondsSince1970), for: .control)
+            case .stopSensor(let date):
+                let stopTime = UInt32(date.timeIntervalSince(activationDate))
+                return try writeMessage(SessionStopTxMessage(stopTime: stopTime), for: .control)
+            case .calibrateSensor(let glucose, let date):
+                let glucoseValue = UInt16(glucose.doubleValue(for: .milligramsPerDeciliter).rounded())
+                let time = UInt32(date.timeIntervalSince(activationDate))
+                return try writeMessage(CalibrateGlucoseTxMessage(time: time, glucose: glucoseValue), for: .control)
+            case .resetTransmitter:
+                return try writeMessage(ResetTxMessage(), for: .control)
+            }
+        } catch let error {
+            throw TransmitterError.controlError("Error during \(command): \(error)")
+        }
+    }
+
+    fileprivate func readGlucose() throws -> GlucoseRxMessage {
+        do {
+            return try writeMessage(GlucoseTxMessage(), for: .control)
+        } catch let error {
+            throw TransmitterError.controlError("Error getting glucose: \(error)")
+        }
+    }
+
+    fileprivate func readCalibrationData() throws -> CalibrationDataRxMessage {
+        do {
+            return try writeMessage(CalibrationDataTxMessage(), for: .control)
+        } catch let error {
+            throw TransmitterError.controlError("Error getting calibration data: \(error)")
+        }
+    }
+
+    fileprivate func disconnect() {
+        do {
+            try setNotifyValue(false, for: .control)
+            try writeMessage(DisconnectTxMessage(), for: .control)
+        } catch {
+        }
+    }
+
+    fileprivate func listenToControl() throws {
+        do {
+            try setNotifyValue(true, for: .control)
+            try setNotifyValue(true, for: .backfill)
+        } catch let error {
+            throw TransmitterError.controlError("Error enabling notification: \(error)")
+        }
     }
 }

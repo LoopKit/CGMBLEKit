@@ -36,12 +36,18 @@ class TransmitterTimeRxMessageTests: XCTestCase {
     }
 
     func testInSession() {
-        let data = Data(hexadecimalString: "2500470272007cff710001000000fa1d")!
-        let message = TransmitterTimeRxMessage(data: data)!
+        var data = Data(hexadecimalString: "2500470272007cff710001000000fa1d")!
+        var message = TransmitterTimeRxMessage(data: data)!
 
         XCTAssertEqual(0, message.status)
         XCTAssertEqual(7471687, message.currentTime)
         XCTAssertEqual(7470972, message.sessionStartTime)
 
+        data = Data(hexadecimalString: "2500beb24d00f22d4d000100000083c0")!
+        message = TransmitterTimeRxMessage(data: data)!
+
+        XCTAssertEqual(0, message.status)
+        XCTAssertEqual(5092030, message.currentTime)
+        XCTAssertEqual(5058034, message.sessionStartTime)
     }
 }
