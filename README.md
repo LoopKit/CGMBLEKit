@@ -14,7 +14,7 @@ A iOS framework providing an interface for communicating with the G5 glucose tra
 
 This framework connects to a G5 Mobile Transmitter via Bluetooth LE. It does not connect to the G4 Share Receiver or any earlier CGM products.
 
-## Installation
+## Frameworks Installation
 
 ### Carthage
 
@@ -26,25 +26,20 @@ github "LoopKit/xDripG5"
 
 Note that you'll need to confgure your target to link against `CommonCrypto.framework` in addition to `xDripG5.framework`
 
-### CocoaPods
-
-xDripG5 is available through [CocoaPods](http://cocoapods.org). To install
-it, add the following line to your Podfile:
-
-```ruby
-pod "xDripG5"
-```
-
 ## Usage
-
-The quickest way to run the example project is via [CocoaPods](http://cocoapods.org). Run `pod try xDripG5` in the terminal. 
-Since Bluetooth LE is required, you will need to build and run on a real device.
 
 If you plan to run your app alongside the G5 Mobile application, make sure to set `passiveModeEnabled` to true.
 
 ### Examples
 
 [glucose-badge](https://github.com/dennisgove/glucose-badge) – Display the latest glucose values as an app icon badge
+
+## ResetTransmitter App Installation
+
+To install the ResetTransmitter App on your iPhone, simply make sure to sign the ResetTransmitter target and then select just the `ResetTransmitter` scheme in the build area.  Make sure your iPhone is plugged into the computer, select your iPhone from the top of the `Devices` in the 4th circled area, screenshot below.  Note: You do not have to change bundle IDs or anything beyond the steps listed.
+
+![ResetTransmitter help](https://github.com/Kdisimone/images/blob/master/resetTransmitter.png)
+
 
 ## Code of Conduct
 
