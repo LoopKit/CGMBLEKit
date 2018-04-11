@@ -157,7 +157,7 @@ class BluetoothManager: NSObject {
             self.scanForPeripheral(after: TimeInterval(60 * 3))
         } else {
             DispatchQueue.global(qos: DispatchQoS.QoSClass.utility).async {
-                Thread.sleep(forTimeInterval: 2)
+                Thread.sleep(forTimeInterval: 60 * 3)
 
                 self.scanForPeripheral()
             }
