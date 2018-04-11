@@ -36,6 +36,14 @@ If you plan to run your app alongside the G5 Mobile application, make sure to se
 
 ## ResetTransmitter App Installation
 
+Download the XdripG5 code by clicking on the green `Clone or Download` button (scroll up on this page and you'll find it), then select `Download Zip`
+
+![ResetTransmitter help](https://github.com/Kdisimone/images/blob/master/resetTransmitter-first.png)
+
+Then navigate to the `XdripG5-dev` folder that just downloaded to your computer.  Double-click on the `xDripG5.xcodeproj` file to open the project in Xcode.
+
+![ResetTransmitter help](https://github.com/Kdisimone/images/blob/master/resetTransmitter-download.png)
+
 To install the ResetTransmitter App on your iPhone, simply make sure to sign the ResetTransmitter target and then select just the `ResetTransmitter` scheme in the build area.  Make sure your iPhone is plugged into the computer, select your iPhone from the top of the `Devices` in the 4th circled area, screenshot below.  Note: You do not have to change bundle IDs or anything beyond the steps listed.
 
 ![ResetTransmitter help](https://github.com/Kdisimone/images/blob/master/resetTransmitter.png)
