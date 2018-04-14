@@ -1,12 +1,9 @@
-# xDripG5
+# CGMBLEKit
 
 [![CI Status](http://img.shields.io/travis/LoopKit/xDripG5.svg?style=flat)](https://travis-ci.org/LoopKit/xDripG5)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Version](https://img.shields.io/cocoapods/v/xDripG5.svg?style=flat)](http://cocoapods.org/pods/xDripG5)
-[![License](https://img.shields.io/cocoapods/l/xDripG5.svg?style=flat)](http://cocoapods.org/pods/xDripG5)
-[![Platform](https://img.shields.io/cocoapods/p/xDripG5.svg?style=flat)](http://cocoapods.org/pods/xDripG5)
 
-A iOS framework providing an interface for communicating with the G5 glucose transmitter over Bluetooth. The name and inspiration comes from [xDrip](http://stephenblackwasalreadytaken.github.io/xDrip/), a breakthrough application for connecting to the G4 system.
+A iOS framework providing an interface for communicating with the G5 glucose transmitter over Bluetooth.
 
 *Please note this project is neither created nor backed by Dexcom, Inc. This software is not intended for use in therapy.*
 
@@ -18,7 +15,7 @@ This framework connects to a G5 Mobile Transmitter via Bluetooth LE. It does not
 
 ### Carthage
 
-xDripG5 is available through [Carthage](https://github.com/Carthage/Carthage). To install it, add the following line to your Cartfile:
+CGMBLEKit is available through [Carthage](https://github.com/Carthage/Carthage). To install it, add the following line to your Cartfile:
 
 ```ruby
 github "LoopKit/xDripG5"
@@ -36,7 +33,7 @@ If you plan to run your app alongside the G5 Mobile application, make sure to se
 
 ## ResetTransmitter App Installation
 
-Download the XdripG5 code by clicking on the green `Clone or Download` button (scroll up on this page and you'll find it), then select `Download Zip`
+Download the CGMBLEKit code by clicking on the green `Clone or Download` button (scroll up on this page and you'll find it), then select `Download Zip`
 
 ![ResetTransmitter help](https://github.com/Kdisimone/images/blob/master/resetTransmitter-first.png)
 
@@ -55,4 +52,4 @@ Please note that this project is released with a [Contributor Code of Conduct](h
 
 ## License
 
-xDripG5 is available under the MIT license. See the LICENSE file for more info.
+CGMBLEKit is available under the MIT license. See the LICENSE file for more info.
