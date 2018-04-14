@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "43CABDF21C3506F100005705"
-               BuildableName = "xDripG5.framework"
-               BlueprintName = "xDripG5"
-               ReferencedContainer = "container:xDripG5.xcodeproj">
+               BuildableName = "CGMBLEKit.framework"
+               BlueprintName = "CGMBLEKit"
+               ReferencedContainer = "container:CGMBLEKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "43CABDFC1C3506F100005705"
-               BuildableName = "xDripG5Tests.xctest"
-               BlueprintName = "xDripG5Tests"
-               ReferencedContainer = "container:xDripG5.xcodeproj">
+               BuildableName = "CGMBLEKitTests.xctest"
+               BlueprintName = "CGMBLEKitTests"
+               ReferencedContainer = "container:CGMBLEKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "43CABDF21C3506F100005705"
-            BuildableName = "xDripG5.framework"
-            BlueprintName = "xDripG5"
-            ReferencedContainer = "container:xDripG5.xcodeproj">
+            BuildableName = "CGMBLEKit.framework"
+            BlueprintName = "CGMBLEKit"
+            ReferencedContainer = "container:CGMBLEKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "43CABDF21C3506F100005705"
-            BuildableName = "xDripG5.framework"
-            BlueprintName = "xDripG5"
-            ReferencedContainer = "container:xDripG5.xcodeproj">
+            BuildableName = "CGMBLEKit.framework"
+            BlueprintName = "CGMBLEKit"
+            ReferencedContainer = "container:CGMBLEKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -83,9 +83,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "43CABDF21C3506F100005705"
-            BuildableName = "xDripG5.framework"
-            BlueprintName = "xDripG5"
-            ReferencedContainer = "container:xDripG5.xcodeproj">
+            BuildableName = "CGMBLEKit.framework"
+            BlueprintName = "CGMBLEKit"
+            ReferencedContainer = "container:CGMBLEKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

@@ -88,7 +88,7 @@ public final class Transmitter: BluetoothManagerDelegate {
 
     private let bluetoothManager = BluetoothManager()
 
-    private let delegateQueue = DispatchQueue(label: "com.loudnate.xDripG5.delegateQueue", qos: .utility)
+    private let delegateQueue = DispatchQueue(label: "com.loudnate.CGMBLEKit.delegateQueue", qos: .utility)
 
     public init(id: String, passiveModeEnabled: Bool = false) {
         self.id = TransmitterID(id: id)

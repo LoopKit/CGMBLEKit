@@ -5,7 +5,7 @@
 //  Copyright © 2018 LoopKit Authors. All rights reserved.
 //
 
-import xDripG5
+import CGMBLEKit
 import os.log
 
 

@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import xDripG5
+@testable import CGMBLEKit
 
 
 class GlucoseRxMessageTests: XCTestCase {

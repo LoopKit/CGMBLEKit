@@ -8,7 +8,7 @@
 
 import XCTest
 import HealthKit
-@testable import xDripG5
+@testable import CGMBLEKit
 
 class GlucoseTests: XCTestCase {
 

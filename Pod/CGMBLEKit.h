@@ -1,5 +1,5 @@
 //
-//  xDripG5.h
+//  CGMBLEKit.h
 //  xDripG5
 //
 //  Created by Nathan Racklyeft on 12/31/15.
@@ -7,4 +7,4 @@
 //
 
 
-#import <xDripG5/AESCrypt.h>
+#import <CGMBLEKit/AESCrypt.h>

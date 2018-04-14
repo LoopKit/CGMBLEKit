@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import xDripG5
+import CGMBLEKit
 
 
 class CommandQueue {
