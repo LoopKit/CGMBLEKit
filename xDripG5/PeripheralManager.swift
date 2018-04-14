@@ -101,7 +101,7 @@ extension PeripheralManager {
     func configureAndRun(_ block: @escaping (_ manager: PeripheralManager) -> Void) -> (() -> Void) {
         return { [unowned self] in
             if !self.needsConfiguration && self.peripheral.services == nil {
-                self.log.error("Configured peripheral has no services. Reconfiguring…")
+                self.log.debug("Configured peripheral has no services. Reconfiguring…")
             }
 
             if self.needsConfiguration || self.peripheral.services == nil {
