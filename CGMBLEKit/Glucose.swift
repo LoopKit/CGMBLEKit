@@ -63,7 +63,7 @@ public struct Glucose {
     }
 
     public var glucose: HKQuantity? {
-        guard state.hasReliableGlucose else {
+        guard state.hasReliableGlucose && glucoseMessage.glucose >= 39 else { 
             return nil
         }
 
