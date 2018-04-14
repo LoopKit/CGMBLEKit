@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import xDripG5
+@testable import CGMBLEKit
 
 class TransmitterIDTests: XCTestCase {
 

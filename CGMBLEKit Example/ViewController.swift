@@ -8,7 +8,7 @@
 
 import UIKit
 import HealthKit
-import xDripG5
+import CGMBLEKit
 
 class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate {
 

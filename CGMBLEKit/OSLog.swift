@@ -10,7 +10,7 @@ import os.log
 
 extension OSLog {
     convenience init(category: String) {
-        self.init(subsystem: "com.loopkit.xDripG5", category: category)
+        self.init(subsystem: "com.loopkit.CGMBLEKit", category: category)
     }
 
     func debug(_ message: StaticString, _ args: CVarArg...) {

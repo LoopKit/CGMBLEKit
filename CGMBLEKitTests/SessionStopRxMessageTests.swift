@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import xDripG5
+@testable import CGMBLEKit
 
 /// Thanks to https://github.com/mthatcher for the fixtures!
 class SessionStopRxMessageTests: XCTestCase {

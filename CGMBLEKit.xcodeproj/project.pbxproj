@@ -23,8 +23,8 @@
 		433F2E57207928A200808FA5 /* ResetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F2E56207928A200808FA5 /* ResetManager.swift */; };
 		433F2E5920792A0100808FA5 /* Locked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F2E5820792A0100808FA5 /* Locked.swift */; };
 		433F2E5B2079747A00808FA5 /* CompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F2E5A2079747A00808FA5 /* CompletionViewController.swift */; };
-		433F2E5C2079BB7D00808FA5 /* xDripG5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* xDripG5.framework */; };
-		433F2E5D2079BB7D00808FA5 /* xDripG5.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* xDripG5.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		433F2E5C2079BB7D00808FA5 /* CGMBLEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* CGMBLEKit.framework */; };
+		433F2E5D2079BB7D00808FA5 /* CGMBLEKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* CGMBLEKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43460F88200B30D10030C0E3 /* TransmitterIDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43460F87200B30D10030C0E3 /* TransmitterIDTests.swift */; };
 		434B288320649D3C000EE07B /* ResetMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 434B288220649D3C000EE07B /* ResetMessage.swift */; };
 		435535D41FB2C1B000CE5A23 /* PeripheralManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435535D31FB2C1B000CE5A23 /* PeripheralManagerError.swift */; };
@@ -32,15 +32,15 @@
 		437AFEFC2038EC43008C4892 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437AFEFB2038EC43008C4892 /* ViewController.swift */; };
 		437AFF012038EC43008C4892 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 437AFF002038EC43008C4892 /* Assets.xcassets */; };
 		437AFF042038EC43008C4892 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 437AFF022038EC43008C4892 /* LaunchScreen.storyboard */; };
-		437AFF122038EDEC008C4892 /* xDripG5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* xDripG5.framework */; };
-		437AFF132038EDEC008C4892 /* xDripG5.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* xDripG5.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		437AFF122038EDEC008C4892 /* CGMBLEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* CGMBLEKit.framework */; };
+		437AFF132038EDEC008C4892 /* CGMBLEKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* CGMBLEKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		437AFF182038EDF9008C4892 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E3978C1D566AEA0028E321 /* HealthKit.framework */; };
 		43846AC61D8F896C00799272 /* CalibrationDataRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43846AC51D8F896C00799272 /* CalibrationDataRxMessage.swift */; };
 		43846AC81D8F89BE00799272 /* CalibrationDataRxMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43846AC71D8F89BE00799272 /* CalibrationDataRxMessageTests.swift */; };
 		43880F981D9E19FC009061A8 /* TransmitterVersionRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43880F971D9E19FC009061A8 /* TransmitterVersionRxMessage.swift */; };
 		43880F9A1D9E1BD7009061A8 /* TransmitterVersionRxMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43880F991D9E1BD7009061A8 /* TransmitterVersionRxMessageTests.swift */; };
-		43CABDF71C3506F100005705 /* xDripG5.h in Headers */ = {isa = PBXBuildFile; fileRef = 43CABDF61C3506F100005705 /* xDripG5.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		43CABDFE1C3506F100005705 /* xDripG5.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* xDripG5.framework */; };
+		43CABDF71C3506F100005705 /* CGMBLEKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 43CABDF61C3506F100005705 /* CGMBLEKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43CABDFE1C3506F100005705 /* CGMBLEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* CGMBLEKit.framework */; };
 		43CABE121C350B2800005705 /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE0E1C350B2800005705 /* BluetoothManager.swift */; };
 		43CABE131C350B2800005705 /* BluetoothServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE0F1C350B2800005705 /* BluetoothServices.swift */; };
 		43CABE151C350B2800005705 /* Transmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE111C350B2800005705 /* Transmitter.swift */; };
@@ -125,7 +125,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				433F2E5D2079BB7D00808FA5 /* xDripG5.framework in Embed Frameworks */,
+				433F2E5D2079BB7D00808FA5 /* CGMBLEKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,7 +145,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				437AFF132038EDEC008C4892 /* xDripG5.framework in Embed Frameworks */,
+				437AFF132038EDEC008C4892 /* CGMBLEKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -184,10 +184,10 @@
 		43846AC71D8F89BE00799272 /* CalibrationDataRxMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalibrationDataRxMessageTests.swift; sourceTree = "<group>"; };
 		43880F971D9E19FC009061A8 /* TransmitterVersionRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterVersionRxMessage.swift; sourceTree = "<group>"; };
 		43880F991D9E1BD7009061A8 /* TransmitterVersionRxMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterVersionRxMessageTests.swift; sourceTree = "<group>"; };
-		43CABDF31C3506F100005705 /* xDripG5.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = xDripG5.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		43CABDF61C3506F100005705 /* xDripG5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xDripG5.h; sourceTree = "<group>"; };
+		43CABDF31C3506F100005705 /* CGMBLEKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CGMBLEKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		43CABDF61C3506F100005705 /* CGMBLEKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGMBLEKit.h; sourceTree = "<group>"; };
 		43CABDF81C3506F100005705 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		43CABDFD1C3506F100005705 /* xDripG5Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = xDripG5Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		43CABDFD1C3506F100005705 /* CGMBLEKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CGMBLEKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CABE041C3506F100005705 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43CABE0E1C350B2800005705 /* BluetoothManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		43CABE0F1C350B2800005705 /* BluetoothServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothServices.swift; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				433F2E5C2079BB7D00808FA5 /* xDripG5.framework in Frameworks */,
+				433F2E5C2079BB7D00808FA5 /* CGMBLEKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				437AFF182038EDF9008C4892 /* HealthKit.framework in Frameworks */,
-				437AFF122038EDEC008C4892 /* xDripG5.framework in Frameworks */,
+				437AFF122038EDEC008C4892 /* CGMBLEKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +268,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43CABDFE1C3506F100005705 /* xDripG5.framework in Frameworks */,
+				43CABDFE1C3506F100005705 /* CGMBLEKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,8 +328,8 @@
 			isa = PBXGroup;
 			children = (
 				43E3978C1D566AEA0028E321 /* HealthKit.framework */,
-				43CABDF51C3506F100005705 /* xDripG5 */,
-				43CABE011C3506F100005705 /* xDripG5Tests */,
+				43CABDF51C3506F100005705 /* CGMBLEKit */,
+				43CABE011C3506F100005705 /* CGMBLEKitTests */,
 				437AFEF82038EC43008C4892 /* CGMBLEKit Example */,
 				43D140CD2047AA530032346D /* Common */,
 				4308103420785FEA00B66384 /* ResetTransmitter */,
@@ -341,15 +341,15 @@
 		43CABDF41C3506F100005705 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				43CABDF31C3506F100005705 /* xDripG5.framework */,
-				43CABDFD1C3506F100005705 /* xDripG5Tests.xctest */,
+				43CABDF31C3506F100005705 /* CGMBLEKit.framework */,
+				43CABDFD1C3506F100005705 /* CGMBLEKitTests.xctest */,
 				437AFEF72038EC43008C4892 /* CGMBLEKit Example.app */,
 				4308103320785FEA00B66384 /* ResetTransmitter.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		43CABDF51C3506F100005705 /* xDripG5 */ = {
+		43CABDF51C3506F100005705 /* CGMBLEKit */ = {
 			isa = PBXGroup;
 			children = (
 				43EEA70F1D14DC0800CBBDA0 /* AESCrypt.h */,
@@ -370,13 +370,13 @@
 				431CE7661F91D0B300255374 /* PeripheralManager+G5.swift */,
 				43CABE111C350B2800005705 /* Transmitter.swift */,
 				43CE7CDB1CA77468003CC1B0 /* TransmitterStatus.swift */,
-				43CABDF61C3506F100005705 /* xDripG5.h */,
+				43CABDF61C3506F100005705 /* CGMBLEKit.h */,
 				43CABE161C350B2E00005705 /* Messages */,
 			);
-			path = xDripG5;
+			path = CGMBLEKit;
 			sourceTree = "<group>";
 		};
-		43CABE011C3506F100005705 /* xDripG5Tests */ = {
+		43CABE011C3506F100005705 /* CGMBLEKitTests */ = {
 			isa = PBXGroup;
 			children = (
 				43846AC71D8F89BE00799272 /* CalibrationDataRxMessageTests.swift */,
@@ -390,7 +390,7 @@
 				43F82BCB1D035AA4006F5DD7 /* TransmitterTimeRxMessageTests.swift */,
 				43880F991D9E1BD7009061A8 /* TransmitterVersionRxMessageTests.swift */,
 			);
-			path = xDripG5Tests;
+			path = CGMBLEKitTests;
 			sourceTree = "<group>";
 		};
 		43CABE161C350B2E00005705 /* Messages */ = {
@@ -443,7 +443,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43CABDF71C3506F100005705 /* xDripG5.h in Headers */,
+				43CABDF71C3506F100005705 /* CGMBLEKit.h in Headers */,
 				43EEA7111D14DC0800CBBDA0 /* AESCrypt.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,9 +489,9 @@
 			productReference = 437AFEF72038EC43008C4892 /* CGMBLEKit Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		43CABDF21C3506F100005705 /* xDripG5 */ = {
+		43CABDF21C3506F100005705 /* CGMBLEKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43CABE071C3506F100005705 /* Build configuration list for PBXNativeTarget "xDripG5" */;
+			buildConfigurationList = 43CABE071C3506F100005705 /* Build configuration list for PBXNativeTarget "CGMBLEKit" */;
 			buildPhases = (
 				43CABDEE1C3506F100005705 /* Sources */,
 				43CABDEF1C3506F100005705 /* Frameworks */,
@@ -502,14 +502,14 @@
 			);
 			dependencies = (
 			);
-			name = xDripG5;
+			name = CGMBLEKit;
 			productName = xDripG5;
-			productReference = 43CABDF31C3506F100005705 /* xDripG5.framework */;
+			productReference = 43CABDF31C3506F100005705 /* CGMBLEKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		43CABDFC1C3506F100005705 /* xDripG5Tests */ = {
+		43CABDFC1C3506F100005705 /* CGMBLEKitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43CABE0A1C3506F100005705 /* Build configuration list for PBXNativeTarget "xDripG5Tests" */;
+			buildConfigurationList = 43CABE0A1C3506F100005705 /* Build configuration list for PBXNativeTarget "CGMBLEKitTests" */;
 			buildPhases = (
 				43CABDF91C3506F100005705 /* Sources */,
 				43CABDFA1C3506F100005705 /* Frameworks */,
@@ -521,9 +521,9 @@
 			dependencies = (
 				43CABE001C3506F100005705 /* PBXTargetDependency */,
 			);
-			name = xDripG5Tests;
+			name = CGMBLEKitTests;
 			productName = xDripG5Tests;
-			productReference = 43CABDFD1C3506F100005705 /* xDripG5Tests.xctest */;
+			productReference = 43CABDFD1C3506F100005705 /* CGMBLEKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -564,7 +564,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 43CABDED1C3506F100005705 /* Build configuration list for PBXProject "xDripG5" */;
+			buildConfigurationList = 43CABDED1C3506F100005705 /* Build configuration list for PBXProject "CGMBLEKit" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -577,8 +577,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				43CABDF21C3506F100005705 /* xDripG5 */,
-				43CABDFC1C3506F100005705 /* xDripG5Tests */,
+				43CABDF21C3506F100005705 /* CGMBLEKit */,
+				43CABDFC1C3506F100005705 /* CGMBLEKitTests */,
 				437AFEF62038EC43008C4892 /* CGMBLEKit Example */,
 				4308103220785FEA00B66384 /* ResetTransmitter */,
 			);
@@ -726,17 +726,17 @@
 /* Begin PBXTargetDependency section */
 		433F2E5F2079BB7D00808FA5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 43CABDF21C3506F100005705 /* xDripG5 */;
+			target = 43CABDF21C3506F100005705 /* CGMBLEKit */;
 			targetProxy = 433F2E5E2079BB7D00808FA5 /* PBXContainerItemProxy */;
 		};
 		437AFF152038EDEC008C4892 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 43CABDF21C3506F100005705 /* xDripG5 */;
+			target = 43CABDF21C3506F100005705 /* CGMBLEKit */;
 			targetProxy = 437AFF142038EDEC008C4892 /* PBXContainerItemProxy */;
 		};
 		43CABE001C3506F100005705 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 43CABDF21C3506F100005705 /* xDripG5 */;
+			target = 43CABDF21C3506F100005705 /* CGMBLEKit */;
 			targetProxy = 43CABDFF1C3506F100005705 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1001,10 +1001,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 15;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = xDripG5/Info.plist;
+				INFOPLIST_FILE = CGMBLEKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.loudnate.xDripG5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.loudnate.CGMBLEKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos watchos watchsimulator";
@@ -1023,10 +1023,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 15;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = xDripG5/Info.plist;
+				INFOPLIST_FILE = CGMBLEKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.loudnate.xDripG5;
+				PRODUCT_BUNDLE_IDENTIFIER = com.loudnate.CGMBLEKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos watchos watchsimulator";
@@ -1041,9 +1041,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = xDripG5Tests/Info.plist;
+				INFOPLIST_FILE = CGMBLEKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.loudnate.xDripG5Tests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.loudnate.CGMBLEKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1055,9 +1055,9 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = xDripG5Tests/Info.plist;
+				INFOPLIST_FILE = CGMBLEKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.loudnate.xDripG5Tests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.loudnate.CGMBLEKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1083,7 +1083,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43CABDED1C3506F100005705 /* Build configuration list for PBXProject "xDripG5" */ = {
+		43CABDED1C3506F100005705 /* Build configuration list for PBXProject "CGMBLEKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43CABE051C3506F100005705 /* Debug */,
@@ -1092,7 +1092,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43CABE071C3506F100005705 /* Build configuration list for PBXNativeTarget "xDripG5" */ = {
+		43CABE071C3506F100005705 /* Build configuration list for PBXNativeTarget "CGMBLEKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43CABE081C3506F100005705 /* Debug */,
@@ -1101,7 +1101,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43CABE0A1C3506F100005705 /* Build configuration list for PBXNativeTarget "xDripG5Tests" */ = {
+		43CABE0A1C3506F100005705 /* Build configuration list for PBXNativeTarget "CGMBLEKitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43CABE0B1C3506F100005705 /* Debug */,
