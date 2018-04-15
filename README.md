@@ -1,6 +1,6 @@
 # CGMBLEKit
 
-[![CI Status](http://img.shields.io/travis/LoopKit/xDripG5.svg?style=flat)](https://travis-ci.org/LoopKit/xDripG5)
+[![CI Status](http://img.shields.io/travis/LoopKit/CGMBLEKit.svg?style=flat)](https://travis-ci.org/LoopKit/CGMBLEKit)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 A iOS framework providing an interface for communicating with the G5 glucose transmitter over Bluetooth.
@@ -18,7 +18,7 @@ This framework connects to a G5 Mobile Transmitter via Bluetooth LE. It does not
 CGMBLEKit is available through [Carthage](https://github.com/Carthage/Carthage). To install it, add the following line to your Cartfile:
 
 ```ruby
-github "LoopKit/xDripG5"
+github "LoopKit/CGMBLEKit"
 ```
 
 Note that you'll need to confgure your target to link against `CommonCrypto.framework` in addition to `CGMBLEKit.framework`
