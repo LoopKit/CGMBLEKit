@@ -37,7 +37,7 @@ Download the CGMBLEKit code by clicking on the green `Clone or Download` button 
 
 ![ResetTransmitter help](https://github.com/Kdisimone/images/blob/master/resetTransmitter-first.png)
 
-Then navigate to the `XdripG5-dev` folder that just downloaded to your computer.  Double-click on the `CGMBLEKit.xcodeproj` file to open the project in Xcode.
+Then navigate to the `CGMBLEKit` folder that just downloaded to your computer.  Double-click on the `CGMBLEKit.xcodeproj` file to open the project in Xcode.
 
 ![ResetTransmitter help](https://github.com/Kdisimone/images/blob/master/resetTransmitter-download.png)
 
