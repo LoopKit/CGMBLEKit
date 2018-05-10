@@ -24,7 +24,7 @@ public protocol TransmitterDelegate: class {
 
 /// These methods are called on a private background queue. It is the responsibility of the client to ensure thread-safety.
 public protocol TransmitterCommandSource: class {
-    func dequeuePendingCommand(for transmitter: Transmitter) -> Command?
+    func dequeuePendingCommand(for transmitter: Transmitter, sessionStartDate: Date?) -> Command?
 
     func transmitter(_ transmitter: Transmitter, didFail command: Command, with error: Error)
 
@@ -168,7 +168,9 @@ public final class Transmitter: BluetoothManagerDelegate {
                     let activationDate = Date(timeIntervalSinceNow: -TimeInterval(timeMessage.currentTime))
                     self.log.debug("Determined activation date: %@", String(describing: activationDate))
 
-                    while let command = self.commandSource?.dequeuePendingCommand(for: self) {
+                    let sessionStartDate = (timeMessage.sessionStartTime < 0xffffffff) ? activationDate.addingTimeInterval(TimeInterval(timeMessage.sessionStartTime)) : nil
+
+                    while let command = self.commandSource?.dequeuePendingCommand(for: self, sessionStartDate: sessionStartDate) {
                         self.log.debug("Sending command: %@", String(describing: command))
                         do {
                             _ = try peripheral.sendCommand(command, activationDate: activationDate)

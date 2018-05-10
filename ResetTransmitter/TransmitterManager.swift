@@ -1,5 +1,5 @@
 //
-//  ResetManager.swift
+//  TransmitterManager.swift
 //  ResetTransmitter
 //
 //  Copyright © 2018 LoopKit Authors. All rights reserved.
@@ -9,11 +9,11 @@ import CGMBLEKit
 import os.log
 
 
-class ResetManager {
+class TransmitterManager {
     enum State {
         case initialized
-        case resetting(transmitter: Transmitter)
-        case completed
+        case actioning(transmitter: Transmitter)
+        case completed(succeeded: Bool, message: String)
     }
 
     private(set) var state: State {
@@ -22,72 +22,73 @@ class ResetManager {
         }
         set {
             let oldValue = state
-
-            if case .resetting(let transmitter) = oldValue {
+            
+            if case .actioning(let transmitter) = oldValue {
                 transmitter.stopScanning()
                 transmitter.delegate = nil
                 transmitter.commandSource = nil
             }
-
+            
             lockedState.value = newValue
-
-            if case .resetting(let transmitter) = newValue {
+            
+            if case .actioning(let transmitter) = newValue {
                 transmitter.delegate = self
                 transmitter.commandSource = self
                 transmitter.resumeScanning()
             }
-
+            
             os_log("State changed: %{public}@ -> %{public}@", log: log, type: .debug, String(describing: oldValue), String(describing: newValue))
-            delegate?.resetManager(self, didChangeStateFrom: oldValue)
+            delegate?.transmitterManager(self, didChangeStateFrom: oldValue)
         }
     }
     private let lockedState = Locked(State.initialized)
-
-    private let log = OSLog(subsystem: "com.loopkit.CGMBLEKit", category: "ResetManager")
-
-    weak var delegate: ResetManagerDelegate?
+    
+    private let log = OSLog(subsystem: "com.loopkit.CGMBLEKit", category: "RestartManager")
+    
+    weak var delegate: TransmitterManagerDelegate?
 }
 
 
-protocol ResetManagerDelegate: class {
-    func resetManager(_ manager: ResetManager, didError error: Error)
+protocol TransmitterManagerDelegate: class {
+    func transmitterManager(_ manager: TransmitterManager, didError error: Error)
 
-    func resetManager(_ manager: ResetManager, didChangeStateFrom oldState: ResetManager.State)
+    func transmitterManager(_ manager: TransmitterManager, didChangeStateFrom oldState: TransmitterManager.State)
 }
 
 
-extension ResetManager {
+extension TransmitterManager {
+    
     func cancel() {
-        guard case .resetting = state else {
+        guard case .actioning = state else {
             return
         }
-
+        
         state = .initialized
     }
-
-    func resetTransmitter(withID id: String) {
+    
+    func manage(withID id: String) {
         guard id.count == 6 else {
             return
         }
-
+        
         switch state {
         case .initialized, .completed:
             break
-        case .resetting(transmitter: let transmitter):
+        case .actioning(let transmitter):
             guard transmitter.ID != id else {
                 return
             }
         }
-
-        state = .resetting(transmitter: Transmitter(id: id, passiveModeEnabled: false))
-
+        
+        state = .actioning(transmitter: Transmitter(id: id, passiveModeEnabled: false))
+        
         #if targetEnvironment(simulator)
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
-            self.delegate?.resetManager(self, didError: TransmitterError.controlError("Simulated Error"))
-
+            self.delegate?.transmitterManager(self, didError: TransmitterError.controlError("Simulated Error"))
+            
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
-                if case .resetting = self.state {
-                    self.state = .completed
+                if case .actioning = self.state {
+                    self.state = .completed(succeeded: true, message: "The transmitter has been successfully restarted. Connect it to the app for initial calibrations.")
                 }
             }
         }
@@ -96,43 +97,38 @@ extension ResetManager {
 }
 
 
-extension ResetManager: TransmitterDelegate {
+extension TransmitterManager: TransmitterDelegate {
     func transmitter(_ transmitter: Transmitter, didError error: Error) {
         os_log("Transmitter error: %{public}@", log: log, type: .error, String(describing: error))
-        delegate?.resetManager(self, didError: error)
+        delegate?.transmitterManager(self, didError: error)
     }
-
+    
     func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose) {
         // Not interested
     }
-
+    
     func transmitter(_ transmitter: Transmitter, didReadBackfill glucose: [Glucose]) {
         // Not interested
     }
-
+    
     func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data) {
         // Not interested
     }
 }
 
 
-extension ResetManager: TransmitterCommandSource {
-    func dequeuePendingCommand(for transmitter: Transmitter) -> Command? {
-        if case .resetting = state {
-            return .resetTransmitter
-        }
-
+extension TransmitterManager: TransmitterCommandSource {
+    func dequeuePendingCommand(for transmitter: Transmitter, sessionStartDate: Date?) -> Command? {
+        state = .completed(succeeded: true, message: "The transmitter has been successfully reset. Connect it to the app to begin a new sensor session.")
         return nil
     }
-
+    
     func transmitter(_ transmitter: Transmitter, didFail command: Command, with error: Error) {
         os_log("Command error: %{public}@", log: log, type: .error, String(describing: error))
-        delegate?.resetManager(self, didError: error)
+        delegate?.transmitterManager(self, didError: error)
     }
-
+    
     func transmitter(_ transmitter: Transmitter, didComplete command: Command) {
-        if case .resetTransmitter = command {
-            state = .completed
-        }
+        // subclass and implement
     }
 }
