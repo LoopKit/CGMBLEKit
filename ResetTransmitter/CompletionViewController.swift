@@ -12,8 +12,16 @@ class CompletionViewController: UITableViewController {
 
     @IBOutlet weak var textView: UITextView!
 
+    @IBOutlet weak var pageTitle: UINavigationItem!
+
+    var titleString: String?
+    var message: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        pageTitle.title = titleString
+        textView.text = message
 
         if UIApplication.shared.applicationState == .background {
             let content = UNMutableNotificationContent()

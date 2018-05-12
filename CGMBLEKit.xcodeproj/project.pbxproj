@@ -20,7 +20,6 @@
 		433BC81D205CBB16000B1200 /* GlucoseBackfillMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433BC81C205CBB16000B1200 /* GlucoseBackfillMessageTests.swift */; };
 		433F2E532078990300808FA5 /* ParagraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F2E522078990300808FA5 /* ParagraphView.swift */; };
 		433F2E5520789F9D00808FA5 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F2E5420789F9D00808FA5 /* TextField.swift */; };
-		433F2E57207928A200808FA5 /* ResetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F2E56207928A200808FA5 /* ResetManager.swift */; };
 		433F2E5920792A0100808FA5 /* Locked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F2E5820792A0100808FA5 /* Locked.swift */; };
 		433F2E5B2079747A00808FA5 /* CompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433F2E5A2079747A00808FA5 /* CompletionViewController.swift */; };
 		433F2E5C2079BB7D00808FA5 /* CGMBLEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* CGMBLEKit.framework */; };
@@ -69,7 +68,7 @@
 		43D140D12047BD930032346D /* Opcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D140D02047BD930032346D /* Opcode.swift */; };
 		43DC87C01C8B509B005BC30D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DC87BF1C8B509B005BC30D /* Data.swift */; };
 		43DC87C21C8B520F005BC30D /* GlucoseRxMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DC87C11C8B520F005BC30D /* GlucoseRxMessageTests.swift */; };
-		43E05F22207869D9003212C1 /* ResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E05F21207869D9003212C1 /* ResetViewController.swift */; };
+		43E05F22207869D9003212C1 /* TransmitterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E05F21207869D9003212C1 /* TransmitterViewController.swift */; };
 		43E3978B1D5668BD0028E321 /* CalibrationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E3978A1D5668BD0028E321 /* CalibrationState.swift */; };
 		43E3978D1D566AEA0028E321 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43E3978C1D566AEA0028E321 /* HealthKit.framework */; };
 		43E3978F1D566B170028E321 /* Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E3978E1D566B170028E321 /* Glucose.swift */; };
@@ -87,6 +86,9 @@
 		43F82BD41D037227006F5DD7 /* SessionStartRxMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F82BD31D037227006F5DD7 /* SessionStartRxMessageTests.swift */; };
 		C19084BB203932BD00AA47F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C19084B9203932BD00AA47F3 /* Main.storyboard */; };
 		C1CD8B0C203931AD00A8F498 /* NSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD8B0A203931AD00A8F498 /* NSUserDefaults.swift */; };
+		DA2AD5CD20A328BD00D74BC4 /* TransmitterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2AD5CC20A328BD00D74BC4 /* TransmitterManager.swift */; };
+		DA2AD5D320A65A7B00D74BC4 /* SelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2AD5D220A65A7B00D74BC4 /* SelectorViewController.swift */; };
+		DA2AD5D720A6C15200D74BC4 /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2AD5D620A6C15200D74BC4 /* Mode.swift */; };
 		E71BFF7E20673BD700C876A2 /* CommandQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71BFF7D20673BD700C876A2 /* CommandQueue.swift */; };
 		E752B4102063C31B0063027D /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = E752B40F2063C31B0063027D /* Command.swift */; };
 		E75DB6AE20419B5D00FBE04E /* CalibrateGlucoseRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75DB6AD20419B5D00FBE04E /* CalibrateGlucoseRxMessage.swift */; };
@@ -168,7 +170,6 @@
 		433BC81C205CBB16000B1200 /* GlucoseBackfillMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseBackfillMessageTests.swift; sourceTree = "<group>"; };
 		433F2E522078990300808FA5 /* ParagraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParagraphView.swift; sourceTree = "<group>"; };
 		433F2E5420789F9D00808FA5 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
-		433F2E56207928A200808FA5 /* ResetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetManager.swift; sourceTree = "<group>"; };
 		433F2E5820792A0100808FA5 /* Locked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locked.swift; sourceTree = "<group>"; };
 		433F2E5A2079747A00808FA5 /* CompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionViewController.swift; sourceTree = "<group>"; };
 		43460F87200B30D10030C0E3 /* TransmitterIDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmitterIDTests.swift; sourceTree = "<group>"; };
@@ -215,7 +216,7 @@
 		43D140D02047BD930032346D /* Opcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opcode.swift; sourceTree = "<group>"; };
 		43DC87BF1C8B509B005BC30D /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		43DC87C11C8B520F005BC30D /* GlucoseRxMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlucoseRxMessageTests.swift; sourceTree = "<group>"; };
-		43E05F21207869D9003212C1 /* ResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetViewController.swift; sourceTree = "<group>"; };
+		43E05F21207869D9003212C1 /* TransmitterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmitterViewController.swift; sourceTree = "<group>"; };
 		43E3978A1D5668BD0028E321 /* CalibrationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalibrationState.swift; sourceTree = "<group>"; };
 		43E3978C1D566AEA0028E321 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		43E3978E1D566B170028E321 /* Glucose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Glucose.swift; sourceTree = "<group>"; };
@@ -231,6 +232,9 @@
 		43F82BD31D037227006F5DD7 /* SessionStartRxMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionStartRxMessageTests.swift; sourceTree = "<group>"; };
 		C19084BA203932BD00AA47F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C1CD8B0A203931AD00A8F498 /* NSUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaults.swift; sourceTree = "<group>"; };
+		DA2AD5CC20A328BD00D74BC4 /* TransmitterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmitterManager.swift; sourceTree = "<group>"; };
+		DA2AD5D220A65A7B00D74BC4 /* SelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorViewController.swift; sourceTree = "<group>"; };
+		DA2AD5D620A6C15200D74BC4 /* Mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
 		E71BFF7D20673BD700C876A2 /* CommandQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandQueue.swift; sourceTree = "<group>"; };
 		E752B40F2063C31B0063027D /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		E75DB6AD20419B5D00FBE04E /* CalibrateGlucoseRxMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrateGlucoseRxMessage.swift; sourceTree = "<group>"; };
@@ -280,10 +284,12 @@
 			children = (
 				43081045207861A500B66384 /* Views */,
 				4308103520785FEA00B66384 /* AppDelegate.swift */,
+				DA2AD5D620A6C15200D74BC4 /* Mode.swift */,
 				433F2E5A2079747A00808FA5 /* CompletionViewController.swift */,
-				43E05F21207869D9003212C1 /* ResetViewController.swift */,
+				43E05F21207869D9003212C1 /* TransmitterViewController.swift */,
+				DA2AD5D220A65A7B00D74BC4 /* SelectorViewController.swift */,
 				433F2E5820792A0100808FA5 /* Locked.swift */,
-				433F2E56207928A200808FA5 /* ResetManager.swift */,
+				DA2AD5CC20A328BD00D74BC4 /* TransmitterManager.swift */,
 				4308103920785FEA00B66384 /* Main.storyboard */,
 				4308103C20785FEA00B66384 /* Assets.xcassets */,
 				4308103E20785FEA00B66384 /* LaunchScreen.storyboard */,
@@ -631,10 +637,12 @@
 				4308103620785FEA00B66384 /* AppDelegate.swift in Sources */,
 				433F2E5B2079747A00808FA5 /* CompletionViewController.swift in Sources */,
 				433F2E5920792A0100808FA5 /* Locked.swift in Sources */,
-				43E05F22207869D9003212C1 /* ResetViewController.swift in Sources */,
+				43E05F22207869D9003212C1 /* TransmitterViewController.swift in Sources */,
 				433F2E5520789F9D00808FA5 /* TextField.swift in Sources */,
+				DA2AD5D720A6C15200D74BC4 /* Mode.swift in Sources */,
 				433F2E532078990300808FA5 /* ParagraphView.swift in Sources */,
-				433F2E57207928A200808FA5 /* ResetManager.swift in Sources */,
+				DA2AD5D320A65A7B00D74BC4 /* SelectorViewController.swift in Sources */,
+				DA2AD5CD20A328BD00D74BC4 /* TransmitterManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -792,6 +800,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ResetTransmitter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -819,6 +828,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ResetTransmitter/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

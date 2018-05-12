@@ -20,7 +20,7 @@ class ResetManager: TransmitterManager {
 
     override func transmitter(_ transmitter: Transmitter, didComplete command: Command) {
         if case .resetTransmitter = command {
-            state = .completed(succeeded: true, message: "The transmitter has been successfully reset. Connect it to the app to begin a new sensor session.")
+            state = .completed(title: "Reset Complete", message: "The transmitter has been successfully reset. Connect it to the app to begin a new sensor session.")
         }
     }
 }
@@ -52,11 +52,11 @@ class RestartManager: TransmitterManager {
             switch action {
             case .stopping:
                 guard let startDate = sessionStartDate else {
-                    state = .completed(succeeded: false, message: "failed message: should be in valid session")
+                    state = .completed(title: "Restart Failed", message: "The sensor restart was unsuccessful. The sensor was not in an active session when restart was attempted.")
                     return nil
                 }
                 guard startDate < twoHoursAgo else {
-                    state = .completed(succeeded: false, message: "failed message: session less than two hours old")
+                    state = .completed(title: "Restart Failed", message: "The sensor restart was unsuccessful. The sensor session was less than two hours old when restart was attempted.")
                     return nil
                 }
                 return .stopSensor(at: twoHoursAgo)
@@ -73,7 +73,7 @@ class RestartManager: TransmitterManager {
             action = .starting
         }
         if case .startSensor = command {
-            state = .completed(succeeded: true, message: "The transmitter has been successfully restarted. Connect it to the app for initial calibrations.")
+            state = .completed(title: "Restart Complete", message: "The sensor has been successfully restarted. Connect it to the app for initial calibrations.")
         }
     }
 }
@@ -83,7 +83,7 @@ class TransmitterManager: TransmitterCommandSource {
     enum State {
         case initialized
         case actioning(transmitter: Transmitter, at: Date)
-        case completed(succeeded: Bool, message: String)
+        case completed(title: String, message: String)
     }
 
     fileprivate(set) var state: State {
@@ -118,7 +118,7 @@ class TransmitterManager: TransmitterCommandSource {
     weak var delegate: TransmitterManagerDelegate?
 
     func dequeuePendingCommand(for transmitter: Transmitter, sessionStartDate: Date?) -> Command? {
-        state = .completed(succeeded: true, message: "Default message")
+        state = .completed(title: "Default title", message: "Default message")
         return nil
     }
 

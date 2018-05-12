@@ -19,6 +19,8 @@ class TransmitterViewController: UITableViewController {
         case completed
     }
 
+    var mode: Mode = .restart
+
     private var state: State = .empty {
         didSet {
             guard oldValue != state else {
@@ -35,6 +37,22 @@ class TransmitterViewController: UITableViewController {
             }
         }
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationViewController = segue.destination as? CompletionViewController {
+            switch transmitterManager.state {
+            case let .completed(title, message):
+                destinationViewController.titleString = title
+                destinationViewController.message = message
+            default:
+                return
+            }
+        }
+    }
+
+    @IBOutlet weak var sceneTitle: UINavigationItem!
+
+    @IBOutlet weak var informativeText: ParagraphView!
 
     @IBOutlet var hairlines: [UIView]!
 
@@ -53,7 +71,13 @@ class TransmitterViewController: UITableViewController {
     private var lastError: Error?
 
     private lazy var transmitterManager: TransmitterManager = {
-        let manager = RestartManager()
+        let manager: TransmitterManager
+        switch mode {
+        case .restart:
+            manager = RestartManager()
+        case .reset:
+            manager = ResetManager()
+        }
         manager.delegate = self
         return manager
     }()
@@ -69,6 +93,9 @@ class TransmitterViewController: UITableViewController {
 
         self.navigationController?.delegate = self
         self.navigationController?.navigationBar.shadowImage = UIImage()
+    
+        self.sceneTitle.title = String(describing: mode)
+        self.informativeText.text = mode.blurb
 
         state = .needsConfiguration
     }
@@ -131,12 +158,12 @@ class TransmitterViewController: UITableViewController {
 
     private func manageTransmitter(withID id: String) {
         let controller = UIAlertController(
-            title: NSLocalizedString("Are you sure you want to reset this transmitter?", comment: "Title of the reset confirmation sheet"),
-            message: NSLocalizedString("It will take up to 10 minutes to complete.", comment: "Message of the reset confirmation sheet"), preferredStyle: .actionSheet
+            title: mode.alertTitle,
+            message: mode.alertMessage, preferredStyle: .actionSheet
         )
 
         controller.addAction(UIAlertAction(
-            title: NSLocalizedString("Reset", comment: "Reset button title"),
+            title: mode.buttonTitle,
             style: .destructive,
             handler: { (action) in
                 self.transmitterManager.manage(withID: id)
@@ -144,7 +171,7 @@ class TransmitterViewController: UITableViewController {
         ))
 
         controller.addAction(UIAlertAction(
-            title: NSLocalizedString("Cancel", comment: "Title of button to cancel reset"),
+            title: NSLocalizedString("Cancel", comment: "Title of button to cancel action"),
             style: .cancel,
             handler: nil
         ))
@@ -166,7 +193,7 @@ extension TransmitterViewController {
 
         switch state {
         case .empty, .needsConfiguration, .configured:
-            actionButton.setTitle(NSLocalizedString("Reset", comment: "Title of button to begin reset"), for: .normal)
+            actionButton.setTitle(mode.buttonTitle, for: .normal)
             actionButton.tintColor = .red
         case .actioning, .completed:
             actionButton.setTitle(NSLocalizedString("Cancel", comment: "Title of button to cancel reset"), for: .normal)
@@ -187,7 +214,7 @@ extension TransmitterViewController {
     }
 
     private func updateStatusIndicatorState() {
-        switch self.state {
+        switch state {
         case .empty, .needsConfiguration, .configured, .completed:
             self.spinner.stopAnimating()
             self.errorLabel.superview?.isHidden = true
@@ -211,7 +238,7 @@ extension TransmitterViewController: TransmitterManagerDelegate {
         }
     }
 
-    func transmitterManager(_ manager: TransmitterManager, didChangeStateFrom oldState: TransmitterManagerState) {
+    func transmitterManager(_ manager: TransmitterManager, didChangeStateFrom oldState: TransmitterManager.State) {
         DispatchQueue.main.async {
             switch manager.state {
             case .initialized:
