@@ -31,6 +31,7 @@ class TransmitterViewController: UITableViewController {
             updateButtonState()
             updateTransmitterIDFieldState()
             updateStatusIndicatorState()
+            updateBackButtonState()
 
             if state == .completed {
                 performSegue(withIdentifier: "CompletionViewController", sender: self)
@@ -42,15 +43,14 @@ class TransmitterViewController: UITableViewController {
         if let destinationViewController = segue.destination as? CompletionViewController {
             switch transmitterManager.state {
             case let .completed(title, message):
-                destinationViewController.titleString = title
-                destinationViewController.message = message
+                destinationViewController.data = CompletionViewController.Data(title: title, message: message)
             default:
                 return
             }
         }
     }
 
-    @IBOutlet weak var sceneTitle: UINavigationItem!
+    @IBOutlet weak var navBar: UINavigationItem!
 
     @IBOutlet weak var informativeText: ParagraphView!
 
@@ -94,7 +94,7 @@ class TransmitterViewController: UITableViewController {
         self.navigationController?.delegate = self
         self.navigationController?.navigationBar.shadowImage = UIImage()
     
-        self.sceneTitle.title = String(describing: mode)
+        self.navBar.title = String(describing: mode)
         self.informativeText.text = mode.blurb
 
         state = .needsConfiguration
@@ -225,6 +225,15 @@ extension TransmitterViewController {
             }
             self.errorLabel.superview?.isHidden =
                     (self.lastError == nil)
+        }
+    }
+
+    private func updateBackButtonState() {
+        switch state {
+        case .empty, .needsConfiguration, .configured, .completed:
+            navBar.setHidesBackButton(false, animated: true)
+        case .actioning:
+            navBar.setHidesBackButton(true, animated: true)
         }
     }
 }
