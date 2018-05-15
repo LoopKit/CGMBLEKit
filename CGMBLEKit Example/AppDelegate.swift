@@ -88,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TransmitterDelegate, Tran
         return dateFormatter
     }()
 
-    func dequeuePendingCommand(for transmitter: Transmitter) -> Command? {
+    func dequeuePendingCommand(for transmitter: Transmitter, sessionStartDate: Date?) -> Command? {
         return commandQueue.dequeue()
     }
 
