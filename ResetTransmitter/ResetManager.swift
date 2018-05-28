@@ -24,6 +24,7 @@ class ResetManager {
             let oldValue = state
 
             if case .resetting(let transmitter) = oldValue {
+                transmitter.stayConnected = false
                 transmitter.stopScanning()
                 transmitter.delegate = nil
                 transmitter.commandSource = nil

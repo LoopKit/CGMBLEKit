@@ -45,7 +45,7 @@ class PeripheralManager: NSObject {
     /// Any error surfaced during the active operation
     private var commandError: Error?
 
-    unowned let central: CBCentralManager
+    private(set) weak var central: CBCentralManager?
 
     let configuration: Configuration
 
@@ -99,7 +99,7 @@ protocol PeripheralManagerDelegate: class {
 // MARK: - Operation sequence management
 extension PeripheralManager {
     func configureAndRun(_ block: @escaping (_ manager: PeripheralManager) -> Void) -> (() -> Void) {
-        return { [unowned self] in
+        return {
             if !self.needsConfiguration && self.peripheral.services == nil {
                 self.log.debug("Configured peripheral has no services. Reconfiguring…")
             }
@@ -168,7 +168,7 @@ extension PeripheralManager {
     func runCommand(timeout: TimeInterval, command: () -> Void) throws {
         // Prelude
         dispatchPrecondition(condition: .onQueue(queue))
-        guard central.state == .poweredOn && peripheral.state == .connected else {
+        guard central?.state == .poweredOn && peripheral.state == .connected else {
             throw PeripheralManagerError.notReady
         }
 
