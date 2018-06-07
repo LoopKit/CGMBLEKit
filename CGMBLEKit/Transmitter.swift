@@ -90,10 +90,11 @@ public final class Transmitter: BluetoothManagerDelegate {
 
     private let delegateQueue = DispatchQueue(label: "com.loudnate.CGMBLEKit.delegateQueue", qos: .utility)
 
-    public init(id: String, passiveModeEnabled: Bool = false) {
+    public init(id: String, peripheralIdentifier: UUID? = nil, passiveModeEnabled: Bool = false) {
         self.id = TransmitterID(id: id)
         self.passiveModeEnabled = passiveModeEnabled
 
+        bluetoothManager.peripheralIdentifier = peripheralIdentifier
         bluetoothManager.delegate = self
     }
 
@@ -109,6 +110,15 @@ public final class Transmitter: BluetoothManagerDelegate {
 
     public var isScanning: Bool {
         return bluetoothManager.isScanning
+    }
+
+    public var peripheralIdentifier: UUID? {
+        get {
+            return bluetoothManager.peripheralIdentifier
+        }
+        set {
+            bluetoothManager.peripheralIdentifier = newValue
+        }
     }
 
     public var stayConnected: Bool {
@@ -220,7 +230,7 @@ public final class Transmitter: BluetoothManagerDelegate {
         guard response.count > 0 else { return }
 
         switch Opcode(rawValue: response[0]) {
-        case .glucoseRx?:
+        case .glucoseRx?, .glucoseG6Rx?:
             if  let glucoseMessage = GlucoseRxMessage(data: response),
                 let timeMessage = lastTimeMessage,
                 let activationDate = activationDate

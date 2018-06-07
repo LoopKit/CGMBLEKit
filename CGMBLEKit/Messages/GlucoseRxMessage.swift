@@ -19,7 +19,7 @@ public struct GlucoseSubMessage: TransmitterRxMessage {
     public let trend: Int8
 
     init?(data: Data) {
-        guard data.count == GlucoseSubMessage.size else {
+        guard data.count >= GlucoseSubMessage.size else {
             return nil
         }
 
@@ -50,18 +50,18 @@ public struct GlucoseRxMessage: TransmitterRxMessage {
     public let glucose: GlucoseSubMessage
 
     init?(data: Data) {
-        guard data.count == 16 && data.isCRCValid else {
+        guard data.count >= 16 && data.isCRCValid else {
             return nil
         }
 
-        guard data.starts(with: .glucoseRx) else {
+        guard data.starts(with: .glucoseRx) || data.starts(with: .glucoseG6Rx) else {
             return nil
         }
 
         status = data[1]
         sequence = data[2..<6].toInt()
 
-        guard let glucose = GlucoseSubMessage(data: data[6..<14]) else {
+        guard let glucose = GlucoseSubMessage(data: data[6...]) else {
             return nil
         }
         self.glucose = glucose

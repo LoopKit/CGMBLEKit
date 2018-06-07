@@ -14,11 +14,13 @@ enum Opcode: UInt8 {
     case authRequestRx = 0x03
     case authChallengeTx = 0x04
     case authChallengeRx = 0x05
-    case keepAlive = 0x06
+    case keepAlive = 0x06 // auth; setAdvertisementParametersTx for control
     case bondRequest = 0x07
     
     // Control
     case disconnectTx = 0x09
+    
+    case setAdvertisementParametersRx = 0x1c
 
     case firmwareVersionTx = 0x20
     case firmwareVersionRx = 0x21
@@ -45,6 +47,9 @@ enum Opcode: UInt8 {
 
     case transmitterVersionTx = 0x4a
     case transmitterVersionRx = 0x4b
+    
+    case glucoseG6Tx = 0x4e
+    case glucoseG6Rx = 0x4f
 
     case glucoseBackfillTx = 0x50
     case glucoseBackfillRx = 0x51

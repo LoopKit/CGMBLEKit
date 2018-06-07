@@ -79,10 +79,14 @@ class BluetoothManager: NSObject {
         }
     }
 
+    var peripheralIdentifier: UUID?
+
     var peripheralManager: PeripheralManager? {
         didSet {
             oldValue?.delegate = nil
             peripheralManager?.delegate = self
+
+            peripheralIdentifier = peripheralManager?.peripheral.identifier
         }
     }
 
@@ -108,7 +112,7 @@ class BluetoothManager: NSObject {
             return
         }
 
-        if let peripheralID = self.peripheral?.identifier, let peripheral = manager.retrievePeripherals(withIdentifiers: [peripheralID]).first {
+        if let peripheralID = peripheralIdentifier, let peripheral = manager.retrievePeripherals(withIdentifiers: [peripheralID]).first {
             log.debug("Re-connecting to known peripheral %{public}@", peripheral.identifier.uuidString)
             self.peripheral = peripheral
             self.manager.connect(peripheral)
