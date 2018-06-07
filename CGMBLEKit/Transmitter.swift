@@ -230,7 +230,7 @@ public final class Transmitter: BluetoothManagerDelegate {
         guard response.count > 0 else { return }
 
         switch Opcode(rawValue: response[0]) {
-        case .glucoseRx?:
+        case .glucoseRx?, .glucoseG6Rx?:
             if  let glucoseMessage = GlucoseRxMessage(data: response),
                 let timeMessage = lastTimeMessage,
                 let activationDate = activationDate
