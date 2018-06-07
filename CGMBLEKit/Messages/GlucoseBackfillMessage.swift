@@ -110,8 +110,13 @@ struct GlucoseBackfillFrameBuffer {
             from: glucoseData.startIndex,
             to: glucoseData.endIndex,
             by: GlucoseSubMessage.size
-        ).map {
-            return GlucoseSubMessage(data: glucoseData[$0..<$0.advanced(by: GlucoseSubMessage.size)])!
+        ).compactMap {
+            let range = $0..<$0.advanced(by: GlucoseSubMessage.size)
+            guard glucoseData.endIndex >= range.endIndex else {
+                return nil
+            }
+
+            return GlucoseSubMessage(data: glucoseData[range])
         }
     }
 }

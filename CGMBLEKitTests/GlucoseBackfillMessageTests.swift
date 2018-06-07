@@ -62,4 +62,12 @@ class GlucoseBackfillMessageTests: XCTestCase {
         XCTAssertEqual(.known(.ok), CalibrationState(rawValue: messages[4].state))
         XCTAssertEqual(-08, messages[4].trend)
     }
+
+    func testMalformedBackfill() {
+        var buffer = GlucoseBackfillFrameBuffer(identifier: 0)
+        buffer.append(Data(hexadecimalString: "0100bc460000b7ff52008b0006eee30053008500")!)
+        buffer.append(Data(hexadecimalString: "020006eb0f025300800006ee3a0353007e0006")!)
+
+        XCTAssertEqual(3, buffer.glucose.count)
+    }
 }
