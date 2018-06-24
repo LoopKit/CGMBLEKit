@@ -273,10 +273,19 @@ public final class Transmitter: BluetoothManagerDelegate {
                 Glucose(transmitterID: id.id, status: backfillMessage.status, glucoseMessage: $0, timeMessage: timeMessage, activationDate: activationDate)
             }
 
-            if glucose.count > 0 {
-                delegateQueue.async {
-                    self.delegate?.transmitter(self, didReadBackfill: glucose)
-                }
+            guard glucose.count > 0 else {
+                break
+            }
+
+            guard glucose.first!.glucoseMessage.timestamp >= backfillMessage.startTime,
+                glucose.last!.glucoseMessage.timestamp <= backfillMessage.endTime
+            else {
+                log.error("GlucoseBackfillRxMessage time interval not reflected in glucose: %{public}@, buffer: %{public}@", response.hexadecimalString, String(reflecting: backfillBuffer))
+                break
+            }
+
+            delegateQueue.async {
+                self.delegate?.transmitter(self, didReadBackfill: glucose)
             }
         case .none:
             delegateQueue.async {
