@@ -1,0 +1,2 @@
+github "LoopKit/LoopKit" "dev"
+github "LoopKit/dexcom-share-client-swift" "implement-cgmmanager"

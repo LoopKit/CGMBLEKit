@@ -13,4 +13,8 @@ extension HKUnit {
     static let milligramsPerDeciliter: HKUnit = {
         return HKUnit.gramUnit(with: .milli).unitDivided(by: HKUnit.literUnit(with: .deci))
     }()
+
+    static let milligramsPerDeciliterPerMinute: HKUnit = {
+        return HKUnit.milligramsPerDeciliter.unitDivided(by: .minute())
+    }()
 }
