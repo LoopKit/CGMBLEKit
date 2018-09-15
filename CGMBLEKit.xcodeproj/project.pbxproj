@@ -132,6 +132,7 @@
 		43F82BD21D037040006F5DD7 /* SessionStopRxMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F82BD11D037040006F5DD7 /* SessionStopRxMessageTests.swift */; };
 		43F82BD41D037227006F5DD7 /* SessionStartRxMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F82BD31D037227006F5DD7 /* SessionStartRxMessageTests.swift */; };
 		C19084BB203932BD00AA47F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C19084B9203932BD00AA47F3 /* Main.storyboard */; };
+		C199BEDD21495792007CD6E7 /* LoopKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC44210CF81A00A81379 /* LoopKit.framework */; };
 		C1CD8B0C203931AD00A8F498 /* NSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD8B0A203931AD00A8F498 /* NSUserDefaults.swift */; };
 		E71BFF7E20673BD700C876A2 /* CommandQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71BFF7D20673BD700C876A2 /* CommandQueue.swift */; };
 		E752B4102063C31B0063027D /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = E752B40F2063C31B0063027D /* Command.swift */; };
@@ -406,6 +407,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43CABDFE1C3506F100005705 /* CGMBLEKit.framework in Frameworks */,
+				C199BEDD21495792007CD6E7 /* LoopKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
