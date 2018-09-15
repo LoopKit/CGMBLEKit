@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		4300D448214CCF83008AD523 /* LoopKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43A8EC44210CF81A00A81379 /* LoopKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4300D449214CCFD5008AD523 /* ShareClient.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 43A8EC70210E629300A81379 /* ShareClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43026D3F2131C5C600A332E2 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43026D3E2131C5C600A332E2 /* LocalizedString.swift */; };
 		43026D402131C5C600A332E2 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43026D3E2131C5C600A332E2 /* LocalizedString.swift */; };
 		43026D482131C99500A332E2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43026D462131C99500A332E2 /* Localizable.strings */; };
@@ -204,6 +206,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				4300D448214CCF83008AD523 /* LoopKit.framework in CopyFiles */,
+				4300D449214CCFD5008AD523 /* ShareClient.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
