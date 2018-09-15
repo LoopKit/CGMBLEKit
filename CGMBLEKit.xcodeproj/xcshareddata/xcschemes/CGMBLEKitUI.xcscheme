@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43CABDF21C3506F100005705"
-               BuildableName = "CGMBLEKit.framework"
-               BlueprintName = "CGMBLEKit"
+               BlueprintIdentifier = "43A8EC51210D0A7400A81379"
+               BuildableName = "CGMBLEKitUI.framework"
+               BlueprintName = "CGMBLEKitUI"
                ReferencedContainer = "container:CGMBLEKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43CABDFC1C3506F100005705"
-               BuildableName = "CGMBLEKitTests.xctest"
-               BlueprintName = "CGMBLEKitTests"
-               ReferencedContainer = "container:CGMBLEKit.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43CABDF21C3506F100005705"
-            BuildableName = "CGMBLEKit.framework"
-            BlueprintName = "CGMBLEKit"
-            ReferencedContainer = "container:CGMBLEKit.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -64,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43CABDF21C3506F100005705"
-            BuildableName = "CGMBLEKit.framework"
-            BlueprintName = "CGMBLEKit"
+            BlueprintIdentifier = "43A8EC51210D0A7400A81379"
+            BuildableName = "CGMBLEKitUI.framework"
+            BlueprintName = "CGMBLEKitUI"
             ReferencedContainer = "container:CGMBLEKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43CABDF21C3506F100005705"
-            BuildableName = "CGMBLEKit.framework"
-            BlueprintName = "CGMBLEKit"
+            BlueprintIdentifier = "43A8EC51210D0A7400A81379"
+            BuildableName = "CGMBLEKitUI.framework"
+            BlueprintName = "CGMBLEKitUI"
             ReferencedContainer = "container:CGMBLEKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -41,3 +41,17 @@ public func ==(lhs: TransmitterStatus, rhs: TransmitterStatus) -> Bool {
         return false
     }
 }
+
+
+extension TransmitterStatus {
+    public var localizedDescription: String {
+        switch self {
+        case .ok:
+            return LocalizedString("OK", comment: "Describes a functioning transmitter")
+        case .lowBattery:
+            return LocalizedString("Low Battery", comment: "Describes a low battery")
+        case .unknown(let value):
+            return "TransmitterStatus.unknown(\(value))"
+        }
+    }
+}

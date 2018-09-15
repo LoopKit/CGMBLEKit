@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  CGMBLEKit
+
+  Copyright © 2018 LoopKit Authors. All rights reserved.
+*/
+
+/* The title of the cancel action in an action sheet */
+"Cancel" = "Annuler";
+
+"Date" = "Date";
+
+"Glucose" = "Glycémie";
+
+/* The title text for the Dexcom G5/G6 transmitter ID config value */
+"Transmitter ID" = "ID du transmetteur";

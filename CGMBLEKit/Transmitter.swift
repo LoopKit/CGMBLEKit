@@ -68,7 +68,7 @@ public final class Transmitter: BluetoothManagerDelegate {
     /// The initial activation date of the transmitter
     private var activationDate: Date?
 
-    /// The last-seen time message
+    /// The last-observed time message
     private var lastTimeMessage: TransmitterTimeRxMessage? {
         didSet {
             if let time = lastTimeMessage {
@@ -78,6 +78,9 @@ public final class Transmitter: BluetoothManagerDelegate {
             }
         }
     }
+
+    /// The last-observed calibration message
+    private var lastCalibrationMessage: CalibrationDataRxMessage?
 
     /// The backfill data buffer
     private var backfillBuffer: GlucoseBackfillFrameBuffer?
@@ -236,13 +239,12 @@ public final class Transmitter: BluetoothManagerDelegate {
                 let activationDate = activationDate
             {
                 delegateQueue.async {
-                    self.delegate?.transmitter(self, didRead: Glucose(transmitterID: self.id.id, glucoseMessage: glucoseMessage, timeMessage: timeMessage, activationDate: activationDate))
+                    self.delegate?.transmitter(self, didRead: Glucose(transmitterID: self.id.id, glucoseMessage: glucoseMessage, timeMessage: timeMessage, calibrationMessage: self.lastCalibrationMessage, activationDate: activationDate))
                 }
             }
         case .transmitterTimeRx?:
             if let timeMessage = TransmitterTimeRxMessage(data: response) {
                 self.lastTimeMessage = timeMessage
-                return
             }
         case .glucoseBackfillRx?:
             guard let backfillMessage = GlucoseBackfillRxMessage(data: response) else {
@@ -287,6 +289,12 @@ public final class Transmitter: BluetoothManagerDelegate {
             delegateQueue.async {
                 self.delegate?.transmitter(self, didReadBackfill: glucose)
             }
+        case .calibrationDataRx?:
+            guard let calibrationDataMessage = CalibrationDataRxMessage(data: response) else {
+                break
+            }
+
+            lastCalibrationMessage = calibrationDataMessage
         case .none:
             delegateQueue.async {
                 self.delegate?.transmitter(self, didReadUnknownData: response)
