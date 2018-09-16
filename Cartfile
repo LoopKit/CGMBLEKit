@@ -1,2 +1,2 @@
 github "LoopKit/LoopKit" "dev"
-github "mddub/dexcom-share-client-swift" "master"
+github "LoopKit/dexcom-share-client-swift" "carthage-recursive"
