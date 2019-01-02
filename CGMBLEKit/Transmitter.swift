@@ -139,7 +139,7 @@ public final class Transmitter: BluetoothManagerDelegate {
 
     // MARK: - BluetoothManagerDelegate
 
-    func bluetoothManager(_ manager: BluetoothManager, isReadyWithError error: Error?) {
+    func bluetoothManager(_ manager: BluetoothManager, peripheralManager: PeripheralManager, isReadyWithError error: Error?) {
         if let error = error {
             delegateQueue.async {
                 self.delegate?.transmitter(self, didError: error)
@@ -147,7 +147,7 @@ public final class Transmitter: BluetoothManagerDelegate {
             return
         }
 
-        manager.peripheralManager?.perform { (peripheral) in
+        peripheralManager.perform { (peripheral) in
             if self.passiveModeEnabled {
                 self.log.debug("Listening for control commands in passive mode")
                 do {
