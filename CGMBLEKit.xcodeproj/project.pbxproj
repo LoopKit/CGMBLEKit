@@ -750,6 +750,7 @@
 					};
 					437AFEF62038EC43008C4892 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -763,11 +764,12 @@
 					};
 					43A8EC51210D0A7400A81379 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Manual;
 					};
 					43CABDF21C3506F100005705 = {
 						CreatedOnToolsVersion = 7.2;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1000;
 					};
 					43CABDFC1C3506F100005705 = {
 						CreatedOnToolsVersion = 7.2;
@@ -868,7 +870,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$CARTHAGE\" = \"YES\" ]; then\n    echo \"Skipping carthage build because we're already in one\"\nelif [ -d $PROJECT_DIR/../../../Loop.xcworkspace ]; then\n    echo \"Skipping carthage build because we're in a workspace\"\nelif [ -f $PROJECT_DIR/.gitmodules ]; then\n    echo \"Skipping checkout due to presence of .gitmodules file\"\n    if [ $ACTION = \"install\" ]; then\n        echo \"You're installing: Make sure to keep all submodules up-to-date and run carthage build after changes.\"\n    fi\nelse\n    echo \"Bootstrapping carthage dependencies\"\n    /usr/local/bin/carthage bootstrap --project-directory \"$SRCROOT\" --cache-builds\nfi\n";
+			shellScript = "if [ \"$CARTHAGE\" = \"YES\" ]; then\n    echo \"Skipping carthage build because we're already in one\"\nelif [ -d $PROJECT_DIR/../../../Loop.xcworkspace ]; then \n    echo \"Skipping carthage build because we're in a workspace\"\nelif [ -f $PROJECT_DIR/.gitmodules ]; then\n    echo \"Skipping checkout due to presence of .gitmodules file\"\n    if [ $ACTION = \"install\" ]; then\n        echo \"You're installing: Make sure to keep all submodules up-to-date and run carthage build after changes.\"\n    fi\nelse\n    unset LLVM_TARGET_TRIPLE_SUFFIX\n    echo \"Bootstrapping carthage dependencies\"\n    /usr/local/bin/carthage bootstrap --project-directory \"$SRCROOT\" --cache-builds\nfi\n";
 		};
 		43A8EC46210D093900A81379 /* Copy Frameworks with Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1241,7 +1243,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.loopkit.g5.CGMBLEKit-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1268,7 +1270,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.loopkit.g5.CGMBLEKit-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1318,6 +1320,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1350,6 +1353,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1511,6 +1515,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos watchos watchsimulator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2,4";
 			};
 			name = Debug;
@@ -1537,6 +1542,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos watchos watchsimulator";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2,4";
 			};
 			name = Release;
