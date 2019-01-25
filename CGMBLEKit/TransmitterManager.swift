@@ -126,7 +126,7 @@ public class TransmitterManager: TransmitterDelegate {
             return
         }
 
-        log.default("Fetching new glucose from Share because last reading is %{public}.0f minutes old", latestReading?.readDate.timeIntervalSinceNow.minutes ?? 0)
+        log.default("Fetching new glucose from Share because last reading is %{public}.1f minutes old", latestReading?.readDate.timeIntervalSinceNow.minutes ?? 0)
 
         shareManager.fetchNewDataIfNeeded(completion)
     }
@@ -179,7 +179,7 @@ public class TransmitterManager: TransmitterDelegate {
             return
         }
 
-        log.default("%{public}@: New glucose: %@", #function, String(describing: quantity))
+        log.default("%{public}@: New glucose", #function)
 
         updateDelegate(with: .newData([
             NewGlucoseSample(

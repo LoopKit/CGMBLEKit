@@ -20,7 +20,7 @@ class CompletionViewController: UITableViewController {
             content.badge = 1
             content.title = NSLocalizedString("Transmitter Reset Complete", comment: "Notification title for background completion notification")
             content.body = textView.text
-            content.sound = .default()
+            content.sound = .default
 
             let request = UNNotificationRequest(identifier: "Completion", content: content, trigger: nil)
 
