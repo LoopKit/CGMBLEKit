@@ -41,8 +41,15 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
 }
 
 
+public protocol TransmitterManagerObserver: class {
+    func transmitterManagerDidUpdateLatestReading(_ manager: TransmitterManager)
+}
+
+
 public class TransmitterManager: TransmitterDelegate {
     private var state: TransmitterManagerState
+
+    private let observers = Locked(NSHashTable<AnyObject>.weakObjects())
 
     public required init(state: TransmitterManagerState) {
         self.state = state
@@ -143,6 +150,7 @@ public class TransmitterManager: TransmitterDelegate {
             "dataIsFresh: \(dataIsFresh)",
             "providesBLEHeartbeat: \(providesBLEHeartbeat)",
             shareManager.debugDescription,
+            "observers.count: \(observers.value.count)",
             ""
         ].joined(separator: "\n")
     }
@@ -151,6 +159,8 @@ public class TransmitterManager: TransmitterDelegate {
         if let manager = self as? CGMManager {
             delegate?.cgmManager(manager, didUpdateWith: result)
         }
+
+        notifyObserversOfLatestReading()
     }
 
     // MARK: - TransmitterDelegate
@@ -217,6 +227,32 @@ public class TransmitterManager: TransmitterDelegate {
     public func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data) {
         log.error("Unknown sensor data: %{public}@", data.hexadecimalString)
         // This can be used for protocol discovery, but isn't necessary for normal operation
+    }
+}
+
+
+// MARK: - Observer management
+extension TransmitterManager {
+    public func addObserver(_ observer: TransmitterManagerObserver) {
+        _ = observers.mutate { (observerTable) in
+            observerTable.add(observer as AnyObject)
+        }
+    }
+
+    public func removeObserver(_ observer: TransmitterManagerObserver) {
+        _ = observers.mutate { (observerTable) in
+            observerTable.remove(observer as AnyObject)
+        }
+    }
+
+    private func notifyObserversOfLatestReading() {
+        let observers = self.observers.value.objectEnumerator()
+
+        for observer in observers {
+            if let observer = observer as? TransmitterManagerObserver {
+                observer.transmitterManagerDidUpdateLatestReading(self)
+            }
+        }
     }
 }
 
