@@ -63,6 +63,11 @@ class GlucoseBackfillMessageTests: XCTestCase {
         XCTAssertEqual(5440614, messages[4].timestamp)
         XCTAssertEqual(.known(.ok), CalibrationState(rawValue: messages[4].state))
         XCTAssertEqual(-08, messages[4].trend)
+
+        XCTAssertEqual(message.startTime, messages.first!.timestamp)
+        XCTAssertEqual(message.endTime, messages.last!.timestamp)
+
+        XCTAssertTrue(messages.first!.timestamp <= messages.last!.timestamp)
     }
 
     func testGlucoseBackfill2() {
@@ -91,6 +96,11 @@ class GlucoseBackfillMessageTests: XCTestCase {
         XCTAssertEqual(response.bufferCRC, buffer.crc16)
 
         let messages = buffer.glucose
+
+        XCTAssertEqual(response.startTime, messages.first!.timestamp)
+        XCTAssertEqual(response.endTime, messages.last!.timestamp)
+
+        XCTAssertTrue(messages.first!.timestamp <= messages.last!.timestamp)
 
         XCTAssertEqual(6, messages.count)
     }
@@ -128,6 +138,8 @@ class GlucoseBackfillMessageTests: XCTestCase {
         XCTAssertEqual(response.startTime, messages.first!.timestamp)
         XCTAssertEqual(response.endTime, messages.last!.timestamp)
 
+        XCTAssertTrue(messages.first!.timestamp <= messages.last!.timestamp)
+
         XCTAssertEqual(4, messages.count)
     }
 
@@ -155,6 +167,8 @@ class GlucoseBackfillMessageTests: XCTestCase {
 
         XCTAssertEqual(response.startTime, messages.first!.timestamp)
         XCTAssertEqual(response.endTime, messages.last!.timestamp)
+
+        XCTAssertTrue(messages.first!.timestamp <= messages.last!.timestamp)
 
         XCTAssertEqual(4, messages.count)
     }
@@ -265,8 +279,8 @@ class GlucoseBackfillMessageTests: XCTestCase {
 
         let messages = buffer.glucose
 
-        XCTAssertFalse(messages.first!.timestamp >= response.startTime &&
-                        messages.last!.timestamp <= response.endTime)
+        XCTAssertNotEqual(response.startTime, messages.first!.timestamp)
+        XCTAssertNotEqual(response.endTime, messages.last!.timestamp)
 
         XCTAssertEqual(191, messages.count)
     }
@@ -299,9 +313,121 @@ class GlucoseBackfillMessageTests: XCTestCase {
 
         let messages = buffer.glucose
 
-        XCTAssertFalse(messages.first!.timestamp >= response.startTime &&
-                        messages.last!.timestamp <= response.endTime)
+        XCTAssertNotEqual(response.startTime, messages.first!.timestamp)
+        XCTAssertNotEqual(response.endTime, messages.last!.timestamp)
+        XCTAssertFalse(messages.first!.timestamp <= messages.last!.timestamp)
 
         XCTAssertEqual(17, messages.count)
+    }
+
+    func testNotGlucoseBackfill3() {
+        let response = GlucoseBackfillRxMessage(data: Data(hexadecimalString: "51000102b6a36500010c6600ac0600000147db0a")!)!
+
+        XCTAssertEqual(.ok, TransmitterStatus(rawValue: response.status))
+        XCTAssertEqual(1, response.backfillStatus)
+        XCTAssertEqual(2, response.identifier)
+        XCTAssertEqual(6661046, response.startTime)
+        XCTAssertEqual(6687745, response.endTime)
+        XCTAssertEqual(1708, response.bufferLength)
+        XCTAssertEqual(0x4701, response.bufferCRC)
+
+        var buffer = GlucoseBackfillFrameBuffer(identifier: 0x80)
+        buffer.append(Data(hexadecimalString: "0180e1234bdf92845cec52822a8894854582b2b2")!)
+        buffer.append(Data(hexadecimalString: "02800f8a38cc876ad33ae0acdc25921132cc6f0d")!)
+        buffer.append(Data(hexadecimalString: "038032a6cd9e6d447916dd0b9699e499ae79b8d1")!)
+        buffer.append(Data(hexadecimalString: "048045f4b95e0ad80955d3a899d6083bd142f863")!)
+        buffer.append(Data(hexadecimalString: "05809cf9c189744ab66f6ca5c2833ef27442fa71")!)
+        buffer.append(Data(hexadecimalString: "068053694b279275f0d23eb826681e20e5ebb79d")!)
+        buffer.append(Data(hexadecimalString: "078098b921155eb5aed63119d5faec3ef3e53a37")!)
+        buffer.append(Data(hexadecimalString: "08807c87277557a0828e8dc81ff76f1a6e197103")!)
+        buffer.append(Data(hexadecimalString: "0980b8378b133898ce73f7989d67360123e9fdd8")!)
+        buffer.append(Data(hexadecimalString: "0a80383ce19d943a38796b594ff95a2dc93bd6a2")!)
+        buffer.append(Data(hexadecimalString: "0b806b548c5997dc67ed4fe07bcf236d59dd7f94")!)
+        buffer.append(Data(hexadecimalString: "0c802cb2382f40a06fde5f2dff3f0b8226a11f12")!)
+        buffer.append(Data(hexadecimalString: "0d8029800ae513c5b7bc8ea733544b7da84ded17")!)
+        buffer.append(Data(hexadecimalString: "0e80a95b6c3d36183e4409f916a6f1f775af338e")!)
+        buffer.append(Data(hexadecimalString: "0f80d098732f2abcf4a90628f321a048349142ff")!)
+        buffer.append(Data(hexadecimalString: "108077294e9d029bdc0602c76671d88ff4a87596")!)
+        buffer.append(Data(hexadecimalString: "1180bac50f8d705f6732c34b935a0b06545d6d8f")!)
+        buffer.append(Data(hexadecimalString: "1280cf6b9eb0d2f0059c1a7b5c65acb83eb43836")!)
+        buffer.append(Data(hexadecimalString: "13802f408f68fc7e48858daecf64d01f3f61827e")!)
+        buffer.append(Data(hexadecimalString: "1480cd5975c1062ed45311a2602c0bbc9c78cf21")!)
+        buffer.append(Data(hexadecimalString: "1580b6e27f3350bc7d4eb908313710931cbd4f23")!)
+        buffer.append(Data(hexadecimalString: "168061f70e5e27e8b72faecfbb58b6b6ff65cbf0")!)
+        buffer.append(Data(hexadecimalString: "178066bdd3a0b1e1ed0af8b2af88dcb1f4b1c3a4")!)
+        buffer.append(Data(hexadecimalString: "18801eb9326019bca25b74804d196c04d079e495")!)
+        buffer.append(Data(hexadecimalString: "1980a29097393f81aaef79ef421af54ccd3c35ed")!)
+        buffer.append(Data(hexadecimalString: "1a80a3039b0372ddd79ef65293e4e99484573ab3")!)
+        buffer.append(Data(hexadecimalString: "1b807e755140ea79b1913a7c491e606b7d1e4542")!)
+        buffer.append(Data(hexadecimalString: "1c800c968daf03958bd8784e1cf8cea4fa903a80")!)
+        buffer.append(Data(hexadecimalString: "1d8044c5c7baebadbf8e6877d725ab84484e6755")!)
+        buffer.append(Data(hexadecimalString: "1e8036be160e8a03d2c07552fc513c8869170528")!)
+        buffer.append(Data(hexadecimalString: "1f8038483ab634e7707e9ab8c8e3f87dd67f423f")!)
+        buffer.append(Data(hexadecimalString: "2080f184e4457558d9b7944f21d6421b717ddfb1")!)
+        buffer.append(Data(hexadecimalString: "2180bb4da6197852102a3a04b8acccea3c54f0f9")!)
+        buffer.append(Data(hexadecimalString: "2280da93975f3ea1c39d2aff5dbbc4b183b66044")!)
+        buffer.append(Data(hexadecimalString: "23804678951cdc83923fe5a88bda66221a48360b")!)
+        buffer.append(Data(hexadecimalString: "2480aa9dc3fee16106bd551754d896da72ff772c")!)
+        buffer.append(Data(hexadecimalString: "2580b825bb4eba580b57caadda1b90b449a8f2c5")!)
+        buffer.append(Data(hexadecimalString: "2680117b62c286b395d2bf016848c65953595f19")!)
+        buffer.append(Data(hexadecimalString: "27806d524b2b191bd9582f47fd3956ab851207af")!)
+        buffer.append(Data(hexadecimalString: "2880c7df85c2ee5e9b3f5ae68ffba44a86e237e8")!)
+        buffer.append(Data(hexadecimalString: "2980947fec3646851a510c8a61c0b3b7d90e410b")!)
+        buffer.append(Data(hexadecimalString: "2a8014b04b3ff32e4d9d16f46880533cf4562af4")!)
+        buffer.append(Data(hexadecimalString: "2b80c754e48edfa84f2f3b29976ce59cc110747d")!)
+        buffer.append(Data(hexadecimalString: "2c8095a3ab4b66254954a51ca5e5c92d07be80fc")!)
+        buffer.append(Data(hexadecimalString: "2d80bc4afa73d7f222f1b9e56083171057e32ca3")!)
+        buffer.append(Data(hexadecimalString: "2e80c88dbe9a052d7ffd29d2f665bdd66811712f")!)
+        buffer.append(Data(hexadecimalString: "2f804d2f9ee36fd6f3f48c30429c1629e39bbe3f")!)
+        buffer.append(Data(hexadecimalString: "30808b01f598fc6420d85b3190d15f8d55f43faf")!)
+        buffer.append(Data(hexadecimalString: "31801c171908c8ded10e81123f453c571c8f5199")!)
+        buffer.append(Data(hexadecimalString: "32806275a5652f2447f63f1ab5d0dac84387d80c")!)
+        buffer.append(Data(hexadecimalString: "3380f095361816ab06f0209a6ec3411c8f0c6ce1")!)
+        buffer.append(Data(hexadecimalString: "3480a99ac0dae0c87f6a1d4ee4fe4e19671c29ba")!)
+        buffer.append(Data(hexadecimalString: "3580811db50e1625a3b88305ea5c34b53e20700e")!)
+        buffer.append(Data(hexadecimalString: "36800fbf211b6a454c788aa17b0cf14db76695a9")!)
+        buffer.append(Data(hexadecimalString: "3780dfc186d1c189114f182709efc464f48c6b2f")!)
+        buffer.append(Data(hexadecimalString: "38805e629e8e6457b1ec149897210cb6336b123f")!)
+        buffer.append(Data(hexadecimalString: "398045d4dc9f4c074ec0e926a8d1768ae92b4866")!)
+        buffer.append(Data(hexadecimalString: "3a801edf0d5d1c1a86c90c5eeef69e115fdd513a")!)
+        buffer.append(Data(hexadecimalString: "3b8084223228b158081b465c74454450ec19a4c1")!)
+        buffer.append(Data(hexadecimalString: "3c80fa306d71fc211bd9b9e55aeb16c582d21ec2")!)
+        buffer.append(Data(hexadecimalString: "3d8072d8bbec74f1436958db431a92fc66cf5dd2")!)
+        buffer.append(Data(hexadecimalString: "3e80888ef69a91f8dbb0ce70b6e5ec9289245878")!)
+        buffer.append(Data(hexadecimalString: "3f8069c0d6d14e580be92f87a3255e124b25b451")!)
+        buffer.append(Data(hexadecimalString: "4080b3cbae3d50ea52720bf5029243a4a9fea906")!)
+        buffer.append(Data(hexadecimalString: "4180384321d07a4b5378aa272c9a7247830624b8")!)
+        buffer.append(Data(hexadecimalString: "4280acf0b265dd82b68aeec5114161a34135b30e")!)
+        buffer.append(Data(hexadecimalString: "43802d709c604266db64a4b5a5e6f6d8cfd7ece1")!)
+        buffer.append(Data(hexadecimalString: "44807b48711b0630cd919dbf9ea7bf81efa1e8f1")!)
+        buffer.append(Data(hexadecimalString: "4580c0282b679f9746ece875482d5e9a5ed59cb8")!)
+        buffer.append(Data(hexadecimalString: "46808c7b718de4299f081449cce9aa9afadfcea9")!)
+        buffer.append(Data(hexadecimalString: "478066cd4c36d6e816413b15955c958da4d8e866")!)
+        buffer.append(Data(hexadecimalString: "48809b5170078157c542236bc7a09c96bc559069")!)
+        buffer.append(Data(hexadecimalString: "49800be65a0bce639c69cd3d64db0fa22570756f")!)
+        buffer.append(Data(hexadecimalString: "4a80e5ebd5381b077a8ac56e952b631256a076cc")!)
+        buffer.append(Data(hexadecimalString: "4b80fb32d28e39021d49dc7b7ee65272ca1f28c1")!)
+        buffer.append(Data(hexadecimalString: "4c8004486cc3dcad9f39c602d3ed9030e327cec3")!)
+        buffer.append(Data(hexadecimalString: "4d809a5800c6d647c5f99e40a15327957745dce1")!)
+        buffer.append(Data(hexadecimalString: "4e80d03a0b5368fda78b28d3975500ab160ac693")!)
+        buffer.append(Data(hexadecimalString: "4f80dbc5ea65f540933f858a425ecdb378f62990")!)
+        buffer.append(Data(hexadecimalString: "50802e7980ce9365ad4e434308fb2a8102dc9f6a")!)
+        buffer.append(Data(hexadecimalString: "5180b71311e183ad9feecfd43b68072d5a9ad4af")!)
+        buffer.append(Data(hexadecimalString: "5280e721c37d2b57f95cbf5f51025fb22b6ca60c")!)
+        buffer.append(Data(hexadecimalString: "53805749eb01f070a5b015dcd0f68f5fea0b40c6")!)
+        buffer.append(Data(hexadecimalString: "5480fae4ee747357e4d73265ad9411c565c41865")!)
+        buffer.append(Data(hexadecimalString: "5580b75e9c62c7c2aa3ea3f94d219ef7330077d7")!)
+        buffer.append(Data(hexadecimalString: "5680f2c59ee6b54a")!)
+
+        XCTAssertEqual(Int(response.bufferLength), buffer.count)
+        XCTAssertEqual(response.bufferCRC, buffer.crc16)
+
+        let messages = buffer.glucose
+
+        XCTAssertNotEqual(response.startTime, messages.first!.timestamp)
+        XCTAssertNotEqual(response.endTime, messages.last!.timestamp)
+        XCTAssertFalse(messages.first!.timestamp <= messages.last!.timestamp)
+
+        XCTAssertEqual(191, messages.count)
     }
 }

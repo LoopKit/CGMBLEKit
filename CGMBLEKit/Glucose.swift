@@ -43,6 +43,7 @@ public struct Glucose {
         self.glucoseMessage = glucoseMessage
         self.timeMessage = timeMessage
         self.status = TransmitterStatus(rawValue: status)
+        self.activationDate = activationDate
 
         sessionStartDate = activationDate.addingTimeInterval(TimeInterval(timeMessage.sessionStartTime))
         readDate = activationDate.addingTimeInterval(TimeInterval(glucoseMessage.timestamp))
@@ -52,6 +53,7 @@ public struct Glucose {
     // MARK: - Transmitter Info
     public let transmitterID: String
     public let status: TransmitterStatus
+    public let activationDate: Date
     public let sessionStartDate: Date
 
     // MARK: - Glucose Info
@@ -78,6 +80,15 @@ public struct Glucose {
 
     public var trend: Int {
         return Int(glucoseMessage.trend)
+    }
+
+    public var trendRate: HKQuantity? {
+        guard glucoseMessage.trend < Int8.max && glucoseMessage.trend > Int8.min else {
+            return nil
+        }
+
+        let unit = HKUnit.milligramsPerDeciliterPerMinute
+        return HKQuantity(unit: unit, doubleValue: Double(glucoseMessage.trend) / 10)
     }
 
     // An identifier for this reading thatʼs consistent between backfill/live data

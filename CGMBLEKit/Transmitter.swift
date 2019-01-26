@@ -68,7 +68,7 @@ public final class Transmitter: BluetoothManagerDelegate {
     /// The initial activation date of the transmitter
     private var activationDate: Date?
 
-    /// The last-seen time message
+    /// The last-observed time message
     private var lastTimeMessage: TransmitterTimeRxMessage? {
         didSet {
             if let time = lastTimeMessage {
@@ -78,6 +78,9 @@ public final class Transmitter: BluetoothManagerDelegate {
             }
         }
     }
+
+    /// The last-observed calibration message
+    private var lastCalibrationMessage: CalibrationDataRxMessage?
 
     /// The backfill data buffer
     private var backfillBuffer: GlucoseBackfillFrameBuffer?
@@ -136,7 +139,7 @@ public final class Transmitter: BluetoothManagerDelegate {
 
     // MARK: - BluetoothManagerDelegate
 
-    func bluetoothManager(_ manager: BluetoothManager, isReadyWithError error: Error?) {
+    func bluetoothManager(_ manager: BluetoothManager, peripheralManager: PeripheralManager, isReadyWithError error: Error?) {
         if let error = error {
             delegateQueue.async {
                 self.delegate?.transmitter(self, didError: error)
@@ -144,7 +147,7 @@ public final class Transmitter: BluetoothManagerDelegate {
             return
         }
 
-        manager.peripheralManager?.perform { (peripheral) in
+        peripheralManager.perform { (peripheral) in
             if self.passiveModeEnabled {
                 self.log.debug("Listening for control commands in passive mode")
                 do {
@@ -236,13 +239,12 @@ public final class Transmitter: BluetoothManagerDelegate {
                 let activationDate = activationDate
             {
                 delegateQueue.async {
-                    self.delegate?.transmitter(self, didRead: Glucose(transmitterID: self.id.id, glucoseMessage: glucoseMessage, timeMessage: timeMessage, activationDate: activationDate))
+                    self.delegate?.transmitter(self, didRead: Glucose(transmitterID: self.id.id, glucoseMessage: glucoseMessage, timeMessage: timeMessage, calibrationMessage: self.lastCalibrationMessage, activationDate: activationDate))
                 }
             }
         case .transmitterTimeRx?:
             if let timeMessage = TransmitterTimeRxMessage(data: response) {
                 self.lastTimeMessage = timeMessage
-                return
             }
         case .glucoseBackfillRx?:
             guard let backfillMessage = GlucoseBackfillRxMessage(data: response) else {
@@ -277,8 +279,9 @@ public final class Transmitter: BluetoothManagerDelegate {
                 break
             }
 
-            guard glucose.first!.glucoseMessage.timestamp >= backfillMessage.startTime,
-                glucose.last!.glucoseMessage.timestamp <= backfillMessage.endTime
+            guard glucose.first!.glucoseMessage.timestamp == backfillMessage.startTime,
+                glucose.last!.glucoseMessage.timestamp == backfillMessage.endTime,
+                glucose.first!.glucoseMessage.timestamp <= glucose.last!.glucoseMessage.timestamp
             else {
                 log.error("GlucoseBackfillRxMessage time interval not reflected in glucose: %{public}@, buffer: %{public}@", response.hexadecimalString, String(reflecting: backfillBuffer))
                 break
@@ -287,6 +290,12 @@ public final class Transmitter: BluetoothManagerDelegate {
             delegateQueue.async {
                 self.delegate?.transmitter(self, didReadBackfill: glucose)
             }
+        case .calibrationDataRx?:
+            guard let calibrationDataMessage = CalibrationDataRxMessage(data: response) else {
+                break
+            }
+
+            lastCalibrationMessage = calibrationDataMessage
         case .none:
             delegateQueue.async {
                 self.delegate?.transmitter(self, didReadUnknownData: response)
