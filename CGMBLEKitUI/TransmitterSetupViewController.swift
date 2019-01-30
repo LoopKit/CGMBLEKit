@@ -50,6 +50,10 @@ class TransmitterSetupViewController: UINavigationController, CGMManagerSetupVie
             }
         }
 
+        if let setupViewController = viewController as? SetupTableViewController {
+            setupViewController.delegate = self
+        }
+
         // Set state values
         switch viewController {
         case _ as TransmitterIDSetupViewController:
@@ -79,5 +83,11 @@ class TransmitterSetupViewController: UINavigationController, CGMManagerSetupVie
             navigationBar.isTranslucent = true
             navigationBar.shadowImage = nil
         }
+    }
+}
+
+extension TransmitterSetupViewController: SetupTableViewControllerDelegate {
+    public func setupTableViewControllerCancelButtonPressed(_ viewController: SetupTableViewController) {
+        setupDelegate?.cgmManagerSetupViewControllerDidCancel(self)
     }
 }

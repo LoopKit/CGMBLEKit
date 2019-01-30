@@ -18,8 +18,11 @@ extension G5CGMManager: CGMManagerUI {
         return setupVC
     }
 
-    public func settingsViewController(for glucoseUnit: HKUnit) -> UIViewController {
-        return TransmitterSettingsViewController(cgmManager: self, glucoseUnit: .milligramsPerDeciliter)
+    public func settingsViewController(for glucoseUnit: HKUnit) -> (UIViewController & CompletionNotifying) {
+        let settings = TransmitterSettingsViewController(cgmManager: self, glucoseUnit: .milligramsPerDeciliter)
+        let nav = SettingsNavigationViewController()
+        nav.pushViewController(settings, animated: false)
+        return nav
     }
 
     public var smallImage: UIImage? {
@@ -35,8 +38,11 @@ extension G6CGMManager: CGMManagerUI {
         return setupVC
     }
 
-    public func settingsViewController(for glucoseUnit: HKUnit) -> UIViewController {
-        return TransmitterSettingsViewController(cgmManager: self, glucoseUnit: .milligramsPerDeciliter)
+    public func settingsViewController(for glucoseUnit: HKUnit) -> (UIViewController & CompletionNotifying) {
+        let settings = TransmitterSettingsViewController(cgmManager: self, glucoseUnit: .milligramsPerDeciliter)
+        let nav = SettingsNavigationViewController()
+        nav.pushViewController(settings, animated: false)
+        return nav
     }
 
     public var smallImage: UIImage? {
