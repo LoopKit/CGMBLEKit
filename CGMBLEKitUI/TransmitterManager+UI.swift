@@ -12,7 +12,7 @@ import CGMBLEKit
 
 
 extension G5CGMManager: CGMManagerUI {
-    public static func setupViewController() -> (UIViewController & CGMManagerSetupViewController)? {
+    public static func setupViewController() -> (UIViewController & CGMManagerSetupViewController & CompletionNotifying)? {
         let setupVC = TransmitterSetupViewController.instantiateFromStoryboard()
         setupVC.cgmManagerType = self
         return setupVC
@@ -31,7 +31,7 @@ extension G5CGMManager: CGMManagerUI {
 
 
 extension G6CGMManager: CGMManagerUI {
-    public static func setupViewController() -> (UIViewController & CGMManagerSetupViewController)? {
+    public static func setupViewController() -> (UIViewController & CGMManagerSetupViewController & CompletionNotifying)? {
         let setupVC = TransmitterSetupViewController.instantiateFromStoryboard()
         setupVC.cgmManagerType = self
         return setupVC

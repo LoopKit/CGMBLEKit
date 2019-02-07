@@ -11,12 +11,14 @@ import LoopKitUI
 import CGMBLEKit
 import ShareClient
 
-class TransmitterSetupViewController: UINavigationController, CGMManagerSetupViewController, UINavigationControllerDelegate {
+class TransmitterSetupViewController: UINavigationController, CGMManagerSetupViewController, UINavigationControllerDelegate, CompletionNotifying {
     class func instantiateFromStoryboard() -> TransmitterSetupViewController {
         return UIStoryboard(name: "TransmitterManagerSetup", bundle: Bundle(for: TransmitterSetupViewController.self)).instantiateInitialViewController() as! TransmitterSetupViewController
     }
 
     weak var setupDelegate: CGMManagerSetupViewControllerDelegate?
+
+    weak var completionDelegate: CompletionDelegate?
 
     var cgmManagerType: TransmitterManager.Type!
 
@@ -31,6 +33,7 @@ class TransmitterSetupViewController: UINavigationController, CGMManagerSetupVie
     func completeSetup(state: TransmitterManagerState) {
         if let manager = cgmManagerType.init(state: state) as? CGMManagerUI {
             setupDelegate?.cgmManagerSetupViewController(self, didSetUpCGMManager: manager)
+            completionDelegate?.completionNotifyingDidComplete(self)
         }
     }
 
@@ -88,6 +91,6 @@ class TransmitterSetupViewController: UINavigationController, CGMManagerSetupVie
 
 extension TransmitterSetupViewController: SetupTableViewControllerDelegate {
     public func setupTableViewControllerCancelButtonPressed(_ viewController: SetupTableViewController) {
-        setupDelegate?.cgmManagerSetupViewControllerDidCancel(self)
+        completionDelegate?.completionNotifyingDidComplete(self)
     }
 }
