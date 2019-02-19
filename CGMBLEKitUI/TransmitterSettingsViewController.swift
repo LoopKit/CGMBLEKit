@@ -45,6 +45,18 @@ class TransmitterSettingsViewController: UITableViewController {
 
         tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.className)
         tableView.register(TextButtonTableViewCell.self, forCellReuseIdentifier: TextButtonTableViewCell.className)
+        let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneTapped(_:)))
+        self.navigationItem.setRightBarButton(button, animated: false)
+    }
+
+    @objc func doneTapped(_ sender: Any) {
+        complete()
+    }
+
+    private func complete() {
+        if let nav = navigationController as? SettingsNavigationViewController {
+            nav.notifyComplete()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -315,7 +327,7 @@ class TransmitterSettingsViewController: UITableViewController {
         case .delete:
             let confirmVC = UIAlertController(cgmDeletionHandler: {
                 self.cgmManager.cgmManagerDelegate?.cgmManagerWantsDeletion(self.cgmManager)
-                self.navigationController?.popViewController(animated: true)
+                self.complete()
             })
 
             present(confirmVC, animated: true) {
