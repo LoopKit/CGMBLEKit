@@ -1,2 +1,2 @@
-github "LoopKit/LoopKit" "pumpmanager-updates"
-github "LoopKit/dexcom-share-client-swift" "omnikit"
+github "LoopKit/LoopKit" "dev"
+github "LoopKit/dexcom-share-client-swift" "dev"
