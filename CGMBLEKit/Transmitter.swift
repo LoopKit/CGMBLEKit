@@ -279,8 +279,9 @@ public final class Transmitter: BluetoothManagerDelegate {
                 break
             }
 
-            guard glucose.first!.glucoseMessage.timestamp >= backfillMessage.startTime,
-                glucose.last!.glucoseMessage.timestamp <= backfillMessage.endTime
+            guard glucose.first!.glucoseMessage.timestamp == backfillMessage.startTime,
+                glucose.last!.glucoseMessage.timestamp == backfillMessage.endTime,
+                glucose.first!.glucoseMessage.timestamp <= glucose.last!.glucoseMessage.timestamp
             else {
                 log.error("GlucoseBackfillRxMessage time interval not reflected in glucose: %{public}@, buffer: %{public}@", response.hexadecimalString, String(reflecting: backfillBuffer))
                 break

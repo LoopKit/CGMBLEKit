@@ -24,6 +24,8 @@ class TransmitterSettingsViewController: UITableViewController {
         self.glucoseUnit = glucoseUnit
 
         super.init(style: .grouped)
+
+        cgmManager.addObserver(self)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -358,6 +360,15 @@ class TransmitterSettingsViewController: UITableViewController {
         }
 
         return indexPath
+    }
+}
+
+
+extension TransmitterSettingsViewController: TransmitterManagerObserver {
+    func transmitterManagerDidUpdateLatestReading(_ manager: TransmitterManager) {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
 

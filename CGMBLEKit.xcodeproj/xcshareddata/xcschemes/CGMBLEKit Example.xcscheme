@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43A8EC51210D0A7400A81379"
-               BuildableName = "CGMBLEKitUI.framework"
-               BlueprintName = "CGMBLEKitUI"
+               BlueprintIdentifier = "437AFEF62038EC43008C4892"
+               BuildableName = "CGMBLEKit Example.app"
+               BlueprintName = "CGMBLEKit Example"
                ReferencedContainer = "container:CGMBLEKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,6 +29,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "437AFEF62038EC43008C4892"
+            BuildableName = "CGMBLEKit Example.app"
+            BlueprintName = "CGMBLEKit Example"
+            ReferencedContainer = "container:CGMBLEKit.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -42,15 +51,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43A8EC51210D0A7400A81379"
-            BuildableName = "CGMBLEKitUI.framework"
-            BlueprintName = "CGMBLEKitUI"
+            BlueprintIdentifier = "437AFEF62038EC43008C4892"
+            BuildableName = "CGMBLEKit Example.app"
+            BlueprintName = "CGMBLEKit Example"
             ReferencedContainer = "container:CGMBLEKit.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -60,15 +70,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43A8EC51210D0A7400A81379"
-            BuildableName = "CGMBLEKitUI.framework"
-            BlueprintName = "CGMBLEKitUI"
+            BlueprintIdentifier = "437AFEF62038EC43008C4892"
+            BuildableName = "CGMBLEKit Example.app"
+            BlueprintName = "CGMBLEKit Example"
             ReferencedContainer = "container:CGMBLEKit.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
