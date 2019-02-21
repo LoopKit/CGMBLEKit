@@ -8,6 +8,9 @@ before_install:
 # - gem install cocoapods # Since Travis is not always on latest version
 # - pod install --project-directory=Example
 
+before_script:
+- git config --global protocol.version 1
+
 script:
 # Build cocoapods example project
 # - set -o pipefail && xcodebuild -workspace Example/xDripG5.xcworkspace -scheme xDripG5-Example -sdk iphonesimulator -destination name="iPhone SE" ONLY_ACTIVE_ARCH=NO | xcpretty
