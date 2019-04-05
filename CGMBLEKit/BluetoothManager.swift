@@ -112,7 +112,7 @@ class BluetoothManager: NSObject {
 
     // MARK: - Synchronization
 
-    private let managerQueue = DispatchQueue(label: "com.loudnate.CGMBLEKit.bluetoothManagerQueue", qos: .utility)
+    private let managerQueue = DispatchQueue(label: "com.loudnate.CGMBLEKit.bluetoothManagerQueue", qos: .unspecified)
 
     override init() {
         super.init()
@@ -190,7 +190,7 @@ class BluetoothManager: NSObject {
 
      */
     fileprivate func scanAfterDelay() {
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.utility).async {
+        DispatchQueue.global(qos: .utility).async {
             Thread.sleep(forTimeInterval: 2)
 
             self.scanForPeripheral()

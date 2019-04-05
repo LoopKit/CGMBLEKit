@@ -34,7 +34,7 @@ class PeripheralManager: NSObject {
     }
 
     /// The dispatch queue used to serialize operations on the peripheral
-    let queue = DispatchQueue(label: "com.loopkit.PeripheralManager.queue", qos: .utility)
+    let queue = DispatchQueue(label: "com.loopkit.PeripheralManager.queue", qos: .unspecified)
 
     /// The condition used to signal command completion
     private let commandLock = NSCondition()
@@ -397,6 +397,8 @@ extension PeripheralManager: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         commandLock.lock()
 
+        var notifyDelegate = false
+
         if let index = commandConditions.index(where: { (condition) -> Bool in
             if case .valueUpdate(characteristic: characteristic, matching: let matching) = condition {
                 return matching?(characteristic.value) ?? true
@@ -413,13 +415,15 @@ extension PeripheralManager: CBPeripheralDelegate {
         } else if let macro = configuration.valueUpdateMacros[characteristic.uuid] {
             macro(self)
         } else if commandConditions.isEmpty {
-            defer { // execute after the unlock
-                // If we weren't expecting this notification, pass it along to the delegate
-                delegate?.peripheralManager(self, didUpdateValueFor: characteristic)
-            }
+            notifyDelegate = true // execute after the unlock
         }
 
         commandLock.unlock()
+
+        if notifyDelegate {
+            // If we weren't expecting this notification, pass it along to the delegate
+            delegate?.peripheralManager(self, didUpdateValueFor: characteristic)
+        }
     }
 
     func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
