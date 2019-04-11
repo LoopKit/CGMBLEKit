@@ -186,6 +186,13 @@
 			remoteGlobalIDString = 43CABDF21C3506F100005705;
 			remoteInfo = xDripG5;
 		};
+		A93AF421225EE46D002D9E0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43CABDEA1C3506F100005705 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43CABDF21C3506F100005705;
+			remoteInfo = CGMBLEKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -684,6 +691,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A93AF422225EE46D002D9E0E /* PBXTargetDependency */,
 				43A8EC5F210D0F6E00A81379 /* PBXTargetDependency */,
 			);
 			name = CGMBLEKitUI;
@@ -1070,6 +1078,11 @@
 			isa = PBXTargetDependency;
 			target = 43CABDF21C3506F100005705 /* CGMBLEKit */;
 			targetProxy = 43CABDFF1C3506F100005705 /* PBXContainerItemProxy */;
+		};
+		A93AF422225EE46D002D9E0E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43CABDF21C3506F100005705 /* CGMBLEKit */;
+			targetProxy = A93AF421225EE46D002D9E0E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
