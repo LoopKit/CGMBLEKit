@@ -25,7 +25,7 @@ class TransmitterSettingsViewController: UITableViewController {
 
         super.init(style: .grouped)
 
-        cgmManager.addObserver(self)
+        cgmManager.addObserver(self, queue: .main)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -326,8 +326,11 @@ class TransmitterSettingsViewController: UITableViewController {
             }
         case .delete:
             let confirmVC = UIAlertController(cgmDeletionHandler: {
-                self.cgmManager.cgmManagerDelegate?.cgmManagerWantsDeletion(self.cgmManager)
-                self.complete()
+                self.cgmManager.notifyDelegateOfDeletion {
+                    DispatchQueue.main.async {
+                        self.complete()
+                    }
+                }
             })
 
             present(confirmVC, animated: true) {
@@ -366,9 +369,7 @@ class TransmitterSettingsViewController: UITableViewController {
 
 extension TransmitterSettingsViewController: TransmitterManagerObserver {
     func transmitterManagerDidUpdateLatestReading(_ manager: TransmitterManager) {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        tableView.reloadData()
     }
 }
 
