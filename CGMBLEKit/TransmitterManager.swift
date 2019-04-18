@@ -49,7 +49,7 @@ public protocol TransmitterManagerObserver: class {
 public class TransmitterManager: TransmitterDelegate {
     private var state: TransmitterManagerState
 
-    private let observers = WeakObserverSet<TransmitterManagerObserver>()
+    private let observers = WeakSynchronizedSet<TransmitterManagerObserver>()
 
     public required init(state: TransmitterManagerState) {
         self.state = state
@@ -248,11 +248,11 @@ public class TransmitterManager: TransmitterDelegate {
 // MARK: - Observer management
 extension TransmitterManager {
     public func addObserver(_ observer: TransmitterManagerObserver, queue: DispatchQueue) {
-        observers.addObserver(observer, queue: queue)
+        observers.insert(observer, queue: queue)
     }
 
     public func removeObserver(_ observer: TransmitterManagerObserver) {
-        observers.removeObserver(observer)
+        observers.removeElement(observer)
     }
 
     private func notifyObserversOfLatestReading() {
