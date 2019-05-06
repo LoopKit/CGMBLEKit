@@ -49,7 +49,7 @@ public protocol TransmitterManagerObserver: class {
 public class TransmitterManager: TransmitterDelegate {
     private var state: TransmitterManagerState
 
-    private let observers = Locked(NSHashTable<AnyObject>.weakObjects())
+    private let observers = WeakSynchronizedSet<TransmitterManagerObserver>()
 
     public required init(state: TransmitterManagerState) {
         self.state = state
@@ -73,9 +73,21 @@ public class TransmitterManager: TransmitterDelegate {
 
     public let shouldSyncToRemoteService = false
 
-    weak var delegate: CGMManagerDelegate? {
-        didSet {
-            shareManager.cgmManagerDelegate = delegate
+    public var cgmManagerDelegate: CGMManagerDelegate? {
+        get {
+            return shareManager.cgmManagerDelegate
+        }
+        set {
+            shareManager.cgmManagerDelegate = newValue
+        }
+    }
+
+    public var delegateQueue: DispatchQueue! {
+        get {
+            return shareManager.delegateQueue
+        }
+        set {
+            shareManager.delegateQueue = newValue
         }
     }
 
@@ -150,14 +162,16 @@ public class TransmitterManager: TransmitterDelegate {
             "dataIsFresh: \(dataIsFresh)",
             "providesBLEHeartbeat: \(providesBLEHeartbeat)",
             shareManager.debugDescription,
-            "observers.count: \(observers.value.count)",
+            "observers.count: \(observers.cleanupDeallocatedElements().count)",
             ""
         ].joined(separator: "\n")
     }
 
     private func updateDelegate(with result: CGMResult) {
         if let manager = self as? CGMManager {
-            delegate?.cgmManager(manager, didUpdateWith: result)
+            shareManager.delegate.notify { (delegate) in
+                delegate?.cgmManager(manager, didUpdateWith: result)
+            }
         }
 
         notifyObserversOfLatestReading()
@@ -233,25 +247,17 @@ public class TransmitterManager: TransmitterDelegate {
 
 // MARK: - Observer management
 extension TransmitterManager {
-    public func addObserver(_ observer: TransmitterManagerObserver) {
-        _ = observers.mutate { (observerTable) in
-            observerTable.add(observer as AnyObject)
-        }
+    public func addObserver(_ observer: TransmitterManagerObserver, queue: DispatchQueue) {
+        observers.insert(observer, queue: queue)
     }
 
     public func removeObserver(_ observer: TransmitterManagerObserver) {
-        _ = observers.mutate { (observerTable) in
-            observerTable.remove(observer as AnyObject)
-        }
+        observers.removeElement(observer)
     }
 
     private func notifyObserversOfLatestReading() {
-        let observers = self.observers.value.objectEnumerator()
-
-        for observer in observers {
-            if let observer = observer as? TransmitterManagerObserver {
-                observer.transmitterManagerDidUpdateLatestReading(self)
-            }
+        observers.forEach { (observer) in
+            observer.transmitterManagerDidUpdateLatestReading(self)
         }
     }
 }
@@ -264,15 +270,6 @@ public class G5CGMManager: TransmitterManager, CGMManager {
 
     public var appURL: URL? {
         return URL(string: "dexcomcgm://")
-    }
-
-    public var cgmManagerDelegate: CGMManagerDelegate? {
-        get {
-            return self.delegate
-        }
-        set {
-            self.delegate = newValue
-        }
     }
 
     public override var device: HKDevice? {
@@ -297,15 +294,6 @@ public class G6CGMManager: TransmitterManager, CGMManager {
 
     public var appURL: URL? {
         return URL(string: "dexcomg6://")
-    }
-
-    public var cgmManagerDelegate: CGMManagerDelegate? {
-        get {
-            return self.delegate
-        }
-        set {
-            self.delegate = newValue
-        }
     }
 
     public override var device: HKDevice? {
