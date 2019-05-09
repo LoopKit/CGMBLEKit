@@ -775,9 +775,9 @@
 			productReference = 43CABDFD1C3506F100005705 /* CGMBLEKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		A9AD37DE225EEE850058C179 /* CGMBLEKit watchOS */ = {
+		A9AD37DE225EEE850058C179 /* CGMBLEKit-watchOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A9AD381B225EEE850058C179 /* Build configuration list for PBXNativeTarget "CGMBLEKit watchOS" */;
+			buildConfigurationList = A9AD381B225EEE850058C179 /* Build configuration list for PBXNativeTarget "CGMBLEKit-watchOS" */;
 			buildPhases = (
 				A9AD37DF225EEE850058C179 /* Sources */,
 				A9AD3812225EEE850058C179 /* Frameworks */,
@@ -788,7 +788,7 @@
 			);
 			dependencies = (
 			);
-			name = "CGMBLEKit watchOS";
+			name = "CGMBLEKit-watchOS";
 			productName = xDripG5;
 			productReference = A9AD381E225EEE850058C179 /* CGMBLEKit.framework */;
 			productType = "com.apple.product-type.framework";
@@ -862,7 +862,7 @@
 			projectRoot = "";
 			targets = (
 				43CABDF21C3506F100005705 /* CGMBLEKit */,
-				A9AD37DE225EEE850058C179 /* CGMBLEKit watchOS */,
+				A9AD37DE225EEE850058C179 /* CGMBLEKit-watchOS */,
 				43A8EC51210D0A7400A81379 /* CGMBLEKitUI */,
 				43CABDFC1C3506F100005705 /* CGMBLEKitTests */,
 				437AFEF62038EC43008C4892 /* CGMBLEKit Example */,
@@ -1784,7 +1784,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A9AD381B225EEE850058C179 /* Build configuration list for PBXNativeTarget "CGMBLEKit watchOS" */ = {
+		A9AD381B225EEE850058C179 /* Build configuration list for PBXNativeTarget "CGMBLEKit-watchOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A9AD381C225EEE850058C179 /* Debug */,

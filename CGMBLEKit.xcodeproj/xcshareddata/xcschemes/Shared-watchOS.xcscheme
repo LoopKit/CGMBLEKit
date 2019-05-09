@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A9AD37DE225EEE850058C179"
                BuildableName = "CGMBLEKit.framework"
-               BlueprintName = "CGMBLEKit watchOS"
+               BlueprintName = "CGMBLEKit-watchOS"
                ReferencedContainer = "container:CGMBLEKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,7 +47,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A9AD37DE225EEE850058C179"
             BuildableName = "CGMBLEKit.framework"
-            BlueprintName = "CGMBLEKit watchOS"
+            BlueprintName = "CGMBLEKit-watchOS"
             ReferencedContainer = "container:CGMBLEKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,7 +65,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A9AD37DE225EEE850058C179"
             BuildableName = "CGMBLEKit.framework"
-            BlueprintName = "CGMBLEKit watchOS"
+            BlueprintName = "CGMBLEKit-watchOS"
             ReferencedContainer = "container:CGMBLEKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
