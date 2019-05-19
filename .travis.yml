@@ -1,18 +1,13 @@
 language: objective-c
 osx_image: xcode10.2
 
-# cache: cocoapods
-# podfile: Example/Podfile
-
-before_install:
-# - gem install cocoapods # Since Travis is not always on latest version
-# - pod install --project-directory=Example
+before_script:
+    - carthage bootstrap
 
 script:
-# Build cocoapods example project
-# - set -o pipefail && xcodebuild -workspace Example/xDripG5.xcworkspace -scheme xDripG5-Example -sdk iphonesimulator -destination name="iPhone SE" ONLY_ACTIVE_ARCH=NO | xcpretty
-# Build Travis project and run tests
-- xcodebuild -project CGMBLEKit.xcodeproj -scheme CGMBLEKit build -destination name="iPhone SE" test
-- xcodebuild -project CGMBLEKit.xcodeproj -scheme "CGMBLEKit Example" build -destination name="iPhone SE"
-- xcodebuild -project CGMBLEKit.xcodeproj -scheme ResetTransmitter build -destination name="iPhone SE"
-# - pod lib lint
+    # Build frameworks and run tests
+    - xcodebuild -project CGMBLEKit.xcodeproj -scheme Shared build -destination name="iPhone SE" test 
+    # Build apps
+    - xcodebuild -project CGMBLEKit.xcodeproj -scheme "CGMBLEKit Example" build -destination name="iPhone SE"
+    - xcodebuild -project CGMBLEKit.xcodeproj -scheme ResetTransmitter build -destination name="iPhone SE"
+
