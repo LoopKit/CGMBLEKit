@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1020"
+   LastUpgradeVersion = "1010"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
-      buildImplicitDependencies = "YES">
+      buildImplicitDependencies = "NO">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43CABDF21C3506F100005705"
+               BlueprintIdentifier = "A9AD37DE225EEE850058C179"
                BuildableName = "CGMBLEKit.framework"
-               BlueprintName = "CGMBLEKit"
+               BlueprintName = "CGMBLEKit-watchOS"
                ReferencedContainer = "container:CGMBLEKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43CABDFC1C3506F100005705"
-               BuildableName = "CGMBLEKitTests.xctest"
-               BlueprintName = "CGMBLEKitTests"
-               ReferencedContainer = "container:CGMBLEKit.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43CABDF21C3506F100005705"
-            BuildableName = "CGMBLEKit.framework"
-            BlueprintName = "CGMBLEKit"
-            ReferencedContainer = "container:CGMBLEKit.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -64,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43CABDF21C3506F100005705"
+            BlueprintIdentifier = "A9AD37DE225EEE850058C179"
             BuildableName = "CGMBLEKit.framework"
-            BlueprintName = "CGMBLEKit"
+            BlueprintName = "CGMBLEKit-watchOS"
             ReferencedContainer = "container:CGMBLEKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "43CABDF21C3506F100005705"
+            BlueprintIdentifier = "A9AD37DE225EEE850058C179"
             BuildableName = "CGMBLEKit.framework"
-            BlueprintName = "CGMBLEKit"
+            BlueprintName = "CGMBLEKit-watchOS"
             ReferencedContainer = "container:CGMBLEKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
