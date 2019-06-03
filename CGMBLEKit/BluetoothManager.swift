@@ -222,6 +222,8 @@ extension BluetoothManager: CBCentralManagerDelegate {
         case .poweredOn:
             managerQueue_scanForPeripheral()
         case .resetting, .poweredOff, .unauthorized, .unknown, .unsupported:
+            fallthrough
+        @unknown default:
             if central.isScanning {
                 central.stopScan()
             }
