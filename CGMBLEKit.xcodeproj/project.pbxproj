@@ -54,17 +54,20 @@
 		437AFF132038EDEC008C4892 /* CGMBLEKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* CGMBLEKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43846AC61D8F896C00799272 /* CalibrationDataRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43846AC51D8F896C00799272 /* CalibrationDataRxMessage.swift */; };
 		43846AC81D8F89BE00799272 /* CalibrationDataRxMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43846AC71D8F89BE00799272 /* CalibrationDataRxMessageTests.swift */; };
+		438621C92292073700741DFE /* LoopKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC62210D4D1900A81379 /* LoopKit.framework */; };
+		438621CA2292073700741DFE /* LoopKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC62210D4D1900A81379 /* LoopKit.framework */; };
+		438621CB2292073800741DFE /* LoopKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC62210D4D1900A81379 /* LoopKit.framework */; };
+		438621CC2292073800741DFE /* LoopKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC62210D4D1900A81379 /* LoopKit.framework */; };
+		438621CD2292074900741DFE /* ShareClientUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4325E9EE210EAF3F00969CE5 /* ShareClientUI.framework */; };
+		438621CE2292074A00741DFE /* ShareClientUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4325E9EE210EAF3F00969CE5 /* ShareClientUI.framework */; };
 		43880F981D9E19FC009061A8 /* TransmitterVersionRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43880F971D9E19FC009061A8 /* TransmitterVersionRxMessage.swift */; };
 		43880F9A1D9E1BD7009061A8 /* TransmitterVersionRxMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43880F991D9E1BD7009061A8 /* TransmitterVersionRxMessageTests.swift */; };
-		43A8EC48210D09BD00A81379 /* LoopKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC44210CF81A00A81379 /* LoopKit.framework */; };
 		43A8EC4A210D09BE00A81379 /* LoopKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC49210D09BE00A81379 /* LoopKitUI.framework */; };
-		43A8EC4B210D09DA00A81379 /* LoopKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC44210CF81A00A81379 /* LoopKit.framework */; };
 		43A8EC4C210D09DA00A81379 /* LoopKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC49210D09BE00A81379 /* LoopKitUI.framework */; };
 		43A8EC56210D0A7400A81379 /* CGMBLEKitUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 43A8EC54210D0A7400A81379 /* CGMBLEKitUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43A8EC59210D0A7400A81379 /* CGMBLEKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC52210D0A7400A81379 /* CGMBLEKitUI.framework */; };
 		43A8EC5A210D0A7400A81379 /* CGMBLEKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC52210D0A7400A81379 /* CGMBLEKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		43A8EC60210D0F8200A81379 /* LoopKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC49210D09BE00A81379 /* LoopKitUI.framework */; };
-		43A8EC61210D0F8200A81379 /* LoopKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC44210CF81A00A81379 /* LoopKit.framework */; };
 		43A8EC64210D530B00A81379 /* LoopKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC62210D4D1900A81379 /* LoopKit.framework */; };
 		43A8EC71210E629300A81379 /* ShareClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC70210E629300A81379 /* ShareClient.framework */; };
 		43A8EC72210E633100A81379 /* ShareClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC70210E629300A81379 /* ShareClient.framework */; };
@@ -175,7 +178,6 @@
 		A9D99F48225EE99300073DF6 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D99F47225EE99300073DF6 /* HealthKit.framework */; };
 		A9D99F49225EE99A00073DF6 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D99F47225EE99300073DF6 /* HealthKit.framework */; };
 		C19084BB203932BD00AA47F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C19084B9203932BD00AA47F3 /* Main.storyboard */; };
-		C199BEDD21495792007CD6E7 /* LoopKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC44210CF81A00A81379 /* LoopKit.framework */; };
 		C1CD8B0C203931AD00A8F498 /* NSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD8B0A203931AD00A8F498 /* NSUserDefaults.swift */; };
 		E71BFF7E20673BD700C876A2 /* CommandQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71BFF7D20673BD700C876A2 /* CommandQueue.swift */; };
 		E752B4102063C31B0063027D /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = E752B40F2063C31B0063027D /* Command.swift */; };
@@ -317,11 +319,11 @@
 		437AFF002038EC43008C4892 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		437AFF032038EC43008C4892 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		437AFF052038EC43008C4892 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		437DE50B229C8A1D003B1074 /* copy-frameworks.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "copy-frameworks.sh"; sourceTree = "<group>"; };
 		43846AC51D8F896C00799272 /* CalibrationDataRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalibrationDataRxMessage.swift; sourceTree = "<group>"; };
 		43846AC71D8F89BE00799272 /* CalibrationDataRxMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalibrationDataRxMessageTests.swift; sourceTree = "<group>"; };
 		43880F971D9E19FC009061A8 /* TransmitterVersionRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterVersionRxMessage.swift; sourceTree = "<group>"; };
 		43880F991D9E1BD7009061A8 /* TransmitterVersionRxMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterVersionRxMessageTests.swift; sourceTree = "<group>"; };
-		43A8EC44210CF81A00A81379 /* LoopKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LoopKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43A8EC49210D09BE00A81379 /* LoopKitUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LoopKitUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43A8EC52210D0A7400A81379 /* CGMBLEKitUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CGMBLEKitUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43A8EC54210D0A7400A81379 /* CGMBLEKitUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGMBLEKitUI.h; sourceTree = "<group>"; };
@@ -390,8 +392,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				433F2E5C2079BB7D00808FA5 /* CGMBLEKit.framework in Frameworks */,
-				43A8EC48210D09BD00A81379 /* LoopKit.framework in Frameworks */,
 				43A8EC4A210D09BE00A81379 /* LoopKitUI.framework in Frameworks */,
+				438621CC2292073800741DFE /* LoopKit.framework in Frameworks */,
+				438621CE2292074A00741DFE /* ShareClientUI.framework in Frameworks */,
 				43A8EC71210E629300A81379 /* ShareClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,10 +405,11 @@
 			files = (
 				A9D99F49225EE99A00073DF6 /* HealthKit.framework in Frameworks */,
 				437AFF122038EDEC008C4892 /* CGMBLEKit.framework in Frameworks */,
-				43A8EC4B210D09DA00A81379 /* LoopKit.framework in Frameworks */,
 				43A8EC59210D0A7400A81379 /* CGMBLEKitUI.framework in Frameworks */,
+				438621CD2292074900741DFE /* ShareClientUI.framework in Frameworks */,
 				43A8EC4C210D09DA00A81379 /* LoopKitUI.framework in Frameworks */,
 				43A8EC74210E635700A81379 /* ShareClient.framework in Frameworks */,
+				438621CB2292073800741DFE /* LoopKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,8 +418,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4379CFDA210EB3D200AADC79 /* CGMBLEKit.framework in Frameworks */,
+				438621C92292073700741DFE /* LoopKit.framework in Frameworks */,
 				43A8EC60210D0F8200A81379 /* LoopKitUI.framework in Frameworks */,
-				43A8EC61210D0F8200A81379 /* LoopKit.framework in Frameworks */,
 				43A8EC73210E633B00A81379 /* ShareClient.framework in Frameworks */,
 				4325E9EF210EAF4000969CE5 /* ShareClientUI.framework in Frameworks */,
 			);
@@ -435,9 +439,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C199BEDD21495792007CD6E7 /* LoopKit.framework in Frameworks */,
 				A93AF424225EE63D002D9E0E /* ShareClient.framework in Frameworks */,
 				43CABDFE1C3506F100005705 /* CGMBLEKit.framework in Frameworks */,
+				438621CA2292073700741DFE /* LoopKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,12 +505,19 @@
 				A9D99F47225EE99300073DF6 /* HealthKit.framework */,
 				A9AD3821225EEEFB0058C179 /* HealthKit.framework */,
 				43A8EC62210D4D1900A81379 /* LoopKit.framework */,
-				43A8EC44210CF81A00A81379 /* LoopKit.framework */,
 				43A8EC49210D09BE00A81379 /* LoopKitUI.framework */,
 				43A8EC70210E629300A81379 /* ShareClient.framework */,
 				4325E9EE210EAF3F00969CE5 /* ShareClientUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		437DE50A229C8A0D003B1074 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				437DE50B229C8A1D003B1074 /* copy-frameworks.sh */,
+			);
+			path = Scripts;
 			sourceTree = "<group>";
 		};
 		43A8EC53210D0A7400A81379 /* CGMBLEKitUI */ = {
@@ -537,6 +548,7 @@
 				4308103420785FEA00B66384 /* ResetTransmitter */,
 				43CABDF41C3506F100005705 /* Products */,
 				437AFF172038EDF9008C4892 /* Frameworks */,
+				437DE50A229C8A0D003B1074 /* Scripts */,
 			);
 			sourceTree = "<group>";
 		};
@@ -805,7 +817,7 @@
 				TargetAttributes = {
 					4308103220785FEA00B66384 = {
 						CreatedOnToolsVersion = 9.3;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -815,7 +827,7 @@
 					};
 					437AFEF62038EC43008C4892 = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -825,16 +837,16 @@
 					};
 					43A8EC51210D0A7400A81379 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Manual;
 					};
 					43CABDF21C3506F100005705 = {
 						CreatedOnToolsVersion = 7.2;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 					};
 					43CABDFC1C3506F100005705 = {
 						CreatedOnToolsVersion = 7.2;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -947,7 +959,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CARTHAGE_BUILD_DIR=\"${SRCROOT}/Carthage/Build\"\nif [ -n \"${IPHONEOS_DEPLOYMENT_TARGET}\" ]; then\n    CARTHAGE_BUILD_DIR=\"${CARTHAGE_BUILD_DIR}/iOS\"\nelif [ -n \"${WATCHOS_DEPLOYMENT_TARGET}\" ]; then\n    CARTHAGE_BUILD_DIR=\"${CARTHAGE_BUILD_DIR}/watchOS\"\nelse\n    echo \"ERROR: Unexpected deployment target type\"\n    exit 1\nfi\n\nfor SCRIPT_INPUT_FILE in ${!SCRIPT_INPUT_FILE_*}; do\n    CARTHAGE_BUILD_FILE=\"${!SCRIPT_INPUT_FILE/${BUILT_PRODUCTS_DIR}/${CARTHAGE_BUILD_DIR}}\"\n    if [ -e \"${CARTHAGE_BUILD_FILE}\" ]; then\n        if [ -e \"${SCRIPT_INPUT_FILE}\" ]; then\n            echo \"ERROR: Duplicate frameworks found at:\"\n            echo \"  ${SCRIPT_INPUT_FILE}\"\n            echo \"  ${CARTHAGE_BUILD_FILE}\"\n            exit 1\n        fi\n        echo \"Substituting \\\"${CARTHAGE_BUILD_FILE}\\\" for \\\"${!SCRIPT_INPUT_FILE}\\\"\"\n        export ${SCRIPT_INPUT_FILE}=\"${CARTHAGE_BUILD_FILE}\"\n    fi\ndone\n\necho \"Copy Frameworks with Carthage\"\ncarthage copy-frameworks\n";
+			shellScript = "${SRCROOT}/Scripts/copy-frameworks.sh\n";
 		};
 		43A8EC47210D097800A81379 /* Copy Frameworks with Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -969,7 +981,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CARTHAGE_BUILD_DIR=\"${SRCROOT}/Carthage/Build\"\nif [ -n \"${IPHONEOS_DEPLOYMENT_TARGET}\" ]; then\n    CARTHAGE_BUILD_DIR=\"${CARTHAGE_BUILD_DIR}/iOS\"\nelif [ -n \"${WATCHOS_DEPLOYMENT_TARGET}\" ]; then\n    CARTHAGE_BUILD_DIR=\"${CARTHAGE_BUILD_DIR}/watchOS\"\nelse\n    echo \"ERROR: Unexpected deployment target type\"\n    exit 1\nfi\n\nfor SCRIPT_INPUT_FILE in ${!SCRIPT_INPUT_FILE_*}; do\n    CARTHAGE_BUILD_FILE=\"${!SCRIPT_INPUT_FILE/${BUILT_PRODUCTS_DIR}/${CARTHAGE_BUILD_DIR}}\"\n    if [ -e \"${CARTHAGE_BUILD_FILE}\" ]; then\n        if [ -e \"${SCRIPT_INPUT_FILE}\" ]; then\n            echo \"ERROR: Duplicate frameworks found at:\"\n            echo \"  ${SCRIPT_INPUT_FILE}\"\n            echo \"  ${CARTHAGE_BUILD_FILE}\"\n            exit 1\n        fi\n        echo \"Substituting \\\"${CARTHAGE_BUILD_FILE}\\\" for \\\"${!SCRIPT_INPUT_FILE}\\\"\"\n        export ${SCRIPT_INPUT_FILE}=\"${CARTHAGE_BUILD_FILE}\"\n    fi\ndone\n\necho \"Copy Frameworks with Carthage\"\ncarthage copy-frameworks\n";
+			shellScript = "${SRCROOT}/Scripts/copy-frameworks.sh\n";
 		};
 		A93AF423225EE5DD002D9E0E /* Copy Frameworks with Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1523,7 +1535,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1582,7 +1594,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1677,7 +1689,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1705,7 +1717,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
