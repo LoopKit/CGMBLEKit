@@ -33,6 +33,9 @@ If you plan to run your app alongside the G5 Mobile application, make sure to se
 
 ## ResetTransmitter App Installation
 
+If you are using Xcode 10.2, you will need to use the dev branch of CGMBLEKit.
+If you are using Xcode 10.1 and an iOS older than 12.2, you will use master branch of CGMBLEKit.
+
 Download the CGMBLEKit code by clicking on the green `Clone or Download` button (scroll up on this page and you'll find it), then select `Download Zip`
 
 ![ResetTransmitter help](https://github.com/Kdisimone/images/blob/master/resetTransmitter-first.png)
