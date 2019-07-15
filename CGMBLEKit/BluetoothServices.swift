@@ -40,15 +40,24 @@ enum DeviceInfoCharacteristicUUID: String, CBUUIDRawValue {
 
 
 enum CGMServiceCharacteristicUUID: String, CBUUIDRawValue {
+
     // Read/Notify
     case communication = "F8083533-849E-531C-C594-30F1F86A4EA5"
+
     // Write/Indicate
     case control = "F8083534-849E-531C-C594-30F1F86A4EA5"
-    // Read/Write/Indicate
+
+    // Write/Indicate
     case authentication = "F8083535-849E-531C-C594-30F1F86A4EA5"
 
     // Read/Write/Notify
     case backfill = "F8083536-849E-531C-C594-30F1F86A4EA5"
+
+//    // Unknown attribute present on older G6 transmitters
+//    case unknown1 = "F8083537-849E-531C-C594-30F1F86A4EA5"
+//
+//    // Updated G6 characteristic (read/notify)
+//    case unknown2 = "F8083538-849E-531C-C594-30F1F86A4EA5"
 }
 
 
