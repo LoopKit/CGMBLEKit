@@ -45,6 +45,13 @@ protocol BluetoothManagerDelegate: class {
     ///   - manager: The bluetooth manager
     ///   - response: The data received on the backfill characteristic
     func bluetoothManager(_ manager: BluetoothManager, didReceiveBackfillResponse response: Data)
+
+    /// Informs the delegate that the bluetooth manager received new data in the authentication characteristic
+    ///
+    /// - Parameters:
+    ///   - manager: The bluetooth manager
+    ///   - response: The data received on the authentication characteristic
+    func bluetoothManager(_ manager: BluetoothManager, peripheralManager: PeripheralManager, didReceiveAuthenticationResponse response: Data)
 }
 
 
@@ -320,12 +327,14 @@ extension BluetoothManager: PeripheralManagerDelegate {
         }
 
         switch CGMServiceCharacteristicUUID(rawValue: characteristic.uuid.uuidString.uppercased()) {
-        case .none, .communication?, .authentication?:
+        case .none, .communication?:
             return
         case .control?:
             self.delegate?.bluetoothManager(self, didReceiveControlResponse: value)
         case .backfill?:
             self.delegate?.bluetoothManager(self, didReceiveBackfillResponse: value)
+        case .authentication?:
+            self.delegate?.bluetoothManager(self, peripheralManager: manager, didReceiveAuthenticationResponse: value)
         }
     }
 }

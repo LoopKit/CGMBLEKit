@@ -149,9 +149,9 @@ public final class Transmitter: BluetoothManagerDelegate {
 
         peripheralManager.perform { (peripheral) in
             if self.passiveModeEnabled {
-                self.log.debug("Listening for control commands in passive mode")
+                self.log.debug("Listening for authentication responses in passive mode")
                 do {
-                    try peripheral.listenToControl()
+                    try peripheral.listenToCharacteristic(.authentication)
                 } catch let error {
                     self.delegateQueue.async {
                         self.delegate?.transmitter(self, didError: error)
@@ -162,14 +162,14 @@ public final class Transmitter: BluetoothManagerDelegate {
                     self.log.debug("Authenticating with transmitter")
                     let status = try peripheral.authenticate(id: self.id)
 
-                    if status.bonded != 0x1 {
+                    if !status.isBonded {
                         self.log.debug("Requesting bond")
                         try peripheral.requestBond()
 
                         self.log.debug("Bonding request sent. Waiting user to respond.")
                     }
 
-                    try peripheral.enableNotify(shouldWaitForBond: status.bonded != 0x1)
+                    try peripheral.enableNotify(shouldWaitForBond: !status.isBonded)
                     defer {
                         self.log.debug("Initiating a disconnect")
                         peripheral.disconnect()
@@ -319,6 +319,28 @@ public final class Transmitter: BluetoothManagerDelegate {
 
         self.backfillBuffer?.append(response)
     }
+
+    func bluetoothManager(_ manager: BluetoothManager, peripheralManager: PeripheralManager, didReceiveAuthenticationResponse response: Data) {
+
+        if let message = AuthChallengeRxMessage(data: response), message.isBonded, message.isAuthenticated {
+            self.log.debug("Observed authenticated session. enabling notifications for control characteristic.")
+            peripheralManager.perform { (peripheral) in
+                do {
+                    try peripheral.listenToCharacteristic(.control)
+                    try peripheral.listenToCharacteristic(.backfill)
+                } catch let error {
+                    self.log.error("Error trying to enable notifications on control characteristic: %{public}@", String(describing: error))
+                }
+                do {
+                    try peripheral.stopListeningToCharacteristic(.authentication)
+                } catch let error {
+                    self.log.error("Error trying to disable notifications on authentication characteristic: %{public}@", String(describing: error))
+                }
+            }
+        } else {
+            self.log.debug("Ignoring authentication response:  %{public}@", response.hexadecimalString)
+        }
+    }
 }
 
 
@@ -390,7 +412,7 @@ fileprivate extension PeripheralManager {
             throw TransmitterError.authenticationError("Unable to parse auth status: \(error)")
         }
 
-        guard challengeResponse.authenticated == 1 else {
+        guard challengeResponse.isAuthenticated else {
             throw TransmitterError.authenticationError("Transmitter rejected auth challenge")
         }
 
@@ -478,12 +500,19 @@ fileprivate extension PeripheralManager {
         }
     }
 
-    func listenToControl() throws {
+    func listenToCharacteristic(_ characteristic: CGMServiceCharacteristicUUID) throws {
         do {
-            try setNotifyValue(true, for: .control)
-            try setNotifyValue(true, for: .backfill)
+            try setNotifyValue(true, for: characteristic)
         } catch let error {
-            throw TransmitterError.controlError("Error enabling notification: \(error)")
+            throw TransmitterError.controlError("Error enabling notification for \(characteristic): \(error)")
+        }
+    }
+
+    func stopListeningToCharacteristic(_ characteristic: CGMServiceCharacteristicUUID) throws {
+        do {
+            try setNotifyValue(false, for: characteristic)
+        } catch let error {
+            throw TransmitterError.controlError("Error disabling notification for \(characteristic): \(error)")
         }
     }
 }
