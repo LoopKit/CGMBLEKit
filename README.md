@@ -3,13 +3,13 @@
 [![CI Status](http://img.shields.io/travis/LoopKit/CGMBLEKit.svg?style=flat)](https://travis-ci.org/LoopKit/CGMBLEKit)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-A iOS framework providing an interface for communicating with the G5 glucose transmitter over Bluetooth.
+A iOS framework providing an interface for communicating with the G5 and G6 glucose transmitters over Bluetooth.
 
 *Please note this project is neither created nor backed by Dexcom, Inc. This software is not intended for use in therapy.*
 
 ## Requirements
 
-This framework connects to a G5 Mobile Transmitter via Bluetooth LE. It does not connect to the G4 Share Receiver or any earlier CGM products.
+This framework connects to a G5 or G6 Mobile Transmitter via Bluetooth LE. It does not connect to the G4 Share Receiver or any earlier CGM products.
 
 ## Frameworks Installation
 
