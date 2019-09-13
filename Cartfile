@@ -1,2 +1,2 @@
-github "LoopKit/LoopKit" "xcode11"
-github "LoopKit/dexcom-share-client-swift" "xcode11"
+github "LoopKit/LoopKit" "dev"
+github "LoopKit/dexcom-share-client-swift" "dev"
