@@ -1,0 +1,24 @@
+/* Class = "UILabel"; text = "Credentials"; ObjectID = "5oU-vK-JHQ"; */
+"5oU-vK-JHQ.text" = "Inloggningsuppgifter";
+
+/* Class = "UITableViewController"; title = "Transmitter Setup"; ObjectID = "Dds-49-o7G"; */
+"Dds-49-o7G.title" = "Sändarinställning";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "GOT-KQ-cEh"; */
+"GOT-KQ-cEh.text" = "Detalj";
+
+/* Class = "UITableViewSection"; footerTitle = "Data can be downloaded over the Internet from Share when the transmitter connection fails."; ObjectID = "k1N-Rg-XDy"; */
+"k1N-Rg-XDy.footerTitle" = "Värden kan laddas ned från internet från Share Data när anslutning till sändare misslyckas";
+
+/* Class = "UITableViewSection"; headerTitle = "Dexcom Share"; ObjectID = "k1N-Rg-XDy"; */
+"k1N-Rg-XDy.headerTitle" = "Dexcom Share";
+
+/* Class = "UITextField"; placeholder = "Enter the 6-digit transmitter ID"; ObjectID = "nKX-TW-GhD"; */
+"nKX-TW-GhD.placeholder" = "Ange ditt 6-siffriga sändar-ID";
+
+/* Class = "UITableViewSection"; footerTitle = "The transmitter ID can be found printed on the back of the device, on the side of the box it came in, and from within the settings menus of the receiver and mobile app."; ObjectID = "Qub-6B-0aB"; */
+"Qub-6B-0aB.footerTitle" = "Ditt sändar-ID står tryckt på baksidan eller på sidan av asken den kom i och i menyn inställningar för sändare i mobil-appen.";
+
+/* Class = "UITableViewSection"; headerTitle = "Transmitter ID"; ObjectID = "Qub-6B-0aB"; */
+"Qub-6B-0aB.headerTitle" = "Sändar-ID";
+
