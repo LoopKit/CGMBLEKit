@@ -1,0 +1,9 @@
+/* Title displayed during backfill response */
+"Backfill" = "Återfyllning";
+
+/* Title displayed during error response */
+"Error" = "Fel";
+
+/* Title displayed during unknown data response */
+"Unknown Data" = "Okänt värde";
+
