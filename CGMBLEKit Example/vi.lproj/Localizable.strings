@@ -1,9 +1,10 @@
 /* Title displayed during backfill response */
-"Backfill" = "Återfyllning";
+"Backfill" = "Lấp đầy";
 
 /* Title displayed during error response */
-"Error" = "Fel";
+"Error" = "Lỗi";
 
 /* Title displayed during unknown data response */
-"Unknown Data" = "Okänt värde";
+"Unknown Data" = "Không nhận biết dữ
+
 
