@@ -251,15 +251,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		43026D352131C52800A332E2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TransmitterManagerSetup.strings"; sourceTree = "<group>"; };
-		43026D362131C53A00A332E2 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/TransmitterManagerSetup.strings; sourceTree = "<group>"; };
-		43026D372131C54300A332E2 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/TransmitterManagerSetup.strings; sourceTree = "<group>"; };
-		43026D382131C54E00A332E2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/TransmitterManagerSetup.strings; sourceTree = "<group>"; };
-		43026D392131C56200A332E2 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/TransmitterManagerSetup.strings; sourceTree = "<group>"; };
-		43026D3A2131C56B00A332E2 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/TransmitterManagerSetup.strings; sourceTree = "<group>"; };
-		43026D3B2131C57300A332E2 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/TransmitterManagerSetup.strings; sourceTree = "<group>"; };
-		43026D3C2131C57C00A332E2 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/TransmitterManagerSetup.strings; sourceTree = "<group>"; };
-		43026D3D2131C58700A332E2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/TransmitterManagerSetup.strings; sourceTree = "<group>"; };
 		43026D3E2131C5C600A332E2 /* LocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 		43026D472131C99500A332E2 /* base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		43026D492131CA8C00A332E2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -374,6 +365,16 @@
 		43F82BCF1D035D68006F5DD7 /* SessionStopRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionStopRxMessage.swift; sourceTree = "<group>"; };
 		43F82BD11D037040006F5DD7 /* SessionStopRxMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionStopRxMessageTests.swift; sourceTree = "<group>"; };
 		43F82BD31D037227006F5DD7 /* SessionStartRxMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionStartRxMessageTests.swift; sourceTree = "<group>"; };
+		7D9BF0922336EBB5005DCFD6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		7D9BF0942336EBBF005DCFD6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		7D9BF0962336EBC0005DCFD6 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
+		7D9BF0982336EBC2005DCFD6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		7D9BF09A2336EBC3005DCFD6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		7D9BF09C2336EBC5005DCFD6 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
+		7D9BF09E2336EBC6005DCFD6 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main.strings; sourceTree = "<group>"; };
+		7D9BF0A02336EBC8005DCFD6 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Main.strings; sourceTree = "<group>"; };
+		7D9BF0A22336EBCA005DCFD6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		7D9BF0A42336EBCC005DCFD6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		A9AD381E225EEE850058C179 /* CGMBLEKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CGMBLEKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9AD3821225EEEFB0058C179 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		A9D99F47225EE99300073DF6 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -1252,6 +1253,16 @@
 			isa = PBXVariantGroup;
 			children = (
 				4308103A20785FEA00B66384 /* Base */,
+				7D9BF0922336EBB5005DCFD6 /* en */,
+				7D9BF0942336EBBF005DCFD6 /* zh-Hans */,
+				7D9BF0962336EBC0005DCFD6 /* nl */,
+				7D9BF0982336EBC2005DCFD6 /* fr */,
+				7D9BF09A2336EBC3005DCFD6 /* de */,
+				7D9BF09C2336EBC5005DCFD6 /* it */,
+				7D9BF09E2336EBC6005DCFD6 /* nb */,
+				7D9BF0A02336EBC8005DCFD6 /* pl */,
+				7D9BF0A22336EBCA005DCFD6 /* ru */,
+				7D9BF0A42336EBCC005DCFD6 /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1268,15 +1279,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				4379CFEB2110EDB100AADC79 /* Base */,
-				43026D352131C52800A332E2 /* zh-Hans */,
-				43026D362131C53A00A332E2 /* nl */,
-				43026D372131C54300A332E2 /* fr */,
-				43026D382131C54E00A332E2 /* de */,
-				43026D392131C56200A332E2 /* it */,
-				43026D3A2131C56B00A332E2 /* nb */,
-				43026D3B2131C57300A332E2 /* pl */,
-				43026D3C2131C57C00A332E2 /* ru */,
-				43026D3D2131C58700A332E2 /* es */,
 			);
 			name = TransmitterManagerSetup.storyboard;
 			sourceTree = "<group>";
