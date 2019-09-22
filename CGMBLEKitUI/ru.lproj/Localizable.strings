@@ -1,5 +1,5 @@
 /* Format string for glucose trend per minute. (1: glucose value and unit) */
-"%@/min" = "%@/min";
+"%@/min" = "%@/мин";
 
 /* Confirmation message for deleting a CGM */
 "Are you sure you want to delete this CGM?" = "Стереть этот мониторинг?";
@@ -18,28 +18,28 @@ Title text for the button to remove a CGM from Loop */
 "Glucose" = "Гликемия";
 
 /* Describes a glucose value adjusted to reflect a recent calibration */
-"Glucose (Adjusted)" = "Glucose (Adjusted)";
+"Glucose (Adjusted)" = "ГК (скорректирована)";
 
 /* Section title for latest glucose calibration */
-"Latest Calibration" = "Latest Calibration";
+"Latest Calibration" = "Последняя калибровка";
 
 /* Section title for latest glucose reading */
-"Latest Reading" = "Latest Reading";
+"Latest Reading" = "Последние данные";
 
 /* Button title to open CGM app */
-"Open App" = "Open App";
+"Open App" = "Запуск приложения";
 
 /* Title describing sensor session age */
-"Session Age" = "Session Age";
+"Session Age" = "Сенсор отработал";
 
 /* Title describing CGM calibration and battery state */
 "Status" = "Состояние";
 
 /* Title describing transmitter session age */
-"Transmitter Age" = "Transmitter Age";
+"Transmitter Age" = "Трансмиттер отработал";
 
 /* The title text for the Dexcom G5/G6 transmitter ID config value */
 "Transmitter ID" = "Инд № трансмиттера";
 
 /* Title describing glucose trend */
-"Trend" = "Trend";
+"Trend" = "Тренд";

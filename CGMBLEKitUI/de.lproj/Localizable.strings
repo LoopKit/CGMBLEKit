@@ -18,25 +18,25 @@ Title text for the button to remove a CGM from Loop */
 "Glucose" = "Glukose";
 
 /* Describes a glucose value adjusted to reflect a recent calibration */
-"Glucose (Adjusted)" = "Glukose (Adjusted)";
+"Glucose (Adjusted)" = "BZ-Wert (angepasst)";
 
 /* Section title for latest glucose calibration */
-"Latest Calibration" = "Latest Calibration";
+"Latest Calibration" = "Letzte Kalibrierung";
 
 /* Section title for latest glucose reading */
-"Latest Reading" = "Latest Reading";
+"Latest Reading" = "Letzter Wert";
 
 /* Button title to open CGM app */
-"Open App" = "Open App";
+"Open App" = "App öffnen";
 
 /* Title describing sensor session age */
-"Session Age" = "Session Age";
+"Session Age" = "Sitzungsalter";
 
 /* Title describing CGM calibration and battery state */
 "Status" = "Status";
 
 /* Title describing transmitter session age */
-"Transmitter Age" = "Transmitter Age";
+"Transmitter Age" = "Transmitteralter";
 
 /* The title text for the Dexcom G5/G6 transmitter ID config value */
 "Transmitter ID" = "Sender-ID";
