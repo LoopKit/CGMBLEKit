@@ -26,7 +26,7 @@ class TransmitterSetupViewController: UINavigationController, CGMManagerSetupVie
         super.viewDidLoad()
 
         delegate = self
-        view.backgroundColor = .white
+        view.backgroundColor = .groupTableViewBackground
         navigationBar.shadowImage = UIImage()
     }
 
