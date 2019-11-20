@@ -4,7 +4,7 @@
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
-      buildImplicitDependencies = "NO">
+      buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A9AD37DE225EEE850058C179"
-               BuildableName = "CGMBLEKit.framework"
-               BlueprintName = "CGMBLEKit-watchOS"
+               BlueprintIdentifier = "437AFEF62038EC43008C4892"
+               BuildableName = "CGMBLEKit Example.app"
+               BlueprintName = "CGMBLEKit Example"
                ReferencedContainer = "container:CGMBLEKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "43CABDFC1C3506F100005705"
+               BuildableName = "CGMBLEKitTests.xctest"
+               BlueprintName = "CGMBLEKitTests"
+               ReferencedContainer = "container:CGMBLEKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "437AFEF62038EC43008C4892"
+            BuildableName = "CGMBLEKit Example.app"
+            BlueprintName = "CGMBLEKit Example"
+            ReferencedContainer = "container:CGMBLEKit.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -42,15 +61,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A9AD37DE225EEE850058C179"
-            BuildableName = "CGMBLEKit.framework"
-            BlueprintName = "CGMBLEKit-watchOS"
+            BlueprintIdentifier = "437AFEF62038EC43008C4892"
+            BuildableName = "CGMBLEKit Example.app"
+            BlueprintName = "CGMBLEKit Example"
             ReferencedContainer = "container:CGMBLEKit.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -60,15 +80,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A9AD37DE225EEE850058C179"
-            BuildableName = "CGMBLEKit.framework"
-            BlueprintName = "CGMBLEKit-watchOS"
+            BlueprintIdentifier = "437AFEF62038EC43008C4892"
+            BuildableName = "CGMBLEKit Example.app"
+            BlueprintName = "CGMBLEKit Example"
             ReferencedContainer = "container:CGMBLEKit.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
