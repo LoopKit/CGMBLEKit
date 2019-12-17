@@ -183,6 +183,9 @@ class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate
         subtitleLabel.text = String(describing: glucose.map { $0.glucose })
     }
     
+    func transmitterDidConnect(_ transmitter: Transmitter) {
+        // Ignore
+    }
 
 }
 
