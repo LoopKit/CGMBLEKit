@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MDv-eh-Nsn">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MDv-eh-Nsn">
+    <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -38,6 +38,7 @@ Use at your own risk.</string>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
                                                 <constraint firstItem="cJ3-Gc-pnc" firstAttribute="top" secondItem="LIY-NA-39e" secondAttribute="topMargin" id="8pn-Nr-TI9"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="cJ3-Gc-pnc" secondAttribute="bottom" id="ceC-fO-dIt"/>
@@ -178,6 +179,7 @@ Use at your own risk.</string>
                     </tableView>
                     <navigationItem key="navigationItem" title="Reset Transmitter" largeTitleDisplayMode="always" id="7nc-6t-4hZ"/>
                     <connections>
+                        <outlet property="aboutText" destination="cJ3-Gc-pnc" id="HLM-Hk-fv8"/>
                         <outlet property="buttonTopSpace" destination="JR9-Y7-X85" id="AaU-kq-Ob7"/>
                         <outlet property="errorLabel" destination="gYy-Zz-y12" id="cvq-ie-i1J"/>
                         <outlet property="resetButton" destination="LBC-6R-q79" id="jgy-kZ-NUa"/>
