@@ -91,6 +91,18 @@ public class TransmitterManager: TransmitterDelegate {
         }
     }
 
+    private let activityLog = ActivityLog()
+
+    private(set) public var latestConnection: Date? {
+        get {
+            return lockedLatestConnection.value
+        }
+        set {
+            lockedLatestConnection.value = newValue
+        }
+    }
+    private let lockedLatestConnection: Locked<Date?> = Locked(nil)
+
     public let shareManager: ShareClientManager
 
     public let transmitter: Transmitter
@@ -139,6 +151,9 @@ public class TransmitterManager: TransmitterDelegate {
     }
 
     public func fetchNewDataIfNeeded(_ completion: @escaping (CGMResult) -> Void) {
+        // Ensure our transmitter connection is active
+        transmitter.resumeScanning()
+
         // If our last glucose was less than 4.5 minutes ago, don't fetch.
         guard !dataIsFresh else {
             completion(.noData)
@@ -158,12 +173,14 @@ public class TransmitterManager: TransmitterDelegate {
         return [
             "## \(String(describing: type(of: self)))",
             "latestReading: \(String(describing: latestReading))",
-            "transmitter: \(String(reflecting: transmitter))",
+            "latestConnection: \(String(describing: latestConnection))",
             "dataIsFresh: \(dataIsFresh)",
             "providesBLEHeartbeat: \(providesBLEHeartbeat)",
             shareManager.debugDescription,
             "observers.count: \(observers.cleanupDeallocatedElements().count)",
-            ""
+            String(reflecting: transmitter),
+            "### Activity log",
+            String(describing: activityLog),
         ].joined(separator: "\n")
     }
 
@@ -179,9 +196,16 @@ public class TransmitterManager: TransmitterDelegate {
 
     // MARK: - TransmitterDelegate
 
+    public func transmitterDidConnect(_ transmitter: Transmitter) {
+        log.default("%{public}@", #function)
+        latestConnection = Date()
+        activityLog.append("Connected")
+    }
+
     public func transmitter(_ transmitter: Transmitter, didError error: Error) {
         log.error("%{public}@: %{public}@", #function, String(describing: error))
         updateDelegate(with: .error(error))
+        activityLog.append("Error: \(error)")
     }
 
     public func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose) {
@@ -191,6 +215,8 @@ public class TransmitterManager: TransmitterDelegate {
         }
 
         latestReading = glucose
+
+        activityLog.append("New reading: \(glucose.readDate)")
 
         guard glucose.state.hasReliableGlucose else {
             log.default("%{public}@: Unreliable glucose: %{public}@", #function, String(describing: glucose.state))
@@ -236,11 +262,15 @@ public class TransmitterManager: TransmitterDelegate {
         }
 
         updateDelegate(with: .newData(samples))
+
+        activityLog.append("New backfill: \(String(describing: samples.first?.date))")
     }
 
     public func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data) {
         log.error("Unknown sensor data: %{public}@", data.hexadecimalString)
         // This can be used for protocol discovery, but isn't necessary for normal operation
+
+        activityLog.append("Unknown sensor data: \(data.hexadecimalString)")
     }
 }
 
@@ -348,5 +378,24 @@ extension CalibrationState {
         case .unknown(let rawValue):
             return String(format: LocalizedString("Sensor is in unknown state %1$d", comment: "The description of sensor calibration state when raw value is unknown. (1: missing data details)"), rawValue)
         }
+    }
+}
+
+fileprivate class ActivityLog: CustomStringConvertible {
+    private var items: [String] = []
+
+    private lazy var activityLogTimeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .medium
+        return formatter
+    }()
+
+    func append(_ item: String, at date: Date = Date()) {
+        items.append("[\(activityLogTimeFormatter.string(from: date))] \(item)")
+    }
+
+    var description: String {
+        return items.joined(separator: "\n")
     }
 }
