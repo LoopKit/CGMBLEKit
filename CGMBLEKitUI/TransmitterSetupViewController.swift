@@ -11,12 +11,14 @@ import LoopKitUI
 import CGMBLEKit
 import ShareClient
 
-class TransmitterSetupViewController: UINavigationController, CGMManagerSetupViewController, UINavigationControllerDelegate {
+class TransmitterSetupViewController: UINavigationController, CGMManagerSetupViewController, UINavigationControllerDelegate, CompletionNotifying {
     class func instantiateFromStoryboard() -> TransmitterSetupViewController {
         return UIStoryboard(name: "TransmitterManagerSetup", bundle: Bundle(for: TransmitterSetupViewController.self)).instantiateInitialViewController() as! TransmitterSetupViewController
     }
 
     weak var setupDelegate: CGMManagerSetupViewControllerDelegate?
+
+    weak var completionDelegate: CompletionDelegate?
 
     var cgmManagerType: TransmitterManager.Type!
 
@@ -24,13 +26,14 @@ class TransmitterSetupViewController: UINavigationController, CGMManagerSetupVie
         super.viewDidLoad()
 
         delegate = self
-        view.backgroundColor = .white
+        view.backgroundColor = .groupTableViewBackground
         navigationBar.shadowImage = UIImage()
     }
 
     func completeSetup(state: TransmitterManagerState) {
         if let manager = cgmManagerType.init(state: state) as? CGMManagerUI {
             setupDelegate?.cgmManagerSetupViewController(self, didSetUpCGMManager: manager)
+            completionDelegate?.completionNotifyingDidComplete(self)
         }
     }
 
@@ -48,6 +51,10 @@ class TransmitterSetupViewController: UINavigationController, CGMManagerSetupVie
             default:
                 break
             }
+        }
+
+        if let setupViewController = viewController as? SetupTableViewController {
+            setupViewController.delegate = self
         }
 
         // Set state values
@@ -79,5 +86,11 @@ class TransmitterSetupViewController: UINavigationController, CGMManagerSetupVie
             navigationBar.isTranslucent = true
             navigationBar.shadowImage = nil
         }
+    }
+}
+
+extension TransmitterSetupViewController: SetupTableViewControllerDelegate {
+    public func setupTableViewControllerCancelButtonPressed(_ viewController: SetupTableViewController) {
+        completionDelegate?.completionNotifyingDidComplete(self)
     }
 }

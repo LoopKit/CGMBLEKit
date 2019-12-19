@@ -36,8 +36,9 @@ protocol BluetoothManagerDelegate: class {
     ///
     /// - Parameters:
     ///   - manager: The bluetooth manager
+    ///   - peripheralManager: The peripheral manager
     ///   - response: The data received on the control characteristic
-    func bluetoothManager(_ manager: BluetoothManager, didReceiveControlResponse response: Data)
+    func bluetoothManager(_ manager: BluetoothManager, peripheralManager: PeripheralManager, didReceiveControlResponse response: Data)
 
     /// Informs the delegate that the bluetooth manager received new data in the backfill characteristic
     ///
@@ -45,6 +46,14 @@ protocol BluetoothManagerDelegate: class {
     ///   - manager: The bluetooth manager
     ///   - response: The data received on the backfill characteristic
     func bluetoothManager(_ manager: BluetoothManager, didReceiveBackfillResponse response: Data)
+
+    /// Informs the delegate that the bluetooth manager received new data in the authentication characteristic
+    ///
+    /// - Parameters:
+    ///   - manager: The bluetooth manager
+    ///   - peripheralManager: The peripheral manager
+    ///   - response: The data received on the authentication characteristic
+    func bluetoothManager(_ manager: BluetoothManager, peripheralManager: PeripheralManager, didReceiveAuthenticationResponse response: Data)
 }
 
 
@@ -112,7 +121,7 @@ class BluetoothManager: NSObject {
 
     // MARK: - Synchronization
 
-    private let managerQueue = DispatchQueue(label: "com.loudnate.CGMBLEKit.bluetoothManagerQueue", qos: .utility)
+    private let managerQueue = DispatchQueue(label: "com.loudnate.CGMBLEKit.bluetoothManagerQueue", qos: .unspecified)
 
     override init() {
         super.init()
@@ -190,7 +199,7 @@ class BluetoothManager: NSObject {
 
      */
     fileprivate func scanAfterDelay() {
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.utility).async {
+        DispatchQueue.global(qos: .utility).async {
             Thread.sleep(forTimeInterval: 2)
 
             self.scanForPeripheral()
@@ -208,6 +217,13 @@ class BluetoothManager: NSObject {
         }
         return isScanning
     }
+
+    override var debugDescription: String {
+        return [
+            "## BluetoothManager",
+            peripheralManager.map(String.init(reflecting:)) ?? "No peripheral",
+        ].joined(separator: "\n")
+    }
 }
 
 
@@ -216,12 +232,14 @@ extension BluetoothManager: CBCentralManagerDelegate {
         dispatchPrecondition(condition: .onQueue(managerQueue))
 
         peripheralManager?.centralManagerDidUpdateState(central)
-        log.info("%{public}@: %{public}@", #function, String(describing: central.state.rawValue))
+        log.default("%{public}@: %{public}@", #function, String(describing: central.state.rawValue))
 
         switch central.state {
         case .poweredOn:
             managerQueue_scanForPeripheral()
         case .resetting, .poweredOff, .unauthorized, .unknown, .unsupported:
+            fallthrough
+        @unknown default:
             if central.isScanning {
                 central.stopScan()
             }
@@ -234,7 +252,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
         if let peripherals = dict[CBCentralManagerRestoredStatePeripheralsKey] as? [CBPeripheral] {
             for peripheral in peripherals {
                 if delegate == nil || delegate!.bluetoothManager(self, shouldConnectPeripheral: peripheral) {
-                    log.info("Restoring peripheral from state: %{public}@", peripheral.identifier.uuidString)
+                    log.default("Restoring peripheral from state: %{public}@", peripheral.identifier.uuidString)
                     self.peripheral = peripheral
                 }
             }
@@ -257,7 +275,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         dispatchPrecondition(condition: .onQueue(managerQueue))
 
-        log.info("%{public}@: %{public}@", #function, peripheral)
+        log.default("%{public}@: %{public}@", #function, peripheral)
         if central.isScanning {
             central.stopScan()
         }
@@ -271,7 +289,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
 
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         dispatchPrecondition(condition: .onQueue(managerQueue))
-
+        log.default("%{public}@: %{public}@", #function, peripheral)
         // Ignore errors indicating the peripheral disconnected remotely, as that's expected behavior
         if let error = error as NSError?, CBError(_nsError: error).code != .peripheralDisconnected {
             log.error("%{public}@: %{public}@", #function, error)
@@ -288,6 +306,7 @@ extension BluetoothManager: CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         dispatchPrecondition(condition: .onQueue(managerQueue))
 
+        log.error("%{public}@: %{public}@", #function, String(describing: error))
         if let error = error, let peripheralManager = peripheralManager {
             self.delegate?.bluetoothManager(self, peripheralManager: peripheralManager, isReadyWithError: error)
         }
@@ -318,12 +337,14 @@ extension BluetoothManager: PeripheralManagerDelegate {
         }
 
         switch CGMServiceCharacteristicUUID(rawValue: characteristic.uuid.uuidString.uppercased()) {
-        case .none, .communication?, .authentication?:
+        case .none, .communication?:
             return
         case .control?:
-            self.delegate?.bluetoothManager(self, didReceiveControlResponse: value)
+            self.delegate?.bluetoothManager(self, peripheralManager: manager, didReceiveControlResponse: value)
         case .backfill?:
             self.delegate?.bluetoothManager(self, didReceiveBackfillResponse: value)
+        case .authentication?:
+            self.delegate?.bluetoothManager(self, peripheralManager: manager, didReceiveAuthenticationResponse: value)
         }
     }
 }

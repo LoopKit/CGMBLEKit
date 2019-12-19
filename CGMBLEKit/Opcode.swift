@@ -58,7 +58,7 @@ enum Opcode: UInt8 {
 
 extension Data {
     init(for opcode: Opcode) {
-        self.init(bytes: [opcode.rawValue])
+        self.init([opcode.rawValue])
     }
 
     func starts(with opcode: Opcode) -> Bool {

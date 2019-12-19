@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "437AFEF62038EC43008C4892"
-               BuildableName = "CGMBLEKit Example.app"
-               BlueprintName = "CGMBLEKit Example"
+               BlueprintIdentifier = "4308103220785FEA00B66384"
+               BuildableName = "ResetTransmitter.app"
+               BlueprintName = "ResetTransmitter"
                ReferencedContainer = "container:CGMBLEKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,23 +28,13 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "43CABDFC1C3506F100005705"
-               BuildableName = "CGMBLEKitTests.xctest"
-               BlueprintName = "CGMBLEKitTests"
-               ReferencedContainer = "container:CGMBLEKit.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "437AFEF62038EC43008C4892"
-            BuildableName = "CGMBLEKit Example.app"
-            BlueprintName = "CGMBLEKit Example"
+            BlueprintIdentifier = "4308103220785FEA00B66384"
+            BuildableName = "ResetTransmitter.app"
+            BlueprintName = "ResetTransmitter"
             ReferencedContainer = "container:CGMBLEKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,9 +55,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "437AFEF62038EC43008C4892"
-            BuildableName = "CGMBLEKit Example.app"
-            BlueprintName = "CGMBLEKit Example"
+            BlueprintIdentifier = "4308103220785FEA00B66384"
+            BuildableName = "ResetTransmitter.app"
+            BlueprintName = "ResetTransmitter"
             ReferencedContainer = "container:CGMBLEKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -84,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "437AFEF62038EC43008C4892"
-            BuildableName = "CGMBLEKit Example.app"
-            BlueprintName = "CGMBLEKit Example"
+            BlueprintIdentifier = "4308103220785FEA00B66384"
+            BuildableName = "ResetTransmitter.app"
+            BlueprintName = "ResetTransmitter"
             ReferencedContainer = "container:CGMBLEKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
