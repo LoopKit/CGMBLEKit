@@ -13,11 +13,15 @@ private let log = OSLog(category: "PeripheralManager+G5")
 
 
 extension PeripheralManager {
+    private func getCharacteristicWithUUID(_ uuid: CGMServiceCharacteristicUUID) -> CBCharacteristic? {
+        return peripheral.getCharacteristicWithUUID(uuid)
+    }
+
     func setNotifyValue(_ enabled: Bool,
         for characteristicUUID: CGMServiceCharacteristicUUID,
         timeout: TimeInterval = 2) throws
     {
-        guard let characteristic = peripheral.getCharacteristicWithUUID(characteristicUUID) else {
+        guard let characteristic = getCharacteristicWithUUID(characteristicUUID) else {
             throw PeripheralManagerError.unknownCharacteristic
         }
 
@@ -29,7 +33,7 @@ extension PeripheralManager {
         timeout: TimeInterval = 2
     ) throws -> R
     {
-        guard let characteristic = peripheral.getCharacteristicWithUUID(characteristicUUID) else {
+        guard let characteristic = getCharacteristicWithUUID(characteristicUUID) else {
             throw PeripheralManagerError.unknownCharacteristic
         }
 
@@ -71,7 +75,7 @@ extension PeripheralManager {
         timeout: TimeInterval = 2
     ) throws -> T.Response
     {
-        guard let characteristic = peripheral.getCharacteristicWithUUID(characteristicUUID) else {
+        guard let characteristic = getCharacteristicWithUUID(characteristicUUID) else {
             throw PeripheralManagerError.unknownCharacteristic
         }
 
@@ -118,7 +122,7 @@ extension PeripheralManager {
         type: CBCharacteristicWriteType = .withResponse,
         timeout: TimeInterval = 2) throws
     {
-        guard let characteristic = peripheral.getCharacteristicWithUUID(characteristicUUID) else {
+        guard let characteristic = getCharacteristicWithUUID(characteristicUUID) else {
             throw PeripheralManagerError.unknownCharacteristic
         }
 

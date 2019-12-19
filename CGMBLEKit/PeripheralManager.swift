@@ -83,7 +83,7 @@ extension PeripheralManager {
     }
 
     enum CommandCondition {
-        case notificationStateUpdate(characteristic: CBCharacteristic, enabled: Bool)
+        case notificationStateUpdate(characteristicUUID: CBUUID, enabled: Bool)
         case valueUpdate(characteristic: CBCharacteristic, matching: ((Data?) -> Bool)?)
         case write(characteristic: CBCharacteristic)
         case discoverServices
@@ -197,7 +197,7 @@ extension PeripheralManager {
         }
 
         guard commandConditions.isEmpty else {
-            throw PeripheralManagerError.notReady
+            throw PeripheralManagerError.invalidConfiguration
         }
 
         // Run
@@ -264,7 +264,7 @@ extension PeripheralManager {
     /// - Throws: PeripheralManagerError
     func setNotifyValue(_ enabled: Bool, for characteristic: CBCharacteristic, timeout: TimeInterval) throws {
         try runCommand(timeout: timeout) {
-            addCondition(.notificationStateUpdate(characteristic: characteristic, enabled: enabled))
+            addCondition(.notificationStateUpdate(characteristicUUID: characteristic.uuid, enabled: enabled))
 
             peripheral.setNotifyValue(enabled, for: characteristic)
         }
@@ -356,7 +356,7 @@ extension PeripheralManager: CBPeripheralDelegate {
         commandLock.lock()
 
         if let index = commandConditions.firstIndex(where: { (condition) -> Bool in
-            if case .notificationStateUpdate(characteristic: characteristic, enabled: characteristic.isNotifying) = condition {
+            if case .notificationStateUpdate(characteristicUUID: characteristic.uuid, enabled: characteristic.isNotifying) = condition {
                 return true
             } else {
                 return false

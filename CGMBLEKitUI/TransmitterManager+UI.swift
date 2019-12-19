@@ -19,7 +19,7 @@ extension G5CGMManager: CGMManagerUI {
     }
 
     public func settingsViewController(for glucoseUnit: HKUnit) -> (UIViewController & CompletionNotifying) {
-        let settings = TransmitterSettingsViewController(cgmManager: self, glucoseUnit: .milligramsPerDeciliter)
+        let settings = TransmitterSettingsViewController(cgmManager: self, glucoseUnit: glucoseUnit)
         let nav = SettingsNavigationViewController(rootViewController: settings)
         return nav
     }
@@ -38,7 +38,7 @@ extension G6CGMManager: CGMManagerUI {
     }
 
     public func settingsViewController(for glucoseUnit: HKUnit) -> (UIViewController & CompletionNotifying) {
-        let settings = TransmitterSettingsViewController(cgmManager: self, glucoseUnit: .milligramsPerDeciliter)
+        let settings = TransmitterSettingsViewController(cgmManager: self, glucoseUnit: glucoseUnit)
         let nav = SettingsNavigationViewController(rootViewController: settings)
         return nav
     }

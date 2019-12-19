@@ -76,6 +76,7 @@ class TransmitterSettingsViewController: UITableViewController {
         case transmitterID
         case latestReading
         case latestCalibration
+        case latestConnection
         case ages
         case share
         case delete
@@ -97,6 +98,10 @@ class TransmitterSettingsViewController: UITableViewController {
         case date
     }
 
+    private enum LatestConnectionRow: Int, CaseIterable {
+        case date
+    }
+
     private enum AgeRow: Int, CaseIterable {
         case sensor
         case transmitter
@@ -115,6 +120,8 @@ class TransmitterSettingsViewController: UITableViewController {
             return LatestReadingRow.allCases.count
         case .latestCalibration:
             return LatestCalibrationRow.allCases.count
+        case .latestConnection:
+            return LatestConnectionRow.allCases.count
         case .ages:
             return AgeRow.allCases.count
         case .share:
@@ -209,6 +216,17 @@ class TransmitterSettingsViewController: UITableViewController {
             }
 
             return cell
+        case .latestConnection:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className, for: indexPath) as! SettingsTableViewCell
+            let connection = cgmManager.latestConnection
+
+            switch LatestConnectionRow(rawValue: indexPath.row)! {
+            case .date:
+                cell.setGlucoseDate(connection, formatter: dateFormatter)
+                cell.accessoryType = .disclosureIndicator
+            }
+
+            return cell
         case .ages:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className, for: indexPath) as! SettingsTableViewCell
 
@@ -269,6 +287,8 @@ class TransmitterSettingsViewController: UITableViewController {
             return LocalizedString("Latest Reading", comment: "Section title for latest glucose reading")
         case .latestCalibration:
             return LocalizedString("Latest Calibration", comment: "Section title for latest glucose calibration")
+        case .latestConnection:
+            return LocalizedString("Latest Connection", comment: "Section title for latest connection date")
         case .ages:
             return nil
         case .share:
@@ -286,6 +306,8 @@ class TransmitterSettingsViewController: UITableViewController {
             return false
         case .latestCalibration:
             return false
+        case .latestConnection:
+            return true
         case .ages:
             return false
         case .share:
@@ -311,6 +333,12 @@ class TransmitterSettingsViewController: UITableViewController {
             break
         case .latestCalibration:
             break
+        case .latestConnection:
+            let vc = CommandResponseViewController(command: { (completionHandler) -> String in
+                return String(reflecting: self.cgmManager)
+            })
+            vc.title = self.title
+            show(vc, sender: nil)
         case .ages:
             break
         case .share:
@@ -348,6 +376,8 @@ class TransmitterSettingsViewController: UITableViewController {
         case .latestReading:
             break
         case .latestCalibration:
+            break
+        case .latestConnection:
             break
         case .ages:
             break

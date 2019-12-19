@@ -11,6 +11,7 @@ import CoreBluetooth
 enum PeripheralManagerError: Error {
     case cbPeripheralError(Error)
     case notReady
+    case invalidConfiguration
     case timeout
     case unknownCharacteristic
 }
@@ -23,6 +24,8 @@ extension PeripheralManagerError: LocalizedError {
             return error.localizedDescription
         case .notReady:
             return LocalizedString("Peripheral isnʼt connected", comment: "Not ready error description")
+        case .invalidConfiguration:
+            return LocalizedString("Peripheral command was invalid", comment: "invlid config error description")
         case .timeout:
             return LocalizedString("Peripheral did not respond in time", comment: "Timeout error description")
         case .unknownCharacteristic:
