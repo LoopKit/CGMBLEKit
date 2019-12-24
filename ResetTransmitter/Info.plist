@@ -47,5 +47,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>The app needs bluetooth access to be able to process data from an IoT device in the background</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>The app needs bluetooth access to be able to process data from an IoT device in the background</string>	
 </dict>
 </plist>
