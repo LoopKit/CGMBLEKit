@@ -45,6 +45,7 @@ class TransmitterSettingsViewController: UITableViewController {
 
         tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.className)
         tableView.register(TextButtonTableViewCell.self, forCellReuseIdentifier: TextButtonTableViewCell.className)
+        tableView.register(SwitchTableViewCell.self, forCellReuseIdentifier: SwitchTableViewCell.className)
         let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneTapped(_:)))
         self.navigationItem.setRightBarButton(button, animated: false)
     }
@@ -74,6 +75,7 @@ class TransmitterSettingsViewController: UITableViewController {
 
     private enum Section: Int, CaseIterable {
         case transmitterID
+        case remoteDataSync
         case latestReading
         case latestCalibration
         case latestConnection
@@ -115,6 +117,8 @@ class TransmitterSettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Section(rawValue: section)! {
         case .transmitterID:
+            return 1
+        case .remoteDataSync:
             return 1
         case .latestReading:
             return LatestReadingRow.allCases.count
@@ -169,6 +173,16 @@ class TransmitterSettingsViewController: UITableViewController {
             cell.detailTextLabel?.text = cgmManager.transmitter.ID
 
             return cell
+        case .remoteDataSync:
+            let switchCell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.className, for: indexPath) as! SwitchTableViewCell
+
+            switchCell.selectionStyle = .none
+            switchCell.switch?.isOn = cgmManager.shouldSyncToRemoteService
+            switchCell.textLabel?.text = NSLocalizedString("Upload Readings", comment: "The title text for the upload glucose switch cell")
+
+            switchCell.switch?.addTarget(self, action: #selector(uploadEnabledChanged(_:)), for: .valueChanged)
+
+            return switchCell
         case .latestReading:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className, for: indexPath) as! SettingsTableViewCell
             let glucose = cgmManager.latestReading
@@ -283,6 +297,8 @@ class TransmitterSettingsViewController: UITableViewController {
         switch Section(rawValue: section)! {
         case .transmitterID:
             return nil
+        case .remoteDataSync:
+            return LocalizedString("Remote Data Synchronization", comment: "Section title for remote data synchronization")
         case .latestReading:
             return LocalizedString("Latest Reading", comment: "Section title for latest glucose reading")
         case .latestCalibration:
@@ -301,6 +317,8 @@ class TransmitterSettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         switch Section(rawValue: indexPath.section)! {
         case .transmitterID:
+            return false
+        case .remoteDataSync:
             return false
         case .latestReading:
             return false
@@ -328,6 +346,8 @@ class TransmitterSettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch Section(rawValue: indexPath.section)! {
         case .transmitterID:
+            break
+        case .remoteDataSync:
             break
         case .latestReading:
             break
@@ -373,6 +393,8 @@ class TransmitterSettingsViewController: UITableViewController {
         switch Section(rawValue: indexPath.section)! {
         case .transmitterID:
             break
+        case .remoteDataSync:
+            break
         case .latestReading:
             break
         case .latestCalibration:
@@ -393,6 +415,10 @@ class TransmitterSettingsViewController: UITableViewController {
         }
 
         return indexPath
+    }
+    
+    @objc private func uploadEnabledChanged(_ sender: UISwitch) {
+        cgmManager.shouldSyncToRemoteService = sender.isOn
     }
 }
 
