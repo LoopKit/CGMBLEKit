@@ -19,9 +19,12 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
     public var transmitterID: String
 
     public var passiveModeEnabled: Bool = true
+    
+    public var shouldSyncToRemoteService: Bool
 
-    public init(transmitterID: String) {
+    public init(transmitterID: String, shouldSyncToRemoteService: Bool = false) {
         self.transmitterID = transmitterID
+        self.shouldSyncToRemoteService = shouldSyncToRemoteService
     }
 
     public init?(rawValue: RawValue) {
@@ -29,13 +32,16 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
         else {
             return nil
         }
+        
+        let shouldSyncToRemoteService = rawValue["shouldSyncToRemoteService"] as? Bool ?? false
 
-        self.init(transmitterID: transmitterID)
+        self.init(transmitterID: transmitterID, shouldSyncToRemoteService: shouldSyncToRemoteService)
     }
 
     public var rawValue: RawValue {
         return [
-            "transmitterID": transmitterID
+            "transmitterID": transmitterID,
+            "shouldSyncToRemoteService": shouldSyncToRemoteService,
         ]
     }
 }
@@ -49,7 +55,9 @@ public protocol TransmitterManagerObserver: class {
 public class TransmitterManager: TransmitterDelegate {
     private var state: TransmitterManagerState
 
-    private let observers = Locked(NSHashTable<AnyObject>.weakObjects())
+    private let observers = WeakSynchronizedSet<TransmitterManagerObserver>()
+    
+    
 
     public required init(state: TransmitterManagerState) {
         self.state = state
@@ -57,7 +65,38 @@ public class TransmitterManager: TransmitterDelegate {
         self.shareManager = ShareClientManager()
 
         self.transmitter.delegate = self
+        
+        #if targetEnvironment(simulator)
+        setupSimulatedSampleGenerator()
+        #endif
+
     }
+    
+    
+    #if targetEnvironment(simulator)
+    var simulatedSampleGeneratorTimer: DispatchSourceTimer?
+
+    private func setupSimulatedSampleGenerator() {
+
+        let timer = DispatchSource.makeTimerSource(queue: DispatchQueue(label: "com.loopkit.simulatedSampleGenerator"))
+        timer.schedule(deadline: .now() + .seconds(10), repeating: .minutes(5))
+        timer.setEventHandler(handler: { [weak self] in
+            self?.generateSimulatedSample()
+        })
+        self.simulatedSampleGeneratorTimer = timer
+        timer.resume()
+    }
+
+    private func generateSimulatedSample() {
+        let timestamp = Date()
+        let syncIdentifier =  "\(self.state.transmitterID) \(timestamp)"
+        let period = TimeInterval(hours: 3)
+        let glucoseValue = 100 + 20 * cos(Date().timeIntervalSinceReferenceDate.remainder(dividingBy: period) / period * Double.pi * 2)
+        let quantity = HKQuantity(unit: .milligramsPerDeciliter, doubleValue: glucoseValue)
+        let sample = NewGlucoseSample(date: timestamp, quantity: quantity, isDisplayOnly: false, syncIdentifier: syncIdentifier)
+        self.updateDelegate(with: .newData([sample]))
+    }
+    #endif
 
     required convenience public init?(rawState: CGMManager.RawStateValue) {
         guard let state = TransmitterManagerState(rawValue: rawState) else {
@@ -71,13 +110,45 @@ public class TransmitterManager: TransmitterDelegate {
         return state.rawValue
     }
 
-    public let shouldSyncToRemoteService = false
-
-    weak var delegate: CGMManagerDelegate? {
-        didSet {
-            shareManager.cgmManagerDelegate = delegate
+    public var shouldSyncToRemoteService: Bool {
+        get {
+            return state.shouldSyncToRemoteService
+        }
+        set {
+            self.state.shouldSyncToRemoteService = newValue
+            notifyDelegateOfStateChange()
         }
     }
+
+    public var cgmManagerDelegate: CGMManagerDelegate? {
+        get {
+            return shareManager.cgmManagerDelegate
+        }
+        set {
+            shareManager.cgmManagerDelegate = newValue
+        }
+    }
+
+    public var delegateQueue: DispatchQueue! {
+        get {
+            return shareManager.delegateQueue
+        }
+        set {
+            shareManager.delegateQueue = newValue
+        }
+    }
+
+    private let activityLog = ActivityLog()
+
+    private(set) public var latestConnection: Date? {
+        get {
+            return lockedLatestConnection.value
+        }
+        set {
+            lockedLatestConnection.value = newValue
+        }
+    }
+    private let lockedLatestConnection: Locked<Date?> = Locked(nil)
 
     public let shareManager: ShareClientManager
 
@@ -127,6 +198,9 @@ public class TransmitterManager: TransmitterDelegate {
     }
 
     public func fetchNewDataIfNeeded(_ completion: @escaping (CGMResult) -> Void) {
+        // Ensure our transmitter connection is active
+        transmitter.resumeScanning()
+
         // If our last glucose was less than 4.5 minutes ago, don't fetch.
         guard !dataIsFresh else {
             completion(.noData)
@@ -146,28 +220,48 @@ public class TransmitterManager: TransmitterDelegate {
         return [
             "## \(String(describing: type(of: self)))",
             "latestReading: \(String(describing: latestReading))",
-            "transmitter: \(String(reflecting: transmitter))",
+            "latestConnection: \(String(describing: latestConnection))",
             "dataIsFresh: \(dataIsFresh)",
             "providesBLEHeartbeat: \(providesBLEHeartbeat)",
             shareManager.debugDescription,
-            "observers.count: \(observers.value.count)",
-            ""
+            "observers.count: \(observers.cleanupDeallocatedElements().count)",
+            String(reflecting: transmitter),
+            "### Activity log",
+            String(describing: activityLog),
         ].joined(separator: "\n")
     }
 
     private func updateDelegate(with result: CGMResult) {
         if let manager = self as? CGMManager {
-            delegate?.cgmManager(manager, didUpdateWith: result)
+            shareManager.delegate.notify { (delegate) in
+                delegate?.cgmManager(manager, didUpdateWith: result)
+            }
         }
 
         notifyObserversOfLatestReading()
     }
+    
+    private func notifyDelegateOfStateChange() {
+        if let manager = self as? CGMManager {
+            shareManager.delegate.notify { (delegate) in
+                delegate?.cgmManagerDidUpdateState(manager)
+            }
+        }
+    }
+
 
     // MARK: - TransmitterDelegate
+
+    public func transmitterDidConnect(_ transmitter: Transmitter) {
+        log.default("%{public}@", #function)
+        latestConnection = Date()
+        activityLog.append("Connected")
+    }
 
     public func transmitter(_ transmitter: Transmitter, didError error: Error) {
         log.error("%{public}@: %{public}@", #function, String(describing: error))
         updateDelegate(with: .error(error))
+        activityLog.append("Error: \(error)")
     }
 
     public func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose) {
@@ -177,6 +271,8 @@ public class TransmitterManager: TransmitterDelegate {
         }
 
         latestReading = glucose
+
+        activityLog.append("New reading: \(glucose.readDate)")
 
         guard glucose.state.hasReliableGlucose else {
             log.default("%{public}@: Unreliable glucose: %{public}@", #function, String(describing: glucose.state))
@@ -222,36 +318,32 @@ public class TransmitterManager: TransmitterDelegate {
         }
 
         updateDelegate(with: .newData(samples))
+
+        activityLog.append("New backfill: \(String(describing: samples.first?.date))")
     }
 
     public func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data) {
         log.error("Unknown sensor data: %{public}@", data.hexadecimalString)
         // This can be used for protocol discovery, but isn't necessary for normal operation
+
+        activityLog.append("Unknown sensor data: \(data.hexadecimalString)")
     }
 }
 
 
 // MARK: - Observer management
 extension TransmitterManager {
-    public func addObserver(_ observer: TransmitterManagerObserver) {
-        _ = observers.mutate { (observerTable) in
-            observerTable.add(observer as AnyObject)
-        }
+    public func addObserver(_ observer: TransmitterManagerObserver, queue: DispatchQueue) {
+        observers.insert(observer, queue: queue)
     }
 
     public func removeObserver(_ observer: TransmitterManagerObserver) {
-        _ = observers.mutate { (observerTable) in
-            observerTable.remove(observer as AnyObject)
-        }
+        observers.removeElement(observer)
     }
 
     private func notifyObserversOfLatestReading() {
-        let observers = self.observers.value.objectEnumerator()
-
-        for observer in observers {
-            if let observer = observer as? TransmitterManagerObserver {
-                observer.transmitterManagerDidUpdateLatestReading(self)
-            }
+        observers.forEach { (observer) in
+            observer.transmitterManagerDidUpdateLatestReading(self)
         }
     }
 }
@@ -264,15 +356,6 @@ public class G5CGMManager: TransmitterManager, CGMManager {
 
     public var appURL: URL? {
         return URL(string: "dexcomcgm://")
-    }
-
-    public var cgmManagerDelegate: CGMManagerDelegate? {
-        get {
-            return self.delegate
-        }
-        set {
-            self.delegate = newValue
-        }
     }
 
     public override var device: HKDevice? {
@@ -297,15 +380,6 @@ public class G6CGMManager: TransmitterManager, CGMManager {
 
     public var appURL: URL? {
         return URL(string: "dexcomg6://")
-    }
-
-    public var cgmManagerDelegate: CGMManagerDelegate? {
-        get {
-            return self.delegate
-        }
-        set {
-            self.delegate = newValue
-        }
     }
 
     public override var device: HKDevice? {
@@ -360,5 +434,24 @@ extension CalibrationState {
         case .unknown(let rawValue):
             return String(format: LocalizedString("Sensor is in unknown state %1$d", comment: "The description of sensor calibration state when raw value is unknown. (1: missing data details)"), rawValue)
         }
+    }
+}
+
+fileprivate class ActivityLog: CustomStringConvertible {
+    private var items: [String] = []
+
+    private lazy var activityLogTimeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .none
+        formatter.timeStyle = .medium
+        return formatter
+    }()
+
+    func append(_ item: String, at date: Date = Date()) {
+        items.append("[\(activityLogTimeFormatter.string(from: date))] \(item)")
+    }
+
+    var description: String {
+        return items.joined(separator: "\n")
     }
 }

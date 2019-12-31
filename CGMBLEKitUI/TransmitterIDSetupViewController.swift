@@ -59,7 +59,7 @@ class TransmitterIDSetupViewController: SetupTableViewController {
 
     override func continueButtonPressed(_ sender: Any) {
         if continueState == .completed,
-            let setupViewController = cgmSetupViewController as? TransmitterSetupViewController,
+            let setupViewController = navigationController as? TransmitterSetupViewController,
             let transmitterID = transmitterID
         {
             setupViewController.completeSetup(state: TransmitterManagerState(transmitterID: transmitterID))
