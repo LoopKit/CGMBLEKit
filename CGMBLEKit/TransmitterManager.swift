@@ -19,9 +19,12 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
     public var transmitterID: String
 
     public var passiveModeEnabled: Bool = true
+    
+    public var shouldSyncToRemoteService: Bool
 
-    public init(transmitterID: String) {
+    public init(transmitterID: String, shouldSyncToRemoteService: Bool = false) {
         self.transmitterID = transmitterID
+        self.shouldSyncToRemoteService = shouldSyncToRemoteService
     }
 
     public init?(rawValue: RawValue) {
@@ -29,13 +32,16 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
         else {
             return nil
         }
+        
+        let shouldSyncToRemoteService = rawValue["shouldSyncToRemoteService"] as? Bool ?? false
 
-        self.init(transmitterID: transmitterID)
+        self.init(transmitterID: transmitterID, shouldSyncToRemoteService: shouldSyncToRemoteService)
     }
 
     public var rawValue: RawValue {
         return [
-            "transmitterID": transmitterID
+            "transmitterID": transmitterID,
+            "shouldSyncToRemoteService": shouldSyncToRemoteService,
         ]
     }
 }
@@ -50,6 +56,8 @@ public class TransmitterManager: TransmitterDelegate {
     private var state: TransmitterManagerState
 
     private let observers = WeakSynchronizedSet<TransmitterManagerObserver>()
+    
+    
 
     public required init(state: TransmitterManagerState) {
         self.state = state
@@ -57,7 +65,38 @@ public class TransmitterManager: TransmitterDelegate {
         self.shareManager = ShareClientManager()
 
         self.transmitter.delegate = self
+        
+        #if targetEnvironment(simulator)
+        setupSimulatedSampleGenerator()
+        #endif
+
     }
+    
+    
+    #if targetEnvironment(simulator)
+    var simulatedSampleGeneratorTimer: DispatchSourceTimer?
+
+    private func setupSimulatedSampleGenerator() {
+
+        let timer = DispatchSource.makeTimerSource(queue: DispatchQueue(label: "com.loopkit.simulatedSampleGenerator"))
+        timer.schedule(deadline: .now() + .seconds(10), repeating: .minutes(5))
+        timer.setEventHandler(handler: { [weak self] in
+            self?.generateSimulatedSample()
+        })
+        self.simulatedSampleGeneratorTimer = timer
+        timer.resume()
+    }
+
+    private func generateSimulatedSample() {
+        let timestamp = Date()
+        let syncIdentifier =  "\(self.state.transmitterID) \(timestamp)"
+        let period = TimeInterval(hours: 3)
+        let glucoseValue = 100 + 20 * cos(Date().timeIntervalSinceReferenceDate.remainder(dividingBy: period) / period * Double.pi * 2)
+        let quantity = HKQuantity(unit: .milligramsPerDeciliter, doubleValue: glucoseValue)
+        let sample = NewGlucoseSample(date: timestamp, quantity: quantity, isDisplayOnly: false, syncIdentifier: syncIdentifier)
+        self.updateDelegate(with: .newData([sample]))
+    }
+    #endif
 
     required convenience public init?(rawState: CGMManager.RawStateValue) {
         guard let state = TransmitterManagerState(rawValue: rawState) else {
@@ -71,7 +110,15 @@ public class TransmitterManager: TransmitterDelegate {
         return state.rawValue
     }
 
-    public let shouldSyncToRemoteService = false
+    public var shouldSyncToRemoteService: Bool {
+        get {
+            return state.shouldSyncToRemoteService
+        }
+        set {
+            self.state.shouldSyncToRemoteService = newValue
+            notifyDelegateOfStateChange()
+        }
+    }
 
     public var cgmManagerDelegate: CGMManagerDelegate? {
         get {
@@ -193,6 +240,15 @@ public class TransmitterManager: TransmitterDelegate {
 
         notifyObserversOfLatestReading()
     }
+    
+    private func notifyDelegateOfStateChange() {
+        if let manager = self as? CGMManager {
+            shareManager.delegate.notify { (delegate) in
+                delegate?.cgmManagerDidUpdateState(manager)
+            }
+        }
+    }
+
 
     // MARK: - TransmitterDelegate
 
