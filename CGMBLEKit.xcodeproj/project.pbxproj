@@ -878,6 +878,7 @@
 				B4D40D2A23A3E91800D7ECB5 /* Sources */,
 				B4D40D2B23A3E91800D7ECB5 /* Frameworks */,
 				B4D40D2C23A3E91800D7ECB5 /* Resources */,
+				A906DD9E23DFAEC4000B74DC /* Copy Frameworks with Carthage */,
 			);
 			buildRules = (
 			);
@@ -896,6 +897,7 @@
 				B4D40D3A23A428BC00D7ECB5 /* Sources */,
 				B4D40D3B23A428BC00D7ECB5 /* Frameworks */,
 				B4D40D3C23A428BC00D7ECB5 /* Resources */,
+				A906DD9D23DFAEAB000B74DC /* Copy Frameworks with Carthage */,
 			);
 			buildRules = (
 			);
@@ -1110,6 +1112,50 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Scripts/copy-frameworks.sh\"\n";
+		};
+		A906DD9D23DFAEAB000B74DC /* Copy Frameworks with Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/ShareClient.framework",
+				"$(BUILT_PRODUCTS_DIR)/ShareClientUI.framework",
+				"$(BUILT_PRODUCTS_DIR)/CGMBLEKit.framework",
+				"$(BUILT_PRODUCTS_DIR)/CGMBLEKitUI.framework",
+			);
+			name = "Copy Frameworks with Carthage";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/Scripts/copy-frameworks.sh\n";
+		};
+		A906DD9E23DFAEC4000B74DC /* Copy Frameworks with Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/ShareClient.framework",
+				"$(BUILT_PRODUCTS_DIR)/ShareClientUI.framework",
+				"$(BUILT_PRODUCTS_DIR)/CGMBLEKit.framework",
+				"$(BUILT_PRODUCTS_DIR)/CGMBLEKitUI.framework",
+			);
+			name = "Copy Frameworks with Carthage";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${SRCROOT}/Scripts/copy-frameworks.sh\n";
 		};
 		A93AF423225EE5DD002D9E0E /* Copy Frameworks with Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
