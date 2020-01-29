@@ -25,6 +25,6 @@
 	<key>com.loopkit.Loop.CGMManagerDisplayName</key>
 	<string>Dexcom G5</string>
 	<key>com.loopkit.Loop.CGMManagerIdentifier</key>
-	<string>CGMBLEKitG5</string>
+	<string>DexG5Transmitter</string>
 </dict>
 </plist>
