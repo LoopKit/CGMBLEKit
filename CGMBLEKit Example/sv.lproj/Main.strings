@@ -1,11 +1,11 @@
 /* Class = "UILabel"; text = "Run alongside G5 app"; ObjectID = "3i8-2m-QFG"; */
-"3i8-2m-QFG.text" = "Kör bredvid G5-app";
+"3i8-2m-QFG.text" = "Kör samtidigt som G5-appen";
 
 /* Class = "UILabel"; text = "Transmitter ID"; ObjectID = "5y6-vU-qC3"; */
 "5y6-vU-qC3.text" = "Sändar-ID";
 
 /* Class = "UILabel"; text = "Waiting for first reading"; ObjectID = "9p7-LX-EMK"; */
-"9p7-LX-EMK.text" = "Waiting for first reading";
+"9p7-LX-EMK.text" = "Väntar på första värdet";
 
 /* Class = "UITextField"; text = "500000"; ObjectID = "e0T-ru-tWD"; */
 "e0T-ru-tWD.text" = "500000";
@@ -20,7 +20,7 @@
 "JAM-9K-KeE.normalTitle" = "Stoppa";
 
 /* Class = "UILabel"; text = "Stay connected"; ObjectID = "NSs-9e-3Sl"; */
-"NSs-9e-3Sl.text" = "Behåll anslutning";
+"NSs-9e-3Sl.text" = "Fortsätt att vara ansluten";
 
 /* Class = "UILabel"; text = "––"; ObjectID = "zAF-A7-1Oc"; */
 "zAF-A7-1Oc.text" = "––";
