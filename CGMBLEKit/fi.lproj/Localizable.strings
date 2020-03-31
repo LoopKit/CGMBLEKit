@@ -5,22 +5,25 @@
 "Dexcom G6" = "Dexcom G6";
 
 /* Error description for unreliable state */
-"Glucose data is unavailable" = "Glukoositietoja ei ole saatavana";
+"Glucose data is unavailable" = "Glukoositietoja ei ole saatavilla";
 
 /* Describes a low battery */
-"Low Battery" = "lähes tyhjä akku";
+"Low Battery" = "Akku lähes tyhjä";
 
 /* Describes a functioning transmitter */
 "OK" = "OK";
 
+/* invlid config error description */
+"Peripheral command was invalid" = "Oheislaitekomento oli virheellinen";
+
 /* Timeout error description */
-"Peripheral did not respond in time" = "Oheislaitteet eivät vastanneet ajoissa";
+"Peripheral did not respond in time" = "Oheislaite ei vastannut ajoissa";
 
 /* Not ready error description */
 "Peripheral isnʼt connected" = "Oheislaitetta ei ole kytketty";
 
 /* The description of sensor calibration state when sensor calibration is ok. */
-"Sensor calibration is OK" = "Anturin kalibrointi on OK";
+"Sensor calibration is OK" = "Anturin kalibrointi onnistui";
 
 /* The description of sensor calibration state when raw value is unknown. (1: missing data details) */
 "Sensor is in unknown state %1$d" = "Anturi on tuntemattomassa tilassa %1$d";

@@ -10,23 +10,30 @@
 /* Title describing glucose date */
 "Date" = "Aika";
 
-/* Title text for the button to remove a CGM from Loop */
+/* Button title to delete CGM
+   Title text for the button to remove a CGM from Loop */
 "Delete CGM" = "Poista CGM";
 
 /* Title describing glucose value */
 "Glucose" = "Glukoosi";
 
 /* Describes a glucose value adjusted to reflect a recent calibration */
-"Glucose (Adjusted)" = "Glukoosi (mukautettu)";
+"Glucose (Adjusted)" = "Glukoosi (säädetty)";
 
 /* Section title for latest glucose calibration */
 "Latest Calibration" = "Viimeisin kalibrointi";
+
+/* Section title for latest connection date */
+"Latest Connection" = "Viimeisin yhteys";
 
 /* Section title for latest glucose reading */
 "Latest Reading" = "Viimeisin lukema";
 
 /* Button title to open CGM app */
 "Open App" = "Avaa sovellus";
+
+/* Section title for remote data synchronization */
+"Remote Data Synchronization" = "Etätietojen synkronointi";
 
 /* Title describing sensor session age */
 "Session Age" = "Session ikä";
@@ -38,7 +45,11 @@
 "Transmitter Age" = "Lähettimen ikä";
 
 /* The title text for the Dexcom G5/G6 transmitter ID config value */
-"Transmitter ID" = "Lähettimen ID";
+"Transmitter ID" = "Lähettimen tunniste";
 
 /* Title describing glucose trend */
 "Trend" = "Suunta";
+
+/* The title text for the upload glucose switch cell */
+"Upload Readings" = "Lataa lukemat";
+
