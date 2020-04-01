@@ -120,6 +120,7 @@
 		43F82BD41D037227006F5DD7 /* SessionStartRxMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F82BD31D037227006F5DD7 /* SessionStartRxMessageTests.swift */; };
 		7D9BF0B02336ED6A005DCFD6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7D9BF0B22336ED6A005DCFD6 /* Localizable.strings */; };
 		7D9BF0F62336EF7C005DCFD6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7D9BF0F82336EF7C005DCFD6 /* Localizable.strings */; };
+		80F864E92433C6450026EC26 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80F864E72433C6450026EC26 /* InfoPlist.strings */; };
 		A93AF424225EE63D002D9E0E /* ShareClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC70210E629300A81379 /* ShareClient.framework */; };
 		A9AD37E0225EEE850058C179 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43026D3E2131C5C600A332E2 /* LocalizedString.swift */; };
 		A9AD37E1225EEE850058C179 /* TransmitterVersionTxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CE7CC91CA73B94003CC1B0 /* TransmitterVersionTxMessage.swift */; };
@@ -466,6 +467,7 @@
 		7D9BF1202336FD7D005DCFD6 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7D9BF1212336FD7D005DCFD6 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7D9BF1222336FD7D005DCFD6 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
+		80F864E82433C6450026EC26 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A9AD381E225EEE850058C179 /* CGMBLEKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CGMBLEKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9AD3821225EEEFB0058C179 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		A9D99F47225EE99300073DF6 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -562,6 +564,7 @@
 				4308103C20785FEA00B66384 /* Assets.xcassets */,
 				4308103E20785FEA00B66384 /* LaunchScreen.storyboard */,
 				4308104120785FEA00B66384 /* Info.plist */,
+				80F864E72433C6450026EC26 /* InfoPlist.strings */,
 				7D9BF0B22336ED6A005DCFD6 /* Localizable.strings */,
 			);
 			path = ResetTransmitter;
@@ -993,6 +996,7 @@
 				7D9BF0B02336ED6A005DCFD6 /* Localizable.strings in Resources */,
 				4308103D20785FEA00B66384 /* Assets.xcassets in Resources */,
 				4308103B20785FEA00B66384 /* Main.storyboard in Resources */,
+				80F864E92433C6450026EC26 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1477,6 +1481,14 @@
 				7D9BF1212336FD7D005DCFD6 /* ro */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		80F864E72433C6450026EC26 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80F864E82433C6450026EC26 /* fi */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		C19084B9203932BD00AA47F3 /* Main.storyboard */ = {
