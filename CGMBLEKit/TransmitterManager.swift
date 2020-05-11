@@ -350,3 +350,26 @@ extension CalibrationState {
         }
     }
 }
+
+// MARK: - DeviceAlertResponder implementation
+extension G5CGMManager {
+    public func acknowledgeAlert(alertIdentifier: DeviceAlert.AlertIdentifier) { }
+}
+
+// MARK: - DeviceAlertSoundVendor implementation
+extension G5CGMManager {
+    public func getSoundBaseURL() -> URL? { return nil }
+    public func getSounds() -> [DeviceAlert.Sound] { return [] }
+}
+
+// MARK: - DeviceAlertResponder implementation
+extension G6CGMManager {
+    public func acknowledgeAlert(alertIdentifier: DeviceAlert.AlertIdentifier) { }
+}
+
+// MARK: - DeviceAlertSoundVendor implementation
+extension G6CGMManager {
+    public func getSoundBaseURL() -> URL? { return nil }
+    public func getSounds() -> [DeviceAlert.Sound] { return [] }
+}
+
