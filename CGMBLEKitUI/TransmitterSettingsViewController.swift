@@ -178,7 +178,7 @@ class TransmitterSettingsViewController: UITableViewController {
 
             switchCell.selectionStyle = .none
             switchCell.switch?.isOn = cgmManager.shouldSyncToRemoteService
-            switchCell.textLabel?.text = NSLocalizedString("Upload Readings", comment: "The title text for the upload glucose switch cell")
+            switchCell.textLabel?.text = LocalizedString("Upload Readings", comment: "The title text for the upload glucose switch cell")
 
             switchCell.switch?.addTarget(self, action: #selector(uploadEnabledChanged(_:)), for: .valueChanged)
 
