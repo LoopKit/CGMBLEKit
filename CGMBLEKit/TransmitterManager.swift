@@ -210,6 +210,7 @@ public class TransmitterManager: TransmitterDelegate {
                 date: glucose.readDate,
                 quantity: quantity,
                 isDisplayOnly: glucose.isDisplayOnly,
+                wasUserEntered: glucose.isDisplayOnly,
                 syncIdentifier: glucose.syncIdentifier,
                 device: device
             )
@@ -226,6 +227,7 @@ public class TransmitterManager: TransmitterDelegate {
                 date: glucose.readDate,
                 quantity: quantity,
                 isDisplayOnly: glucose.isDisplayOnly,
+                wasUserEntered: glucose.isDisplayOnly,
                 syncIdentifier: glucose.syncIdentifier,
                 device: device
             )
