@@ -27,6 +27,16 @@ extension G5CGMManager: CGMManagerUI {
     public var smallImage: UIImage? {
         return nil
     }
+    
+    // TODO Placeholder. This functionality will come with LOOP-1311
+    public var cgmStatusHighlight: DeviceStatusHighlight? {
+        return nil
+    }
+    
+    // TODO Placeholder. This functionality will come with LOOP-1311
+    public var progressPercentCompleted: Double? {
+        return nil
+    }
 }
 
 
@@ -44,6 +54,16 @@ extension G6CGMManager: CGMManagerUI {
     }
 
     public var smallImage: UIImage? {
+        return nil
+    }
+    
+    // TODO Placeholder. This functionality will come with LOOP-1311
+    public var cgmStatusHighlight: DeviceStatusHighlight? {
+        return nil
+    }
+    
+    // TODO Placeholder. This functionality will come with LOOP-1311
+    public var progressPercentCompleted: Double? {
         return nil
     }
 }

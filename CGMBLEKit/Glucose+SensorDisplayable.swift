@@ -65,4 +65,9 @@ extension Glucose: SensorDisplayable {
     public var isLocal: Bool {
         return true
     }
+    
+    // TODO Placeholders. This functionality will come with LOOP-1311
+    public var glucoseValueType: GlucoseValueType? {
+        return nil
+    }
 }
