@@ -92,7 +92,7 @@ public class TransmitterManager: TransmitterDelegate {
         let period = TimeInterval(hours: 3)
         let glucoseValue = 100 + 20 * cos(Date().timeIntervalSinceReferenceDate.remainder(dividingBy: period) / period * Double.pi * 2)
         let quantity = HKQuantity(unit: .milligramsPerDeciliter, doubleValue: glucoseValue)
-        let sample = NewGlucoseSample(date: timestamp, quantity: quantity, isDisplayOnly: false, syncIdentifier: syncIdentifier)
+        let sample = NewGlucoseSample(date: timestamp, quantity: quantity, isDisplayOnly: false, wasUserEntered: false, syncIdentifier: syncIdentifier)
         self.updateDelegate(with: .newData([sample]))
     }
     #endif
