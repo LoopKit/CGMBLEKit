@@ -5,6 +5,7 @@
 //  Copyright © 2018 LoopKit Authors. All rights reserved.
 //
 
+import SwiftUI
 import LoopKit
 import LoopKitUI
 import HealthKit
@@ -12,13 +13,13 @@ import CGMBLEKit
 
 
 extension G5CGMManager: CGMManagerUI {
-    public static func setupViewController() -> (UIViewController & CGMManagerSetupViewController & CompletionNotifying)? {
+    public static func setupViewController(glucoseTintColor: Color, guidanceColors: GuidanceColors) -> (UIViewController & CGMManagerSetupViewController & CompletionNotifying)? {
         let setupVC = TransmitterSetupViewController.instantiateFromStoryboard()
         setupVC.cgmManagerType = self
         return setupVC
     }
 
-    public func settingsViewController(for glucoseUnit: HKUnit) -> (UIViewController & CompletionNotifying) {
+    public func settingsViewController(for glucoseUnit: HKUnit, glucoseTintColor: Color, guidanceColors: GuidanceColors) -> (UIViewController & CompletionNotifying) {
         let settings = TransmitterSettingsViewController(cgmManager: self, glucoseUnit: .milligramsPerDeciliter)
         let nav = SettingsNavigationViewController(rootViewController: settings)
         return nav
@@ -41,13 +42,13 @@ extension G5CGMManager: CGMManagerUI {
 
 
 extension G6CGMManager: CGMManagerUI {
-    public static func setupViewController() -> (UIViewController & CGMManagerSetupViewController & CompletionNotifying)? {
+    public static func setupViewController(glucoseTintColor: Color, guidanceColors: GuidanceColors) -> (UIViewController & CGMManagerSetupViewController & CompletionNotifying)? {
         let setupVC = TransmitterSetupViewController.instantiateFromStoryboard()
         setupVC.cgmManagerType = self
         return setupVC
     }
 
-    public func settingsViewController(for glucoseUnit: HKUnit) -> (UIViewController & CompletionNotifying) {
+    public func settingsViewController(for glucoseUnit: HKUnit, glucoseTintColor: Color, guidanceColors: GuidanceColors) -> (UIViewController & CompletionNotifying) {
         let settings = TransmitterSettingsViewController(cgmManager: self, glucoseUnit: .milligramsPerDeciliter)
         let nav = SettingsNavigationViewController(rootViewController: settings)
         return nav
