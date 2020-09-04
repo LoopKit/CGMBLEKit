@@ -1,0 +1,12 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Reset";
+
+/* Bundle name */
+"CFBundleName" = "ResetTransmitter";
+
+/* Privacy - Bluetooth Always Usage Description */
+"NSBluetoothAlwaysUsageDescription" = "Bluetooth is used to communicate with continuous glucose monitor devices";
+
+/* Privacy - Bluetooth Peripheral Usage Description */
+"NSBluetoothPeripheralUsageDescription" = "Bluetooth is used to communicate with continuous glucose monitor devices";
+

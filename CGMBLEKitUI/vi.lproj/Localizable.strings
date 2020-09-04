@@ -10,7 +10,8 @@
 /* Title describing glucose date */
 "Date" = "Ngày";
 
-/* Title text for the button to remove a CGM from Loop */
+/* Button title to delete CGM
+Title text for the button to remove a CGM from Loop */
 "Delete CGM" = "Xóa CGM";
 
 /* Title describing glucose value */
@@ -22,11 +23,17 @@
 /* Section title for latest glucose calibration */
 "Latest Calibration" = "Lần hiệu chỉnh gần nhất";
 
+/* Section title for latest connection date */
+"Latest Connection" = "Latest Connection";
+
 /* Section title for latest glucose reading */
 "Latest Reading" = "Kết quả đọc mới nhất";
 
 /* Button title to open CGM app */
 "Open App" = "Mở ứng dụng";
+
+/* Section title for remote data synchronization */
+"Remote Data Synchronization" = "Remote Data Synchronization";
 
 /* Title describing sensor session age */
 "Session Age" = "Thời gian sử dụng sensor";
@@ -42,4 +49,7 @@
 
 /* Title describing glucose trend */
 "Trend" = "Xu hướng";
+
+/* The title text for the upload glucose switch cell */
+"Upload Readings" = "Upload Readings";
 

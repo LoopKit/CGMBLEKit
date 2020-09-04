@@ -1,0 +1,6 @@
+/* Bundle name */
+"CFBundleName" = "CGMBLEKitG5Plugin";
+
+/* Copyright (human-readable) */
+"NSHumanReadableCopyright" = "Copyright© 2019 Loopkit udviklere. Alle rettigheder forbeholdes.";
+

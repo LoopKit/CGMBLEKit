@@ -23,11 +23,17 @@ Title text for the button to remove a CGM from Loop */
 /* Section title for latest glucose calibration */
 "Latest Calibration" = "直近の較正";
 
+/* Section title for latest connection date */
+"Latest Connection" = "Latest Connection";
+
 /* Section title for latest glucose reading */
 "Latest Reading" = "直近の読み取り";
 
 /* Button title to open CGM app */
 "Open App" = "アプリを開く";
+
+/* Section title for remote data synchronization */
+"Remote Data Synchronization" = "Remote Data Synchronization";
 
 /* Title describing sensor session age */
 "Session Age" = "セッション経過時間";
@@ -43,3 +49,7 @@ Title text for the button to remove a CGM from Loop */
 
 /* Title describing glucose trend */
 "Trend" = "トレンド";
+
+/* The title text for the upload glucose switch cell */
+"Upload Readings" = "Upload Readings";
+
