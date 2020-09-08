@@ -1,12 +1,12 @@
 /* Bundle display name */
-"CFBundleDisplayName" = "Reset";
+"CFBundleDisplayName" = "Återställ";
 
 /* Bundle name */
-"CFBundleName" = "ResetTransmitter";
+"CFBundleName" = "Återställ sändare";
 
 /* Privacy - Bluetooth Always Usage Description */
-"NSBluetoothAlwaysUsageDescription" = "Bluetooth is used to communicate with continuous glucose monitor devices";
+"NSBluetoothAlwaysUsageDescription" = "Bluetooth används för kommunikation med kontinuerliga blodglukosmätare";
 
 /* Privacy - Bluetooth Peripheral Usage Description */
-"NSBluetoothPeripheralUsageDescription" = "Bluetooth is used to communicate with continuous glucose monitor devices";
+"NSBluetoothPeripheralUsageDescription" = "Bluetooth används för kommunikation med kontinuerliga blodglukosmätare";
 
