@@ -10,6 +10,9 @@ import UserNotifications
 
 
 class ResetViewController: UITableViewController {
+    
+    @IBOutlet public weak var aboutText: UITextView!
+
 
     private enum State {
         case empty
@@ -71,6 +74,11 @@ class ResetViewController: UITableViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
 
         state = .needsConfiguration
+        
+        // Setting this color in code because the nib isn't being applied correctly
+        if #available(iOS 13.0, *) {
+            aboutText.textColor = .secondaryLabel
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

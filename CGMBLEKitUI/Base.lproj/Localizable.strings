@@ -1,10 +1,3 @@
-/* 
-  Localizable.strings
-  CGMBLEKit
-
-  Copyright © 2018 LoopKit Authors. All rights reserved.
-*/
-
 /* Format string for glucose trend per minute. (1: glucose value and unit) */
 "%@/min" = "%@/min";
 
@@ -17,7 +10,8 @@
 /* Title describing glucose date */
 "Date" = "Date";
 
-/* Title text for the button to remove a CGM from Loop */
+/* Button title to delete CGM
+Title text for the button to remove a CGM from Loop */
 "Delete CGM" = "Delete CGM";
 
 /* Title describing glucose value */

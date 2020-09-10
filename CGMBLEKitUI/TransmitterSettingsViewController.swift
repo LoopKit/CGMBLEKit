@@ -45,6 +45,7 @@ class TransmitterSettingsViewController: UITableViewController {
 
         tableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.className)
         tableView.register(TextButtonTableViewCell.self, forCellReuseIdentifier: TextButtonTableViewCell.className)
+        tableView.register(SwitchTableViewCell.self, forCellReuseIdentifier: SwitchTableViewCell.className)
         let button = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneTapped(_:)))
         self.navigationItem.setRightBarButton(button, animated: false)
     }
@@ -74,8 +75,10 @@ class TransmitterSettingsViewController: UITableViewController {
 
     private enum Section: Int, CaseIterable {
         case transmitterID
+        case remoteDataSync
         case latestReading
         case latestCalibration
+        case latestConnection
         case ages
         case share
         case delete
@@ -97,6 +100,10 @@ class TransmitterSettingsViewController: UITableViewController {
         case date
     }
 
+    private enum LatestConnectionRow: Int, CaseIterable {
+        case date
+    }
+
     private enum AgeRow: Int, CaseIterable {
         case sensor
         case transmitter
@@ -111,10 +118,14 @@ class TransmitterSettingsViewController: UITableViewController {
         switch Section(rawValue: section)! {
         case .transmitterID:
             return 1
+        case .remoteDataSync:
+            return 1
         case .latestReading:
             return LatestReadingRow.allCases.count
         case .latestCalibration:
             return LatestCalibrationRow.allCases.count
+        case .latestConnection:
+            return LatestConnectionRow.allCases.count
         case .ages:
             return AgeRow.allCases.count
         case .share:
@@ -162,6 +173,16 @@ class TransmitterSettingsViewController: UITableViewController {
             cell.detailTextLabel?.text = cgmManager.transmitter.ID
 
             return cell
+        case .remoteDataSync:
+            let switchCell = tableView.dequeueReusableCell(withIdentifier: SwitchTableViewCell.className, for: indexPath) as! SwitchTableViewCell
+
+            switchCell.selectionStyle = .none
+            switchCell.switch?.isOn = cgmManager.shouldSyncToRemoteService
+            switchCell.textLabel?.text = NSLocalizedString("Upload Readings", comment: "The title text for the upload glucose switch cell")
+
+            switchCell.switch?.addTarget(self, action: #selector(uploadEnabledChanged(_:)), for: .valueChanged)
+
+            return switchCell
         case .latestReading:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className, for: indexPath) as! SettingsTableViewCell
             let glucose = cgmManager.latestReading
@@ -206,6 +227,17 @@ class TransmitterSettingsViewController: UITableViewController {
                 cell.setGlucose(calibration?.glucose, unit: glucoseUnit, formatter: glucoseFormatter, isDisplayOnly: false)
             case .date:
                 cell.setGlucoseDate(calibration?.date, formatter: dateFormatter)
+            }
+
+            return cell
+        case .latestConnection:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className, for: indexPath) as! SettingsTableViewCell
+            let connection = cgmManager.latestConnection
+
+            switch LatestConnectionRow(rawValue: indexPath.row)! {
+            case .date:
+                cell.setGlucoseDate(connection, formatter: dateFormatter)
+                cell.accessoryType = .disclosureIndicator
             }
 
             return cell
@@ -265,10 +297,14 @@ class TransmitterSettingsViewController: UITableViewController {
         switch Section(rawValue: section)! {
         case .transmitterID:
             return nil
+        case .remoteDataSync:
+            return LocalizedString("Remote Data Synchronization", comment: "Section title for remote data synchronization")
         case .latestReading:
             return LocalizedString("Latest Reading", comment: "Section title for latest glucose reading")
         case .latestCalibration:
             return LocalizedString("Latest Calibration", comment: "Section title for latest glucose calibration")
+        case .latestConnection:
+            return LocalizedString("Latest Connection", comment: "Section title for latest connection date")
         case .ages:
             return nil
         case .share:
@@ -282,10 +318,14 @@ class TransmitterSettingsViewController: UITableViewController {
         switch Section(rawValue: indexPath.section)! {
         case .transmitterID:
             return false
+        case .remoteDataSync:
+            return false
         case .latestReading:
             return false
         case .latestCalibration:
             return false
+        case .latestConnection:
+            return true
         case .ages:
             return false
         case .share:
@@ -307,10 +347,18 @@ class TransmitterSettingsViewController: UITableViewController {
         switch Section(rawValue: indexPath.section)! {
         case .transmitterID:
             break
+        case .remoteDataSync:
+            break
         case .latestReading:
             break
         case .latestCalibration:
             break
+        case .latestConnection:
+            let vc = CommandResponseViewController(command: { (completionHandler) -> String in
+                return String(reflecting: self.cgmManager)
+            })
+            vc.title = self.title
+            show(vc, sender: nil)
         case .ages:
             break
         case .share:
@@ -345,9 +393,13 @@ class TransmitterSettingsViewController: UITableViewController {
         switch Section(rawValue: indexPath.section)! {
         case .transmitterID:
             break
+        case .remoteDataSync:
+            break
         case .latestReading:
             break
         case .latestCalibration:
+            break
+        case .latestConnection:
             break
         case .ages:
             break
@@ -363,6 +415,10 @@ class TransmitterSettingsViewController: UITableViewController {
         }
 
         return indexPath
+    }
+    
+    @objc private func uploadEnabledChanged(_ sender: UISwitch) {
+        cgmManager.shouldSyncToRemoteService = sender.isOn
     }
 }
 

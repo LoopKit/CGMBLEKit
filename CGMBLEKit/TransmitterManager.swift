@@ -19,9 +19,12 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
     public var transmitterID: String
 
     public var passiveModeEnabled: Bool = true
+    
+    public var shouldSyncToRemoteService: Bool
 
-    public init(transmitterID: String) {
+    public init(transmitterID: String, shouldSyncToRemoteService: Bool = false) {
         self.transmitterID = transmitterID
+        self.shouldSyncToRemoteService = shouldSyncToRemoteService
     }
 
     public init?(rawValue: RawValue) {
@@ -29,13 +32,16 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
         else {
             return nil
         }
+        
+        let shouldSyncToRemoteService = rawValue["shouldSyncToRemoteService"] as? Bool ?? false
 
-        self.init(transmitterID: transmitterID)
+        self.init(transmitterID: transmitterID, shouldSyncToRemoteService: shouldSyncToRemoteService)
     }
 
     public var rawValue: RawValue {
         return [
-            "transmitterID": transmitterID
+            "transmitterID": transmitterID,
+            "shouldSyncToRemoteService": shouldSyncToRemoteService,
         ]
     }
 }
@@ -51,13 +57,45 @@ public class TransmitterManager: TransmitterDelegate {
 
     private let observers = WeakSynchronizedSet<TransmitterManagerObserver>()
 
+    
     public required init(state: TransmitterManagerState) {
         self.state = state
         self.transmitter = Transmitter(id: state.transmitterID, passiveModeEnabled: state.passiveModeEnabled)
         self.shareManager = ShareClientManager()
 
         self.transmitter.delegate = self
+        
+        #if targetEnvironment(simulator)
+        setupSimulatedSampleGenerator()
+        #endif
+
     }
+    
+    
+    #if targetEnvironment(simulator)
+    var simulatedSampleGeneratorTimer: DispatchSourceTimer?
+
+    private func setupSimulatedSampleGenerator() {
+
+        let timer = DispatchSource.makeTimerSource(queue: DispatchQueue(label: "com.loopkit.simulatedSampleGenerator"))
+        timer.schedule(deadline: .now() + .seconds(10), repeating: .minutes(5))
+        timer.setEventHandler(handler: { [weak self] in
+            self?.generateSimulatedSample()
+        })
+        self.simulatedSampleGeneratorTimer = timer
+        timer.resume()
+    }
+
+    private func generateSimulatedSample() {
+        let timestamp = Date()
+        let syncIdentifier =  "\(self.state.transmitterID) \(timestamp)"
+        let period = TimeInterval(hours: 3)
+        let glucoseValue = 100 + 20 * cos(Date().timeIntervalSinceReferenceDate.remainder(dividingBy: period) / period * Double.pi * 2)
+        let quantity = HKQuantity(unit: .milligramsPerDeciliter, doubleValue: glucoseValue)
+        let sample = NewGlucoseSample(date: timestamp, quantity: quantity, isDisplayOnly: false, wasUserEntered: false, syncIdentifier: syncIdentifier)
+        self.updateDelegate(with: .newData([sample]))
+    }
+    #endif
 
     required convenience public init?(rawState: CGMManager.RawStateValue) {
         guard let state = TransmitterManagerState(rawValue: rawState) else {
@@ -70,8 +108,19 @@ public class TransmitterManager: TransmitterDelegate {
     public var rawState: CGMManager.RawStateValue {
         return state.rawValue
     }
+    
+    func logDeviceCommunication(_ message: String, type: DeviceLogEntryType = .send) {
+    }
 
-    public let shouldSyncToRemoteService = false
+    public var shouldSyncToRemoteService: Bool {
+        get {
+            return state.shouldSyncToRemoteService
+        }
+        set {
+            self.state.shouldSyncToRemoteService = newValue
+            notifyDelegateOfStateChange()
+        }
+    }
 
     public var cgmManagerDelegate: CGMManagerDelegate? {
         get {
@@ -90,6 +139,16 @@ public class TransmitterManager: TransmitterDelegate {
             shareManager.delegateQueue = newValue
         }
     }
+
+    private(set) public var latestConnection: Date? {
+        get {
+            return lockedLatestConnection.value
+        }
+        set {
+            lockedLatestConnection.value = newValue
+        }
+    }
+    private let lockedLatestConnection: Locked<Date?> = Locked(nil)
 
     public let shareManager: ShareClientManager
 
@@ -139,6 +198,9 @@ public class TransmitterManager: TransmitterDelegate {
     }
 
     public func fetchNewDataIfNeeded(_ completion: @escaping (CGMResult) -> Void) {
+        // Ensure our transmitter connection is active
+        transmitter.resumeScanning()
+
         // If our last glucose was less than 4.5 minutes ago, don't fetch.
         guard !dataIsFresh else {
             completion(.noData)
@@ -158,12 +220,12 @@ public class TransmitterManager: TransmitterDelegate {
         return [
             "## \(String(describing: type(of: self)))",
             "latestReading: \(String(describing: latestReading))",
-            "transmitter: \(String(reflecting: transmitter))",
+            "latestConnection: \(String(describing: latestConnection))",
             "dataIsFresh: \(dataIsFresh)",
             "providesBLEHeartbeat: \(providesBLEHeartbeat)",
             shareManager.debugDescription,
             "observers.count: \(observers.cleanupDeallocatedElements().count)",
-            ""
+            String(reflecting: transmitter),
         ].joined(separator: "\n")
     }
 
@@ -176,12 +238,28 @@ public class TransmitterManager: TransmitterDelegate {
 
         notifyObserversOfLatestReading()
     }
+    
+    private func notifyDelegateOfStateChange() {
+        if let manager = self as? CGMManager {
+            shareManager.delegate.notify { (delegate) in
+                delegate?.cgmManagerDidUpdateState(manager)
+            }
+        }
+    }
+
 
     // MARK: - TransmitterDelegate
+
+    public func transmitterDidConnect(_ transmitter: Transmitter) {
+        log.default("%{public}@", #function)
+        latestConnection = Date()
+        logDeviceCommunication("Connected", type: .connection)
+    }
 
     public func transmitter(_ transmitter: Transmitter, didError error: Error) {
         log.error("%{public}@: %{public}@", #function, String(describing: error))
         updateDelegate(with: .error(error))
+        logDeviceCommunication("Error: \(error)", type: .error)
     }
 
     public func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose) {
@@ -191,6 +269,8 @@ public class TransmitterManager: TransmitterDelegate {
         }
 
         latestReading = glucose
+
+        logDeviceCommunication("New reading: \(glucose.readDate)", type: .receive)
 
         guard glucose.state.hasReliableGlucose else {
             log.default("%{public}@: Unreliable glucose: %{public}@", #function, String(describing: glucose.state))
@@ -238,11 +318,15 @@ public class TransmitterManager: TransmitterDelegate {
         }
 
         updateDelegate(with: .newData(samples))
+
+        logDeviceCommunication("New backfill: \(String(describing: samples.first?.date))", type: .receive)
     }
 
     public func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data) {
         log.error("Unknown sensor data: %{public}@", data.hexadecimalString)
         // This can be used for protocol discovery, but isn't necessary for normal operation
+
+        logDeviceCommunication("Unknown sensor data: \(data.hexadecimalString)", type: .error)
     }
 }
 
@@ -286,6 +370,11 @@ public class G5CGMManager: TransmitterManager, CGMManager {
             udiDeviceIdentifier: "00386270000002"
         )
     }
+    
+    override func logDeviceCommunication(_ message: String, type: DeviceLogEntryType = .send) {
+        self.cgmManagerDelegate?.deviceManager(self, logEventForDeviceIdentifier: transmitter.ID, type: type, message: message, completion: nil)
+    }
+
 }
 
 
@@ -309,6 +398,10 @@ public class G6CGMManager: TransmitterManager, CGMManager {
             localIdentifier: nil,
             udiDeviceIdentifier: "00386270000385"
         )
+    }
+    
+    override func logDeviceCommunication(_ message: String, type: DeviceLogEntryType = .send) {
+        self.cgmManagerDelegate?.deviceManager(self, logEventForDeviceIdentifier: transmitter.ID, type: type, message: message, completion: nil)
     }
 }
 

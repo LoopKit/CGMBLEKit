@@ -98,6 +98,7 @@ extension ResetManager {
 
 
 extension ResetManager: TransmitterDelegate {
+    
     func transmitter(_ transmitter: Transmitter, didError error: Error) {
         os_log("Transmitter error: %{public}@", log: log, type: .error, String(describing: error))
         delegate?.resetManager(self, didError: error)
@@ -114,6 +115,11 @@ extension ResetManager: TransmitterDelegate {
     func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data) {
         // Not interested
     }
+    
+    func transmitterDidConnect(_ transmitter: Transmitter) {
+        // Not interested
+    }
+
 }
 
 

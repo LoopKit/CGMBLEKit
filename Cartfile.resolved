@@ -1,2 +1,3 @@
-github "LoopKit/LoopKit" "18a5a04afd310e945ac54f8c43a44838a16503c2"
-github "LoopKit/dexcom-share-client-swift" "c4f3d48e56e5b3ad786486ccd1bbc753034096d2"
+github "LoopKit/LoopKit" "564d8554d43f65034d341e0edf0ffd5bec7223eb"
+github "LoopKit/dexcom-share-client-swift" "e59763001a100816761e3480697c228fc2cefa27"
+github "i-schuetz/SwiftCharts" "0.6.5"

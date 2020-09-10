@@ -1,6 +1,7 @@
 /* Error description for unreliable state */
 "Glucose data is unavailable" = "Glukose data er utilgjengelig";
 
+/* Describes a low battery */
 "Low Battery" = "Lite batteri";
 
 /* Timeout error description */
