@@ -2,7 +2,7 @@
 "Are you sure you want to reset this transmitter?" = "Er du sikker på, at du vil nulstille denne sender?";
 
 /* Title of button to cancel reset */
-"Cancel" = "Annullere";
+"Cancel" = "Annuller";
 
 /* Message of the reset confirmation sheet */
 "It will take up to 10 minutes to complete." = "Det vil tage op til 10 minutter at gennemføre.";
