@@ -17,7 +17,7 @@
 "LBC-6R-q79.normalTitle" = "Återställ";
 
 /* Class = "UITextView"; text = "The transmitter has been successfully reset. Connect it to the app to begin a new sensor session."; ObjectID = "MbK-kj-ejl"; */
-"MbK-kj-ejl.text" = "Sändaren har blivit återställd. Anslut den till appen för att börja ny session.";
+"MbK-kj-ejl.text" = "Sändaren har blivit återställd. Anslut den till appen för att börja en ny session.";
 
 /* Class = "UITableViewSection"; headerTitle = "Transmitter ID"; ObjectID = "vNG-r7-RbP"; */
 "vNG-r7-RbP.headerTitle" = "Sändar-ID";

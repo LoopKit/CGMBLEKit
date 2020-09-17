@@ -2,7 +2,7 @@
 "CFBundleDisplayName" = "Återställ";
 
 /* Bundle name */
-"CFBundleName" = "Återställ sändare";
+"CFBundleName" = "ResetTransmitter";
 
 /* Privacy - Bluetooth Always Usage Description */
 "NSBluetoothAlwaysUsageDescription" = "Bluetooth används för kommunikation med kontinuerliga blodglukosmätare";

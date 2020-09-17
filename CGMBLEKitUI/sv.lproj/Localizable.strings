@@ -30,7 +30,7 @@ Title text for the button to remove a CGM from Loop */
 "Latest Reading" = "Senaste avläsning";
 
 /* Button title to open CGM app */
-"Open App" = "Öppna appen";
+"Open App" = "Öppna app";
 
 /* Section title for remote data synchronization */
 "Remote Data Synchronization" = "Synkronisering av fjärrlagrad data";

@@ -27,7 +27,7 @@ Title text for the button to remove a CGM from Loop */
 "Latest Connection" = "Laatste verbinding";
 
 /* Section title for latest glucose reading */
-"Latest Reading" = "Laatste meeting";
+"Latest Reading" = "Laatste meting";
 
 /* Button title to open CGM app */
 "Open App" = "Open app";
