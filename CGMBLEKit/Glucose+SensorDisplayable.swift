@@ -10,7 +10,7 @@ import Foundation
 import LoopKit
 
 
-extension Glucose: SensorDisplayable {
+extension Glucose: GlucoseDisplayable {
     public var isStateValid: Bool {
         return state == .known(.ok) && status == .ok
     }
@@ -67,7 +67,7 @@ extension Glucose: SensorDisplayable {
     }
     
     // TODO Placeholders. This functionality will come with LOOP-1311
-    public var glucoseValueType: GlucoseValueType? {
+    public var glucoseRangeCategory: GlucoseRangeCategory? {
         return nil
     }
 }
