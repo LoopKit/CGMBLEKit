@@ -57,7 +57,13 @@ public class TransmitterManager: TransmitterDelegate {
 
     private let observers = WeakSynchronizedSet<TransmitterManagerObserver>()
 
+
+    public var hasValidSensorSession: Bool {
+        // TODO: we should decode and persist transmitter session state
+        return !state.transmitterID.isEmpty
+    }
     
+
     public required init(state: TransmitterManagerState) {
         self.state = state
         self.transmitter = Transmitter(id: state.transmitterID, passiveModeEnabled: state.passiveModeEnabled)
@@ -70,7 +76,6 @@ public class TransmitterManager: TransmitterDelegate {
         #endif
 
     }
-    
     
     #if targetEnvironment(simulator)
     var simulatedSampleGeneratorTimer: DispatchSourceTimer?
@@ -374,7 +379,7 @@ public class G5CGMManager: TransmitterManager, CGMManager {
     override func logDeviceCommunication(_ message: String, type: DeviceLogEntryType = .send) {
         self.cgmManagerDelegate?.deviceManager(self, logEventForDeviceIdentifier: transmitter.ID, type: type, message: message, completion: nil)
     }
-
+    
 }
 
 
