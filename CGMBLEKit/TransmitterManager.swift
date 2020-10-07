@@ -159,14 +159,14 @@ public class TransmitterManager: TransmitterDelegate {
         return dataIsFresh
     }
 
-    public var sensorState: SensorDisplayable? {
+    public var glucoseDisplay: GlucoseDisplayable? {
         let transmitterDate = latestReading?.readDate ?? .distantPast
         let shareDate = shareManager.latestBackfill?.startDate ?? .distantPast
 
         if transmitterDate >= shareDate {
             return latestReading
         } else {
-            return shareManager.sensorState
+            return shareManager.glucoseDisplay
         }
     }
 
