@@ -63,6 +63,9 @@ public class TransmitterManager: TransmitterDelegate {
         return !state.transmitterID.isEmpty
     }
     
+    public var status: CGMManagerStatus {
+        return CGMManagerStatus(hasValidSensorSession: hasValidSensorSession)
+    }
 
     public required init(state: TransmitterManagerState) {
         self.state = state
