@@ -92,7 +92,7 @@ public class TransmitterManager: TransmitterDelegate {
         let period = TimeInterval(hours: 3)
         let glucoseValue = 100 + 20 * cos(Date().timeIntervalSinceReferenceDate.remainder(dividingBy: period) / period * Double.pi * 2)
         let quantity = HKQuantity(unit: .milligramsPerDeciliter, doubleValue: glucoseValue)
-        let sample = NewGlucoseSample(date: timestamp, quantity: quantity, isDisplayOnly: false, syncIdentifier: syncIdentifier)
+        let sample = NewGlucoseSample(date: timestamp, quantity: quantity, isDisplayOnly: false, wasUserEntered: false, syncIdentifier: syncIdentifier)
         self.updateDelegate(with: .newData([sample]))
     }
     #endif
@@ -159,14 +159,14 @@ public class TransmitterManager: TransmitterDelegate {
         return dataIsFresh
     }
 
-    public var sensorState: SensorDisplayable? {
+    public var glucoseDisplay: GlucoseDisplayable? {
         let transmitterDate = latestReading?.readDate ?? .distantPast
         let shareDate = shareManager.latestBackfill?.startDate ?? .distantPast
 
         if transmitterDate >= shareDate {
             return latestReading
         } else {
-            return shareManager.sensorState
+            return shareManager.glucoseDisplay
         }
     }
 
@@ -290,6 +290,7 @@ public class TransmitterManager: TransmitterDelegate {
                 date: glucose.readDate,
                 quantity: quantity,
                 isDisplayOnly: glucose.isDisplayOnly,
+                wasUserEntered: glucose.isDisplayOnly,
                 syncIdentifier: glucose.syncIdentifier,
                 device: device
             )
@@ -306,6 +307,7 @@ public class TransmitterManager: TransmitterDelegate {
                 date: glucose.readDate,
                 quantity: quantity,
                 isDisplayOnly: glucose.isDisplayOnly,
+                wasUserEntered: glucose.isDisplayOnly,
                 syncIdentifier: glucose.syncIdentifier,
                 device: device
             )
@@ -443,3 +445,26 @@ extension CalibrationState {
         }
     }
 }
+
+// MARK: - AlertResponder implementation
+extension G5CGMManager {
+    public func acknowledgeAlert(alertIdentifier: Alert.AlertIdentifier) { }
+}
+
+// MARK: - AlertSoundVendor implementation
+extension G5CGMManager {
+    public func getSoundBaseURL() -> URL? { return nil }
+    public func getSounds() -> [Alert.Sound] { return [] }
+}
+
+// MARK: - AlertResponder implementation
+extension G6CGMManager {
+    public func acknowledgeAlert(alertIdentifier: Alert.AlertIdentifier) { }
+}
+
+// MARK: - AlertSoundVendor implementation
+extension G6CGMManager {
+    public func getSoundBaseURL() -> URL? { return nil }
+    public func getSounds() -> [Alert.Sound] { return [] }
+}
+
