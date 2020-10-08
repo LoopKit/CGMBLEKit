@@ -1,2 +1,2 @@
-github "LoopKit/LoopKit" "merge-from-tidepool"
-github "LoopKit/dexcom-share-client-swift" "merge-from-tidepool"
+github "LoopKit/LoopKit" "dev"
+github "LoopKit/dexcom-share-client-swift" "dev"
