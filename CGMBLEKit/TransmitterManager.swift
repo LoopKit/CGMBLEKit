@@ -205,7 +205,7 @@ public class TransmitterManager: TransmitterDelegate {
         return true
     }
 
-    public func fetchNewDataIfNeeded(_ completion: @escaping (CGMResult) -> Void) {
+    public func fetchNewDataIfNeeded(_ completion: @escaping (CGMReadingResult) -> Void) {
         // Ensure our transmitter connection is active
         transmitter.resumeScanning()
 
@@ -237,10 +237,10 @@ public class TransmitterManager: TransmitterDelegate {
         ].joined(separator: "\n")
     }
 
-    private func updateDelegate(with result: CGMResult) {
+    private func updateDelegate(with result: CGMReadingResult) {
         if let manager = self as? CGMManager {
             shareManager.delegate.notify { (delegate) in
-                delegate?.cgmManager(manager, didUpdateWith: result)
+                delegate?.cgmManager(manager, hasNew: result)
             }
         }
 
