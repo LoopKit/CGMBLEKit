@@ -57,7 +57,16 @@ public class TransmitterManager: TransmitterDelegate {
 
     private let observers = WeakSynchronizedSet<TransmitterManagerObserver>()
 
+
+    public var hasValidSensorSession: Bool {
+        // TODO: we should decode and persist transmitter session state
+        return !state.transmitterID.isEmpty
+    }
     
+    public var cgmStatus: CGMManagerStatus {
+        return CGMManagerStatus(hasValidSensorSession: hasValidSensorSession)
+    }
+
     public required init(state: TransmitterManagerState) {
         self.state = state
         self.transmitter = Transmitter(id: state.transmitterID, passiveModeEnabled: state.passiveModeEnabled)
@@ -70,7 +79,6 @@ public class TransmitterManager: TransmitterDelegate {
         #endif
 
     }
-    
     
     #if targetEnvironment(simulator)
     var simulatedSampleGeneratorTimer: DispatchSourceTimer?
@@ -197,7 +205,7 @@ public class TransmitterManager: TransmitterDelegate {
         return true
     }
 
-    public func fetchNewDataIfNeeded(_ completion: @escaping (CGMResult) -> Void) {
+    public func fetchNewDataIfNeeded(_ completion: @escaping (CGMReadingResult) -> Void) {
         // Ensure our transmitter connection is active
         transmitter.resumeScanning()
 
@@ -229,10 +237,10 @@ public class TransmitterManager: TransmitterDelegate {
         ].joined(separator: "\n")
     }
 
-    private func updateDelegate(with result: CGMResult) {
+    private func updateDelegate(with result: CGMReadingResult) {
         if let manager = self as? CGMManager {
             shareManager.delegate.notify { (delegate) in
-                delegate?.cgmManager(manager, didUpdateWith: result)
+                delegate?.cgmManager(manager, hasNew: result)
             }
         }
 
@@ -374,7 +382,7 @@ public class G5CGMManager: TransmitterManager, CGMManager {
     override func logDeviceCommunication(_ message: String, type: DeviceLogEntryType = .send) {
         self.cgmManagerDelegate?.deviceManager(self, logEventForDeviceIdentifier: transmitter.ID, type: type, message: message, completion: nil)
     }
-
+    
 }
 
 
