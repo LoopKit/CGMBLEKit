@@ -6,8 +6,7 @@
 //  Copyright © 2016 Nathan Racklyeft. All rights reserved.
 //
 
-import Foundation
-
+import UIKit
 
 protocol IdentifiableClass: class {
     static var className: String { get }

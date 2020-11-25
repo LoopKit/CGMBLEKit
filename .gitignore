@@ -34,3 +34,5 @@ Carthage
 Pods/
 Carthage/
 .gitmodules
+.swiftpm
+/Packages
