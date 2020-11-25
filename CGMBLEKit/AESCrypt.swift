@@ -14,13 +14,12 @@ struct AESCrypt {
         
         var outputBuffer = Data(count: data.count + kCCBlockSizeAES128)
         let outputBufferLength = outputBuffer.count
-        var encryptedLength = Int(0)
         let status: CCCryptorStatus = outputBuffer.withUnsafeMutableBytes { (outputBufferBytes) -> CCCryptorStatus in
             let result: CCCryptorStatus
             result = data.withUnsafeBytes({ (dataBytes) -> CCCryptorStatus in
                 let result: CCCryptorStatus
                 result = key.withUnsafeBytes({ (keyBytes ) -> CCCryptorStatus in
-                    return CCCrypt(CCOperation(kCCDecrypt),
+                    return CCCrypt(CCOperation(kCCEncrypt),
                             CCAlgorithm(kCCAlgorithmAES),
                             CCOptions(kCCOptionECBMode),
                             keyBytes.baseAddress,
@@ -30,14 +29,13 @@ struct AESCrypt {
                             data.count,
                             outputBufferBytes.baseAddress,
                             outputBufferLength,
-                            &encryptedLength)
+                            nil)
                 })
                 return result
             })
             return result
         }
         if status == kCCSuccess {
-            outputBuffer.count = encryptedLength
             return outputBuffer
         }
         return nil
