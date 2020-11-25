@@ -373,7 +373,7 @@ public class G5CGMManager: TransmitterManager, CGMManager {
             model: "G5 Mobile",
             hardwareVersion: nil,
             firmwareVersion: nil,
-            softwareVersion: String(CGMBLEKitVersionNumber),
+            softwareVersion: nil,
             localIdentifier: nil,
             udiDeviceIdentifier: "00386270000002"
         )
@@ -402,7 +402,7 @@ public class G6CGMManager: TransmitterManager, CGMManager {
             model: "G6",
             hardwareVersion: nil,
             firmwareVersion: nil,
-            softwareVersion: String(CGMBLEKitVersionNumber),
+            softwareVersion: nil,
             localIdentifier: nil,
             udiDeviceIdentifier: "00386270000385"
         )

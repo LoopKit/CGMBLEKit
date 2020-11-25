@@ -421,8 +421,8 @@ struct TransmitterID {
         var doubleData = Data(capacity: data.count * 2)
         doubleData.append(data)
         doubleData.append(data)
-
-        guard let outData = try? AESCrypt.encryptData(doubleData, usingKey: key) else {
+        
+        guard let outData = AESCrypt.encryptData(doubleData, usingKey: key) else {
             return nil
         }
 
