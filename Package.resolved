@@ -15,7 +15,7 @@
         "repositoryURL": "https://github.com/LoopKit/dexcom-share-client-swift.git",
         "state": {
           "branch": "package-experiment",
-          "revision": "388c70390d7a47a0ed91114b961a0dc4579a8671",
+          "revision": "10240789a9a14c49151a41f3d05198e20ff7e597",
           "version": null
         }
       },
@@ -24,7 +24,7 @@
         "repositoryURL": "https://github.com/LoopKit/G4ShareSpy.git",
         "state": {
           "branch": "package-experiment",
-          "revision": "a80a4514cd1f9b3d9bcac7644c27b4bdf5152905",
+          "revision": "6bfacbb1168a8a32eeed50053cd5ffc55be704eb",
           "version": null
         }
       },
@@ -33,7 +33,7 @@
         "repositoryURL": "https://github.com/LoopKit/LoopKit.git",
         "state": {
           "branch": "package-experiment",
-          "revision": "d813c44192b573f6adba5954e5b5135fe13cfda8",
+          "revision": "7dcfd3ed711dcb4db288f5f355bbbf931f88fa48",
           "version": null
         }
       },
@@ -42,7 +42,7 @@
         "repositoryURL": "https://github.com/ps2/SwiftCharts.git",
         "state": {
           "branch": "uikit-explicit",
-          "revision": "2919cbcec95ca45fad31262426d6008a28ca7fb5",
+          "revision": "d4835fde68557524dcb08aad6079df2a5103c860",
           "version": null
         }
       }
