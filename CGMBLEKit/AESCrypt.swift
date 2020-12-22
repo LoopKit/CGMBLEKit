@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CCommonCrypto
+import CommonCrypto
 
 
 struct AESCrypt {

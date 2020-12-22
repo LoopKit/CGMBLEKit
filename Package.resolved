@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "CCommonCrypto",
-        "repositoryURL": "https://github.com/jernejstrasner/CCommonCrypto.git",
-        "state": {
-          "branch": "master",
-          "revision": "0530a4637e4a3728f6d5f23199a2f6e4f56c126d",
-          "version": null
-        }
-      },
-      {
         "package": "ShareClient",
         "repositoryURL": "https://github.com/LoopKit/dexcom-share-client-swift.git",
         "state": {
