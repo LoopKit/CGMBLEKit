@@ -13,7 +13,7 @@ import ShareClient
 
 class TransmitterSetupViewController: UINavigationController, CGMManagerSetupViewController, UINavigationControllerDelegate, CompletionNotifying {
     class func instantiateFromStoryboard() -> TransmitterSetupViewController {
-        return UIStoryboard(name: "TransmitterManagerSetup", bundle: Bundle(for: TransmitterSetupViewController.self)).instantiateInitialViewController() as! TransmitterSetupViewController
+        return UIStoryboard(name: "TransmitterManagerSetup", bundle: Bundle.module).instantiateInitialViewController() as! TransmitterSetupViewController
     }
 
     weak var setupDelegate: CGMManagerSetupViewControllerDelegate?
