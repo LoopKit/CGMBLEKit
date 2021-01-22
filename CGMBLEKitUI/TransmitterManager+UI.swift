@@ -19,9 +19,9 @@ extension G5CGMManager: CGMManagerUI {
         return setupVC
     }
 
-    public func settingsViewController(for glucoseUnit: HKUnit, glucoseTintColor: Color, guidanceColors: GuidanceColors) -> (UIViewController & CompletionNotifying) {
+    public func settingsViewController(for glucoseUnit: HKUnit, glucoseTintColor: Color, guidanceColors: GuidanceColors) -> (UIViewController & CompletionNotifying & PreferredGlucoseUnitObserver) {
         let settings = TransmitterSettingsViewController(cgmManager: self, glucoseUnit: .milligramsPerDeciliter)
-        let nav = SettingsNavigationViewController(rootViewController: settings)
+        let nav = CGMManagerSettingsNavigationController(rootViewController: settings)
         return nav
     }
 
@@ -48,9 +48,9 @@ extension G6CGMManager: CGMManagerUI {
         return setupVC
     }
 
-    public func settingsViewController(for glucoseUnit: HKUnit, glucoseTintColor: Color, guidanceColors: GuidanceColors) -> (UIViewController & CompletionNotifying) {
+    public func settingsViewController(for glucoseUnit: HKUnit, glucoseTintColor: Color, guidanceColors: GuidanceColors) -> (UIViewController & CompletionNotifying & PreferredGlucoseUnitObserver) {
         let settings = TransmitterSettingsViewController(cgmManager: self, glucoseUnit: .milligramsPerDeciliter)
-        let nav = SettingsNavigationViewController(rootViewController: settings)
+        let nav = CGMManagerSettingsNavigationController(rootViewController: settings)
         return nav
     }
 

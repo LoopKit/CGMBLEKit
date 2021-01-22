@@ -12,12 +12,11 @@ import LoopKitUI
 import CGMBLEKit
 import ShareClientUI
 
-
 class TransmitterSettingsViewController: UITableViewController {
 
     let cgmManager: TransmitterManager & CGMManagerUI
 
-    let glucoseUnit: HKUnit
+    private var glucoseUnit: HKUnit
 
     init(cgmManager: TransmitterManager & CGMManagerUI, glucoseUnit: HKUnit) {
         self.cgmManager = cgmManager
@@ -475,5 +474,12 @@ private extension SettingsTableViewCell {
         } else {
             detailTextLabel?.text = SettingsTableViewCell.NoValueString
         }
+    }
+}
+
+extension TransmitterSettingsViewController: PreferredGlucoseUnitObserver {
+    func preferredGlucoseUnitDidChange(to preferredGlucoseUnit: HKUnit) {
+        self.glucoseUnit = preferredGlucoseUnit
+        tableView.reloadData()
     }
 }
