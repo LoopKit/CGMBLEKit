@@ -63,7 +63,7 @@ public class TransmitterManager: TransmitterDelegate {
         return !state.transmitterID.isEmpty
     }
     
-    public var cgmStatus: CGMManagerStatus {
+    public var cgmManagerStatus: CGMManagerStatus {
         return CGMManagerStatus(hasValidSensorSession: hasValidSensorSession)
     }
 
