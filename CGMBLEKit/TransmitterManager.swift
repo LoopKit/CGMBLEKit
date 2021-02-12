@@ -362,6 +362,8 @@ public class G5CGMManager: TransmitterManager, CGMManager {
 
     public let localizedTitle = LocalizedString("Dexcom G5", comment: "CGM display title")
 
+    public let isOnboarded = true   // No distinction between created and onboarded
+
     public var appURL: URL? {
         return URL(string: "dexcomcgm://")
     }
@@ -390,6 +392,8 @@ public class G6CGMManager: TransmitterManager, CGMManager {
     public let managerIdentifier: String = "DexG6Transmitter"
 
     public let localizedTitle = LocalizedString("Dexcom G6", comment: "CGM display title")
+
+    public let isOnboarded = true   // No distinction between created and onboarded
 
     public var appURL: URL? {
         return URL(string: "dexcomg6://")
