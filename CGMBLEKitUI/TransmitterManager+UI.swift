@@ -19,8 +19,8 @@ extension G5CGMManager: CGMManagerUI {
         return .userInteractionRequired(setupVC)
     }
 
-    public func settingsViewController(for preferredGlucoseUnit: HKUnit, colorPalette: LoopUIColorPalette) -> (UIViewController & CGMManagerOnboardNotifying & PreferredGlucoseUnitObserver & CompletionNotifying) {
-        let settings = TransmitterSettingsViewController(cgmManager: self, glucoseUnit: .milligramsPerDeciliter)
+    public func settingsViewController(for displayGlucoseUnitObservable: DisplayGlucoseUnitObservable, colorPalette: LoopUIColorPalette) -> (UIViewController & CGMManagerOnboardNotifying & CompletionNotifying) {
+        let settings = TransmitterSettingsViewController(cgmManager: self, displayGlucoseUnitObservable: displayGlucoseUnitObservable)
         let nav = CGMManagerSettingsNavigationViewController(rootViewController: settings)
         return nav
     }
@@ -53,8 +53,8 @@ extension G6CGMManager: CGMManagerUI {
         return .userInteractionRequired(setupVC)
     }
 
-    public func settingsViewController(for preferredGlucoseUnit: HKUnit, colorPalette: LoopUIColorPalette) -> (UIViewController & CGMManagerOnboardNotifying & PreferredGlucoseUnitObserver & CompletionNotifying) {
-        let settings = TransmitterSettingsViewController(cgmManager: self, glucoseUnit: .milligramsPerDeciliter)
+    public func settingsViewController(for displayGlucoseUnitObservable: DisplayGlucoseUnitObservable, colorPalette: LoopUIColorPalette) -> (UIViewController & CGMManagerOnboardNotifying & CompletionNotifying) {
+        let settings = TransmitterSettingsViewController(cgmManager: self, displayGlucoseUnitObservable: displayGlucoseUnitObservable)
         let nav = CGMManagerSettingsNavigationViewController(rootViewController: settings)
         return nav
     }
