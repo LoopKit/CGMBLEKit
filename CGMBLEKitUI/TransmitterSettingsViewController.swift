@@ -6,26 +6,36 @@
 //
 
 import UIKit
+import Combine
 import HealthKit
 import LoopKit
 import LoopKitUI
 import CGMBLEKit
 import ShareClientUI
 
-
 class TransmitterSettingsViewController: UITableViewController {
 
     let cgmManager: TransmitterManager & CGMManagerUI
 
-    let glucoseUnit: HKUnit
+    private let displayGlucoseUnitObservable: DisplayGlucoseUnitObservable
 
-    init(cgmManager: TransmitterManager & CGMManagerUI, glucoseUnit: HKUnit) {
+    private lazy var cancellables = Set<AnyCancellable>()
+
+    private var glucoseUnit: HKUnit {
+        displayGlucoseUnitObservable.displayGlucoseUnit
+    }
+
+    init(cgmManager: TransmitterManager & CGMManagerUI, displayGlucoseUnitObservable: DisplayGlucoseUnitObservable) {
         self.cgmManager = cgmManager
-        self.glucoseUnit = glucoseUnit
+        self.displayGlucoseUnitObservable = displayGlucoseUnitObservable
 
         super.init(style: .grouped)
 
         cgmManager.addObserver(self, queue: .main)
+
+        displayGlucoseUnitObservable.$displayGlucoseUnit
+            .sink { [weak self] _ in self?.tableView.reloadData() }
+            .store(in: &cancellables)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -364,7 +374,7 @@ class TransmitterSettingsViewController: UITableViewController {
         case .share:
             switch ShareRow(rawValue: indexPath.row)! {
             case .settings:
-                let vc = ShareClientSettingsViewController(cgmManager: cgmManager.shareManager, glucoseUnit: glucoseUnit, allowsDeletion: false)
+                let vc = ShareClientSettingsViewController(cgmManager: cgmManager.shareManager, displayGlucoseUnitObservable: displayGlucoseUnitObservable, allowsDeletion: false)
                 show(vc, sender: nil)
                 return // Don't deselect
             case .openApp:

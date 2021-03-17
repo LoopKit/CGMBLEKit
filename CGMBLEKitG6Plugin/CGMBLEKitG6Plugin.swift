@@ -6,19 +6,13 @@
 //  Copyright © 2019 LoopKit Authors. All rights reserved.
 //
 
-import Foundation
+import os.log
 import LoopKitUI
 import CGMBLEKit
 import CGMBLEKitUI
-import os.log
 
-class CGMBLEKitG6Plugin: NSObject, LoopUIPlugin {
-    
+class CGMBLEKitG6Plugin: NSObject, CGMManagerUIPlugin {    
     private let log = OSLog(category: "CGMBLEKitG6Plugin")
-    
-    public var pumpManagerType: PumpManagerUI.Type? {
-        return nil
-    }
     
     public var cgmManagerType: CGMManagerUI.Type? {
         return G6CGMManager.self
@@ -26,6 +20,6 @@ class CGMBLEKitG6Plugin: NSObject, LoopUIPlugin {
     
     override init() {
         super.init()
-        log.default("CGMBLEKitG6Plugin Instantiated")
+        log.default("Instantiated")
     }
 }
