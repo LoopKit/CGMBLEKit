@@ -378,7 +378,7 @@ class TransmitterSettingsViewController: UITableViewController {
                 show(vc, sender: nil)
                 return // Don't deselect
             case .openApp:
-                if let appURL = cgmManager.appURL {
+                if let appURL = URL(string: "dexcomg6://") {
                     UIApplication.shared.open(appURL)
                 }
             }
