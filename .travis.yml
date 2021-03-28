@@ -2,7 +2,7 @@ language: objective-c
 osx_image: xcode11.6
 
 before_script:
-    - carthage bootstrap
+    - ./Scripts/carthage.sh bootstrap
 
 script:
     # Build frameworks and run tests
