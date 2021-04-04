@@ -1,8 +1,8 @@
 language: objective-c
-osx_image: xcode11.6
+osx_image: xcode12.2
 
 before_script:
-    - ./Scripts/carthage.sh bootstrap
+    - travis_wait 30 ./bin/carthage bootstrap --use-xcframeworks --cache-builds
 
 script:
     # Build frameworks and run tests
