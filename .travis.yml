@@ -1,6 +1,10 @@
 language: objective-c
 osx_image: xcode12.2
 
+cache:
+  directories:
+  - Carthage
+
 before_script:
     - travis_wait 30 ./bin/carthage bootstrap --use-xcframeworks --cache-builds
 
