@@ -27,6 +27,7 @@
 	<key>PluginDependencies</key>
 	<array>
 		<string>ShareClient</string>
+		<string>ShareClientUI</string>
 		<string>CGMBLEKit</string>
 		<string>CGMBLEKitUI</string>
 	</array>
