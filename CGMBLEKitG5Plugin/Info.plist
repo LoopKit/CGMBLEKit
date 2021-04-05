@@ -26,5 +26,11 @@
 	<string>Dexcom G5</string>
 	<key>com.loopkit.Loop.CGMManagerIdentifier</key>
 	<string>DexG5Transmitter</string>
+	<key>PluginDependencies</key>
+	<array>
+		<string>ShareClient</string>
+		<string>CGMBLEKit</string>
+		<string>CGMBLEKitUI</string>
+	</array>
 </dict>
 </plist>
