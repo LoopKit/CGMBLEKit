@@ -24,6 +24,11 @@
 	<string>CGMBLEKitG6Plugin</string>
 	<key>com.loopkit.Loop.CGMManagerDisplayName</key>
 	<string>Dexcom G6</string>
+	<key>PluginDependencies</key>
+	<array>
+		<string>ShareClient</string>
+		<string>CGMBLEKit</string>
+	</array>
 	<key>com.loopkit.Loop.CGMManagerIdentifier</key>
 	<string>DexG6Transmitter</string>
 </dict>
