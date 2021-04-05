@@ -43,7 +43,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B4D40D3D23A428BC00D7ECB5"
-               BuildableName = "CGMBLEKitG5Plugin.bundle"
+               BuildableName = "CGMBLEKitG5Plugin.framework"
                BlueprintName = "CGMBLEKitG5Plugin"
                ReferencedContainer = "container:CGMBLEKit.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B4D40D2D23A3E91800D7ECB5"
-               BuildableName = "CGMBLEKitG6Plugin.bundle"
+               BuildableName = "CGMBLEKitG6Plugin.framework"
                BlueprintName = "CGMBLEKitG6Plugin"
                ReferencedContainer = "container:CGMBLEKit.xcodeproj">
             </BuildableReference>
