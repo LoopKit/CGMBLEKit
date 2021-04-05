@@ -475,11 +475,11 @@
 		A9AD381E225EEE850058C179 /* CGMBLEKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CGMBLEKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9AD3821225EEEFB0058C179 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		A9D99F47225EE99300073DF6 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		B4D40D2E23A3E91800D7ECB5 /* CGMBLEKitG6Plugin.loopplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CGMBLEKitG6Plugin.loopplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4D40D2E23A3E91800D7ECB5 /* CGMBLEKitG6Plugin.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CGMBLEKitG6Plugin.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4D40D3023A3E91800D7ECB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4D40D3623A3ED1500D7ECB5 /* CGMBLEKitG6Plugin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CGMBLEKitG6Plugin-Bridging-Header.h"; sourceTree = "<group>"; };
 		B4D40D3723A3ED1500D7ECB5 /* CGMBLEKitG6Plugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGMBLEKitG6Plugin.swift; sourceTree = "<group>"; };
-		B4D40D3E23A428BC00D7ECB5 /* CGMBLEKitG5Plugin.loopplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CGMBLEKitG5Plugin.loopplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4D40D3E23A428BC00D7ECB5 /* CGMBLEKitG5Plugin.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CGMBLEKitG5Plugin.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4D40D4023A428BC00D7ECB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4D40D4823ABB33500D7ECB5 /* CGMBLEKitG5Plugin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CGMBLEKitG5Plugin-Bridging-Header.h"; sourceTree = "<group>"; };
 		B4D40D4923ABB33500D7ECB5 /* CGMBLEKitG5Plugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGMBLEKitG5Plugin.swift; sourceTree = "<group>"; };
@@ -683,8 +683,8 @@
 				4308103320785FEA00B66384 /* ResetTransmitter.app */,
 				43A8EC52210D0A7400A81379 /* CGMBLEKitUI.framework */,
 				A9AD381E225EEE850058C179 /* CGMBLEKit.framework */,
-				B4D40D2E23A3E91800D7ECB5 /* CGMBLEKitG6Plugin.loopplugin */,
-				B4D40D3E23A428BC00D7ECB5 /* CGMBLEKitG5Plugin.loopplugin */,
+				B4D40D2E23A3E91800D7ECB5 /* CGMBLEKitG6Plugin.bundle */,
+				B4D40D3E23A428BC00D7ECB5 /* CGMBLEKitG5Plugin.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -961,7 +961,7 @@
 			);
 			name = CGMBLEKitG6Plugin;
 			productName = CGMBLEKitPlugin;
-			productReference = B4D40D2E23A3E91800D7ECB5 /* CGMBLEKitG6Plugin.loopplugin */;
+			productReference = B4D40D2E23A3E91800D7ECB5 /* CGMBLEKitG6Plugin.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		B4D40D3D23A428BC00D7ECB5 /* CGMBLEKitG5Plugin */ = {
@@ -979,7 +979,7 @@
 			);
 			name = CGMBLEKitG5Plugin;
 			productName = CGMBLEKitG5Plugin;
-			productReference = B4D40D3E23A428BC00D7ECB5 /* CGMBLEKitG5Plugin.loopplugin */;
+			productReference = B4D40D3E23A428BC00D7ECB5 /* CGMBLEKitG5Plugin.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -2104,7 +2104,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				WRAPPER_EXTENSION = loopplugin;
 			};
 			name = Debug;
 		};
@@ -2139,7 +2138,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "CGMBLEKitG6Plugin/CGMBLEKitG6Plugin-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				WRAPPER_EXTENSION = loopplugin;
 			};
 			name = Release;
 		};
@@ -2175,7 +2173,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				WRAPPER_EXTENSION = loopplugin;
 			};
 			name = Debug;
 		};
@@ -2209,7 +2206,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "CGMBLEKitG5Plugin/CGMBLEKitG5Plugin-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-				WRAPPER_EXTENSION = loopplugin;
 			};
 			name = Release;
 		};
