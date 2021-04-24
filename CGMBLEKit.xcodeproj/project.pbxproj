@@ -988,7 +988,7 @@
 			name = CGMBLEKitG6Plugin;
 			productName = CGMBLEKitPlugin;
 			productReference = B4D40D2E23A3E91800D7ECB5 /* CGMBLEKitG6Plugin.loopplugin */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.framework";
 		};
 		B4D40D3D23A428BC00D7ECB5 /* CGMBLEKitG5Plugin */ = {
 			isa = PBXNativeTarget;
@@ -1007,7 +1007,7 @@
 			name = CGMBLEKitG5Plugin;
 			productName = CGMBLEKitG5Plugin;
 			productReference = B4D40D3E23A428BC00D7ECB5 /* CGMBLEKitG5Plugin.loopplugin */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
