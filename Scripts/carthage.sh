@@ -16,4 +16,5 @@ echo 'EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x8
 echo 'EXCLUDED_ARCHS = $(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT)__XCODE_$(XCODE_VERSION_MAJOR))' >> $xcconfig
 
 export XCODE_XCCONFIG_FILE="$xcconfig"
-"${SRCROOT}/bin/carthage" "$@"
+bin_dir="$(dirname $(dirname ${BASH_SOURCE[0]}))/bin"
+"$bin_dir"/carthage "$@"
