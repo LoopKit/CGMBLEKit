@@ -6,8 +6,8 @@ before_script:
 
 script:
     # Build frameworks and run tests
-    - xcodebuild -project CGMBLEKit.xcodeproj -scheme Shared build -destination name="iPhone 8" test 
+    - xcodebuild -project CGMBLEKit.xcodeproj -scheme Shared build -destination name="iPhone 8" test | xcpretty
     # Build apps
-    - xcodebuild -project CGMBLEKit.xcodeproj -scheme "CGMBLEKit Example" build -destination name="iPhone 8"
+    - xcodebuild -project CGMBLEKit.xcodeproj -scheme "CGMBLEKit Example" build -destination name="iPhone 8" | xcpretty
     - xcodebuild -project CGMBLEKit.xcodeproj -scheme ResetTransmitter build -destination name="iPhone 8"
 
