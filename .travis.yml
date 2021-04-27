@@ -1,4 +1,5 @@
 language: objective-c
+<<<<<<< Updated upstream
 osx_image: xcode12.2
 
 before_script:
@@ -11,3 +12,10 @@ script:
     - xcodebuild -project CGMBLEKit.xcodeproj -scheme "CGMBLEKit Example" build -destination name="iPhone 8" | xcpretty
     - xcodebuild -project CGMBLEKit.xcodeproj -scheme ResetTransmitter build -destination name="iPhone 8"
 
+=======
+osx_image: xcode12.4
+
+script:
+    # Build Travis project and run tests
+    - xcodebuild -scheme CGMBLEKit-Package -destination 'name=iPhone 8' test | xcpretty
+>>>>>>> Stashed changes
