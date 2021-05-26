@@ -17,13 +17,13 @@ extension G5CGMManager: CGMManagerUI {
         return nil
     }
 
-    public static func setupViewController(bluetoothProvider: BluetoothProvider, displayGlucoseUnitObservable: DisplayGlucoseUnitObservable, colorPalette: LoopUIColorPalette) -> SetupUIResult<CGMManagerViewController, CGMManagerUI> {
+    public static func setupViewController(bluetoothProvider: BluetoothProvider, displayGlucoseUnitObservable: DisplayGlucoseUnitObservable, colorPalette: LoopUIColorPalette, allowDebugFeatures: Bool) -> SetupUIResult<CGMManagerViewController, CGMManagerUI> {
         let setupVC = TransmitterSetupViewController.instantiateFromStoryboard()
         setupVC.cgmManagerType = self
         return .userInteractionRequired(setupVC)
     }
 
-    public func settingsViewController(bluetoothProvider: BluetoothProvider, displayGlucoseUnitObservable: DisplayGlucoseUnitObservable, colorPalette: LoopUIColorPalette) ->CGMManagerViewController {
+    public func settingsViewController(bluetoothProvider: BluetoothProvider, displayGlucoseUnitObservable: DisplayGlucoseUnitObservable, colorPalette: LoopUIColorPalette, allowDebugFeatures: Bool) ->CGMManagerViewController {
         let settings = TransmitterSettingsViewController(cgmManager: self, displayGlucoseUnitObservable: displayGlucoseUnitObservable)
         let nav = CGMManagerSettingsNavigationViewController(rootViewController: settings)
         return nav
@@ -55,13 +55,13 @@ extension G6CGMManager: CGMManagerUI {
         return nil
     }
 
-    public static func setupViewController(bluetoothProvider: BluetoothProvider, displayGlucoseUnitObservable: DisplayGlucoseUnitObservable, colorPalette: LoopUIColorPalette) -> SetupUIResult<CGMManagerViewController, CGMManagerUI> {
+    public static func setupViewController(bluetoothProvider: BluetoothProvider, displayGlucoseUnitObservable: DisplayGlucoseUnitObservable, colorPalette: LoopUIColorPalette, allowDebugFeatures: Bool) -> SetupUIResult<CGMManagerViewController, CGMManagerUI> {
         let setupVC = TransmitterSetupViewController.instantiateFromStoryboard()
         setupVC.cgmManagerType = self
         return .userInteractionRequired(setupVC)
     }
 
-    public func settingsViewController(bluetoothProvider: BluetoothProvider, displayGlucoseUnitObservable: DisplayGlucoseUnitObservable, colorPalette: LoopUIColorPalette) ->CGMManagerViewController {
+    public func settingsViewController(bluetoothProvider: BluetoothProvider, displayGlucoseUnitObservable: DisplayGlucoseUnitObservable, colorPalette: LoopUIColorPalette, allowDebugFeatures: Bool) ->CGMManagerViewController {
         let settings = TransmitterSettingsViewController(cgmManager: self, displayGlucoseUnitObservable: displayGlucoseUnitObservable)
         let nav = CGMManagerSettingsNavigationViewController(rootViewController: settings)
         return nav
