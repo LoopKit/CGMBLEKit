@@ -11,13 +11,12 @@ import LoopKitUI
 import CGMBLEKit
 import ShareClient
 
-class TransmitterSetupViewController: UINavigationController, CGMManagerCreateNotifying, CGMManagerOnboardNotifying, UINavigationControllerDelegate, CompletionNotifying {
+class TransmitterSetupViewController: UINavigationController, CGMManagerOnboarding, UINavigationControllerDelegate, CompletionNotifying {
     class func instantiateFromStoryboard() -> TransmitterSetupViewController {
         return UIStoryboard(name: "TransmitterManagerSetup", bundle: Bundle(for: TransmitterSetupViewController.self)).instantiateInitialViewController() as! TransmitterSetupViewController
     }
 
-    weak var cgmManagerCreateDelegate: CGMManagerCreateDelegate?
-    weak var cgmManagerOnboardDelegate: CGMManagerOnboardDelegate?
+    weak var cgmManagerOnboardingDelegate: CGMManagerOnboardingDelegate?
     weak var completionDelegate: CompletionDelegate?
 
     var cgmManagerType: TransmitterManager.Type!
@@ -32,8 +31,8 @@ class TransmitterSetupViewController: UINavigationController, CGMManagerCreateNo
 
     func completeSetup(state: TransmitterManagerState) {
         if let manager = cgmManagerType.init(state: state) as? CGMManagerUI {
-            cgmManagerCreateDelegate?.cgmManagerCreateNotifying(didCreateCGMManager: manager)
-            cgmManagerOnboardDelegate?.cgmManagerOnboardNotifying(didOnboardCGMManager: manager)
+            cgmManagerOnboardingDelegate?.cgmManagerOnboarding(didCreateCGMManager: manager)
+            cgmManagerOnboardingDelegate?.cgmManagerOnboarding(didOnboardCGMManager: manager)
             completionDelegate?.completionNotifyingDidComplete(self)
         }
     }
