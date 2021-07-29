@@ -11,7 +11,7 @@ import Foundation
 import os.log
 
 
-protocol BluetoothManagerDelegate: class {
+protocol BluetoothManagerDelegate: AnyObject {
 
     /**
      Tells the delegate that the bluetooth manager has finished connecting to and discovering all required services of its peripheral, or that it failed to do so

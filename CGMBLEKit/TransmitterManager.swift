@@ -47,7 +47,7 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
 }
 
 
-public protocol TransmitterManagerObserver: class {
+public protocol TransmitterManagerObserver: AnyObject {
     func transmitterManagerDidUpdateLatestReading(_ manager: TransmitterManager)
 }
 
