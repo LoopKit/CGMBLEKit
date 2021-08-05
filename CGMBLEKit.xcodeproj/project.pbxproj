@@ -184,6 +184,7 @@
 		B4D40D3923A4250000D7ECB5 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4323115E1EFC870300B95E62 /* OSLog.swift */; };
 		B4D40D4A23ABB33500D7ECB5 /* CGMBLEKitG5Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D40D4923ABB33500D7ECB5 /* CGMBLEKitG5Plugin.swift */; };
 		B4D40D4B23ABB42400D7ECB5 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4323115E1EFC870300B95E62 /* OSLog.swift */; };
+		C15543B2252D8777008EE7E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C15543B1252D8776008EE7E5 /* Assets.xcassets */; };
 		C19084BB203932BD00AA47F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C19084B9203932BD00AA47F3 /* Main.storyboard */; };
 		C1CD8B0C203931AD00A8F498 /* NSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD8B0A203931AD00A8F498 /* NSUserDefaults.swift */; };
 		E71BFF7E20673BD700C876A2 /* CommandQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71BFF7D20673BD700C876A2 /* CommandQueue.swift */; };
@@ -489,15 +490,16 @@
 		A9AD381E225EEE850058C179 /* CGMBLEKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CGMBLEKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9AD3821225EEEFB0058C179 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS5.1.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		A9D99F47225EE99300073DF6 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		B4D40D2E23A3E91800D7ECB5 /* CGMBLEKitG6Plugin.loopplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CGMBLEKitG6Plugin.loopplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4D40D2E23A3E91800D7ECB5 /* CGMBLEKitG6Plugin.loopplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CGMBLEKitG6Plugin.loopplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4D40D3023A3E91800D7ECB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4D40D3623A3ED1500D7ECB5 /* CGMBLEKitG6Plugin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CGMBLEKitG6Plugin-Bridging-Header.h"; sourceTree = "<group>"; };
 		B4D40D3723A3ED1500D7ECB5 /* CGMBLEKitG6Plugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGMBLEKitG6Plugin.swift; sourceTree = "<group>"; };
-		B4D40D3E23A428BC00D7ECB5 /* CGMBLEKitG5Plugin.loopplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CGMBLEKitG5Plugin.loopplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4D40D3E23A428BC00D7ECB5 /* CGMBLEKitG5Plugin.loopplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CGMBLEKitG5Plugin.loopplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4D40D4023A428BC00D7ECB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4D40D4623A42A1700D7ECB5 /* LoopKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LoopKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4D40D4823ABB33500D7ECB5 /* CGMBLEKitG5Plugin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CGMBLEKitG5Plugin-Bridging-Header.h"; sourceTree = "<group>"; };
 		B4D40D4923ABB33500D7ECB5 /* CGMBLEKitG5Plugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGMBLEKitG5Plugin.swift; sourceTree = "<group>"; };
+		C15543B1252D8776008EE7E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C19084BA203932BD00AA47F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C1CD8B0A203931AD00A8F498 /* NSUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaults.swift; sourceTree = "<group>"; };
 		E71BFF7D20673BD700C876A2 /* CommandQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandQueue.swift; sourceTree = "<group>"; };
@@ -672,6 +674,7 @@
 				4379CFEC2110EDB100AADC79 /* TransmitterManagerSetup.storyboard */,
 				4379CFD8210EB3AB00AADC79 /* UIColor.swift */,
 				43A8EC55210D0A7400A81379 /* Info.plist */,
+				C15543B1252D8776008EE7E5 /* Assets.xcassets */,
 			);
 			path = CGMBLEKitUI;
 			sourceTree = "<group>";
@@ -985,7 +988,7 @@
 			name = CGMBLEKitG6Plugin;
 			productName = CGMBLEKitPlugin;
 			productReference = B4D40D2E23A3E91800D7ECB5 /* CGMBLEKitG6Plugin.loopplugin */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.framework";
 		};
 		B4D40D3D23A428BC00D7ECB5 /* CGMBLEKitG5Plugin */ = {
 			isa = PBXNativeTarget;
@@ -1004,7 +1007,7 @@
 			name = CGMBLEKitG5Plugin;
 			productName = CGMBLEKitG5Plugin;
 			productReference = B4D40D3E23A428BC00D7ECB5 /* CGMBLEKitG5Plugin.loopplugin */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -1132,6 +1135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4379CFEA2110EDB100AADC79 /* TransmitterManagerSetup.storyboard in Resources */,
+				C15543B2252D8777008EE7E5 /* Assets.xcassets in Resources */,
 				43026D592131D04200A332E2 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1284,7 +1288,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "CARTHAGE_BUILD_DIR=\"${SRCROOT}/Carthage/Build\"\nif [ -n \"${IPHONEOS_DEPLOYMENT_TARGET}\" ]; then\n    CARTHAGE_BUILD_DIR=\"${CARTHAGE_BUILD_DIR}/iOS\"\nelif [ -n \"${WATCHOS_DEPLOYMENT_TARGET}\" ]; then\n    CARTHAGE_BUILD_DIR=\"${CARTHAGE_BUILD_DIR}/watchOS\"\nelse\n    echo \"ERROR: Unexpected deployment target type\"\n    exit 1\nfi\n\nfor SCRIPT_INPUT_FILE in ${!SCRIPT_INPUT_FILE_*}; do\n    CARTHAGE_BUILD_FILE=\"${!SCRIPT_INPUT_FILE/${BUILT_PRODUCTS_DIR}/${CARTHAGE_BUILD_DIR}}\"\n    if [ -e \"${CARTHAGE_BUILD_FILE}\" ]; then\n        if [ -e \"${SCRIPT_INPUT_FILE}\" ]; then\n            echo \"ERROR: Duplicate frameworks found at:\"\n            echo \"  ${SCRIPT_INPUT_FILE}\"\n            echo \"  ${CARTHAGE_BUILD_FILE}\"\n            exit 1\n        fi\n        echo \"Substituting \\\"${CARTHAGE_BUILD_FILE}\\\" for \\\"${!SCRIPT_INPUT_FILE}\\\"\"\n        export ${SCRIPT_INPUT_FILE}=\"${CARTHAGE_BUILD_FILE}\"\n    fi\ndone\n\necho \"Copy Frameworks with Carthage\"\ncarthage copy-frameworks\n";
+			shellScript = "${SRCROOT}/Scripts/copy-frameworks.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2174,7 +2178,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = CGMBLEKitG6Plugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
@@ -2207,7 +2214,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = CGMBLEKitG6Plugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
@@ -2238,6 +2248,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = CGMBLEKitG5Plugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
@@ -2270,6 +2284,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = CGMBLEKitG5Plugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";

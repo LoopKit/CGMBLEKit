@@ -68,7 +68,7 @@ extension G6CGMManager: CGMManagerUI {
     }
 
     public var smallImage: UIImage? {
-        return nil
+        UIImage(named: "g6", in: Bundle(for: TransmitterSetupViewController.self), compatibleWith: nil)!
     }
 
     // TODO Placeholder.
