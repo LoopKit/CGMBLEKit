@@ -98,9 +98,34 @@ public class TransmitterManager: TransmitterDelegate {
         let timestamp = Date()
         let syncIdentifier =  "\(self.state.transmitterID) \(timestamp)"
         let period = TimeInterval(hours: 3)
-        let glucoseValue = 100 + 20 * cos(Date().timeIntervalSinceReferenceDate.remainder(dividingBy: period) / period * Double.pi * 2)
+        func glucoseValueFunc(timestamp: Date, period: Double) -> Double {
+            return 100 + 20 * cos(timestamp.timeIntervalSinceReferenceDate.remainder(dividingBy: period) / period * Double.pi * 2)
+        }
+        let glucoseValue = glucoseValueFunc(timestamp: timestamp, period: period)
+        let prevGlucoseValue = glucoseValueFunc(timestamp: timestamp - period, period: period)
+        let trend: GlucoseTrend? = {
+            switch glucoseValue - prevGlucoseValue {
+            case -0.01...0.01:
+                return .flat
+            case -2 ..< -0.01:
+                return .down
+            case -5 ..< -2:
+                return .downDown
+            case -Double.greatestFiniteMagnitude ..< -5:
+                return .downDownDown
+            case 0.01...2:
+                return .up
+            case 2...5:
+                return .upUp
+            case 5...Double.greatestFiniteMagnitude:
+                return .upUpUp
+            default:
+                return nil
+            }
+        }()
+
         let quantity = HKQuantity(unit: .milligramsPerDeciliter, doubleValue: glucoseValue)
-        let sample = NewGlucoseSample(date: timestamp, quantity: quantity, isDisplayOnly: false, wasUserEntered: false, syncIdentifier: syncIdentifier)
+        let sample = NewGlucoseSample(date: timestamp, quantity: quantity, trend: trend, isDisplayOnly: false, wasUserEntered: false, syncIdentifier: syncIdentifier)
         self.updateDelegate(with: .newData([sample]))
     }
     #endif
@@ -297,6 +322,7 @@ public class TransmitterManager: TransmitterDelegate {
             NewGlucoseSample(
                 date: glucose.readDate,
                 quantity: quantity,
+                trend: glucose.trendType,
                 isDisplayOnly: glucose.isDisplayOnly,
                 wasUserEntered: glucose.isDisplayOnly,
                 syncIdentifier: glucose.syncIdentifier,
@@ -314,6 +340,7 @@ public class TransmitterManager: TransmitterDelegate {
             return NewGlucoseSample(
                 date: glucose.readDate,
                 quantity: quantity,
+                trend: glucose.trendType,
                 isDisplayOnly: glucose.isDisplayOnly,
                 wasUserEntered: glucose.isDisplayOnly,
                 syncIdentifier: glucose.syncIdentifier,
