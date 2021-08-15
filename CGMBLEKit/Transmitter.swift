@@ -12,7 +12,7 @@ import HealthKit
 import os.log
 
 
-public protocol TransmitterDelegate: class {
+public protocol TransmitterDelegate: AnyObject {
     func transmitterDidConnect(_ transmitter: Transmitter)
 
     func transmitter(_ transmitter: Transmitter, didError error: Error)
@@ -25,7 +25,7 @@ public protocol TransmitterDelegate: class {
 }
 
 /// These methods are called on a private background queue. It is the responsibility of the client to ensure thread-safety.
-public protocol TransmitterCommandSource: class {
+public protocol TransmitterCommandSource: AnyObject {
     func dequeuePendingCommand(for transmitter: Transmitter) -> Command?
 
     func transmitter(_ transmitter: Transmitter, didFail command: Command, with error: Error)
