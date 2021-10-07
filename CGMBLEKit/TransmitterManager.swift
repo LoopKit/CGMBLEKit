@@ -103,8 +103,9 @@ public class TransmitterManager: TransmitterDelegate {
         }
         let glucoseValue = glucoseValueFunc(timestamp: timestamp, period: period)
         let prevGlucoseValue = glucoseValueFunc(timestamp: timestamp - period, period: period)
+        let trendRateValue = glucoseValue - prevGlucoseValue
         let trend: GlucoseTrend? = {
-            switch glucoseValue - prevGlucoseValue {
+            switch trendRateValue {
             case -0.01...0.01:
                 return .flat
             case -2 ..< -0.01:
@@ -125,7 +126,8 @@ public class TransmitterManager: TransmitterDelegate {
         }()
 
         let quantity = HKQuantity(unit: .milligramsPerDeciliter, doubleValue: glucoseValue)
-        let sample = NewGlucoseSample(date: timestamp, quantity: quantity, trend: trend, isDisplayOnly: false, wasUserEntered: false, syncIdentifier: syncIdentifier)
+        let trendRate = HKQuantity(unit: .milligramsPerDeciliter, doubleValue: trendRateValue)
+        let sample = NewGlucoseSample(date: timestamp, quantity: quantity, condition: nil, trend: trend, trendRate: trendRate, isDisplayOnly: false, wasUserEntered: false, syncIdentifier: syncIdentifier)
         self.updateDelegate(with: .newData([sample]))
     }
     #endif
@@ -322,7 +324,9 @@ public class TransmitterManager: TransmitterDelegate {
             NewGlucoseSample(
                 date: glucose.readDate,
                 quantity: quantity,
+                condition: glucose.condition,
                 trend: glucose.trendType,
+                trendRate: glucose.trendRate,
                 isDisplayOnly: glucose.isDisplayOnly,
                 wasUserEntered: glucose.isDisplayOnly,
                 syncIdentifier: glucose.syncIdentifier,
@@ -340,7 +344,9 @@ public class TransmitterManager: TransmitterDelegate {
             return NewGlucoseSample(
                 date: glucose.readDate,
                 quantity: quantity,
+                condition: glucose.condition,
                 trend: glucose.trendType,
+                trendRate: glucose.trendRate,
                 isDisplayOnly: glucose.isDisplayOnly,
                 wasUserEntered: glucose.isDisplayOnly,
                 syncIdentifier: glucose.syncIdentifier,
