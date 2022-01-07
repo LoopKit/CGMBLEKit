@@ -9,6 +9,10 @@
 import Foundation
 import HealthKit
 
+enum GlucoseLimits {
+    static var minimum: UInt16 = 40
+    static var maximum: UInt16 = 400
+}
 
 public struct Glucose {
     let glucoseMessage: GlucoseSubMessage
@@ -71,7 +75,7 @@ public struct Glucose {
 
         let unit = HKUnit.milligramsPerDeciliter
 
-        return HKQuantity(unit: unit, doubleValue: Double(glucoseMessage.glucose))
+        return HKQuantity(unit: unit, doubleValue: Double(min(max(glucoseMessage.glucose, GlucoseLimits.minimum), GlucoseLimits.maximum)))
     }
 
     public var state: CalibrationState {
