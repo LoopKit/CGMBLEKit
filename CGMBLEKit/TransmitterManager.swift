@@ -241,8 +241,12 @@ public class TransmitterManager: TransmitterDelegate {
             completion(.noData)
             return
         }
-
-        log.default("Fetching new glucose from Share because last reading is %{public}.1f minutes old", latestReading?.readDate.timeIntervalSinceNow.minutes ?? 0)
+        
+        if let latestReading = latestReading {
+            log.default("Fetching new glucose from Share because last reading is %{public}.1f minutes old", latestReading.readDate.timeIntervalSinceNow.minutes)
+        } else {
+            log.default("Fetching new glucose from Share because we don't have a previous reading")
+        }
 
         shareManager.fetchNewDataIfNeeded(completion)
     }
