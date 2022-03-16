@@ -832,9 +832,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43A8EC5B210D0A7400A81379 /* Build configuration list for PBXNativeTarget "CGMBLEKitUI" */;
 			buildPhases = (
+				43A8EC4F210D0A7400A81379 /* Headers */,
 				43A8EC4D210D0A7400A81379 /* Sources */,
 				43A8EC4E210D0A7400A81379 /* Frameworks */,
-				43A8EC4F210D0A7400A81379 /* Headers */,
 				43A8EC50210D0A7400A81379 /* Resources */,
 			);
 			buildRules = (
@@ -851,9 +851,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 43CABE071C3506F100005705 /* Build configuration list for PBXNativeTarget "CGMBLEKit" */;
 			buildPhases = (
+				43CABDF01C3506F100005705 /* Headers */,
 				43CABDEE1C3506F100005705 /* Sources */,
 				43CABDEF1C3506F100005705 /* Frameworks */,
-				43CABDF01C3506F100005705 /* Headers */,
 				43CABDF11C3506F100005705 /* Resources */,
 			);
 			buildRules = (
@@ -888,9 +888,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A9AD381B225EEE850058C179 /* Build configuration list for PBXNativeTarget "CGMBLEKit-watchOS" */;
 			buildPhases = (
+				A9AD3816225EEE850058C179 /* Headers */,
 				A9AD37DF225EEE850058C179 /* Sources */,
 				A9AD3812225EEE850058C179 /* Frameworks */,
-				A9AD3816225EEE850058C179 /* Headers */,
 				A9AD3819225EEE850058C179 /* Resources */,
 			);
 			buildRules = (
