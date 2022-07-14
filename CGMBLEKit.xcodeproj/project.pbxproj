@@ -186,6 +186,22 @@
 		B4D40D4B23ABB42400D7ECB5 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4323115E1EFC870300B95E62 /* OSLog.swift */; };
 		C15543B2252D8777008EE7E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C15543B1252D8776008EE7E5 /* Assets.xcassets */; };
 		C19084BB203932BD00AA47F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C19084B9203932BD00AA47F3 /* Main.storyboard */; };
+		C19C8BDB286520970056D5E4 /* CGMBLEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* CGMBLEKit.framework */; };
+		C19C8BDC286520970056D5E4 /* CGMBLEKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* CGMBLEKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C19C8BDF286520970056D5E4 /* CGMBLEKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC52210D0A7400A81379 /* CGMBLEKitUI.framework */; };
+		C19C8BE0286520970056D5E4 /* CGMBLEKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC52210D0A7400A81379 /* CGMBLEKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C19C8BE42865209E0056D5E4 /* CGMBLEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* CGMBLEKit.framework */; };
+		C19C8BE52865209E0056D5E4 /* CGMBLEKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* CGMBLEKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C19C8BE82865209E0056D5E4 /* CGMBLEKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC52210D0A7400A81379 /* CGMBLEKitUI.framework */; };
+		C19C8BE92865209E0056D5E4 /* CGMBLEKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC52210D0A7400A81379 /* CGMBLEKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C19C8BED286520CB0056D5E4 /* ShareClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC70210E629300A81379 /* ShareClient.framework */; };
+		C19C8BEE286520CB0056D5E4 /* ShareClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC70210E629300A81379 /* ShareClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C19C8BEF286520D70056D5E4 /* ShareClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC70210E629300A81379 /* ShareClient.framework */; };
+		C19C8BF0286520D70056D5E4 /* ShareClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC70210E629300A81379 /* ShareClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C19C8BF1286521220056D5E4 /* ShareClientUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4325E9EE210EAF3F00969CE5 /* ShareClientUI.framework */; };
+		C19C8BF2286521220056D5E4 /* ShareClientUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4325E9EE210EAF3F00969CE5 /* ShareClientUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C19C8BF3286521290056D5E4 /* ShareClientUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4325E9EE210EAF3F00969CE5 /* ShareClientUI.framework */; };
+		C19C8BF4286521290056D5E4 /* ShareClientUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4325E9EE210EAF3F00969CE5 /* ShareClientUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C1CD8B0C203931AD00A8F498 /* NSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD8B0A203931AD00A8F498 /* NSUserDefaults.swift */; };
 		E71BFF7E20673BD700C876A2 /* CommandQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71BFF7D20673BD700C876A2 /* CommandQueue.swift */; };
 		E752B4102063C31B0063027D /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = E752B40F2063C31B0063027D /* Command.swift */; };
@@ -244,6 +260,34 @@
 			remoteGlobalIDString = 43A8EC51210D0A7400A81379;
 			remoteInfo = CGMBLEKitUI;
 		};
+		C19C8BDD286520970056D5E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43CABDEA1C3506F100005705 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43CABDF21C3506F100005705;
+			remoteInfo = CGMBLEKit;
+		};
+		C19C8BE1286520970056D5E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43CABDEA1C3506F100005705 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43A8EC51210D0A7400A81379;
+			remoteInfo = CGMBLEKitUI;
+		};
+		C19C8BE62865209E0056D5E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43CABDEA1C3506F100005705 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43CABDF21C3506F100005705;
+			remoteInfo = CGMBLEKit;
+		};
+		C19C8BEA2865209E0056D5E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43CABDEA1C3506F100005705 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43A8EC51210D0A7400A81379;
+			remoteInfo = CGMBLEKitUI;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -266,6 +310,34 @@
 			files = (
 				437AFF132038EDEC008C4892 /* CGMBLEKit.framework in Embed Frameworks */,
 				43A8EC5A210D0A7400A81379 /* CGMBLEKitUI.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C19C8BE3286520970056D5E4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C19C8BDC286520970056D5E4 /* CGMBLEKit.framework in Embed Frameworks */,
+				C19C8BE0286520970056D5E4 /* CGMBLEKitUI.framework in Embed Frameworks */,
+				C19C8BF0286520D70056D5E4 /* ShareClient.framework in Embed Frameworks */,
+				C19C8BF2286521220056D5E4 /* ShareClientUI.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C19C8BEC2865209E0056D5E4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C19C8BE52865209E0056D5E4 /* CGMBLEKit.framework in Embed Frameworks */,
+				C19C8BE92865209E0056D5E4 /* CGMBLEKitUI.framework in Embed Frameworks */,
+				C19C8BEE286520CB0056D5E4 /* ShareClient.framework in Embed Frameworks */,
+				C19C8BF4286521290056D5E4 /* ShareClientUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -600,6 +672,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C19C8BDB286520970056D5E4 /* CGMBLEKit.framework in Frameworks */,
+				C19C8BDF286520970056D5E4 /* CGMBLEKitUI.framework in Frameworks */,
+				C19C8BEF286520D70056D5E4 /* ShareClient.framework in Frameworks */,
+				C19C8BF1286521220056D5E4 /* ShareClientUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -607,6 +683,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C19C8BE42865209E0056D5E4 /* CGMBLEKit.framework in Frameworks */,
+				C19C8BE82865209E0056D5E4 /* CGMBLEKitUI.framework in Frameworks */,
+				C19C8BED286520CB0056D5E4 /* ShareClient.framework in Frameworks */,
+				C19C8BF3286521290056D5E4 /* ShareClientUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -882,7 +962,6 @@
 				4308103020785FEA00B66384 /* Frameworks */,
 				4308103120785FEA00B66384 /* Resources */,
 				433F2E602079BB7D00808FA5 /* Embed Frameworks */,
-				43A8EC47210D097800A81379 /* Copy Frameworks with Carthage */,
 			);
 			buildRules = (
 			);
@@ -902,7 +981,6 @@
 				437AFEF42038EC43008C4892 /* Frameworks */,
 				437AFEF52038EC43008C4892 /* Resources */,
 				437AFF162038EDED008C4892 /* Embed Frameworks */,
-				43A8EC46210D093900A81379 /* Copy Frameworks with Carthage */,
 			);
 			buildRules = (
 			);
@@ -959,7 +1037,6 @@
 				43CABDF91C3506F100005705 /* Sources */,
 				43CABDFA1C3506F100005705 /* Frameworks */,
 				43CABDFB1C3506F100005705 /* Resources */,
-				A93AF423225EE5DD002D9E0E /* Copy Frameworks with Carthage */,
 			);
 			buildRules = (
 			);
@@ -996,12 +1073,14 @@
 				B4D40D2A23A3E91800D7ECB5 /* Sources */,
 				B4D40D2B23A3E91800D7ECB5 /* Frameworks */,
 				B4D40D2C23A3E91800D7ECB5 /* Resources */,
-				A906DD9E23DFAEC4000B74DC /* Copy Frameworks with Carthage */,
+				C19C8BE3286520970056D5E4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				B4D40D3523A3ECD200D7ECB5 /* PBXTargetDependency */,
+				C19C8BDE286520970056D5E4 /* PBXTargetDependency */,
+				C19C8BE2286520970056D5E4 /* PBXTargetDependency */,
 			);
 			name = CGMBLEKitG6Plugin;
 			productName = CGMBLEKitPlugin;
@@ -1015,12 +1094,14 @@
 				B4D40D3A23A428BC00D7ECB5 /* Sources */,
 				B4D40D3B23A428BC00D7ECB5 /* Frameworks */,
 				B4D40D3C23A428BC00D7ECB5 /* Resources */,
-				A906DD9D23DFAEAB000B74DC /* Copy Frameworks with Carthage */,
+				C19C8BEC2865209E0056D5E4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				B4D40D4523A428C700D7ECB5 /* PBXTargetDependency */,
+				C19C8BE72865209E0056D5E4 /* PBXTargetDependency */,
+				C19C8BEB2865209E0056D5E4 /* PBXTargetDependency */,
 			);
 			name = CGMBLEKitG5Plugin;
 			productName = CGMBLEKitG5Plugin;
@@ -1198,119 +1279,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		43A8EC46210D093900A81379 /* Copy Frameworks with Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/LoopKit.framework",
-				"$(BUILT_PRODUCTS_DIR)/LoopKitUI.framework",
-				"$(BUILT_PRODUCTS_DIR)/ShareClient.framework",
-				"$(BUILT_PRODUCTS_DIR)/ShareClientUI.framework",
-			);
-			name = "Copy Frameworks with Carthage";
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/LoopKit.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/LoopKitUI.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ShareClient.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ShareClientUI.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Scripts/copy-frameworks.sh\"\n";
-		};
-		43A8EC47210D097800A81379 /* Copy Frameworks with Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/LoopKit.framework",
-				"$(BUILT_PRODUCTS_DIR)/LoopKitUI.framework",
-				"$(BUILT_PRODUCTS_DIR)/ShareClient.framework",
-				"$(BUILT_PRODUCTS_DIR)/ShareClientUI.framework",
-			);
-			name = "Copy Frameworks with Carthage";
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/LoopKit.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/LoopKitUI.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ShareClient.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ShareClientUI.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Scripts/copy-frameworks.sh\"\n";
-		};
-		A906DD9D23DFAEAB000B74DC /* Copy Frameworks with Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/ShareClient.framework",
-				"$(BUILT_PRODUCTS_DIR)/ShareClientUI.framework",
-				"$(BUILT_PRODUCTS_DIR)/CGMBLEKit.framework",
-				"$(BUILT_PRODUCTS_DIR)/CGMBLEKitUI.framework",
-			);
-			name = "Copy Frameworks with Carthage";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Scripts/copy-frameworks.sh\"\n";
-		};
-		A906DD9E23DFAEC4000B74DC /* Copy Frameworks with Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/ShareClient.framework",
-				"$(BUILT_PRODUCTS_DIR)/ShareClientUI.framework",
-				"$(BUILT_PRODUCTS_DIR)/CGMBLEKit.framework",
-				"$(BUILT_PRODUCTS_DIR)/CGMBLEKitUI.framework",
-			);
-			name = "Copy Frameworks with Carthage";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Scripts/copy-frameworks.sh\"\n";
-		};
-		A93AF423225EE5DD002D9E0E /* Copy Frameworks with Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/LoopKit.framework",
-				"$(BUILT_PRODUCTS_DIR)/ShareClient.framework",
-			);
-			name = "Copy Frameworks with Carthage";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/LoopKit.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/ShareClient.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Scripts/copy-frameworks.sh\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4308102F20785FEA00B66384 /* Sources */ = {
@@ -1543,6 +1511,26 @@
 			isa = PBXTargetDependency;
 			target = 43A8EC51210D0A7400A81379 /* CGMBLEKitUI */;
 			targetProxy = B4D40D4423A428C700D7ECB5 /* PBXContainerItemProxy */;
+		};
+		C19C8BDE286520970056D5E4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43CABDF21C3506F100005705 /* CGMBLEKit */;
+			targetProxy = C19C8BDD286520970056D5E4 /* PBXContainerItemProxy */;
+		};
+		C19C8BE2286520970056D5E4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43A8EC51210D0A7400A81379 /* CGMBLEKitUI */;
+			targetProxy = C19C8BE1286520970056D5E4 /* PBXContainerItemProxy */;
+		};
+		C19C8BE72865209E0056D5E4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43CABDF21C3506F100005705 /* CGMBLEKit */;
+			targetProxy = C19C8BE62865209E0056D5E4 /* PBXContainerItemProxy */;
+		};
+		C19C8BEB2865209E0056D5E4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43A8EC51210D0A7400A81379 /* CGMBLEKitUI */;
+			targetProxy = C19C8BEA2865209E0056D5E4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
