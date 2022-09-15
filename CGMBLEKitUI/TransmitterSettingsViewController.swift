@@ -115,7 +115,9 @@ class TransmitterSettingsViewController: UITableViewController {
     }
 
     private enum AgeRow: Int, CaseIterable {
-        case sensor
+        case sensorage
+        case sensorcountdown
+        case sensorexpdate
         case transmitter
     }
 
@@ -158,7 +160,13 @@ class TransmitterSettingsViewController: UITableViewController {
         formatter.doesRelativeDateFormatting = true
         return formatter
     }()
-
+    
+    private lazy var sensorExpFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E MMM d 'at' h:mm a zzz"
+        return formatter
+    }()
+    
     private lazy var sessionLengthFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.day, .hour]
@@ -255,7 +263,7 @@ class TransmitterSettingsViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className, for: indexPath) as! SettingsTableViewCell
 
             switch AgeRow(rawValue: indexPath.row)! {
-            case .sensor:
+            case .sensorage:
                 cell.textLabel?.text = LocalizedString("Session Age", comment: "Title describing sensor session age")
 
                 if let sessionStart = cgmManager.latestReading?.sessionStartDate {
@@ -263,6 +271,32 @@ class TransmitterSettingsViewController: UITableViewController {
                 } else {
                     cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
                 }
+                
+            case .sensorcountdown:
+                cell.textLabel?.text = LocalizedString("Sensor Expires", comment: "Title describing sensor sensor expiration")
+
+                if let sessionStart = cgmManager.latestReading?.sessionStartDate {
+                    
+                    let sessionExp = Calendar.current.date(byAdding: .day, value: 10, to: sessionStart)
+                    
+                    cell.detailTextLabel?.text = sessionLengthFormatter.string(from: sessionExp!.timeIntervalSince(Date()))
+                } else {
+                    cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
+                }
+                
+            case .sensorexpdate:
+                cell.textLabel?.text = ""
+
+                if let sessionStart = cgmManager.latestReading?.sessionStartDate {
+                    
+                    let sessionExp = Calendar.current.date(byAdding: .day, value: 10, to: sessionStart)
+                    
+                    cell.detailTextLabel?.text = sensorExpFormatter.string(from: sessionExp!)
+                    
+                } else {
+                    cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
+                }
+            
             case .transmitter:
                 cell.textLabel?.text = LocalizedString("Transmitter Age", comment: "Title describing transmitter session age")
 
