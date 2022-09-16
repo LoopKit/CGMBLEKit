@@ -163,13 +163,20 @@ class TransmitterSettingsViewController: UITableViewController {
     
     private lazy var sensorExpFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "E MMM d 'at' h:mm a zzz"
+        formatter.dateFormat = "E, MMM d 'at' h:mm a zzz"
         return formatter
     }()
     
     private lazy var sessionLengthFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.day, .hour]
+        formatter.unitsStyle = .full
+        return formatter
+    }()
+    
+    private lazy var sessionLengthMinsFormatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.day, .hour, .minute]
         formatter.unitsStyle = .full
         return formatter
     }()
@@ -278,8 +285,13 @@ class TransmitterSettingsViewController: UITableViewController {
                 if let sessionStart = cgmManager.latestReading?.sessionStartDate {
                     
                     let sessionExp = Calendar.current.date(byAdding: .day, value: 10, to: sessionStart)
+                    let sessionCountDown = sessionExp!.timeIntervalSince(Date())
                     
-                    cell.detailTextLabel?.text = sessionLengthFormatter.string(from: sessionExp!.timeIntervalSince(Date()))
+                    if sessionCountDown < 86400 {
+                        cell.detailTextLabel?.text = sessionLengthMinsFormatter.string(from: sessionCountDown)
+                    } else {
+                        cell.detailTextLabel?.text = sessionLengthFormatter.string(from: sessionCountDown)
+                    }
                 } else {
                     cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
                 }
