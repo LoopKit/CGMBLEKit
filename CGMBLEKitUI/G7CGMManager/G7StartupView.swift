@@ -11,6 +11,7 @@ import SwiftUI
 
 struct G7StartupView: View {
     var didContinue: (() -> Void)?
+    var didCancel: (() -> Void)?
 
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
@@ -18,18 +19,23 @@ struct G7StartupView: View {
             Text(LocalizedString("Dexcom G7", comment: "Title on WelcomeView"))
                 .font(.largeTitle)
                 .fontWeight(.semibold)
-            Image(frameworkImage: "g7", decorative: true)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 150, height: 150)
-            Text(LocalizedString("Loop can be used with G7 sensors in concert with the official Dexcom G7 App. Pairing, calibration, and other sensor management will be done in the Dexcom G7 App, and Loop will just listen for new CGM readings.", comment: "Descriptive text on G7StartupView"))
+            VStack(alignment: .center) {
+                Image(frameworkImage: "g7")
+                    .resizable()
+                    .aspectRatio(contentMode: ContentMode.fit)
+                    .frame(height: 120)
+                    .padding(.horizontal)
+            }.frame(maxWidth: .infinity)
+            Text(LocalizedString("Loop can read G7 CGM data, but you must still use the Dexcom G7 App for pairing, calibration, and other sensor management.", comment: "Descriptive text on G7StartupView"))
+                .fixedSize(horizontal: false, vertical: true)
                 .foregroundColor(.secondary)
             Spacer()
-            Button(action: {
-                self.didContinue?()
-            }) {
+            Button(action: { self.didContinue?() }) {
                 Text(LocalizedString("I Understand", comment:"Button title for starting setup"))
                     .actionButtonStyle(.primary)
+            }
+            Button(action: { self.didCancel?() } ) {
+                Text(LocalizedString("Cancel", comment: "Button text to cancel G7 setup")).padding(.top, 20)
             }
         }
         .padding()

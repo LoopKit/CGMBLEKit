@@ -19,7 +19,7 @@ public protocol G7SensorDelegate: AnyObject {
 
     func sensor(_ sensor: G7Sensor, didRead glucose: G7GlucoseMessage)
 
-    func sensor(_ sensor: G7Sensor, didReadBackfill glucose: [Glucose])
+    func sensor(_ sensor: G7Sensor, didReadBackfill backfill: [G7BackfillMessage])
 
     func sensor(_ sensor: G7Sensor, didReadUnknownData data: Data)
 }
@@ -52,25 +52,14 @@ public final class G7Sensor: BluetoothManagerDelegate {
 
     // MARK: - Passive observation state, confined to `bluetoothManager.managerQueue`
 
-    /// The initial activation date of the transmitter
-    private var activationDate: Date?
-
-    /// The last-observed time message
-    private var lastTimeMessage: TransmitterTimeRxMessage? {
-        didSet {
-            if let time = lastTimeMessage {
-                activationDate = Date(timeIntervalSinceNow: -TimeInterval(time.currentTime))
-            } else {
-                activationDate = nil
-            }
-        }
-    }
+    /// The initial activation date of the sensor
+    var activationDate: Date?
 
     /// The last-observed calibration message
     private var lastCalibrationMessage: CalibrationDataRxMessage?
 
     /// The backfill data buffer
-    private var backfillBuffer: GlucoseBackfillFrameBuffer?
+    private var backfillBuffer: [G7BackfillMessage] = []
 
     // MARK: -
 
@@ -80,9 +69,10 @@ public final class G7Sensor: BluetoothManagerDelegate {
 
     private let delegateQueue = DispatchQueue(label: "com.loudnate.CGMBLEKit.delegateQueue", qos: .unspecified)
 
-    public init(peripheralIdentifier: UUID? = nil) {
+    private let sensorName: String
 
-        bluetoothManager.peripheralIdentifier = peripheralIdentifier
+    public init(sensorName: String) {
+        self.sensorName = sensorName
         bluetoothManager.delegate = self
     }
 
@@ -149,8 +139,9 @@ public final class G7Sensor: BluetoothManagerDelegate {
     }
 
     func bluetoothManager(_ manager: BluetoothManager, shouldConnectPeripheral peripheral: CBPeripheral) -> Bool {
+
         /// The Dexcom G7 advertises a peripheral name of "DXCMxx"
-        if let name = peripheral.name, name.hasPrefix("DXCM") {
+        if let name = peripheral.name, name.hasPrefix("DXCM"), name.suffix(2) == sensorName.suffix(2) {
             return true
         } else {
             self.log.info("Not connecting to peripheral: %{public}@", peripheral.name ?? String(describing: peripheral))
@@ -162,104 +153,39 @@ public final class G7Sensor: BluetoothManagerDelegate {
 
         guard response.count > 0 else { return }
 
+        log.debug("Received control response: %{public}@", response.hexadecimalString)
+
         switch G7Opcode(rawValue: response[0]) {
         case .glucoseTx?:
-            if  let glucoseMessage = G7GlucoseMessage(data: response)
+            if let glucoseMessage = G7GlucoseMessage(data: response)
             {
+                activationDate = Date().addingTimeInterval(-TimeInterval(glucoseMessage.timestamp))
                 delegateQueue.async {
                     self.delegate?.sensor(self, didRead: glucoseMessage)
+                }
+                peripheralManager.perform { (peripheral) in
+                    // Subscribe to backfill updates
+                    do {
+                        try peripheral.listenToCharacteristic(.backfill)
+                    } catch let error {
+                        self.log.error("Error trying to enable notifications on backfill characteristic: %{public}@", String(describing: error))
+                        self.delegateQueue.async {
+                            self.delegate?.sensor(self, didError: error)
+                        }
+                    }
                 }
             } else {
                 delegateQueue.async {
                     self.delegate?.sensor(self, didError: G7SensorError.observationError("Unable to handle glucose control response"))
                 }
             }
-
-//            peripheralManager.perform { (peripheral) in
-//                // Subscribe to backfill updates
-//                do {
-//                    try peripheral.listenToCharacteristic(.backfill)
-//                } catch let error {
-//                    self.log.error("Error trying to enable notifications on backfill characteristic: %{public}@", String(describing: error))
-//                    self.delegateQueue.async {
-//                        self.delegate?.sensor(self, didError: error)
-//                    }
-//                }
-//            }
-//        case .transmitterTimeRx?:
-//            if let timeMessage = TransmitterTimeRxMessage(data: response) {
-//                self.lastTimeMessage = timeMessage
-//            }
-//        case .glucoseBackfillRx?:
-//            guard let backfillMessage = GlucoseBackfillRxMessage(data: response) else {
-//                break
-//            }
-//
-//            guard let backfillBuffer = backfillBuffer else {
-//                log.error("Received GlucoseBackfillRxMessage %{public}@ but backfillBuffer is nil", String(describing: backfillMessage))
-//                self.delegateQueue.async {
-//                    self.delegate?.transmitter(self, didError: TransmitterError.observationError("Received GlucoseBackfillRxMessage but backfillBuffer is nil"))
-//                }
-//                break
-//            }
-//
-//            guard let timeMessage = lastTimeMessage, let activationDate = activationDate else {
-//                log.error("Received GlucoseBackfillRxMessage %{public}@ but activationDate is unknown", String(describing: backfillMessage))
-//                self.delegateQueue.async {
-//                    self.delegate?.transmitter(self, didError: TransmitterError.observationError("Received GlucoseBackfillRxMessage but activationDate is unknown"))
-//                }
-//                break
-//            }
-//
-//            guard backfillMessage.bufferLength == backfillBuffer.count else {
-//                log.error("GlucoseBackfillRxMessage expected buffer length %d, but was %d", backfillMessage.bufferLength, backfillBuffer.count)
-//                self.delegateQueue.async {
-//                    self.delegate?.transmitter(self, didError: TransmitterError.observationError("GlucoseBackfillRxMessage expected buffer length \(backfillMessage.bufferLength), but was \(backfillBuffer.count): \(response.hexadecimalString) "))
-//                }
-//                break
-//            }
-//
-//            guard backfillMessage.bufferCRC == backfillBuffer.crc16 else {
-//                log.error("GlucoseBackfillRxMessage expected CRC %04x, but was %04x", backfillMessage.bufferCRC, backfillBuffer.crc16)
-//                self.delegateQueue.async {
-//                    self.delegate?.transmitter(self, didError: TransmitterError.observationError("GlucoseBackfillRxMessage expected CRC \(backfillMessage.bufferCRC), but was \(backfillBuffer.crc16)"))
-//                }
-//                break
-//            }
-//
-//            let glucose = backfillBuffer.glucose.map {
-//                Glucose(transmitterID: id.id, status: backfillMessage.status, glucoseMessage: $0, timeMessage: timeMessage, activationDate: activationDate)
-//            }
-//
-//            guard glucose.count > 0 else {
-//                break
-//            }
-//
-//            guard glucose.first!.glucoseMessage.timestamp == backfillMessage.startTime,
-//                glucose.last!.glucoseMessage.timestamp == backfillMessage.endTime,
-//                glucose.first!.glucoseMessage.timestamp <= glucose.last!.glucoseMessage.timestamp
-//            else {
-//                log.error("GlucoseBackfillRxMessage time interval not reflected in glucose: %{public}@, buffer: %{public}@", response.hexadecimalString, String(reflecting: backfillBuffer))
-//
-//                self.delegateQueue.async {
-//                    self.delegate?.transmitter(self, didError: TransmitterError.observationError("GlucoseBackfillRxMessage time interval not reflected in glucose: \(backfillMessage.startTime) - \(backfillMessage.endTime), buffer: \(glucose.first!.glucoseMessage.timestamp) - \(glucose.last!.glucoseMessage.timestamp)"))
-//                }
-//                break
-//            }
-//
-//            delegateQueue.async {
-//                self.delegate?.transmitter(self, didReadBackfill: glucose)
-//            }
-//        case .calibrationDataRx?:
-//            guard let calibrationDataMessage = CalibrationDataRxMessage(data: response) else {
-//                break
-//            }
-//
-//            lastCalibrationMessage = calibrationDataMessage
-//        case .none:
-//            delegateQueue.async {
-//                self.delegate?.transmitter(self, didReadUnknownData: response)
-//            }
+        case .backfillFinished:
+            if backfillBuffer.count > 0 {
+                delegateQueue.async {
+                    self.delegate?.sensor(self, didReadBackfill: self.backfillBuffer)
+                    self.backfillBuffer = []
+                }
+            }
         default:
             // We ignore all other known opcodes
             break
@@ -267,19 +193,13 @@ public final class G7Sensor: BluetoothManagerDelegate {
     }
 
     func bluetoothManager(_ manager: BluetoothManager, didReceiveBackfillResponse response: Data) {
-        guard response.count > 2 else {
+        guard response.count == 0 else {
             return
         }
 
-        if response[0] == 1 {
-            log.info("Starting new backfill buffer with ID %d", response[1])
-
-            self.backfillBuffer = GlucoseBackfillFrameBuffer(identifier: response[1])
+        if let msg = G7BackfillMessage(data: response) {
+            backfillBuffer.append(msg)
         }
-
-        log.info("appending to backfillBuffer: %@", response.hexadecimalString)
-
-        self.backfillBuffer?.append(response)
     }
 
     func bluetoothManager(_ manager: BluetoothManager, peripheralManager: PeripheralManager, didReceiveAuthenticationResponse response: Data) {

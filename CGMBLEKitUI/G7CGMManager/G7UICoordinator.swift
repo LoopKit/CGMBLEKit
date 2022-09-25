@@ -34,15 +34,41 @@ class G7UICoordinator: UINavigationController, CGMManagerOnboarding, CompletionN
 
         navigationBar.prefersLargeTitles = true // Ensure nav bar text is displayed correctly
 
-        let rootView = G7StartupView() { [weak self] in self?.setupG7() }
-        let hostingController = DismissibleHostingController(rootView: rootView, colorPalette: colorPalette)
-        hostingController.navigationItem.largeTitleDisplayMode = .never
-        hostingController.title = nil
-
-        setViewControllers([hostingController], animated: false)
+        let viewController = initialView()
+        setViewControllers([viewController], animated: false)
     }
 
-    func setupG7() {
-        let cgmManager = G7CGMManager()
+    private func initialView() -> UIViewController {
+        if cgmManager == nil {
+            let rootView = G7StartupView(
+                didContinue:  { [weak self] in self?.completeSetup() },
+                didCancel:  { [weak self] in
+                    if let self = self {
+                        self.completionDelegate?.completionNotifyingDidComplete(self)
+                    }
+                }
+            )
+            let hostingController = DismissibleHostingController(rootView: rootView, colorPalette: colorPalette)
+            hostingController.navigationItem.largeTitleDisplayMode = .never
+            hostingController.title = nil
+            return hostingController
+        } else {
+            let view = G7SettingsView(
+                didFinish:  { [weak self] in
+                    if let self = self {
+                        self.completionDelegate?.completionNotifyingDidComplete(self)
+                    }
+                }
+            )
+            let hostingController = DismissibleHostingController(rootView: view, colorPalette: colorPalette)
+            return hostingController
+        }
+    }
+
+    func completeSetup() {
+        cgmManager = G7CGMManager()
+        cgmManagerOnboardingDelegate?.cgmManagerOnboarding(didCreateCGMManager: cgmManager!)
+        cgmManagerOnboardingDelegate?.cgmManagerOnboarding(didOnboardCGMManager: cgmManager!)
+        completionDelegate?.completionNotifyingDidComplete(self)
     }
 }

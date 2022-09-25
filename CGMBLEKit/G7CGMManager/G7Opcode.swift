@@ -9,6 +9,6 @@
 import Foundation
 
 enum G7Opcode: UInt8 {
-    // Auth
     case glucoseTx = 0x4e
+    case backfillFinished = 0x59
 }
