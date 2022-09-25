@@ -454,7 +454,6 @@ public class G6CGMManager: TransmitterManager, CGMManager {
     }
 }
 
-
 enum CalibrationError: Error {
     case unreliableState(CalibrationState)
 }

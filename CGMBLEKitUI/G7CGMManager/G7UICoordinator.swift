@@ -1,0 +1,48 @@
+//
+//  G7UICoordinator.swift
+//  CGMBLEKitUI
+//
+//  Created by Pete Schwamb on 9/24/22.
+//  Copyright © 2022 LoopKit Authors. All rights reserved.
+//
+
+import Foundation
+import LoopKitUI
+import CGMBLEKit
+
+class G7UICoordinator: UINavigationController, CGMManagerOnboarding, CompletionNotifying, UINavigationControllerDelegate {
+    var cgmManagerOnboardingDelegate: LoopKitUI.CGMManagerOnboardingDelegate?
+    var completionDelegate: LoopKitUI.CompletionDelegate?
+    var cgmManager: G7CGMManager?
+
+    var colorPalette: LoopUIColorPalette
+
+    init(cgmManager: G7CGMManager? = nil, colorPalette: LoopUIColorPalette, allowDebugFeatures: Bool) {
+        self.cgmManager = cgmManager
+        self.colorPalette = colorPalette
+        super.init(navigationBarClass: UINavigationBar.self, toolbarClass: UIToolbar.self)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        delegate = self
+
+        navigationBar.prefersLargeTitles = true // Ensure nav bar text is displayed correctly
+
+        let rootView = G7StartupView() { [weak self] in self?.setupG7() }
+        let hostingController = DismissibleHostingController(rootView: rootView, colorPalette: colorPalette)
+        hostingController.navigationItem.largeTitleDisplayMode = .never
+        hostingController.title = nil
+
+        setViewControllers([hostingController], animated: false)
+    }
+
+    func setupG7() {
+        let cgmManager = G7CGMManager()
+    }
+}

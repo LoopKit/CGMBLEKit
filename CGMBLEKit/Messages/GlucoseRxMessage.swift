@@ -50,13 +50,13 @@ public struct GlucoseRxMessage: TransmitterRxMessage {
     public let glucose: GlucoseSubMessage
 
     init?(data: Data) {
-        guard data.count >= 16 && data.isCRCValid else {
-            return nil
-        }
+//        guard data.count >= 16 && data.isCRCValid else {
+//            return nil
+//        }
 
-        guard data.starts(with: .glucoseRx) || data.starts(with: .glucoseG6Rx) else {
-            return nil
-        }
+//        guard data.starts(with: .glucoseRx) || data.starts(with: .glucoseG6Rx) else {
+//            return nil
+//        }
 
         status = data[1]
         sequence = data[2..<6].toInt()

@@ -175,7 +175,6 @@
 		A9AD3814225EEE850058C179 /* LoopKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC62210D4D1900A81379 /* LoopKit.framework */; };
 		A9AD3815225EEE850058C179 /* ShareClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC70210E629300A81379 /* ShareClient.framework */; };
 		A9AD3817225EEE850058C179 /* CGMBLEKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 43CABDF61C3506F100005705 /* CGMBLEKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A9AD3818225EEE850058C179 /* AESCrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EEA70F1D14DC0800CBBDA0 /* AESCrypt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9AD381A225EEE850058C179 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43026D462131C99500A332E2 /* Localizable.strings */; };
 		A9AD3822225EEEFB0058C179 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9AD3821225EEEFB0058C179 /* HealthKit.framework */; };
 		A9D99F48225EE99300073DF6 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9D99F47225EE99300073DF6 /* HealthKit.framework */; };
@@ -202,6 +201,24 @@
 		C19C8BF2286521220056D5E4 /* ShareClientUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4325E9EE210EAF3F00969CE5 /* ShareClientUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C19C8BF3286521290056D5E4 /* ShareClientUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4325E9EE210EAF3F00969CE5 /* ShareClientUI.framework */; };
 		C19C8BF4286521290056D5E4 /* ShareClientUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4325E9EE210EAF3F00969CE5 /* ShareClientUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C1BA046528DF89FD00CD6BA4 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4323115E1EFC870300B95E62 /* OSLog.swift */; };
+		C1BA046828DF89FD00CD6BA4 /* CGMBLEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* CGMBLEKit.framework */; };
+		C1BA046928DF89FD00CD6BA4 /* CGMBLEKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC52210D0A7400A81379 /* CGMBLEKitUI.framework */; };
+		C1BA046A28DF89FD00CD6BA4 /* ShareClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC70210E629300A81379 /* ShareClient.framework */; };
+		C1BA046B28DF89FD00CD6BA4 /* ShareClientUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4325E9EE210EAF3F00969CE5 /* ShareClientUI.framework */; };
+		C1BA046E28DF89FD00CD6BA4 /* CGMBLEKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* CGMBLEKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C1BA046F28DF89FD00CD6BA4 /* CGMBLEKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC52210D0A7400A81379 /* CGMBLEKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C1BA047028DF89FD00CD6BA4 /* ShareClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC70210E629300A81379 /* ShareClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C1BA047128DF89FD00CD6BA4 /* ShareClientUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4325E9EE210EAF3F00969CE5 /* ShareClientUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C1BA047928DF8A8200CD6BA4 /* CGMBLEKitG7Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BA047828DF8A8200CD6BA4 /* CGMBLEKitG7Plugin.swift */; };
+		C1BFEA0C28DF950700F7C943 /* G7UICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFEA0B28DF950700F7C943 /* G7UICoordinator.swift */; };
+		C1BFEA0E28DF96A600F7C943 /* G7CGMManager+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFEA0D28DF96A600F7C943 /* G7CGMManager+UI.swift */; };
+		C1BFEA1028DF989000F7C943 /* G7StartupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFEA0F28DF989000F7C943 /* G7StartupView.swift */; };
+		C1BFEA1528DF99AD00F7C943 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFEA1428DF99AD00F7C943 /* Image.swift */; };
+		C1BFEA1728DF9DA600F7C943 /* G7CGMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFEA1628DF9DA600F7C943 /* G7CGMManager.swift */; };
+		C1BFEA1928DFC08500F7C943 /* G7Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFEA1828DFC08500F7C943 /* G7Sensor.swift */; };
+		C1BFEA1B28DFC44B00F7C943 /* G7Opcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFEA1A28DFC44B00F7C943 /* G7Opcode.swift */; };
+		C1BFEA1F28DFC56500F7C943 /* G7GlucoseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BFEA1E28DFC56500F7C943 /* G7GlucoseMessage.swift */; };
 		C1CD8B0C203931AD00A8F498 /* NSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD8B0A203931AD00A8F498 /* NSUserDefaults.swift */; };
 		E71BFF7E20673BD700C876A2 /* CommandQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71BFF7D20673BD700C876A2 /* CommandQueue.swift */; };
 		E752B4102063C31B0063027D /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = E752B40F2063C31B0063027D /* Command.swift */; };
@@ -288,6 +305,27 @@
 			remoteGlobalIDString = 43A8EC51210D0A7400A81379;
 			remoteInfo = CGMBLEKitUI;
 		};
+		C1BA045F28DF89FD00CD6BA4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43CABDEA1C3506F100005705 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43A8EC51210D0A7400A81379;
+			remoteInfo = CGMBLEKitUI;
+		};
+		C1BA046128DF89FD00CD6BA4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43CABDEA1C3506F100005705 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43CABDF21C3506F100005705;
+			remoteInfo = CGMBLEKit;
+		};
+		C1BA046328DF89FD00CD6BA4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 43CABDEA1C3506F100005705 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 43A8EC51210D0A7400A81379;
+			remoteInfo = CGMBLEKitUI;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -338,6 +376,20 @@
 				C19C8BE92865209E0056D5E4 /* CGMBLEKitUI.framework in Embed Frameworks */,
 				C19C8BEE286520CB0056D5E4 /* ShareClient.framework in Embed Frameworks */,
 				C19C8BF4286521290056D5E4 /* ShareClientUI.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1BA046D28DF89FD00CD6BA4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C1BA046E28DF89FD00CD6BA4 /* CGMBLEKit.framework in Embed Frameworks */,
+				C1BA046F28DF89FD00CD6BA4 /* CGMBLEKitUI.framework in Embed Frameworks */,
+				C1BA047028DF89FD00CD6BA4 /* ShareClient.framework in Embed Frameworks */,
+				C1BA047128DF89FD00CD6BA4 /* ShareClientUI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -573,6 +625,17 @@
 		B4D40D4923ABB33500D7ECB5 /* CGMBLEKitG5Plugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGMBLEKitG5Plugin.swift; sourceTree = "<group>"; };
 		C15543B1252D8776008EE7E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C19084BA203932BD00AA47F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C1BA047528DF89FD00CD6BA4 /* CGMBLEKitG7Plugin.loopplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CGMBLEKitG7Plugin.loopplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1BA047828DF8A8200CD6BA4 /* CGMBLEKitG7Plugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGMBLEKitG7Plugin.swift; sourceTree = "<group>"; };
+		C1BA047A28DF8AFE00CD6BA4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1BFEA0B28DF950700F7C943 /* G7UICoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G7UICoordinator.swift; sourceTree = "<group>"; };
+		C1BFEA0D28DF96A600F7C943 /* G7CGMManager+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "G7CGMManager+UI.swift"; sourceTree = "<group>"; };
+		C1BFEA0F28DF989000F7C943 /* G7StartupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G7StartupView.swift; sourceTree = "<group>"; };
+		C1BFEA1428DF99AD00F7C943 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		C1BFEA1628DF9DA600F7C943 /* G7CGMManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G7CGMManager.swift; sourceTree = "<group>"; };
+		C1BFEA1828DFC08500F7C943 /* G7Sensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G7Sensor.swift; sourceTree = "<group>"; };
+		C1BFEA1A28DFC44B00F7C943 /* G7Opcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G7Opcode.swift; sourceTree = "<group>"; };
+		C1BFEA1E28DFC56500F7C943 /* G7GlucoseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G7GlucoseMessage.swift; sourceTree = "<group>"; };
 		C1CD8B0A203931AD00A8F498 /* NSUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaults.swift; sourceTree = "<group>"; };
 		E71BFF7D20673BD700C876A2 /* CommandQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandQueue.swift; sourceTree = "<group>"; };
 		E752B40F2063C31B0063027D /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
@@ -690,6 +753,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C1BA046728DF89FD00CD6BA4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1BA046828DF89FD00CD6BA4 /* CGMBLEKit.framework in Frameworks */,
+				C1BA046928DF89FD00CD6BA4 /* CGMBLEKitUI.framework in Frameworks */,
+				C1BA046A28DF89FD00CD6BA4 /* ShareClient.framework in Frameworks */,
+				C1BA046B28DF89FD00CD6BA4 /* ShareClientUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -762,6 +836,8 @@
 		43A8EC53210D0A7400A81379 /* CGMBLEKitUI */ = {
 			isa = PBXGroup;
 			children = (
+				C1BFEA1128DF999C00F7C943 /* Extensions */,
+				C1BFEA0A28DF94F800F7C943 /* G7CGMManager */,
 				43026D572131D04200A332E2 /* Localizable.strings */,
 				43A8EC54210D0A7400A81379 /* CGMBLEKitUI.h */,
 				4325E9EA210EAEE200969CE5 /* IdentifiableClass.swift */,
@@ -788,6 +864,7 @@
 				4308103420785FEA00B66384 /* ResetTransmitter */,
 				B4D40D2F23A3E91800D7ECB5 /* CGMBLEKitG6Plugin */,
 				B4D40D3F23A428BC00D7ECB5 /* CGMBLEKitG5Plugin */,
+				C1BA047728DF8A5A00CD6BA4 /* CGMBLEKitG7Plugin */,
 				43CABDF41C3506F100005705 /* Products */,
 				437AFF172038EDF9008C4892 /* Frameworks */,
 				437DE50A229C8A0D003B1074 /* Scripts */,
@@ -805,6 +882,7 @@
 				A9AD381E225EEE850058C179 /* CGMBLEKit.framework */,
 				B4D40D2E23A3E91800D7ECB5 /* CGMBLEKitG6Plugin.loopplugin */,
 				B4D40D3E23A428BC00D7ECB5 /* CGMBLEKitG5Plugin.loopplugin */,
+				C1BA047528DF89FD00CD6BA4 /* CGMBLEKitG7Plugin.loopplugin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -812,6 +890,7 @@
 		43CABDF51C3506F100005705 /* CGMBLEKit */ = {
 			isa = PBXGroup;
 			children = (
+				C1BFEA1D28DFC53300F7C943 /* G7CGMManager */,
 				43EEA70F1D14DC0800CBBDA0 /* AESCrypt.h */,
 				43EEA7101D14DC0800CBBDA0 /* AESCrypt.m */,
 				43CABE0E1C350B2800005705 /* BluetoothManager.swift */,
@@ -922,6 +1001,44 @@
 			path = CGMBLEKitG5Plugin;
 			sourceTree = "<group>";
 		};
+		C1BA047728DF8A5A00CD6BA4 /* CGMBLEKitG7Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				C1BA047A28DF8AFE00CD6BA4 /* Info.plist */,
+				C1BA047828DF8A8200CD6BA4 /* CGMBLEKitG7Plugin.swift */,
+			);
+			path = CGMBLEKitG7Plugin;
+			sourceTree = "<group>";
+		};
+		C1BFEA0A28DF94F800F7C943 /* G7CGMManager */ = {
+			isa = PBXGroup;
+			children = (
+				C1BFEA0B28DF950700F7C943 /* G7UICoordinator.swift */,
+				C1BFEA0D28DF96A600F7C943 /* G7CGMManager+UI.swift */,
+				C1BFEA0F28DF989000F7C943 /* G7StartupView.swift */,
+			);
+			path = G7CGMManager;
+			sourceTree = "<group>";
+		};
+		C1BFEA1128DF999C00F7C943 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C1BFEA1428DF99AD00F7C943 /* Image.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C1BFEA1D28DFC53300F7C943 /* G7CGMManager */ = {
+			isa = PBXGroup;
+			children = (
+				C1BFEA1628DF9DA600F7C943 /* G7CGMManager.swift */,
+				C1BFEA1A28DFC44B00F7C943 /* G7Opcode.swift */,
+				C1BFEA1828DFC08500F7C943 /* G7Sensor.swift */,
+				C1BFEA1E28DFC56500F7C943 /* G7GlucoseMessage.swift */,
+			);
+			path = G7CGMManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -947,7 +1064,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9AD3817225EEE850058C179 /* CGMBLEKit.h in Headers */,
-				A9AD3818225EEE850058C179 /* AESCrypt.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1108,6 +1224,27 @@
 			productReference = B4D40D3E23A428BC00D7ECB5 /* CGMBLEKitG5Plugin.loopplugin */;
 			productType = "com.apple.product-type.framework";
 		};
+		C1BA045D28DF89FD00CD6BA4 /* CGMBLEKitG7Plugin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1BA047228DF89FD00CD6BA4 /* Build configuration list for PBXNativeTarget "CGMBLEKitG7Plugin" */;
+			buildPhases = (
+				C1BA046428DF89FD00CD6BA4 /* Sources */,
+				C1BA046728DF89FD00CD6BA4 /* Frameworks */,
+				C1BA046C28DF89FD00CD6BA4 /* Resources */,
+				C1BA046D28DF89FD00CD6BA4 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C1BA045E28DF89FD00CD6BA4 /* PBXTargetDependency */,
+				C1BA046028DF89FD00CD6BA4 /* PBXTargetDependency */,
+				C1BA046228DF89FD00CD6BA4 /* PBXTargetDependency */,
+			);
+			name = CGMBLEKitG7Plugin;
+			productName = CGMBLEKitPlugin;
+			productReference = C1BA047528DF89FD00CD6BA4 /* CGMBLEKitG7Plugin.loopplugin */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1161,6 +1298,9 @@
 						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
 					};
+					C1BA045D28DF89FD00CD6BA4 = {
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 43CABDED1C3506F100005705 /* Build configuration list for PBXProject "CGMBLEKit" */;
@@ -1203,6 +1343,7 @@
 				4308103220785FEA00B66384 /* ResetTransmitter */,
 				B4D40D3D23A428BC00D7ECB5 /* CGMBLEKitG5Plugin */,
 				B4D40D2D23A3E91800D7ECB5 /* CGMBLEKitG6Plugin */,
+				C1BA045D28DF89FD00CD6BA4 /* CGMBLEKitG7Plugin */,
 			);
 		};
 /* End PBXProject section */
@@ -1278,6 +1419,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C1BA046C28DF89FD00CD6BA4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1314,12 +1462,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				4379CFE1210EC27500AADC79 /* HKUnit.swift in Sources */,
+				C1BFEA1528DF99AD00F7C943 /* Image.swift in Sources */,
+				C1BFEA0E28DF96A600F7C943 /* G7CGMManager+UI.swift in Sources */,
+				C1BFEA1028DF989000F7C943 /* G7StartupView.swift in Sources */,
 				4325E9E8210EAED100969CE5 /* TransmitterManager+UI.swift in Sources */,
 				4379CFD9210EB3AC00AADC79 /* UIColor.swift in Sources */,
 				4325E9E9210EAED100969CE5 /* TransmitterSettingsViewController.swift in Sources */,
 				4379CFE72110EC5500AADC79 /* TransmitterIDSetupViewController.swift in Sources */,
 				4379CFE52110EBAE00AADC79 /* TransmitterSetupViewController.swift in Sources */,
 				43026D402131C5C600A332E2 /* LocalizedString.swift in Sources */,
+				C1BFEA0C28DF950700F7C943 /* G7UICoordinator.swift in Sources */,
 				4325E9EB210EAEE200969CE5 /* IdentifiableClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1337,6 +1489,7 @@
 				43CABE2D1C350B3D00005705 /* TransmitterTimeRxMessage.swift in Sources */,
 				43CABE291C350B3D00005705 /* GlucoseRxMessage.swift in Sources */,
 				43CE7CDC1CA77468003CC1B0 /* TransmitterStatus.swift in Sources */,
+				C1BFEA1B28DFC44B00F7C943 /* G7Opcode.swift in Sources */,
 				43CABE271C350B3D00005705 /* BondRequestTxMessage.swift in Sources */,
 				4323115F1EFC870300B95E62 /* OSLog.swift in Sources */,
 				43E4B1F21F8AF9790038823E /* PeripheralManager.swift in Sources */,
@@ -1348,6 +1501,7 @@
 				43CE7CD01CA73C57003CC1B0 /* SessionStopTxMessage.swift in Sources */,
 				431CE7671F91D0B300255374 /* PeripheralManager+G5.swift in Sources */,
 				43CABE2A1C350B3D00005705 /* GlucoseTxMessage.swift in Sources */,
+				C1BFEA1728DF9DA600F7C943 /* G7CGMManager.swift in Sources */,
 				434B288320649D3C000EE07B /* ResetMessage.swift in Sources */,
 				43CE7CC81CA73AEB003CC1B0 /* FirmwareVersionTxMessage.swift in Sources */,
 				43D140D12047BD930032346D /* Opcode.swift in Sources */,
@@ -1364,10 +1518,12 @@
 				43CABE131C350B2800005705 /* BluetoothServices.swift in Sources */,
 				43E3978F1D566B170028E321 /* Glucose.swift in Sources */,
 				43CABE151C350B2800005705 /* Transmitter.swift in Sources */,
+				C1BFEA1F28DFC56500F7C943 /* G7GlucoseMessage.swift in Sources */,
 				43CABE281C350B3D00005705 /* DisconnectTxMessage.swift in Sources */,
 				43CABE121C350B2800005705 /* BluetoothManager.swift in Sources */,
 				4325E9ED210EAEF600969CE5 /* TransmitterManager.swift in Sources */,
 				43CABE2B1C350B3D00005705 /* KeepAliveTxMessage.swift in Sources */,
+				C1BFEA1928DFC08500F7C943 /* G7Sensor.swift in Sources */,
 				E752B4102063C31B0063027D /* Command.swift in Sources */,
 				43CABE241C350B3D00005705 /* AuthChallengeTxMessage.swift in Sources */,
 				4379CFD2210EB0F700AADC79 /* TimeInterval.swift in Sources */,
@@ -1474,6 +1630,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C1BA046428DF89FD00CD6BA4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1BA046528DF89FD00CD6BA4 /* OSLog.swift in Sources */,
+				C1BA047928DF8A8200CD6BA4 /* CGMBLEKitG7Plugin.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1531,6 +1696,21 @@
 			isa = PBXTargetDependency;
 			target = 43A8EC51210D0A7400A81379 /* CGMBLEKitUI */;
 			targetProxy = C19C8BEA2865209E0056D5E4 /* PBXContainerItemProxy */;
+		};
+		C1BA045E28DF89FD00CD6BA4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43A8EC51210D0A7400A81379 /* CGMBLEKitUI */;
+			targetProxy = C1BA045F28DF89FD00CD6BA4 /* PBXContainerItemProxy */;
+		};
+		C1BA046028DF89FD00CD6BA4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43CABDF21C3506F100005705 /* CGMBLEKit */;
+			targetProxy = C1BA046128DF89FD00CD6BA4 /* PBXContainerItemProxy */;
+		};
+		C1BA046228DF89FD00CD6BA4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 43A8EC51210D0A7400A81379 /* CGMBLEKitUI */;
+			targetProxy = C1BA046328DF89FD00CD6BA4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2286,6 +2466,68 @@
 			};
 			name = Release;
 		};
+		C1BA047328DF89FD00CD6BA4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CGMBLEKitG7Plugin/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACH_O_TYPE = mh_dylib;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.loopkit.CGMBLEKitG7Plugin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = loopplugin;
+			};
+			name = Debug;
+		};
+		C1BA047428DF89FD00CD6BA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = CGMBLEKitG7Plugin/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACH_O_TYPE = mh_dylib;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.loopkit.CGMBLEKitG7Plugin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = loopplugin;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2366,6 +2608,15 @@
 			buildConfigurations = (
 				B4D40D4223A428BC00D7ECB5 /* Debug */,
 				B4D40D4323A428BC00D7ECB5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1BA047228DF89FD00CD6BA4 /* Build configuration list for PBXNativeTarget "CGMBLEKitG7Plugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1BA047328DF89FD00CD6BA4 /* Debug */,
+				C1BA047428DF89FD00CD6BA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

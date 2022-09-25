@@ -12,6 +12,20 @@ import XCTest
 
 class GlucoseRxMessageTests: XCTestCase {
 
+    func testG7MessageData() {
+        let data = Data(hexadecimalString: "4e00ab060000080000010700540006f5ffff0e")!
+        let message = GlucoseRxMessage(data: data)!
+
+        XCTAssertEqual(0, message.status)
+        XCTAssertEqual(2664, message.sequence)
+        XCTAssertEqual(5730698, message.glucose.timestamp)
+        XCTAssertFalse(message.glucose.glucoseIsDisplayOnly)
+        XCTAssertEqual(204, message.glucose.glucose)
+        XCTAssertEqual(6, message.glucose.state)
+        XCTAssertEqual(-1, message.glucose.trend)
+    }
+
+
     func testMessageData() {
         let data = Data(hexadecimalString: "3100680a00008a715700cc0006ffc42a")!
         let message = GlucoseRxMessage(data: data)!
