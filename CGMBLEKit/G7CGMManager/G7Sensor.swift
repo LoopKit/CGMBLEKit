@@ -63,7 +63,7 @@ public final class G7Sensor: BluetoothManagerDelegate {
 
     // MARK: -
 
-    private let log = OSLog(category: "Transmitter")
+    private let log = OSLog(category: "G7Sensor")
 
     private let bluetoothManager = BluetoothManager()
 
@@ -160,10 +160,8 @@ public final class G7Sensor: BluetoothManagerDelegate {
             if let glucoseMessage = G7GlucoseMessage(data: response)
             {
                 activationDate = Date().addingTimeInterval(-TimeInterval(glucoseMessage.timestamp))
-                delegateQueue.async {
-                    self.delegate?.sensor(self, didRead: glucoseMessage)
-                }
                 peripheralManager.perform { (peripheral) in
+                    self.log.debug("Listening for backfill responses")
                     // Subscribe to backfill updates
                     do {
                         try peripheral.listenToCharacteristic(.backfill)
@@ -173,6 +171,9 @@ public final class G7Sensor: BluetoothManagerDelegate {
                             self.delegate?.sensor(self, didError: error)
                         }
                     }
+                }
+                delegateQueue.async {
+                    self.delegate?.sensor(self, didRead: glucoseMessage)
                 }
             } else {
                 delegateQueue.async {
@@ -193,7 +194,10 @@ public final class G7Sensor: BluetoothManagerDelegate {
     }
 
     func bluetoothManager(_ manager: BluetoothManager, didReceiveBackfillResponse response: Data) {
-        guard response.count == 0 else {
+
+        log.debug("Received backfill response: %{public}@", response.hexadecimalString)
+
+        guard response.count == 9 else {
             return
         }
 
@@ -234,63 +238,6 @@ public final class G7Sensor: BluetoothManagerDelegate {
 
 // MARK: - Helpers
 fileprivate extension PeripheralManager {
-    func authenticate(id: TransmitterID) throws -> AuthChallengeRxMessage {
-        let authMessage = AuthRequestTxMessage()
-
-        do {
-            try writeMessage(authMessage, for: .authentication)
-        } catch let error {
-            throw TransmitterError.authenticationError("Error writing transmitter challenge: \(error)")
-        }
-
-        let authResponse: AuthRequestRxMessage
-        do {
-            authResponse = try readMessage(for: .authentication)
-        } catch let error {
-            throw TransmitterError.authenticationError("Unable to parse auth challenge: \(error)")
-        }
-
-        guard authResponse.tokenHash == id.computeHash(of: authMessage.singleUseToken) else {
-            throw TransmitterError.authenticationError("Transmitter failed auth challenge")
-        }
-
-        guard let challengeHash = id.computeHash(of: authResponse.challenge) else {
-            throw TransmitterError.authenticationError("Failed to compute challenge hash for transmitter ID")
-        }
-
-        do {
-            try writeMessage(AuthChallengeTxMessage(challengeHash: challengeHash), for: .authentication)
-        } catch let error {
-            throw TransmitterError.authenticationError("Error writing challenge response: \(error)")
-        }
-
-        let challengeResponse: AuthChallengeRxMessage
-        do {
-            challengeResponse = try readMessage(for: .authentication)
-        } catch let error {
-            throw TransmitterError.authenticationError("Unable to parse auth status: \(error)")
-        }
-
-        guard challengeResponse.isAuthenticated else {
-            throw TransmitterError.authenticationError("Transmitter rejected auth challenge")
-        }
-
-        return challengeResponse
-    }
-
-    func requestBond() throws {
-        do {
-            try writeMessage(KeepAliveTxMessage(time: 25), for: .authentication)
-        } catch let error {
-            throw TransmitterError.authenticationError("Error writing keep-alive for bond: \(error)")
-        }
-
-        do {
-            try writeMessage(BondRequestTxMessage(), for: .authentication)
-        } catch let error {
-            throw TransmitterError.authenticationError("Error writing bond request: \(error)")
-        }
-    }
 
     func enableNotify(shouldWaitForBond: Bool = false) throws {
         do {
@@ -301,61 +248,6 @@ fileprivate extension PeripheralManager {
             }
         } catch let error {
             throw TransmitterError.controlError("Error enabling notification: \(error)")
-        }
-    }
-
-    func readTimeMessage() throws -> TransmitterTimeRxMessage {
-        do {
-            return try writeMessage(TransmitterTimeTxMessage(), for: .control)
-        } catch let error {
-            throw TransmitterError.controlError("Error getting time: \(error)")
-        }
-    }
-
-    /// - Throws: TransmitterError.controlError
-    func sendCommand(_ command: Command, activationDate: Date) throws -> TransmitterRxMessage {
-        do {
-            switch command {
-            case .startSensor(let date):
-                let startTime = UInt32(date.timeIntervalSince(activationDate))
-                let secondsSince1970 = UInt32(date.timeIntervalSince1970)
-                return try writeMessage(SessionStartTxMessage(startTime: startTime, secondsSince1970: secondsSince1970), for: .control)
-            case .stopSensor(let date):
-                let stopTime = UInt32(date.timeIntervalSince(activationDate))
-                return try writeMessage(SessionStopTxMessage(stopTime: stopTime), for: .control)
-            case .calibrateSensor(let glucose, let date):
-                let glucoseValue = UInt16(glucose.doubleValue(for: .milligramsPerDeciliter).rounded())
-                let time = UInt32(date.timeIntervalSince(activationDate))
-                return try writeMessage(CalibrateGlucoseTxMessage(time: time, glucose: glucoseValue), for: .control)
-            case .resetTransmitter:
-                return try writeMessage(ResetTxMessage(), for: .control)
-            }
-        } catch let error {
-            throw TransmitterError.controlError("Error during \(command): \(error)")
-        }
-    }
-
-    func readGlucose() throws -> GlucoseRxMessage {
-        do {
-            return try writeMessage(GlucoseTxMessage(), for: .control)
-        } catch let error {
-            throw TransmitterError.controlError("Error getting glucose: \(error)")
-        }
-    }
-
-    func readCalibrationData() throws -> CalibrationDataRxMessage {
-        do {
-            return try writeMessage(CalibrationDataTxMessage(), for: .control)
-        } catch let error {
-            throw TransmitterError.controlError("Error getting calibration data: \(error)")
-        }
-    }
-
-    func disconnect() {
-        do {
-            try setNotifyValue(false, for: .control)
-            try writeMessage(DisconnectTxMessage(), for: .control)
-        } catch {
         }
     }
 
