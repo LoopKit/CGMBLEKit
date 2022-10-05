@@ -183,10 +183,13 @@
 		B4D40D3923A4250000D7ECB5 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4323115E1EFC870300B95E62 /* OSLog.swift */; };
 		B4D40D4A23ABB33500D7ECB5 /* CGMBLEKitG5Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D40D4923ABB33500D7ECB5 /* CGMBLEKitG5Plugin.swift */; };
 		B4D40D4B23ABB42400D7ECB5 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4323115E1EFC870300B95E62 /* OSLog.swift */; };
+		C105919528ED219A00666CCA /* G7LastReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105919428ED219A00666CCA /* G7LastReading.swift */; };
+		C105919728ED32F900666CCA /* G7SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C105919628ED32F900666CCA /* G7SettingsViewModel.swift */; };
 		C13388D428E08D0B008CEDE7 /* G7SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13388D328E08D0B008CEDE7 /* G7SettingsView.swift */; };
 		C13388D628E0BF48008CEDE7 /* G7GlucoseMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13388D528E0BF48008CEDE7 /* G7GlucoseMessageTests.swift */; };
 		C13388D828E0E24D008CEDE7 /* G7BackfillMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13388D728E0E24D008CEDE7 /* G7BackfillMessage.swift */; };
 		C13388DA28E0E2D7008CEDE7 /* G7BackfillMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13388D928E0E2D7008CEDE7 /* G7BackfillMessageTests.swift */; };
+		C13388DC28E1DC79008CEDE7 /* G7CGMManagerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13388DB28E1DC79008CEDE7 /* G7CGMManagerState.swift */; };
 		C15543B2252D8777008EE7E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C15543B1252D8776008EE7E5 /* Assets.xcassets */; };
 		C19084BB203932BD00AA47F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C19084B9203932BD00AA47F3 /* Main.storyboard */; };
 		C19C8BDB286520970056D5E4 /* CGMBLEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* CGMBLEKit.framework */; };
@@ -627,10 +630,13 @@
 		B4D40D4623A42A1700D7ECB5 /* LoopKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LoopKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4D40D4823ABB33500D7ECB5 /* CGMBLEKitG5Plugin-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CGMBLEKitG5Plugin-Bridging-Header.h"; sourceTree = "<group>"; };
 		B4D40D4923ABB33500D7ECB5 /* CGMBLEKitG5Plugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGMBLEKitG5Plugin.swift; sourceTree = "<group>"; };
+		C105919428ED219A00666CCA /* G7LastReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G7LastReading.swift; sourceTree = "<group>"; };
+		C105919628ED32F900666CCA /* G7SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G7SettingsViewModel.swift; sourceTree = "<group>"; };
 		C13388D328E08D0B008CEDE7 /* G7SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G7SettingsView.swift; sourceTree = "<group>"; };
 		C13388D528E0BF48008CEDE7 /* G7GlucoseMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G7GlucoseMessageTests.swift; sourceTree = "<group>"; };
 		C13388D728E0E24D008CEDE7 /* G7BackfillMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G7BackfillMessage.swift; sourceTree = "<group>"; };
 		C13388D928E0E2D7008CEDE7 /* G7BackfillMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G7BackfillMessageTests.swift; sourceTree = "<group>"; };
+		C13388DB28E1DC79008CEDE7 /* G7CGMManagerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = G7CGMManagerState.swift; sourceTree = "<group>"; };
 		C15543B1252D8776008EE7E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C19084BA203932BD00AA47F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C1BA047528DF89FD00CD6BA4 /* CGMBLEKitG7Plugin.loopplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CGMBLEKitG7Plugin.loopplugin; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1027,6 +1033,7 @@
 				C1BFEA0D28DF96A600F7C943 /* G7CGMManager+UI.swift */,
 				C1BFEA0F28DF989000F7C943 /* G7StartupView.swift */,
 				C13388D328E08D0B008CEDE7 /* G7SettingsView.swift */,
+				C105919628ED32F900666CCA /* G7SettingsViewModel.swift */,
 			);
 			path = G7CGMManager;
 			sourceTree = "<group>";
@@ -1047,6 +1054,8 @@
 				C1BFEA1828DFC08500F7C943 /* G7Sensor.swift */,
 				C1BFEA1E28DFC56500F7C943 /* G7GlucoseMessage.swift */,
 				C13388D728E0E24D008CEDE7 /* G7BackfillMessage.swift */,
+				C13388DB28E1DC79008CEDE7 /* G7CGMManagerState.swift */,
+				C105919428ED219A00666CCA /* G7LastReading.swift */,
 			);
 			path = G7CGMManager;
 			sourceTree = "<group>";
@@ -1482,6 +1491,7 @@
 				4325E9E9210EAED100969CE5 /* TransmitterSettingsViewController.swift in Sources */,
 				4379CFE72110EC5500AADC79 /* TransmitterIDSetupViewController.swift in Sources */,
 				4379CFE52110EBAE00AADC79 /* TransmitterSetupViewController.swift in Sources */,
+				C105919728ED32F900666CCA /* G7SettingsViewModel.swift in Sources */,
 				43026D402131C5C600A332E2 /* LocalizedString.swift in Sources */,
 				C1BFEA0C28DF950700F7C943 /* G7UICoordinator.swift in Sources */,
 				C13388D428E08D0B008CEDE7 /* G7SettingsView.swift in Sources */,
@@ -1520,6 +1530,7 @@
 				43D140D12047BD930032346D /* Opcode.swift in Sources */,
 				43CE7CCC1CA73BCC003CC1B0 /* BatteryStatusTxMessage.swift in Sources */,
 				4379CFD6210EB19F00AADC79 /* Locked.swift in Sources */,
+				C13388DC28E1DC79008CEDE7 /* G7CGMManagerState.swift in Sources */,
 				43EEA7121D14DC0800CBBDA0 /* AESCrypt.m in Sources */,
 				43CE7CCE1CA73C22003CC1B0 /* SessionStartTxMessage.swift in Sources */,
 				433BC81B205CB64A000B1200 /* GlucoseBackfillMessage.swift in Sources */,
@@ -1536,6 +1547,7 @@
 				43CABE121C350B2800005705 /* BluetoothManager.swift in Sources */,
 				C13388D828E0E24D008CEDE7 /* G7BackfillMessage.swift in Sources */,
 				4325E9ED210EAEF600969CE5 /* TransmitterManager.swift in Sources */,
+				C105919528ED219A00666CCA /* G7LastReading.swift in Sources */,
 				43CABE2B1C350B3D00005705 /* KeepAliveTxMessage.swift in Sources */,
 				C1BFEA1928DFC08500F7C943 /* G7Sensor.swift in Sources */,
 				E752B4102063C31B0063027D /* Command.swift in Sources */,

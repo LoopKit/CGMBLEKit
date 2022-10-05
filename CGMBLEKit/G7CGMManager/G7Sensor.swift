@@ -21,7 +21,8 @@ public protocol G7SensorDelegate: AnyObject {
 
     func sensor(_ sensor: G7Sensor, didReadBackfill backfill: [G7BackfillMessage])
 
-    func sensor(_ sensor: G7Sensor, didReadUnknownData data: Data)
+    // If this returns true, then start following this sensor
+    func sensor(_ sensor: G7Sensor, didDiscoverNewSensor name: String, activatedAt: Date) -> Bool
 }
 
 public enum G7SensorError: Error {
@@ -69,10 +70,14 @@ public final class G7Sensor: BluetoothManagerDelegate {
 
     private let delegateQueue = DispatchQueue(label: "com.loudnate.CGMBLEKit.delegateQueue", qos: .unspecified)
 
-    private let sensorName: String
+    private var sensorID: String?
 
-    public init(sensorName: String) {
-        self.sensorName = sensorName
+    public func setSensorId(_ newId: String) {
+        self.sensorID = newId
+    }
+
+    public init(sensorID: String?) {
+        self.sensorID = sensorID
         bluetoothManager.delegate = self
     }
 
@@ -141,11 +146,50 @@ public final class G7Sensor: BluetoothManagerDelegate {
     func bluetoothManager(_ manager: BluetoothManager, shouldConnectPeripheral peripheral: CBPeripheral) -> Bool {
 
         /// The Dexcom G7 advertises a peripheral name of "DXCMxx"
-        if let name = peripheral.name, name.hasPrefix("DXCM"), name.suffix(2) == sensorName.suffix(2) {
-            return true
+        if let name = peripheral.name, name.hasPrefix("DXCM") {
+            // If we're following this name or if we're scanning, connect
+            if let sensorName = sensorID, name.suffix(2) == sensorName.suffix(2) {
+                return true
+            } else if sensorID == nil {
+                return true
+            }
+        }
+        self.log.info("Not connecting to peripheral: %{public}@", peripheral.name ?? String(describing: peripheral))
+        return false
+    }
+
+    func handleGlucoseMessage(message: G7GlucoseMessage, peripheralManager: PeripheralManager) {
+        activationDate = Date().addingTimeInterval(-TimeInterval(message.timestamp))
+        peripheralManager.perform { (peripheral) in
+            self.log.debug("Listening for backfill responses")
+            // Subscribe to backfill updates
+            do {
+                try peripheral.listenToCharacteristic(.backfill)
+            } catch let error {
+                self.log.error("Error trying to enable notifications on backfill characteristic: %{public}@", String(describing: error))
+                self.delegateQueue.async {
+                    self.delegate?.sensor(self, didError: error)
+                }
+            }
+        }
+        if sensorID == nil, let name = peripheralManager.peripheral.name, let activationDate = activationDate  {
+            delegateQueue.async {
+                guard let delegate = self.delegate else {
+                    return
+                }
+
+                if delegate.sensor(self, didDiscoverNewSensor: name, activatedAt: activationDate) {
+                    self.sensorID = name
+                    self.activationDate = activationDate
+                    self.delegate?.sensor(self, didRead: message)
+                }
+            }
+        } else if sensorID != nil {
+            delegateQueue.async {
+                self.delegate?.sensor(self, didRead: message)
+            }
         } else {
-            self.log.info("Not connecting to peripheral: %{public}@", peripheral.name ?? String(describing: peripheral))
-            return false
+            self.log.error("Dropping unhandled glucose message: %{public}@", String(describing: message))
         }
     }
 
@@ -157,24 +201,8 @@ public final class G7Sensor: BluetoothManagerDelegate {
 
         switch G7Opcode(rawValue: response[0]) {
         case .glucoseTx?:
-            if let glucoseMessage = G7GlucoseMessage(data: response)
-            {
-                activationDate = Date().addingTimeInterval(-TimeInterval(glucoseMessage.timestamp))
-                peripheralManager.perform { (peripheral) in
-                    self.log.debug("Listening for backfill responses")
-                    // Subscribe to backfill updates
-                    do {
-                        try peripheral.listenToCharacteristic(.backfill)
-                    } catch let error {
-                        self.log.error("Error trying to enable notifications on backfill characteristic: %{public}@", String(describing: error))
-                        self.delegateQueue.async {
-                            self.delegate?.sensor(self, didError: error)
-                        }
-                    }
-                }
-                delegateQueue.async {
-                    self.delegate?.sensor(self, didRead: glucoseMessage)
-                }
+            if let glucoseMessage = G7GlucoseMessage(data: response) {
+                handleGlucoseMessage(message: glucoseMessage, peripheralManager: peripheralManager)
             } else {
                 delegateQueue.async {
                     self.delegate?.sensor(self, didError: G7SensorError.observationError("Unable to handle glucose control response"))

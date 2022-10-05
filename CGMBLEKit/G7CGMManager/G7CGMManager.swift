@@ -15,9 +15,60 @@ import HealthKit
 public class G7CGMManager: CGMManager {
     private let log = OSLog(category: "G7CGMManager")
 
-    public var sensorName = "DXCMd0"
+    public var state: G7CGMManagerState {
+        return lockedState.value
+    }
 
-    public var cgmManagerDelegate: LoopKit.CGMManagerDelegate?
+    private func setState(_ changes: (_ state: inout G7CGMManagerState) -> Void) -> Void {
+        return setStateWithResult(changes)
+    }
+
+    @discardableResult
+    private func mutateState(_ changes: (_ state: inout G7CGMManagerState) -> Void) -> G7CGMManagerState {
+        return setStateWithResult({ (state) -> G7CGMManagerState in
+            changes(&state)
+            return state
+        })
+    }
+
+    private func setStateWithResult<ReturnType>(_ changes: (_ state: inout G7CGMManagerState) -> ReturnType) -> ReturnType {
+        var oldValue: G7CGMManagerState!
+        var returnType: ReturnType!
+        let newValue = lockedState.mutate { (state) in
+            oldValue = state
+            returnType = changes(&state)
+        }
+
+        if oldValue != newValue {
+            delegate.notify { delegate in
+                delegate?.cgmManagerDidUpdateState(self)
+                delegate?.cgmManager(self, didUpdate: self.cgmManagerStatus)
+            }
+        }
+
+        return returnType
+    }
+    private let lockedState: Locked<G7CGMManagerState>
+
+    public weak var cgmManagerDelegate: CGMManagerDelegate? {
+        get {
+            return delegate.delegate
+        }
+        set {
+            delegate.delegate = newValue
+        }
+    }
+
+    public var delegateQueue: DispatchQueue! {
+        get {
+            return delegate.queue
+        }
+        set {
+            delegate.queue = newValue
+        }
+    }
+
+    private let delegate = WeakSynchronizedDelegate<CGMManagerDelegate>()
 
     public var providesBLEHeartbeat: Bool = true
 
@@ -29,6 +80,14 @@ public class G7CGMManager: CGMManager {
 
     public var glucoseDisplay: GlucoseDisplayable? {
         return latestReading
+    }
+
+    public var isScanning: Bool {
+        return sensor.isScanning
+    }
+
+    public var sensorName: String? {
+        return state.sensorID
     }
 
     private(set) public var latestReading: G7GlucoseMessage? {
@@ -47,8 +106,6 @@ public class G7CGMManager: CGMManager {
         return CGMManagerStatus(hasValidSensorSession: true, device: device)
     }
 
-    public var delegateQueue: DispatchQueue!
-
     public func fetchNewDataIfNeeded(_ completion: @escaping (LoopKit.CGMReadingResult) -> Void) {
 
         sensor.resumeScanning()
@@ -57,23 +114,26 @@ public class G7CGMManager: CGMManager {
     }
 
     public init() {
-        sensor = G7Sensor(sensorName: sensorName)
+        lockedState = Locked(G7CGMManagerState())
+        sensor = G7Sensor(sensorID: nil)
         sensor.delegate = self
     }
 
     public required init?(rawState: RawStateValue) {
-        sensor = G7Sensor(sensorName: sensorName)
+        let state = G7CGMManagerState(rawValue: rawState)
+        lockedState = Locked(state)
+        sensor = G7Sensor(sensorID: state.sensorID)
         sensor.delegate = self
     }
 
     public var rawState: RawStateValue {
-        return [:]
+        return state.rawValue
     }
 
     public var debugDescription: String {
         let lines = [
             "## G7CGMManager",
-            "sensorName: \(String(describing: sensorName))",
+            "sensorID: \(String(describing: state.sensorID))",
         ]
         return lines.joined(separator: "\n")
     }
@@ -109,7 +169,7 @@ public class G7CGMManager: CGMManager {
     }
 
     func logDeviceCommunication(_ message: String, type: DeviceLogEntryType = .send) {
-        self.cgmManagerDelegate?.deviceManager(self, logEventForDeviceIdentifier: sensorName, type: type, message: message, completion: nil)
+        self.cgmManagerDelegate?.deviceManager(self, logEventForDeviceIdentifier: state.sensorID, type: type, message: message, completion: nil)
     }
 
     private func updateDelegate(with result: CGMReadingResult) {
@@ -120,16 +180,31 @@ public class G7CGMManager: CGMManager {
 }
 
 extension G7CGMManager: G7SensorDelegate {
-    public func sensorDidConnect(_ transmitter: G7Sensor) {
-        log.default("sensorDidConnect")
+    public func sensor(_ sensor: G7Sensor, didDiscoverNewSensor name: String, activatedAt: Date) -> Bool {
+        logDeviceCommunication("New sensor \(name) discovered, activated at \(activatedAt)", type: .connection)
+
+        let shouldSwitchToNewSensor = true
+
+        if shouldSwitchToNewSensor {
+            mutateState { state in
+                state.sensorID = name
+                state.activatedAt = activatedAt
+            }
+        }
+
+        return shouldSwitchToNewSensor
+    }
+
+    public func sensorDidConnect(_ sensor: G7Sensor) {
+        logDeviceCommunication("Sensor \(String(describing: sensor.peripheralIdentifier)) did connect", type: .connection)
     }
 
     public func sensor(_ sensor: G7Sensor, didError error: Error) {
-        log.error("Error: %{public}@", error.localizedDescription)
+        logDeviceCommunication("Sensor error \(error)", type: .error)
     }
 
     public func sensor(_ sensor: G7Sensor, didRead glucose: G7GlucoseMessage) {
-        log.default("didRead: %{public}@", String(describing: glucose))
+        logDeviceCommunication("Sensor didRead \(glucose)", type: .receive)
 
         guard glucose != latestReading else {
             updateDelegate(with: .noData)
@@ -139,9 +214,10 @@ extension G7CGMManager: G7SensorDelegate {
         latestReading = glucose
 
         guard let activationDate = sensor.activationDate else {
-            log.error("Unable to process sensor reading without activation date.")
+            logDeviceCommunication("Unable to process sensor reading without activation date.", type: .error)
             return
         }
+
 
 //        guard glucose.state.hasReliableGlucose else {
 //            log.default("%{public}@: Unreliable glucose: %{public}@", #function, String(describing: glucose.state))
@@ -200,11 +276,6 @@ extension G7CGMManager: G7SensorDelegate {
         }
 
         updateDelegate(with: .newData(samples))
-
-    }
-
-    public func sensor(_ sensor: G7Sensor, didReadUnknownData data: Data) {
-        log.default("didReadUnknownData: %{public}@", data.hexadecimalString)
     }
 }
 

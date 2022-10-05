@@ -14,6 +14,7 @@ public struct G7GlucoseMessage: Equatable {
     public let glucose: UInt16
     public let glucoseIsDisplayOnly: Bool
     public let timestamp: UInt32 // Seconds since pairing
+    public let data: Data
 
     init?(data: Data) {
         //    0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18
@@ -31,7 +32,7 @@ public struct G7GlucoseMessage: Equatable {
         let glucoseBytes = data[12..<14].to(UInt16.self)
         glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
         glucose = glucoseBytes & 0xfff
-
         timestamp = data[2..<6].toInt()
+        self.data = data
     }
 }

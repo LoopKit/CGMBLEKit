@@ -41,8 +41,8 @@ class G7UICoordinator: UINavigationController, CGMManagerOnboarding, CompletionN
     private func initialView() -> UIViewController {
         if cgmManager == nil {
             let rootView = G7StartupView(
-                didContinue:  { [weak self] in self?.completeSetup() },
-                didCancel:  { [weak self] in
+                didContinue: { [weak self] in self?.completeSetup() },
+                didCancel: { [weak self] in
                     if let self = self {
                         self.completionDelegate?.completionNotifyingDidComplete(self)
                     }
@@ -54,11 +54,22 @@ class G7UICoordinator: UINavigationController, CGMManagerOnboarding, CompletionN
             return hostingController
         } else {
             let view = G7SettingsView(
-                didFinish:  { [weak self] in
+                didFinish: { [weak self] in
                     if let self = self {
                         self.completionDelegate?.completionNotifyingDidComplete(self)
                     }
-                }
+                },
+                deleteCGM: { [ weak self] in
+                    self?.cgmManager?.notifyDelegateOfDeletion {
+                        DispatchQueue.main.async {
+                            if let self = self {
+                                self.completionDelegate?.completionNotifyingDidComplete(self)
+                                self.dismiss(animated: true)
+                            }
+                        }
+                    }
+                },
+                viewModel: G7SettingsViewModel(cgmManager: cgmManager!)
             )
             let hostingController = DismissibleHostingController(rootView: view, colorPalette: colorPalette)
             return hostingController

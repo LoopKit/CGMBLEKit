@@ -11,6 +11,9 @@ import SwiftUI
 
 struct G7SettingsView: View {
     var didFinish: (() -> Void)
+    var deleteCGM: (() -> Void)
+
+    @ObservedObject var viewModel: G7SettingsViewModel
 
     var body: some View {
         List {
@@ -19,6 +22,22 @@ struct G7SettingsView: View {
                     headerImage
                     Text("Lifetime")
                     Text("Status")
+
+                    if let name = viewModel.sensorName {
+                        HStack {
+                            Text("BLE Name: ")
+                            Text(name)
+                        }
+                    }
+                    if viewModel.scanning {
+                        HStack {
+                            Text("Scanning")
+                            ProgressView()
+                        }
+                    }
+                    Button("Delete CGM", action: {
+                        self.deleteCGM()
+                    })
                 }
             }
         }
