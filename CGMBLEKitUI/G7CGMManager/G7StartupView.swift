@@ -31,7 +31,7 @@ struct G7StartupView: View {
                 .foregroundColor(.secondary)
             Spacer()
             Button(action: { self.didContinue?() }) {
-                Text(LocalizedString("I Understand", comment:"Button title for starting setup"))
+                Text(LocalizedString("Continue", comment:"Button title for starting setup"))
                     .actionButtonStyle(.primary)
             }
             Button(action: { self.didCancel?() } ) {

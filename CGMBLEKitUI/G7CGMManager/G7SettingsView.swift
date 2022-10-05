@@ -15,10 +15,16 @@ struct G7SettingsView: View {
 
     @ObservedObject var viewModel: G7SettingsViewModel
 
+    init(didFinish: @escaping () -> Void, deleteCGM: @escaping () -> Void, viewModel: G7SettingsViewModel) {
+        self.didFinish = didFinish
+        self.deleteCGM = deleteCGM
+        self.viewModel = viewModel
+    }
+
     private var timeFormatter: DateFormatter = {
         let formatter = DateFormatter()
 
-        formatter.dateStyle = .none
+        formatter.dateStyle = .short
         formatter.timeStyle = .short
 
         return formatter
