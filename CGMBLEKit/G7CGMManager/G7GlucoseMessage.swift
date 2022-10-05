@@ -29,10 +29,15 @@ public struct G7GlucoseMessage: Equatable {
             return nil
         }
 
-        let glucoseBytes = data[12..<14].to(UInt16.self)
-        glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
-        glucose = glucoseBytes & 0xfff
+        glucoseIsDisplayOnly = (data[18] & 0x10) > 0
+        glucose = data[12..<14].to(UInt16.self) & 0xfff
         timestamp = data[2..<6].toInt()
         self.data = data
+    }
+}
+
+extension G7GlucoseMessage: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return "G7GlucoseMessage(glucose:\(glucose), glucoseIsDisplayOnly:\(glucoseIsDisplayOnly) timestamp:\(timestamp), data:\(data.hexadecimalString))"
     }
 }

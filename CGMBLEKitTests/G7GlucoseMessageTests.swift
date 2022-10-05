@@ -15,8 +15,17 @@ final class G7GlucoseMessageTests: XCTestCase {
         let data = Data(hexadecimalString: "4e00c35501002601000106008a00060187000f")!
         let message = G7GlucoseMessage(data: data)!
 
-        XCTAssertEqual(156, message.glucose)
-        XCTAssertEqual(83890, message.timestamp)
+        XCTAssertEqual(138, message.glucose)
+        XCTAssertEqual(87491, message.timestamp)
+        XCTAssert(!message.glucoseIsDisplayOnly)
     }
 
+    func testG7MessageDataWithCalibration() {
+        let data = Data(hexadecimalString: "4e000ec10d00c00b00010000680006fe63001f")!
+        let message = G7GlucoseMessage(data: data)!
+
+        XCTAssertEqual(104, message.glucose)
+        XCTAssertEqual(901390, message.timestamp)
+        XCTAssert(message.glucoseIsDisplayOnly)
+    }
 }

@@ -13,6 +13,7 @@ import LoopKit
 class G7SettingsViewModel: ObservableObject {
     @Published var scanning: Bool = false
     @Published var sensorName: String?
+    @Published var activatedAt: Date?
 
     private var cgmManager: G7CGMManager
 
@@ -26,11 +27,12 @@ class G7SettingsViewModel: ObservableObject {
     func updateValues() {
         scanning = cgmManager.isScanning
         sensorName = cgmManager.sensorName
+        activatedAt = cgmManager.sensorActivatedAt
     }
 }
 
 extension G7SettingsViewModel: CGMManagerStatusObserver {
     func cgmManager(_ manager: LoopKit.CGMManager, didUpdate status: LoopKit.CGMManagerStatus) {
-        <#code#>
+        updateValues()
     }
 }

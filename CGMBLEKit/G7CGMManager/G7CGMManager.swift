@@ -90,6 +90,10 @@ public class G7CGMManager: CGMManager {
         return state.sensorID
     }
 
+    public var sensorActivatedAt: Date? {
+        return state.activatedAt
+    }
+
     private(set) public var latestReading: G7GlucoseMessage? {
         get {
             return lockedLatestReading.value

@@ -15,30 +15,46 @@ struct G7SettingsView: View {
 
     @ObservedObject var viewModel: G7SettingsViewModel
 
+    private var timeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+
+        return formatter
+    }()
+
     var body: some View {
         List {
             Section() {
                 VStack {
                     headerImage
-                    Text("Lifetime")
-                    Text("Status")
-
-                    if let name = viewModel.sensorName {
-                        HStack {
-                            Text("BLE Name: ")
-                            Text(name)
-                        }
-                    }
-                    if viewModel.scanning {
-                        HStack {
-                            Text("Scanning")
-                            ProgressView()
-                        }
-                    }
-                    Button("Delete CGM", action: {
-                        self.deleteCGM()
-                    })
                 }
+            }
+            if let name = viewModel.sensorName {
+                HStack {
+                    Text("BLE Name")
+                    Spacer()
+                    Text(name)
+                }
+            }
+            if let activatedAt = viewModel.activatedAt {
+                HStack {
+                    Text("Activated At")
+                    Spacer()
+                    Text(timeFormatter.string(from: activatedAt))
+                }
+            }
+            if viewModel.scanning {
+                HStack {
+                    Text("Scanning")
+                    ProgressView()
+                }
+            }
+            Section () {
+                Button("Delete CGM", action: {
+                    self.deleteCGM()
+                })
             }
         }
         .insetGroupedListStyle()
