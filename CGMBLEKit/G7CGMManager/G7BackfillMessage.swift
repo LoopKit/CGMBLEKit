@@ -14,6 +14,7 @@ public struct G7BackfillMessage: Equatable {
     public let glucose: UInt16
     public let glucoseIsDisplayOnly: Bool
     public let timestamp: UInt32 // Seconds since pairing
+    public let data: Data
 
     init?(data: Data) {
         //    0  1  2  3  4  5  6  7  8
@@ -29,5 +30,12 @@ public struct G7BackfillMessage: Equatable {
         glucoseIsDisplayOnly = (glucoseBytes & 0xf000) > 0
         glucose = glucoseBytes & 0xfff
 
+        self.data = data
+    }
+}
+
+extension G7BackfillMessage: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return "G7BackfillMessage(glucose:\(glucose), glucoseIsDisplayOnly:\(glucoseIsDisplayOnly) timestamp:\(timestamp), data:\(data.hexadecimalString))"
     }
 }
