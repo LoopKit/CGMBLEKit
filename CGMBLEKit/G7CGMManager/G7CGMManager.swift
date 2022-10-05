@@ -234,6 +234,12 @@ extension G7CGMManager: G7SensorDelegate {
             return
         }
 
+        guard message.hasReliableGlucose else {
+            logDeviceCommunication("Invalid glucose: \(message).", type: .receive)
+            updateDelegate(with: .noData)
+            return
+        }
+
         let unit = HKUnit.milligramsPerDeciliter
         let quantity = HKQuantity(unit: unit, doubleValue: Double(min(max(glucose, GlucoseLimits.minimum), GlucoseLimits.maximum)))
 
