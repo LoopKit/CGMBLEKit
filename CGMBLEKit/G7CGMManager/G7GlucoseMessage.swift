@@ -7,19 +7,65 @@
 //
 
 import Foundation
+import LoopKit
+
+public enum G7AlgorithmState: UInt8 {
+    case setup          = 0x01
+    case warmup         = 0x02
+    case ok  = 0x06
+    case expired        = 0x18
+}
 
 public struct G7GlucoseMessage: Equatable {
     //public let status: UInt8
     //public let sequence: UInt32
-    public let glucose: UInt16
+    public let glucose: UInt16?
+    public let predicted: UInt16?
     public let glucoseIsDisplayOnly: Bool
     public let timestamp: UInt32 // Seconds since pairing
+    public let algorithmState: G7AlgorithmState?
+    public let sequence: UInt16
+    public let trend: Double?
     public let data: Data
 
+    public var hasReliableGlucose: Bool {
+        return algorithmState == .ok
+    }
+
+    public var trendType: LoopKit.GlucoseTrend? {
+        guard let trend = trend else {
+            return nil
+        }
+
+        switch trend {
+        case let x where x <= -3.0:
+            return .downDownDown
+        case let x where x <= -2.0:
+            return .downDown
+        case let x where x <= -1.0:
+            return .down
+        case let x where x < 1.0:
+            return .flat
+        case let x where x < 2.0:
+            return .up
+        case let x where x < 3.0:
+            return .upUp
+        default:
+            return .upUpUp
+        }
+    }
+
     init?(data: Data) {
-        //    0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18
-        // 0x4e 00 d5 07 00 00 09 00 00 01 05 00 61 00 06 01 ff ff 0e
-        //   4e 00 b2 47 01 00 1a 01 00 01 05 00 9c000600a4000f
+        //    0  1  2 3 4 5  6 7  8  9 10 11 1213 14 15 1617 18
+        //         TTTTTTTT SQSQ             BGBG SS TR PRPR C
+        // 0x4e 00 d5070000 0900 00 01 05 00 6100 06 01 ffff 0e
+        // TTTTTTTT = timestamp
+        //     SQSQ = sequence
+        //     BGBG = glucose
+        //       SS = algorithm state
+        //       TR = trend
+        //     PRPR = predicted
+        //        C = calibration
 
         guard data.count >= 19 else {
             return nil
@@ -29,15 +75,35 @@ public struct G7GlucoseMessage: Equatable {
             return nil
         }
 
-        glucoseIsDisplayOnly = (data[18] & 0x10) > 0
-        glucose = data[12..<14].to(UInt16.self) & 0xfff
         timestamp = data[2..<6].toInt()
+
+        sequence = data[6..<8].to(UInt16.self)
+
+        let glucoseData = data[12..<14].to(UInt16.self)
+        let noReading = glucoseData == 0xffff
+        glucose = noReading ? nil : glucoseData & 0xfff
+
+        let predictionData = data[16..<18].to(UInt16.self)
+        let noPrediction = predictionData == 0xffff
+        predicted = noPrediction ? nil : predictionData & 0xfff
+
+        algorithmState = G7AlgorithmState(rawValue: data[14])
+
+        if data[15] == 0x7f {
+            trend = nil
+        } else {
+            trend = Double(Int8(bitPattern: data[15])) / 10
+        }
+
+        glucoseIsDisplayOnly = (data[18] & 0x10) > 0
+
         self.data = data
     }
+
 }
 
 extension G7GlucoseMessage: CustomDebugStringConvertible {
     public var debugDescription: String {
-        return "G7GlucoseMessage(glucose:\(glucose), glucoseIsDisplayOnly:\(glucoseIsDisplayOnly) timestamp:\(timestamp), data:\(data.hexadecimalString))"
+        return "G7GlucoseMessage(glucose:\(String(describing: glucose)), sequence:\(sequence) glucoseIsDisplayOnly:\(glucoseIsDisplayOnly) state:\(String(describing: algorithmState)) timestamp:\(timestamp), data:\(data.hexadecimalString))"
     }
 }

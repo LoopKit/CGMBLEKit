@@ -11,7 +11,7 @@ import XCTest
 
 final class G7BackfillMessageTests: XCTestCase {
 
-    func testG7MessageData() {
+    func testG7BackfillMessage() {
         let data = Data(hexadecimalString: "45a100009600060ffc")!
         let message = G7BackfillMessage(data: data)!
 
@@ -19,4 +19,12 @@ final class G7BackfillMessageTests: XCTestCase {
         XCTAssertEqual(41285, message.timestamp)
     }
 
+    func testG7BackfillMessageWarmup() {
+        let data = Data(hexadecimalString: "50000000ffff01007f")!
+        let message = G7BackfillMessage(data: data)!
+
+        XCTAssertNil(message.glucose)
+        XCTAssertNil(message.condition)
+        XCTAssert(message.warmup)
+    }
 }

@@ -207,15 +207,15 @@ extension G7CGMManager: G7SensorDelegate {
         logDeviceCommunication("Sensor error \(error)", type: .error)
     }
 
-    public func sensor(_ sensor: G7Sensor, didRead glucose: G7GlucoseMessage) {
-        logDeviceCommunication("Sensor didRead \(glucose)", type: .receive)
+    public func sensor(_ sensor: G7Sensor, didRead message: G7GlucoseMessage) {
+        logDeviceCommunication("Sensor didRead \(message)", type: .receive)
 
-        guard glucose != latestReading else {
+        guard message != latestReading else {
             updateDelegate(with: .noData)
             return
         }
 
-        latestReading = glucose
+        latestReading = message
 
         guard let activationDate = sensor.activationDate else {
             logDeviceCommunication("Unable to process sensor reading without activation date.", type: .error)
@@ -229,24 +229,24 @@ extension G7CGMManager: G7SensorDelegate {
 //            return
 //        }
 
-//        guard let quantity = glucose.glucose else {
-//            updateDelegate(with: .noData)
-//            return
-//        }
+        guard let glucose = message.glucose else {
+            updateDelegate(with: .noData)
+            return
+        }
 
         let unit = HKUnit.milligramsPerDeciliter
-        let quantity = HKQuantity(unit: unit, doubleValue: Double(min(max(glucose.glucose, GlucoseLimits.minimum), GlucoseLimits.maximum)))
+        let quantity = HKQuantity(unit: unit, doubleValue: Double(min(max(glucose, GlucoseLimits.minimum), GlucoseLimits.maximum)))
 
         updateDelegate(with: .newData([
             NewGlucoseSample(
-                date: activationDate.addingTimeInterval(TimeInterval(glucose.timestamp)),
+                date: activationDate.addingTimeInterval(TimeInterval(message.timestamp)),
                 quantity: quantity,
                 condition: .none,
-                trend: .flat,
-                trendRate: nil,
-                isDisplayOnly: glucose.glucoseIsDisplayOnly,
-                wasUserEntered: glucose.glucoseIsDisplayOnly,
-                syncIdentifier: glucose.syncIdentifier,
+                trend: message.trendType,
+                trendRate: message.trendRate,
+                isDisplayOnly: message.glucoseIsDisplayOnly,
+                wasUserEntered: message.glucoseIsDisplayOnly,
+                syncIdentifier: message.syncIdentifier,
                 device: device
             )
         ]))
@@ -254,7 +254,9 @@ extension G7CGMManager: G7SensorDelegate {
     }
 
     public func sensor(_ sensor: G7Sensor, didReadBackfill backfill: [G7BackfillMessage]) {
-        log.default("didReadBackfill: %{public}@", String(describing: backfill))
+        for msg in backfill {
+            logDeviceCommunication("Sensor didReadBackfill \(msg)", type: .receive)
+        }
 
         guard let activationDate = sensor.activationDate else {
             log.error("Unable to process backfill without activation date.")
@@ -263,14 +265,18 @@ extension G7CGMManager: G7SensorDelegate {
 
         let unit = HKUnit.milligramsPerDeciliter
 
-        let samples = backfill.map { msg in
-            let quantity = HKQuantity(unit: unit, doubleValue: Double(min(max(msg.glucose, GlucoseLimits.minimum), GlucoseLimits.maximum)))
+        let samples = backfill.compactMap { msg -> NewGlucoseSample? in
+            guard let glucose = msg.glucose else {
+                return nil
+            }
+
+            let quantity = HKQuantity(unit: unit, doubleValue: Double(min(max(glucose, GlucoseLimits.minimum), GlucoseLimits.maximum)))
 
             return NewGlucoseSample(
                 date: activationDate.addingTimeInterval(TimeInterval(msg.timestamp)),
                 quantity: quantity,
-                condition: .none,
-                trend: .flat,
+                condition: msg.condition,
+                trend: nil,
                 trendRate: nil,
                 isDisplayOnly: msg.glucoseIsDisplayOnly,
                 wasUserEntered: msg.glucoseIsDisplayOnly,
@@ -295,18 +301,16 @@ extension G7BackfillMessage {
     }
 }
 
-
 extension G7GlucoseMessage: GlucoseDisplayable {
     public var isStateValid: Bool {
-        return true
-    }
-
-    public var trendType: LoopKit.GlucoseTrend? {
-        return nil
+        return algorithmState == .ok
     }
 
     public var trendRate: HKQuantity? {
-        return nil
+        guard let trend = trend else {
+            return nil
+        }
+        return HKQuantity(unit: .milligramsPerDeciliter, doubleValue: trend)
     }
 
     public var isLocal: Bool {
@@ -314,6 +318,10 @@ extension G7GlucoseMessage: GlucoseDisplayable {
     }
 
     public var glucoseRangeCategory: LoopKit.GlucoseRangeCategory? {
+        guard let glucose = glucose else {
+            return nil
+        }
+
         if glucose < GlucoseLimits.minimum {
             return .belowRange
         } else if glucose > GlucoseLimits.maximum {

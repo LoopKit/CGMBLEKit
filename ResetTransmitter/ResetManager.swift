@@ -87,8 +87,8 @@ extension ResetManager {
             self.delegate?.resetManager(self, didError: TransmitterError.controlError("Simulated Error"))
 
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
-                if case .resetting = self.state {
-                    self.state = .completed
+                if case .resetting = self.algorithmState {
+                    self.algorithmState = .completed
                 }
             }
         }
