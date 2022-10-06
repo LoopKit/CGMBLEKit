@@ -15,7 +15,6 @@ public enum CalibrationState: RawRepresentable {
     public enum State: RawValue {
         case stopped = 1
         case warmup = 2
-
         case needFirstInitialCalibration = 4
         case needSecondInitialCalibration = 5
         case ok = 6
@@ -31,6 +30,7 @@ public enum CalibrationState: RawRepresentable {
         case sessionFailure16 = 16
         case sessionFailure17 = 17
         case questionMarks = 18
+        case expired = 24
     }
 
     case known(State)
@@ -73,7 +73,8 @@ public enum CalibrationState: RawRepresentable {
              .sessionFailure15,
              .sessionFailure16,
              .sessionFailure17,
-             .questionMarks:
+             .questionMarks,
+             .expired:
             return false
         case .ok, .needCalibration7, .needCalibration14:
             return true

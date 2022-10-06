@@ -16,7 +16,7 @@ final class G7GlucoseMessageTests: XCTestCase {
         let message = G7GlucoseMessage(data: data)!
 
         XCTAssertEqual(138, message.glucose)
-        XCTAssertEqual(87491, message.timestamp)
+        XCTAssertEqual(87485, message.glucoseTimestamp)
         XCTAssert(!message.glucoseIsDisplayOnly)
     }
 
@@ -25,7 +25,7 @@ final class G7GlucoseMessageTests: XCTestCase {
         let message = G7GlucoseMessage(data: data)!
 
         XCTAssertEqual(104, message.glucose)
-        XCTAssertEqual(901390, message.timestamp)
+        XCTAssertEqual(901390, message.glucoseTimestamp)
         XCTAssert(message.glucoseIsDisplayOnly)
     }
 
@@ -47,15 +47,15 @@ final class G7GlucoseMessageTests: XCTestCase {
         XCTAssertNil(messages[1].glucose)
         XCTAssertEqual(145, messages[2].glucose)
 
-        XCTAssertEqual(.setup, messages[0].algorithmState)
-        XCTAssertEqual(.warmup, messages[1].algorithmState)
-        XCTAssertEqual(.warmup, messages[2].algorithmState)
-        XCTAssertEqual(.warmup, messages[3].algorithmState)
-        XCTAssertEqual(.warmup, messages[4].algorithmState)
-        XCTAssertEqual(.warmup, messages[5].algorithmState)
-        XCTAssertEqual(.ok, messages[6].algorithmState)
-        XCTAssertEqual(.ok, messages[7].algorithmState)
-        XCTAssertEqual(.expired, messages[8].algorithmState)
+        XCTAssertEqual(.known(.stopped), messages[0].algorithmState)
+        XCTAssertEqual(.known(.warmup), messages[1].algorithmState)
+        XCTAssertEqual(.known(.warmup), messages[2].algorithmState)
+        XCTAssertEqual(.known(.warmup), messages[3].algorithmState)
+        XCTAssertEqual(.known(.warmup), messages[4].algorithmState)
+        XCTAssertEqual(.known(.warmup), messages[5].algorithmState)
+        XCTAssertEqual(.known(.ok), messages[6].algorithmState)
+        XCTAssertEqual(.known(.ok), messages[7].algorithmState)
+        XCTAssertEqual(.known(.expired), messages[8].algorithmState)
 
         XCTAssertEqual(1, messages[0].sequence)
         XCTAssertEqual(3, messages[1].sequence)
@@ -68,20 +68,20 @@ final class G7GlucoseMessageTests: XCTestCase {
         XCTAssertEqual(3028, messages[8].sequence)
 
 
-        XCTAssertEqual(182, messages[0].timestamp)
-        XCTAssertEqual(205, messages[1].timestamp)
-        XCTAssertEqual(505, messages[2].timestamp)
-        XCTAssertEqual(805, messages[3].timestamp)
-        XCTAssertEqual(1105, messages[4].timestamp)
-        XCTAssertEqual(1405, messages[5].timestamp)
-        XCTAssertEqual(1707, messages[6].timestamp)
-        XCTAssertEqual(2005, messages[7].timestamp)
-        XCTAssertEqual(934989, messages[8].timestamp)
+        XCTAssertEqual(80, messages[0].glucoseTimestamp)
+        XCTAssertEqual(200, messages[1].glucoseTimestamp)
+        XCTAssertEqual(500, messages[2].glucoseTimestamp)
+        XCTAssertEqual(800, messages[3].glucoseTimestamp)
+        XCTAssertEqual(1100, messages[4].glucoseTimestamp)
+        XCTAssertEqual(1400, messages[5].glucoseTimestamp)
+        XCTAssertEqual(1700, messages[6].glucoseTimestamp)
+        XCTAssertEqual(2000, messages[7].glucoseTimestamp)
+        XCTAssertEqual(934777, messages[8].glucoseTimestamp)
     }
 
     func testG7MessageDataDetails() {
         //  0  1  2 3 4 5  6 7  8  9 10 11 1213 14 15 16 17 18
-        //       TTTTTTTT SQSQ             BGBG SS          C
+        //       TTTTTTTT SQSQ       AG    BGBG SS          C
         // 4e 00 a89c0000 8800 00 01 04 00 8d00 06 03 8a 00 0f
 
         //2022-09-12 09:18:06.821253 readEGV(txTime=40104,seq=136,session=1,age=4,value=141,pred=138,algo=6,subAlgo=15,rate=3)
@@ -89,11 +89,12 @@ final class G7GlucoseMessageTests: XCTestCase {
         let message = G7GlucoseMessage(data: data)!
 
         XCTAssertEqual(141, message.glucose)
-        XCTAssertEqual(40104, message.timestamp)
+        XCTAssertEqual(40100, message.glucoseTimestamp)
         XCTAssertEqual(136, message.sequence)
+        XCTAssertEqual(4, message.age)
         XCTAssertEqual(138, message.predicted)
         XCTAssertEqual(0.3, message.trend)
-        XCTAssertEqual(.ok, message.algorithmState)
+        XCTAssertEqual(.known(.ok), message.algorithmState)
 
         XCTAssert(!message.glucoseIsDisplayOnly)
     }

@@ -234,9 +234,9 @@ extension G7CGMManager: G7SensorDelegate {
             return
         }
 
-        guard message.hasReliableGlucose else {
-            logDeviceCommunication("Invalid glucose: \(message).", type: .receive)
-            updateDelegate(with: .noData)
+        guard message.hasReliableGlucose  else {
+            logDeviceCommunication("Sensor reading unreliable: \(message)", type: .receive)
+            updateDelegate(with: .error(CalibrationError.unreliableState(message.algorithmState)))
             return
         }
 
@@ -245,18 +245,25 @@ extension G7CGMManager: G7SensorDelegate {
 
         updateDelegate(with: .newData([
             NewGlucoseSample(
-                date: activationDate.addingTimeInterval(TimeInterval(message.timestamp)),
+                date: activationDate.addingTimeInterval(TimeInterval(message.glucoseTimestamp)),
                 quantity: quantity,
-                condition: .none,
+                condition: message.condition,
                 trend: message.trendType,
                 trendRate: message.trendRate,
                 isDisplayOnly: message.glucoseIsDisplayOnly,
                 wasUserEntered: message.glucoseIsDisplayOnly,
-                syncIdentifier: message.syncIdentifier,
+                syncIdentifier: generateSyncIdentifier(timestamp: message.glucoseTimestamp),
                 device: device
             )
         ]))
+    }
 
+    private func generateSyncIdentifier(timestamp: UInt32) -> String {
+        guard let activatedAt = state.activatedAt, let sensorID = state.sensorID else {
+            return "invalid"
+        }
+
+        return "\(activatedAt.timeIntervalSince1970.hours) \(sensorID) \(timestamp)"
     }
 
     public func sensor(_ sensor: G7Sensor, didReadBackfill backfill: [G7BackfillMessage]) {
@@ -271,22 +278,27 @@ extension G7CGMManager: G7SensorDelegate {
 
         let unit = HKUnit.milligramsPerDeciliter
 
-        let samples = backfill.compactMap { msg -> NewGlucoseSample? in
-            guard let glucose = msg.glucose else {
+        let samples = backfill.compactMap { entry -> NewGlucoseSample? in
+            guard let glucose = entry.glucose else {
+                return nil
+            }
+
+            guard entry.hasReliableGlucose else {
+                logDeviceCommunication("Backfill reading unreliable: \(entry)", type: .receive)
                 return nil
             }
 
             let quantity = HKQuantity(unit: unit, doubleValue: Double(min(max(glucose, GlucoseLimits.minimum), GlucoseLimits.maximum)))
 
             return NewGlucoseSample(
-                date: activationDate.addingTimeInterval(TimeInterval(msg.timestamp)),
+                date: activationDate.addingTimeInterval(TimeInterval(entry.timestamp)),
                 quantity: quantity,
-                condition: msg.condition,
-                trend: nil,
-                trendRate: nil,
-                isDisplayOnly: msg.glucoseIsDisplayOnly,
-                wasUserEntered: msg.glucoseIsDisplayOnly,
-                syncIdentifier: msg.syncIdentifier,
+                condition: entry.condition,
+                trend: entry.trendType,
+                trendRate: entry.trendRate,
+                isDisplayOnly: entry.glucoseIsDisplayOnly,
+                wasUserEntered: entry.glucoseIsDisplayOnly,
+                syncIdentifier: generateSyncIdentifier(timestamp: entry.timestamp),
                 device: device
             )
         }
@@ -295,21 +307,18 @@ extension G7CGMManager: G7SensorDelegate {
     }
 }
 
-extension G7GlucoseMessage {
-    public var syncIdentifier: String {
-        return "\(timestamp)"
-    }
-}
-
 extension G7BackfillMessage {
-    public var syncIdentifier: String {
-        return "\(timestamp)"
+    public var trendRate: HKQuantity? {
+        guard let trend = trend else {
+            return nil
+        }
+        return HKQuantity(unit: .milligramsPerDeciliterPerMinute, doubleValue: trend)
     }
 }
 
 extension G7GlucoseMessage: GlucoseDisplayable {
     public var isStateValid: Bool {
-        return algorithmState == .ok
+        return hasReliableGlucose
     }
 
     public var trendRate: HKQuantity? {

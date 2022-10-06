@@ -9,27 +9,25 @@
 import Foundation
 import LoopKit
 
-public enum G7AlgorithmState: UInt8 {
-    case setup          = 0x01
-    case warmup         = 0x02
-    case ok  = 0x06
-    case expired        = 0x18
-}
-
 public struct G7GlucoseMessage: Equatable {
     //public let status: UInt8
     //public let sequence: UInt32
     public let glucose: UInt16?
     public let predicted: UInt16?
     public let glucoseIsDisplayOnly: Bool
-    public let timestamp: UInt32 // Seconds since pairing
-    public let algorithmState: G7AlgorithmState?
+    public let messageTimestamp: UInt32 // Seconds since pairing of the *message*. Subtract age to get timestamp of glucose
+    public let algorithmState: CalibrationState
     public let sequence: UInt16
     public let trend: Double?
     public let data: Data
+    public let age: UInt8 // Amount of time elapsed (seconds) from sensor reading to BLE comms
 
     public var hasReliableGlucose: Bool {
-        return algorithmState == .ok
+        return algorithmState.hasReliableGlucose
+    }
+
+    public var glucoseTimestamp: UInt32 {
+        return messageTimestamp - UInt32(age)
     }
 
     public var trendType: LoopKit.GlucoseTrend? {
@@ -55,12 +53,27 @@ public struct G7GlucoseMessage: Equatable {
         }
     }
 
+    public var condition: GlucoseCondition? {
+        guard let glucose = glucose else {
+            return nil
+        }
+
+        if glucose < GlucoseLimits.minimum {
+            return .belowRange
+        } else if glucose > GlucoseLimits.maximum {
+            return .aboveRange
+        } else {
+            return nil
+        }
+    }
+
     init?(data: Data) {
         //    0  1  2 3 4 5  6 7  8  9 10 11 1213 14 15 1617 18
-        //         TTTTTTTT SQSQ             BGBG SS TR PRPR C
+        //         TTTTTTTT SQSQ       AG    BGBG SS TR PRPR C
         // 0x4e 00 d5070000 0900 00 01 05 00 6100 06 01 ffff 0e
         // TTTTTTTT = timestamp
         //     SQSQ = sequence
+        //       AG = age
         //     BGBG = glucose
         //       SS = algorithm state
         //       TR = trend
@@ -75,27 +88,35 @@ public struct G7GlucoseMessage: Equatable {
             return nil
         }
 
-        timestamp = data[2..<6].toInt()
+        messageTimestamp = data[2..<6].toInt()
 
         sequence = data[6..<8].to(UInt16.self)
 
+        age = data[10]
+
         let glucoseData = data[12..<14].to(UInt16.self)
-        let noReading = glucoseData == 0xffff
-        glucose = noReading ? nil : glucoseData & 0xfff
+        if glucoseData != 0xffff {
+            glucose = glucoseData & 0xfff
+            glucoseIsDisplayOnly = (data[18] & 0x10) > 0
+        } else {
+            glucose = nil
+            glucoseIsDisplayOnly = false
+        }
 
         let predictionData = data[16..<18].to(UInt16.self)
-        let noPrediction = predictionData == 0xffff
-        predicted = noPrediction ? nil : predictionData & 0xfff
+        if predictionData != 0xffff {
+            predicted = predictionData & 0xfff
+        } else {
+            predicted = nil
+        }
 
-        algorithmState = G7AlgorithmState(rawValue: data[14])
+        algorithmState = CalibrationState(rawValue: data[14])
 
         if data[15] == 0x7f {
             trend = nil
         } else {
             trend = Double(Int8(bitPattern: data[15])) / 10
         }
-
-        glucoseIsDisplayOnly = (data[18] & 0x10) > 0
 
         self.data = data
     }
@@ -104,6 +125,6 @@ public struct G7GlucoseMessage: Equatable {
 
 extension G7GlucoseMessage: CustomDebugStringConvertible {
     public var debugDescription: String {
-        return "G7GlucoseMessage(glucose:\(String(describing: glucose)), sequence:\(sequence) glucoseIsDisplayOnly:\(glucoseIsDisplayOnly) state:\(String(describing: algorithmState)) timestamp:\(timestamp), data:\(data.hexadecimalString))"
+        return "G7GlucoseMessage(glucose:\(String(describing: glucose)), sequence:\(sequence) glucoseIsDisplayOnly:\(glucoseIsDisplayOnly) state:\(String(describing: algorithmState)) messageTimestamp:\(messageTimestamp) age:\(age), data:\(data.hexadecimalString))"
     }
 }
