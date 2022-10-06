@@ -316,7 +316,7 @@ extension G7GlucoseMessage: GlucoseDisplayable {
         guard let trend = trend else {
             return nil
         }
-        return HKQuantity(unit: .milligramsPerDeciliter, doubleValue: trend)
+        return HKQuantity(unit: .milligramsPerDeciliterPerMinute, doubleValue: trend)
     }
 
     public var isLocal: Bool {
