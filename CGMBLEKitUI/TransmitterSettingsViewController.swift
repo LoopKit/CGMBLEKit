@@ -161,9 +161,25 @@ class TransmitterSettingsViewController: UITableViewController {
         return formatter
     }()
     
-    private lazy var sensorExpFormatter: DateFormatter = {
+    private lazy var sensorExpFullFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "E, MMM d 'at' h:mm a zzz"
+        formatter.dateFormat = "E, MMM d 'at' h:mm a"
+        return formatter
+    }()
+    
+    private lazy var sensorExpRelFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .short
+        formatter.doesRelativeDateFormatting = true
+        return formatter
+    }()
+    
+    private lazy var sensorExpAbsFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .short
+        formatter.doesRelativeDateFormatting = false
         return formatter
     }()
     
@@ -303,7 +319,11 @@ class TransmitterSettingsViewController: UITableViewController {
                     
                     let sessionExp = Calendar.current.date(byAdding: .day, value: 10, to: sessionStart)
                     
-                    cell.detailTextLabel?.text = sensorExpFormatter.string(from: sessionExp!)
+                    if sensorExpRelFormatter.string(from: sessionExp!) == sensorExpAbsFormatter.string(from: sessionExp!) {
+                        cell.detailTextLabel?.text = sensorExpFullFormatter.string(from: sessionExp!)
+                    } else {
+                        cell.detailTextLabel?.text = sensorExpRelFormatter.string(from: sessionExp!)
+                    }
                     
                 } else {
                     cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
