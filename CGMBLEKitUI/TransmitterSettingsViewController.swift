@@ -301,7 +301,7 @@ class TransmitterSettingsViewController: UITableViewController {
                 if let sessionStart = cgmManager.latestReading?.sessionStartDate {
                     
                     let sessionExp = Calendar.current.date(byAdding: .day, value: 10, to: sessionStart)
-                    //let sessionExp = Calendar.current.date(byAdding: .minute, value: 45, to: sessionStart)
+                    // let sessionExp = Calendar.current.date(byAdding: .day, value: 5, to: sessionStart)
                     let sessionCountDown = sessionExp!.timeIntervalSince(Date())
                     if sessionCountDown < 86400 {
                         cell.detailTextLabel?.text = sessionLengthMinsFormatter.string(from: sessionCountDown)

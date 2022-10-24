@@ -36,7 +36,7 @@ Title text for the button to remove a CGM from Loop */
 "Sensor Expires" = "Sensor Expires";
 
 /* Title describing past sensor expiration */
-"Sensor Expires" = "Sensor Expired";
+"Sensor Expired" = "Sensor Expired";
 
 /* Title describing CGM calibration and battery state */
 "Status" = "Status";
