@@ -185,8 +185,9 @@ class TransmitterSettingsViewController: UITableViewController {
     
     private lazy var sessionLengthFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.day, .hour]
+        formatter.allowedUnits = [.day, .hour, .minute]
         formatter.unitsStyle = .full
+        formatter.maximumUnitCount = 2
         return formatter
     }()
     
@@ -284,51 +285,58 @@ class TransmitterSettingsViewController: UITableViewController {
             return cell
         case .ages:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className, for: indexPath) as! SettingsTableViewCell
-
+            let glucose = cgmManager.latestReading
+            
             switch AgeRow(rawValue: indexPath.row)! {
             case .sensorage:
                 cell.textLabel?.text = LocalizedString("Session Age", comment: "Title describing sensor session age")
-
-                if let sessionStart = cgmManager.latestReading?.sessionStartDate {
-                    cell.detailTextLabel?.text = sessionLengthFormatter.string(from: Date().timeIntervalSince(sessionStart))
+                
+                if let stateDescription = glucose?.stateDescription, !stateDescription.isEmpty && !stateDescription.contains("stopped") {
+                    if let sessionStart = cgmManager.latestReading?.sessionStartDate {
+                        cell.detailTextLabel?.text = sessionLengthFormatter.string(from: Date().timeIntervalSince(sessionStart))
+                    } else {
+                        cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
+                    }
                 } else {
                     cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
                 }
                 
             case .sensorcountdown:
                 cell.textLabel?.text = LocalizedString("Sensor Expires", comment: "Title describing sensor sensor expiration")
+                
+                if let stateDescription = glucose?.stateDescription, !stateDescription.isEmpty && !stateDescription.contains("stopped") {
+                    if let sessionStart = cgmManager.latestReading?.sessionStartDate {
+                        let sessionExp = Calendar.current.date(byAdding: .day, value: 10, to: sessionStart)
+                        // let sessionExp = Calendar.current.date(byAdding: .day, value: 5, to: sessionStart)
+                        let sessionCountDown = sessionExp!.timeIntervalSince(Date())
 
-                if let sessionStart = cgmManager.latestReading?.sessionStartDate {
-                    
-                    let sessionExp = Calendar.current.date(byAdding: .day, value: 10, to: sessionStart)
-                    // let sessionExp = Calendar.current.date(byAdding: .day, value: 5, to: sessionStart)
-                    let sessionCountDown = sessionExp!.timeIntervalSince(Date())
-                    if sessionCountDown < 86400 {
-                        cell.detailTextLabel?.text = sessionLengthMinsFormatter.string(from: sessionCountDown)
                         if sessionCountDown < 0 {
                             cell.textLabel?.text = LocalizedString("Sensor Expired", comment: "Title describing past sensor sensor expiration")
-                            cell.detailTextLabel?.text = (sessionLengthMinsFormatter.string(from: sessionCountDown * -1) ?? "") + " ago"
+                            cell.detailTextLabel?.text = (sessionLengthFormatter.string(from: sessionCountDown * -1) ?? "") + " ago"
+                        } else {
+                            cell.detailTextLabel?.text = sessionLengthFormatter.string(from: sessionCountDown)
                         }
                     } else {
-                        cell.detailTextLabel?.text = sessionLengthFormatter.string(from: sessionCountDown)
+                        cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
                     }
                 } else {
                     cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
                 }
                 
+                
             case .sensorexpdate:
                 cell.textLabel?.text = ""
-
-                if let sessionStart = cgmManager.latestReading?.sessionStartDate {
-                    
-                    let sessionExp = Calendar.current.date(byAdding: .day, value: 10, to: sessionStart)
-                    
-                    if sensorExpRelFormatter.string(from: sessionExp!) == sensorExpAbsFormatter.string(from: sessionExp!) {
-                        cell.detailTextLabel?.text = sensorExpFullFormatter.string(from: sessionExp!)
+                if let stateDescription = glucose?.stateDescription, !stateDescription.isEmpty && !stateDescription.contains("stopped") {
+                    if let sessionStart = cgmManager.latestReading?.sessionStartDate {
+                        let sessionExp = Calendar.current.date(byAdding: .day, value: 10, to: sessionStart)
+                        if sensorExpRelFormatter.string(from: sessionExp!) == sensorExpAbsFormatter.string(from: sessionExp!) {
+                            cell.detailTextLabel?.text = sensorExpFullFormatter.string(from: sessionExp!)
+                        } else {
+                            cell.detailTextLabel?.text = sensorExpRelFormatter.string(from: sessionExp!)
+                        }
                     } else {
-                        cell.detailTextLabel?.text = sensorExpRelFormatter.string(from: sessionExp!)
+                        cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
                     }
-                    
                 } else {
                     cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
                 }
