@@ -306,9 +306,10 @@ class TransmitterSettingsViewController: UITableViewController {
                 
                 if let stateDescription = glucose?.stateDescription, !stateDescription.isEmpty && !stateDescription.contains("stopped") {
                     if let sessionStart = cgmManager.latestReading?.sessionStartDate {
-                        let sessionExp = Calendar.current.date(byAdding: .day, value: 10, to: sessionStart)
-                        // let sessionExp = Calendar.current.date(byAdding: .day, value: 5, to: sessionStart)
-                        let sessionCountDown = sessionExp!.timeIntervalSince(Date())
+                        
+                        let sessionExp = sessionStart.addingTimeInterval(10 * 24 * 60 * 60)
+                        
+                        let sessionCountDown = sessionExp.timeIntervalSince(Date())
 
                         if sessionCountDown < 0 {
                             cell.textLabel?.text = LocalizedString("Sensor Expired", comment: "Title describing past sensor sensor expiration")
@@ -328,11 +329,11 @@ class TransmitterSettingsViewController: UITableViewController {
                 cell.textLabel?.text = ""
                 if let stateDescription = glucose?.stateDescription, !stateDescription.isEmpty && !stateDescription.contains("stopped") {
                     if let sessionStart = cgmManager.latestReading?.sessionStartDate {
-                        let sessionExp = Calendar.current.date(byAdding: .day, value: 10, to: sessionStart)
-                        if sensorExpRelFormatter.string(from: sessionExp!) == sensorExpAbsFormatter.string(from: sessionExp!) {
-                            cell.detailTextLabel?.text = sensorExpFullFormatter.string(from: sessionExp!)
+                        let sessionExp = sessionStart.addingTimeInterval(10 * 24 * 60 * 60)
+                        if sensorExpRelFormatter.string(from: sessionExp) == sensorExpAbsFormatter.string(from: sessionExp) {
+                            cell.detailTextLabel?.text = sensorExpFullFormatter.string(from: sessionExp)
                         } else {
-                            cell.detailTextLabel?.text = sensorExpRelFormatter.string(from: sessionExp!)
+                            cell.detailTextLabel?.text = sensorExpRelFormatter.string(from: sessionExp)
                         }
                     } else {
                         cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
