@@ -305,12 +305,8 @@ class TransmitterSettingsViewController: UITableViewController {
                 cell.textLabel?.text = LocalizedString("Sensor Expires", comment: "Title describing sensor sensor expiration")
                 
                 if let stateDescription = glucose?.stateDescription, !stateDescription.isEmpty && !stateDescription.contains("stopped") {
-                    if let sessionStart = cgmManager.latestReading?.sessionStartDate {
-                        
-                        let sessionExp = sessionStart.addingTimeInterval(10 * 24 * 60 * 60)
-                        
+                    if let sessionExp = cgmManager.latestReading?.sessionExpDate {
                         let sessionCountDown = sessionExp.timeIntervalSince(Date())
-
                         if sessionCountDown < 0 {
                             cell.textLabel?.text = LocalizedString("Sensor Expired", comment: "Title describing past sensor sensor expiration")
                             cell.detailTextLabel?.text = (sessionLengthFormatter.string(from: sessionCountDown * -1) ?? "") + " ago"
@@ -324,12 +320,10 @@ class TransmitterSettingsViewController: UITableViewController {
                     cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
                 }
                 
-                
             case .sensorexpdate:
                 cell.textLabel?.text = ""
                 if let stateDescription = glucose?.stateDescription, !stateDescription.isEmpty && !stateDescription.contains("stopped") {
-                    if let sessionStart = cgmManager.latestReading?.sessionStartDate {
-                        let sessionExp = sessionStart.addingTimeInterval(10 * 24 * 60 * 60)
+                    if let sessionExp = cgmManager.latestReading?.sessionExpDate {
                         if sensorExpRelFormatter.string(from: sessionExp) == sensorExpAbsFormatter.string(from: sessionExp) {
                             cell.detailTextLabel?.text = sensorExpFullFormatter.string(from: sessionExp)
                         } else {
