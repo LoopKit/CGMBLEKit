@@ -50,7 +50,6 @@ public struct Glucose {
         self.activationDate = activationDate
 
         sessionStartDate = activationDate.addingTimeInterval(TimeInterval(timeMessage.sessionStartTime))
-        sessionExpDate = activationDate.addingTimeInterval(TimeInterval(timeMessage.sessionExpTime))
         readDate = activationDate.addingTimeInterval(TimeInterval(glucoseMessage.timestamp))
         lastCalibration = calibrationMessage != nil ? Calibration(calibrationMessage: calibrationMessage!, activationDate: activationDate) : nil
     }
@@ -60,7 +59,6 @@ public struct Glucose {
     public let status: TransmitterStatus
     public let activationDate: Date
     public let sessionStartDate: Date
-    public let sessionExpDate: Date
 
     // MARK: - Glucose Info
     public let lastCalibration: Calibration?
