@@ -115,9 +115,9 @@ class TransmitterSettingsViewController: UITableViewController {
     }
 
     private enum AgeRow: Int, CaseIterable {
-        case sensorage
-        case sensorcountdown
-        case sensorexpdate
+        case sensorAge
+        case sensorCountdown
+        case sensorExpirationDate
         case transmitter
     }
 
@@ -161,13 +161,16 @@ class TransmitterSettingsViewController: UITableViewController {
         return formatter
     }()
     
-    private lazy var sensorExpFullFormatter: DateFormatter = {
+    private lazy var sensorExpirationFullFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "E, MMM d 'at' h:mm a"
+        formatter.dateStyle = .full
+        formatter.timeStyle = .short
+        formatter.doesRelativeDateFormatting = true
+        //formatter.dateFormat = "E, MMM d 'at' h:mm a"
         return formatter
     }()
     
-    private lazy var sensorExpRelFormatter: DateFormatter = {
+    private lazy var sensorExpirationRelativeFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
         formatter.timeStyle = .short
@@ -188,13 +191,6 @@ class TransmitterSettingsViewController: UITableViewController {
         formatter.allowedUnits = [.day, .hour, .minute]
         formatter.unitsStyle = .full
         formatter.maximumUnitCount = 2
-        return formatter
-    }()
-    
-    private lazy var sessionLengthMinsFormatter: DateComponentsFormatter = {
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.day, .hour, .minute]
-        formatter.unitsStyle = .full
         return formatter
     }()
 
@@ -288,7 +284,7 @@ class TransmitterSettingsViewController: UITableViewController {
             let glucose = cgmManager.latestReading
             
             switch AgeRow(rawValue: indexPath.row)! {
-            case .sensorage:
+            case .sensorAge:
                 cell.textLabel?.text = LocalizedString("Session Age", comment: "Title describing sensor session age")
                 
                 if let stateDescription = glucose?.stateDescription, !stateDescription.isEmpty && !stateDescription.contains("stopped") {
@@ -301,7 +297,7 @@ class TransmitterSettingsViewController: UITableViewController {
                     cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
                 }
                 
-            case .sensorcountdown:
+            case .sensorCountdown:
                 cell.textLabel?.text = LocalizedString("Sensor Expires", comment: "Title describing sensor sensor expiration")
                 
                 if let stateDescription = glucose?.stateDescription, !stateDescription.isEmpty && !stateDescription.contains("stopped") {
@@ -320,14 +316,14 @@ class TransmitterSettingsViewController: UITableViewController {
                     cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
                 }
                 
-            case .sensorexpdate:
+            case .sensorExpirationDate:
                 cell.textLabel?.text = ""
                 if let stateDescription = glucose?.stateDescription, !stateDescription.isEmpty && !stateDescription.contains("stopped") {
                     if let sessionExp = cgmManager.latestReading?.sessionExpDate {
-                        if sensorExpRelFormatter.string(from: sessionExp) == sensorExpAbsFormatter.string(from: sessionExp) {
-                            cell.detailTextLabel?.text = sensorExpFullFormatter.string(from: sessionExp)
+                        if sensorExpirationRelativeFormatter.string(from: sessionExp) == sensorExpAbsFormatter.string(from: sessionExp) {
+                            cell.detailTextLabel?.text = sensorExpirationFullFormatter.string(from: sessionExp)
                         } else {
-                            cell.detailTextLabel?.text = sensorExpRelFormatter.string(from: sessionExp)
+                            cell.detailTextLabel?.text = sensorExpirationRelativeFormatter.string(from: sessionExp)
                         }
                     } else {
                         cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString

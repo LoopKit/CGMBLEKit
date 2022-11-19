@@ -13,7 +13,6 @@ struct TransmitterTimeRxMessage: TransmitterRxMessage {
     let status: UInt8
     let currentTime: UInt32
     let sessionStartTime: UInt32
-    let sessionExpTime: UInt32
 
     init?(data: Data) {
         guard data.count == 16 && data.isCRCValid else {
@@ -27,7 +26,6 @@ struct TransmitterTimeRxMessage: TransmitterRxMessage {
         status = data[1]
         currentTime = data[2..<6].toInt()
         sessionStartTime = data[6..<10].toInt()
-        sessionExpTime = sessionStartTime + (10*24*60*60)
 
     }
 }
