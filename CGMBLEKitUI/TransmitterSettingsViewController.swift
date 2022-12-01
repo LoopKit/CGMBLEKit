@@ -115,7 +115,9 @@ class TransmitterSettingsViewController: UITableViewController {
     }
 
     private enum AgeRow: Int, CaseIterable {
-        case sensor
+        case sensorAge
+        case sensorCountdown
+        case sensorExpirationDate
         case transmitter
     }
 
@@ -158,11 +160,37 @@ class TransmitterSettingsViewController: UITableViewController {
         formatter.doesRelativeDateFormatting = true
         return formatter
     }()
-
+    
+    private lazy var sensorExpirationFullFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .full
+        formatter.timeStyle = .short
+        formatter.doesRelativeDateFormatting = true
+        //formatter.dateFormat = "E, MMM d 'at' h:mm a"
+        return formatter
+    }()
+    
+    private lazy var sensorExpirationRelativeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .short
+        formatter.doesRelativeDateFormatting = true
+        return formatter
+    }()
+    
+    private lazy var sensorExpAbsFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .short
+        formatter.doesRelativeDateFormatting = false
+        return formatter
+    }()
+    
     private lazy var sessionLengthFormatter: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.day, .hour]
+        formatter.allowedUnits = [.day, .hour, .minute]
         formatter.unitsStyle = .full
+        formatter.maximumUnitCount = 2
         return formatter
     }()
 
@@ -253,16 +281,57 @@ class TransmitterSettingsViewController: UITableViewController {
             return cell
         case .ages:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className, for: indexPath) as! SettingsTableViewCell
-
+            let glucose = cgmManager.latestReading
+            
             switch AgeRow(rawValue: indexPath.row)! {
-            case .sensor:
+            case .sensorAge:
                 cell.textLabel?.text = LocalizedString("Session Age", comment: "Title describing sensor session age")
-
-                if let sessionStart = cgmManager.latestReading?.sessionStartDate {
-                    cell.detailTextLabel?.text = sessionLengthFormatter.string(from: Date().timeIntervalSince(sessionStart))
+                
+                if let stateDescription = glucose?.stateDescription, !stateDescription.isEmpty && !stateDescription.contains("stopped") {
+                    if let sessionStart = cgmManager.latestReading?.sessionStartDate {
+                        cell.detailTextLabel?.text = sessionLengthFormatter.string(from: Date().timeIntervalSince(sessionStart))
+                    } else {
+                        cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
+                    }
                 } else {
                     cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
                 }
+                
+            case .sensorCountdown:
+                cell.textLabel?.text = LocalizedString("Sensor Expires", comment: "Title describing sensor sensor expiration")
+                
+                if let stateDescription = glucose?.stateDescription, !stateDescription.isEmpty && !stateDescription.contains("stopped") {
+                    if let sessionExp = cgmManager.latestReading?.sessionExpDate {
+                        let sessionCountDown = sessionExp.timeIntervalSince(Date())
+                        if sessionCountDown < 0 {
+                            cell.textLabel?.text = LocalizedString("Sensor Expired", comment: "Title describing past sensor sensor expiration")
+                            cell.detailTextLabel?.text = (sessionLengthFormatter.string(from: sessionCountDown * -1) ?? "") + " ago"
+                        } else {
+                            cell.detailTextLabel?.text = sessionLengthFormatter.string(from: sessionCountDown)
+                        }
+                    } else {
+                        cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
+                    }
+                } else {
+                    cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
+                }
+                
+            case .sensorExpirationDate:
+                cell.textLabel?.text = ""
+                if let stateDescription = glucose?.stateDescription, !stateDescription.isEmpty && !stateDescription.contains("stopped") {
+                    if let sessionExp = cgmManager.latestReading?.sessionExpDate {
+                        if sensorExpirationRelativeFormatter.string(from: sessionExp) == sensorExpAbsFormatter.string(from: sessionExp) {
+                            cell.detailTextLabel?.text = sensorExpirationFullFormatter.string(from: sessionExp)
+                        } else {
+                            cell.detailTextLabel?.text = sensorExpirationRelativeFormatter.string(from: sessionExp)
+                        }
+                    } else {
+                        cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
+                    }
+                } else {
+                    cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
+                }
+            
             case .transmitter:
                 cell.textLabel?.text = LocalizedString("Transmitter Age", comment: "Title describing transmitter session age")
 
