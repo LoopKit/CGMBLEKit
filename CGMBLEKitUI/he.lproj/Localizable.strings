@@ -29,14 +29,14 @@ Title text for the button to remove a CGM from Loop */
 /* Button title to open CGM app */
 "Open App" = "Open App";
 
-/* Title describing sensor session age */
-"Session Age" = "Session Age";
+/* Title describing past sensor expiration */
+"Sensor Expired" = "Sensor Expired";
 
 /* Title describing sensor expiration */
 "Sensor Expires" = "Sensor Expires";
 
-/* Title describing past sensor expiration */
-"Sensor Expired" = "Sensor Expired";
+/* Title describing sensor session age */
+"Session Age" = "Session Age";
 
 /* Title describing CGM calibration and battery state */
 "Status" = "Status";
@@ -49,3 +49,4 @@ Title text for the button to remove a CGM from Loop */
 
 /* Title describing glucose trend */
 "Trend" = "Trend";
+

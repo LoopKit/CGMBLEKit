@@ -11,7 +11,7 @@
 "Date" = "Datum";
 
 /* Button title to delete CGM
-   Title text for the button to remove a CGM from Loop */
+Title text for the button to remove a CGM from Loop */
 "Delete CGM" = "Ta bort CGM";
 
 /* Title describing glucose value */

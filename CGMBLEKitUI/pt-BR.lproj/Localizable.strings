@@ -10,7 +10,8 @@
 /* Title describing glucose date */
 "Date" = "Data";
 
-/* Title text for the button to remove a CGM from Loop */
+/* Button title to delete CGM
+Title text for the button to remove a CGM from Loop */
 "Delete CGM" = "Remover CGM";
 
 /* Title describing glucose value */
@@ -42,3 +43,4 @@
 
 /* Title describing glucose trend */
 "Trend" = "Tendência";
+

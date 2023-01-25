@@ -1,4 +1,3 @@
-
 /* Error description for unreliable state */
 "Glucose data is unavailable" = "I dati sulla glicemia non sono disponibili";
 
@@ -28,3 +27,4 @@
 
 /* Error description */
 "Unknown characteristic" = "Caratteristiche sconosciute";
+

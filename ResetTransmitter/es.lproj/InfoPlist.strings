@@ -1,0 +1,12 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "";
+
+/* Bundle name */
+"CFBundleName" = "";
+
+/* Privacy - Bluetooth Always Usage Description */
+"NSBluetoothAlwaysUsageDescription" = "";
+
+/* Privacy - Bluetooth Peripheral Usage Description */
+"NSBluetoothPeripheralUsageDescription" = "";
+
