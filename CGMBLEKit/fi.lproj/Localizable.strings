@@ -23,19 +23,19 @@
 "Peripheral isnʼt connected" = "Oheislaitetta ei ole kytketty";
 
 /* The description of sensor calibration state when sensor calibration is ok. */
-"Sensor calibration is OK" = "Anturin kalibrointi onnistui";
+"Sensor calibration is OK" = "Sensorin kalibrointi onnistui";
 
 /* The description of sensor calibration state when raw value is unknown. (1: missing data details) */
-"Sensor is in unknown state %1$d" = "Anturi on tuntemattomassa tilassa %1$d";
+"Sensor is in unknown state %1$d" = "Sensori on tuntemattomassa tilassa %1$d";
 
 /* The description of sensor calibration state when sensor sensor is stopped. */
-"Sensor is stopped" = "Anturi on pysäytetty";
+"Sensor is stopped" = "Sensori on pysäytetty";
 
 /* The description of sensor calibration state when sensor sensor is warming up. */
-"Sensor is warming up" = "Anturi lämpenee";
+"Sensor is warming up" = "Sensori lämpenee";
 
 /* The description of sensor calibration state when sensor needs calibration. */
-"Sensor needs calibration" = "Anturi tarvitsee kalibroinnin";
+"Sensor needs calibration" = "Sensori tarvitsee kalibroinnin";
 
 /* Error description */
 "Unknown characteristic" = "Tuntematon ominaisuus";

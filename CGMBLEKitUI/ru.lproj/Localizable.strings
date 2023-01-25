@@ -23,6 +23,9 @@ Title text for the button to remove a CGM from Loop */
 /* Section title for latest glucose calibration */
 "Latest Calibration" = "Последняя калибровка";
 
+/* Section title for latest connection date */
+"Latest Connection" = "Последнее подключение";
+
 /* Section title for latest glucose reading */
 "Latest Reading" = "Последние данные";
 

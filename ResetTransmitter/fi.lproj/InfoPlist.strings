@@ -1,6 +1,12 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Nollaa";
+
+/* Bundle name */
+"CFBundleName" = "ResetTransmitter";
+
 /* Privacy - Bluetooth Always Usage Description */
-"NSBluetoothAlwaysUsageDescription" = "Bluetoothia käytetään kommunikointiin glukoosinseurantalaitteiden kanssa.";
+"NSBluetoothAlwaysUsageDescription" = "Bluetoothin avulla kommunikoidaan glukoosinseurantalaitteiden kanssa";
 
 /* Privacy - Bluetooth Peripheral Usage Description */
-"NSBluetoothPeripheralUsageDescription" = "Bluetoothia käytetään kommunikointiin glukoosinseurantalaitteiden kanssa.";
+"NSBluetoothPeripheralUsageDescription" = "Bluetoothin avulla kommunikoidaan glukoosinseurantalaitteiden kanssa";
 

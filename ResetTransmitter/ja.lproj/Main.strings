@@ -10,9 +10,6 @@
 /* Class = "UITextField"; placeholder = "Enter the 6-digit ID"; ObjectID = "G4a-ia-wQC"; */
 "G4a-ia-wQC.placeholder" = "6桁のトランスミッタIDを入力";
 
-/* Class = "UILabel"; text = "[Error goes here. And it can get very long and that's OK]"; ObjectID = "gYy-Zz-y12"; */
-"gYy-Zz-y12.text" = "[Error goes here. And it can get very long and that's OK]";
-
 /* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "LBC-6R-q79"; */
 "LBC-6R-q79.normalTitle" = "リセット";
 

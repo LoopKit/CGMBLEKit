@@ -5,13 +5,16 @@
 "Dexcom G6" = "Dexcom G6";
 
 /* Error description for unreliable state */
-"Glucose data is unavailable" = "Glukosedata er ikke tilgængelige";
+"Glucose data is unavailable" = "Blodsukkerdata er ikke tilgængelige";
 
 /* Describes a low battery */
-"Low Battery" = "lavt batteri";
+"Low Battery" = "Lavt batteri";
 
 /* Describes a functioning transmitter */
 "OK" = "OK";
+
+/* invlid config error description */
+"Peripheral command was invalid" = "Perifere kommando var ugyldig";
 
 /* Timeout error description */
 "Peripheral did not respond in time" = "Perifere reagerede ikke i tide";
@@ -20,7 +23,7 @@
 "Peripheral isnʼt connected" = "Perifert udstyr er ikke tilsluttet";
 
 /* The description of sensor calibration state when sensor calibration is ok. */
-"Sensor calibration is OK" = "Sensorkalibrering er OK";
+"Sensor calibration is OK" = "Sensor kalibrering er OK";
 
 /* The description of sensor calibration state when raw value is unknown. (1: missing data details) */
 "Sensor is in unknown state %1$d" = "Sensoren er i en ukendt tilstand %1$d";

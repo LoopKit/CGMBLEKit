@@ -1,5 +1,5 @@
 /* Class = "UILabel"; text = "Credentials"; ObjectID = "5oU-vK-JHQ"; */
-"5oU-vK-JHQ.text" = "Tunnukset";
+"5oU-vK-JHQ.text" = "Käyttäjätunnukset";
 
 /* Class = "UITableViewController"; title = "Transmitter Setup"; ObjectID = "Dds-49-o7G"; */
 "Dds-49-o7G.title" = "Lähettimen asennus";
@@ -8,7 +8,7 @@
 "GOT-KQ-cEh.text" = "Yksityiskohta";
 
 /* Class = "UITableViewSection"; footerTitle = "Data can be downloaded over the Internet from Share when the transmitter connection fails."; ObjectID = "k1N-Rg-XDy"; */
-"k1N-Rg-XDy.footerTitle" = "Tiedot voidaan ladata Internetistä Share-palvelimelta, kun yhteys lähettimeen epäonnistuu.";
+"k1N-Rg-XDy.footerTitle" = "Tiedot voidaan ladata Internetin kautta Share-palvelimelta, kun yhteys lähettimeen epäonnistuu.";
 
 /* Class = "UITableViewSection"; headerTitle = "Dexcom Share"; ObjectID = "k1N-Rg-XDy"; */
 "k1N-Rg-XDy.headerTitle" = "Dexcom Share";

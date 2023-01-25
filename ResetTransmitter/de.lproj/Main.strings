@@ -11,7 +11,7 @@
 "G4a-ia-wQC.placeholder" = "Geben Sie die 6-stellige ID ein";
 
 /* Class = "UILabel"; text = "[Error goes here. And it can get very long and that's OK]"; ObjectID = "gYy-Zz-y12"; */
-"gYy-Zz-y12.text" = "[Error goes here. And it can get very long and that's OK]";
+"gYy-Zz-y12.text" = "[Fehler aufgetreten. Und es kann sehr lange dauern und das ist OK]";
 
 /* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "LBC-6R-q79"; */
 "LBC-6R-q79.normalTitle" = "Zurücksetzen";

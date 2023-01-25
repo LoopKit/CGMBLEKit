@@ -1,3 +1,6 @@
+/* CGM display title */
+"Dexcom G5" = "Dexcom G5";
+
 /* Error description for unreliable state */
 "Glucose data is unavailable" = "Данные глюкозы недоступны";
 

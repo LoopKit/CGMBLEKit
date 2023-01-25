@@ -1,12 +1,6 @@
-/* Bundle display name */
-"CFBundleDisplayName" = "";
-
-/* Bundle name */
-"CFBundleName" = "";
-
 /* Privacy - Bluetooth Always Usage Description */
-"NSBluetoothAlwaysUsageDescription" = "";
+"NSBluetoothAlwaysUsageDescription" = "Bluetooth se utiliza para las comunicaciones con los dispositivos de monitoreo continuo de glucosa";
 
 /* Privacy - Bluetooth Peripheral Usage Description */
-"NSBluetoothPeripheralUsageDescription" = "";
+"NSBluetoothPeripheralUsageDescription" = "Bluetooth se utiliza para las comunicaciones con los dispositivos de monitoreo continuo de glucosa";
 
