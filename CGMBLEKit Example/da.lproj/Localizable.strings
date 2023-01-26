@@ -2,8 +2,8 @@
 "Backfill" = "Backfill";
 
 /* Title displayed during error response */
-"Error" = "Fejl";
+"Error" = "Error";
 
 /* Title displayed during unknown data response */
-"Unknown Data" = "Ukendt data";
+"Unknown Data" = "Unknown Data";
 

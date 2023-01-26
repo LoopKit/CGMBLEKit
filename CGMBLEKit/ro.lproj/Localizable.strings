@@ -5,10 +5,10 @@
 "Dexcom G6" = "Dexcom G6";
 
 /* Error description for unreliable state */
-"Glucose data is unavailable" = "Nu sunt disponibile date despre glicemie";
+"Glucose data is unavailable" = "Datele cu glucoză nu sunt disponibile";
 
 /* Describes a low battery */
-"Low Battery" = "Nivel scăzut baterie";
+"Low Battery" = "Baterie descarcata";
 
 /* Describes a functioning transmitter */
 "OK" = "OK";
@@ -17,10 +17,10 @@
 "Peripheral command was invalid" = "Comanda dispozitivului este nevalidă";
 
 /* Timeout error description */
-"Peripheral did not respond in time" = "Dispozitivul periferic nu a răspuns în timp util";
+"Peripheral did not respond in time" = "Perifericul nu a răspuns la timp";
 
 /* Not ready error description */
-"Peripheral isnʼt connected" = "Dispozitivul periferic nu este conectat";
+"Peripheral isnʼt connected" = "Perifericul nu este conectat";
 
 /* The description of sensor calibration state when sensor calibration is ok. */
 "Sensor calibration is OK" = "Calibrarea senzorului este OK";

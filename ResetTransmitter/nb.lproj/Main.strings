@@ -8,7 +8,7 @@
 "cJ3-Gc-pnc.text" = "Dette verktøyet kan nullstille klokken på en sender som har gått ut på dato, slik at senderen kan brukes på nytt. Dette kan ha uante konsekvenser for eksterne data-tjenester, som Clarity og Share, og spesielt om sender brukes igjen med samme konto. Nullstilling kan ikke angres. Bruk på egen risiko.";
 
 /* Class = "UITextField"; placeholder = "Enter the 6-digit ID"; ObjectID = "G4a-ia-wQC"; */
-"G4a-ia-wQC.placeholder" = "Skriv inn 6-sifret ID";
+"G4a-ia-wQC.placeholder" = "Skriv inn 6-siffret ID";
 
 /* Class = "UILabel"; text = "[Error goes here. And it can get very long and that's OK]"; ObjectID = "gYy-Zz-y12"; */
 "gYy-Zz-y12.text" = "[Feil skrives her. Den kan være veldig lang, og det er helt greit]";
@@ -17,7 +17,7 @@
 "LBC-6R-q79.normalTitle" = "Nullstill";
 
 /* Class = "UITextView"; text = "The transmitter has been successfully reset. Connect it to the app to begin a new sensor session."; ObjectID = "MbK-kj-ejl"; */
-"MbK-kj-ejl.text" = "Senderen er tilbakestilt. Koble den til appen for å starte en ny sensorøkt.";
+"MbK-kj-ejl.text" = "Sender er nå nullstillt. Koble den til appen for å starte en ny sensor-sesjon.";
 
 /* Class = "UITableViewSection"; headerTitle = "Transmitter ID"; ObjectID = "vNG-r7-RbP"; */
 "vNG-r7-RbP.headerTitle" = "Sender ID";

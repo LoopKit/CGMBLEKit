@@ -10,6 +10,9 @@
 /* Class = "UITableViewSection"; footerTitle = "Data can be downloaded over the Internet from Share when the transmitter connection fails."; ObjectID = "k1N-Rg-XDy"; */
 "k1N-Rg-XDy.footerTitle" = "Данные могут быть загружены с серверов Share если не произойдет соединение трансмиттера.";
 
+/* Class = "UITableViewSection"; headerTitle = "Dexcom Share"; ObjectID = "k1N-Rg-XDy"; */
+"k1N-Rg-XDy.headerTitle" = "Dexcom Share";
+
 /* Class = "UITextField"; placeholder = "Enter the 6-digit transmitter ID"; ObjectID = "nKX-TW-GhD"; */
 "nKX-TW-GhD.placeholder" = "Введите шестизначный идентификатор трансмиттера";
 

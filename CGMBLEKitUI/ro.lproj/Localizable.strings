@@ -15,10 +15,10 @@ Title text for the button to remove a CGM from Loop */
 "Delete CGM" = "Șterge CGM";
 
 /* Title describing glucose value */
-"Glucose" = "Glicemie";
+"Glucose" = "Glucoză";
 
 /* Describes a glucose value adjusted to reflect a recent calibration */
-"Glucose (Adjusted)" = "Glicemie (ajustată)";
+"Glucose (Adjusted)" = "Glucoză (ajustată)";
 
 /* Section title for latest glucose calibration */
 "Latest Calibration" = "Ultima calibrare";

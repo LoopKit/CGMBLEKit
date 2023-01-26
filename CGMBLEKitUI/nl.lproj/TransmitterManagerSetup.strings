@@ -1,8 +1,8 @@
 /* Class = "UILabel"; text = "Credentials"; ObjectID = "5oU-vK-JHQ"; */
-"5oU-vK-JHQ.text" = "Toegang gegevens";
+"5oU-vK-JHQ.text" = "Toegangsgegevens";
 
 /* Class = "UITableViewController"; title = "Transmitter Setup"; ObjectID = "Dds-49-o7G"; */
-"Dds-49-o7G.title" = "Transmitter instellen";
+"Dds-49-o7G.title" = "Transmitter Instellen";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "GOT-KQ-cEh"; */
 "GOT-KQ-cEh.text" = "Detail";

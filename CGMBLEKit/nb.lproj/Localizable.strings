@@ -5,13 +5,13 @@
 "Dexcom G6" = "Dexcom G6";
 
 /* Error description for unreliable state */
-"Glucose data is unavailable" = "Blodsukkerdata er utilgjengelig";
+"Glucose data is unavailable" = "Glukose data er utilgjengelig";
 
 /* Describes a low battery */
-"Low Battery" = "Lavt batteri";
+"Low Battery" = "Lite batteri";
 
 /* Describes a functioning transmitter */
-"OK" = "Ok";
+"OK" = "OK";
 
 /* invlid config error description */
 "Peripheral command was invalid" = "Perifer kommando var ugyldig";
@@ -38,5 +38,5 @@
 "Sensor needs calibration" = "Sensor trenger kalibrering";
 
 /* Error description */
-"Unknown characteristic" = "Ukjent egenskap";
+"Unknown characteristic" = "Ukjent karakteristikk";
 

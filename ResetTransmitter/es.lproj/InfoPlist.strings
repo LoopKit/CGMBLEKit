@@ -1,6 +1,9 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Reiniciar";
+
 /* Privacy - Bluetooth Always Usage Description */
-"NSBluetoothAlwaysUsageDescription" = "Bluetooth se utiliza para las comunicaciones con los dispositivos de monitoreo continuo de glucosa";
+"NSBluetoothAlwaysUsageDescription" = "El bluetooth se utiliza para la comunicación con dispositivos de monitoreo continuo de glucosa";
 
 /* Privacy - Bluetooth Peripheral Usage Description */
-"NSBluetoothPeripheralUsageDescription" = "Bluetooth se utiliza para las comunicaciones con los dispositivos de monitoreo continuo de glucosa";
+"NSBluetoothPeripheralUsageDescription" = "El bluetooth se utiliza para la comunicación con dispositivos de monitoreo continuo de glucosa";
 

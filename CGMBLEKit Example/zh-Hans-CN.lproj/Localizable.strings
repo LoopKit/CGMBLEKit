@@ -1,9 +1,9 @@
 /* Title displayed during backfill response */
-"Backfill" = "Dolgu";
+"Backfill" = "数据回填";
 
 /* Title displayed during error response */
-"Error" = "Hata";
+"Error" = "错误";
 
 /* Title displayed during unknown data response */
-"Unknown Data" = "Bilinmeyen Veri";
+"Unknown Data" = "未知数据";
 
