@@ -10,7 +10,8 @@
 /* Title describing glucose date */
 "Date" = "Ngày";
 
-/* Title text for the button to remove a CGM from Loop */
+/* Button title to delete CGM
+Title text for the button to remove a CGM from Loop */
 "Delete CGM" = "Xóa CGM";
 
 /* Title describing glucose value */

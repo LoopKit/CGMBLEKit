@@ -19,8 +19,3 @@
 /* Class = "UILabel"; text = "Stay connected"; ObjectID = "NSs-9e-3Sl"; */
 "NSs-9e-3Sl.text" = "Permanecer conectado";
 
-/* Class = "UITextField"; text = "500000"; ObjectID = "e0T-ru-tWD"; */
-"e0T-ru-tWD.text" = "500000";
-
-/* Class = "UILabel"; text = "––"; ObjectID = "zAF-A7-1Oc"; */
-"zAF-A7-1Oc.text" = "––";
