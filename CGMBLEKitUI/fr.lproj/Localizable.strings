@@ -35,6 +35,12 @@ Title text for the button to remove a CGM from Loop */
 /* Section title for remote data synchronization */
 "Remote Data Synchronization" = "Synchronisation des données à distance";
 
+/* Title describing past sensor expiration */
+"Sensor Expired" = "Capteur expiré";
+
+/* Title describing sensor expiration */
+"Sensor Expires" = "Le capteur expire";
+
 /* Title describing sensor session age */
 "Session Age" = "L’âge de la session";
 

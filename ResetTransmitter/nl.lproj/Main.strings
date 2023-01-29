@@ -5,7 +5,7 @@
 "7nc-6t-4hZ.title" = "Reset Transmitter";
 
 /* Class = "UITextView"; text = "This tool can reset the clock on a transmitter that has reached its expiration date, allowing new sensor sessions to again be started.\nThis may have unintended consequences for data services, such as Clarity and Share, especially when using a reset transmitter with the same account.\nResetting cannot be undone.\nUse at your own risk."; ObjectID = "cJ3-Gc-pnc"; */
-"cJ3-Gc-pnc.text" = "Deze methode kan de klok van de transmitter resetten als de vervaldatum is bereikt, zodat een nieuwe sensorsessie gestart kan worden.\nDit heeft mogelijk onbedoelde gevolgen voor diensten als Clarity en Share. Met name als hetzelfde account gebruikt wordt om een transmitter te resetten.\nResetten kan niet ongedaan gemaakt worden.\nGebruik op eigen risico";
+"cJ3-Gc-pnc.text" = "Deze methode kan de klok van de transmitter resetten als de vervaldatum is bereikt, zodat een nieuwe sensorsessie gestart kan worden.\nDit heeft mogelijk onbedoelde gevolgen voor services als Clarity en Share. Met name als hetzelfde account gebruikt wordt om een transmitter te resetten.\nResetten kan niet ongedaan gemaakt worden.\nGebruik op eigen risico";
 
 /* Class = "UITextField"; placeholder = "Enter the 6-digit ID"; ObjectID = "G4a-ia-wQC"; */
 "G4a-ia-wQC.placeholder" = "Vul het 6 cijferige ID in";

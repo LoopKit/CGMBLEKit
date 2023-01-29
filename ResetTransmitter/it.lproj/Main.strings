@@ -8,7 +8,7 @@
 "cJ3-Gc-pnc.text" = "Questo strumento può ripristinare l'orologio di un trasmettitore che ha raggiunto la data di scadenza, consentendo di avviare nuove sessioni del sensore. Questo può avere effetti indesiderati su servizi di dati come Clarity e Share, soprattutto se il ripristino avviene con lo stesso account. Il ripristino non può essere annullato. Effettualo a tuo rischio e pericolo.";
 
 /* Class = "UITextField"; placeholder = "Enter the 6-digit ID"; ObjectID = "G4a-ia-wQC"; */
-"G4a-ia-wQC.placeholder" = "Inserisci ID a 6 cifre del trasmettitore";
+"G4a-ia-wQC.placeholder" = "Inserisci ID a 6 cifre";
 
 /* Class = "UILabel"; text = "[Error goes here. And it can get very long and that's OK]"; ObjectID = "gYy-Zz-y12"; */
 "gYy-Zz-y12.text" = "[L'errore va qui. Può essere molto lungo, ma va bene]";
