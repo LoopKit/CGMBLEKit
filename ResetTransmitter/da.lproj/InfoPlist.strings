@@ -2,11 +2,11 @@
 "CFBundleDisplayName" = "Nulstil";
 
 /* Bundle name */
-"CFBundleName" = "Nulstil sender";
+"CFBundleName" = "NulstilSender";
 
 /* Privacy - Bluetooth Always Usage Description */
-"NSBluetoothAlwaysUsageDescription" = "Bluetooth bliver brugt til at kommunikere med din insulin pumpe og din blodsukker monitor";
+"NSBluetoothAlwaysUsageDescription" = "Bluetooth bliver brugt til at kommunikere med din insulinpumpe og din blodsukkermonitor";
 
 /* Privacy - Bluetooth Peripheral Usage Description */
-"NSBluetoothPeripheralUsageDescription" = "Bluetooth bliver brugt til at kommunikere med din insulin pumpe og din sensor";
+"NSBluetoothPeripheralUsageDescription" = "Bluetooth bliver brugt til at kommunikere med din insulinpumpe og din sensor";
 

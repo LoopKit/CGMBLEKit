@@ -42,16 +42,16 @@ Title text for the button to remove a CGM from Loop */
 "Sensor Expires" = "Sensor Verloopt";
 
 /* Title describing sensor session age */
-"Session Age" = "Sensorleeftijd";
+"Session Age" = "Sessieduur";
 
 /* Title describing CGM calibration and battery state */
 "Status" = "Status";
 
 /* Title describing transmitter session age */
-"Transmitter Age" = "Transmitterleeftijd";
+"Transmitter Age" = "Zenderleeftijd";
 
 /* The title text for the Dexcom G5/G6 transmitter ID config value */
-"Transmitter ID" = "Transmitter ID";
+"Transmitter ID" = "Zender ID";
 
 /* Title describing glucose trend */
 "Trend" = "Trend";

@@ -14,13 +14,13 @@
 "OK" = "OK";
 
 /* invlid config error description */
-"Peripheral command was invalid" = "Perifere kommando var ugyldig";
+"Peripheral command was invalid" = "Kommando for ekstern enhed var ugyldig";
 
 /* Timeout error description */
-"Peripheral did not respond in time" = "Perifere reagerede ikke i tide";
+"Peripheral did not respond in time" = "Ekstern enhed svarede ikke i tide";
 
 /* Not ready error description */
-"Peripheral isnʼt connected" = "Perifert udstyr er ikke tilsluttet";
+"Peripheral isnʼt connected" = "Ekstern enhed er ikke forbundet";
 
 /* The description of sensor calibration state when sensor calibration is ok. */
 "Sensor calibration is OK" = "Sensorkalibrering er OK";

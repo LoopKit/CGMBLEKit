@@ -5,7 +5,7 @@
 "5y6-vU-qC3.text" = "Identificador del transmisor";
 
 /* Class = "UILabel"; text = "Waiting for first reading"; ObjectID = "9p7-LX-EMK"; */
-"9p7-LX-EMK.text" = "Esperando por el primero dato";
+"9p7-LX-EMK.text" = "Esperando el primero dato";
 
 /* Class = "UITextField"; text = "500000"; ObjectID = "e0T-ru-tWD"; */
 "e0T-ru-tWD.text" = "500000";
