@@ -5,10 +5,10 @@
 "Dexcom G6" = "Dexcom G6";
 
 /* Error description for unreliable state */
-"Glucose data is unavailable" = "Glucose gegevens niet beschikbaar";
+"Glucose data is unavailable" = "Glucosegegevens niet beschikbaar";
 
 /* Describes a low battery */
-"Low Battery" = "Lage batterij";
+"Low Battery" = "Batterij Bijna Leeg";
 
 /* Describes a functioning transmitter */
 "OK" = "OK";
@@ -23,7 +23,7 @@
 "Peripheral isnʼt connected" = "Apparaat is niet verbonden";
 
 /* The description of sensor calibration state when sensor calibration is ok. */
-"Sensor calibration is OK" = "Sensor callibratie is geslaagd";
+"Sensor calibration is OK" = "Sensorkalibratie is OK";
 
 /* The description of sensor calibration state when raw value is unknown. (1: missing data details) */
 "Sensor is in unknown state %1$d" = "Senor is in onbekende status %1$d";
@@ -35,7 +35,7 @@
 "Sensor is warming up" = "Sensor is aan het opwarmen";
 
 /* The description of sensor calibration state when sensor needs calibration. */
-"Sensor needs calibration" = "Sensor heeft callibratie nodig";
+"Sensor needs calibration" = "Sensor moet worden gekalibreerd";
 
 /* Error description */
 "Unknown characteristic" = "Onbekende eigenschap";

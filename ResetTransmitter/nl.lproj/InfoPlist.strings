@@ -2,7 +2,7 @@
 "CFBundleDisplayName" = "Reset";
 
 /* Bundle name */
-"CFBundleName" = "ResetTransmitter";
+"CFBundleName" = "ResetZender";
 
 /* Privacy - Bluetooth Always Usage Description */
 "NSBluetoothAlwaysUsageDescription" = "Bluetooth wordt gebruikt om te communiceren met continue glucose meters";

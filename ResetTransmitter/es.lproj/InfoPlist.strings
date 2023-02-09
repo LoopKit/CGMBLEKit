@@ -1,6 +1,9 @@
 /* Bundle display name */
 "CFBundleDisplayName" = "Reiniciar";
 
+/* Bundle name */
+"CFBundleName" = "Resetear Transmisor";
+
 /* Privacy - Bluetooth Always Usage Description */
 "NSBluetoothAlwaysUsageDescription" = "El bluetooth se utiliza para la comunicación con dispositivos de monitoreo continuo de glucosa";
 

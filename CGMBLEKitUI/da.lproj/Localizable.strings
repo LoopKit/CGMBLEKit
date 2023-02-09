@@ -5,7 +5,7 @@
 "Are you sure you want to delete this CGM?" = "Er du sikker på, at du vil slette denne CGM?";
 
 /* The title of the cancel action in an action sheet */
-"Cancel" = "Afbestille";
+"Cancel" = "Afbryd";
 
 /* Title describing glucose date */
 "Date" = "Dato";
@@ -27,7 +27,7 @@ Title text for the button to remove a CGM from Loop */
 "Latest Connection" = "Seneste forbindelse";
 
 /* Section title for latest glucose reading */
-"Latest Reading" = "Seneste læsning";
+"Latest Reading" = "Seneste aflæsning";
 
 /* Button title to open CGM app */
 "Open App" = "Åben app";
@@ -35,17 +35,23 @@ Title text for the button to remove a CGM from Loop */
 /* Section title for remote data synchronization */
 "Remote Data Synchronization" = "Synkronisering af fjerndata";
 
+/* Title describing past sensor expiration */
+"Sensor Expired" = "Sensor udløbet";
+
+/* Title describing sensor expiration */
+"Sensor Expires" = "Sensor udløber";
+
 /* Title describing sensor session age */
-"Session Age" = "Session alder";
+"Session Age" = "Session-alder";
 
 /* Title describing CGM calibration and battery state */
-"Status" = "status";
+"Status" = "Status";
 
 /* Title describing transmitter session age */
-"Transmitter Age" = "Senders alder";
+"Transmitter Age" = "Sender alder";
 
 /* The title text for the Dexcom G5/G6 transmitter ID config value */
-"Transmitter ID" = "Senders ID";
+"Transmitter ID" = "Sender ID";
 
 /* Title describing glucose trend */
 "Trend" = "Trend";
