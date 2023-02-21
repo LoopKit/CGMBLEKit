@@ -163,10 +163,10 @@ class TransmitterSettingsViewController: UITableViewController {
     
     private lazy var sensorExpirationFullFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateStyle = .full
-        formatter.timeStyle = .short
-        formatter.doesRelativeDateFormatting = true
-        //formatter.dateFormat = "E, MMM d 'at' h:mm a"
+        //formatter.dateStyle = .full
+        //formatter.timeStyle = .short
+        //formatter.doesRelativeDateFormatting = true
+        formatter.dateFormat = "E, MMM d 'at' h:mm a"
         return formatter
     }()
     
