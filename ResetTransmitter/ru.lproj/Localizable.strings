@@ -1,5 +1,5 @@
 /* Title of the reset confirmation sheet */
-"Are you sure you want to reset this transmitter?" = "Подтвердите намерение выполнить сброс дней трансмиттера";
+"Are you sure you want to reset this transmitter?" = "Вы уверены, что хотите сбросить этот трансмиттер?";
 
 /* Title of button to cancel reset */
 "Cancel" = "Отмена";

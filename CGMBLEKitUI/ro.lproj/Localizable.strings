@@ -35,6 +35,12 @@ Title text for the button to remove a CGM from Loop */
 /* Section title for remote data synchronization */
 "Remote Data Synchronization" = "Sincronizarea datelor";
 
+/* Title describing past sensor expiration */
+"Sensor Expired" = "Senzorul a expirat";
+
+/* Title describing sensor expiration */
+"Sensor Expires" = "Senzorul expiră";
+
 /* Title describing sensor session age */
 "Session Age" = "Vechime sesiune";
 

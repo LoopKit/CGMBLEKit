@@ -20,5 +20,5 @@
 "MbK-kj-ejl.text" = "De zender is succesvol gereset. Verbind de zender met de app om een nieuwe sensorsessie te beginnen.";
 
 /* Class = "UITableViewSection"; headerTitle = "Transmitter ID"; ObjectID = "vNG-r7-RbP"; */
-"vNG-r7-RbP.headerTitle" = "Zender ID";
+"vNG-r7-RbP.headerTitle" = "Zender Serienummer";
 
