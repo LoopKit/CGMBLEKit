@@ -2,7 +2,7 @@
 "3i8-2m-QFG.text" = "Gebruik tegelijk met G5 app";
 
 /* Class = "UILabel"; text = "Transmitter ID"; ObjectID = "5y6-vU-qC3"; */
-"5y6-vU-qC3.text" = "Zender ID";
+"5y6-vU-qC3.text" = "Zender Serienummer";
 
 /* Class = "UILabel"; text = "Waiting for first reading"; ObjectID = "9p7-LX-EMK"; */
 "9p7-LX-EMK.text" = "Wachten op eerste meting";
