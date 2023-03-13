@@ -1,8 +1,8 @@
 /* Class = "UINavigationItem"; title = "Reset Complete"; ObjectID = "3SD-s3-7OM"; */
-"3SD-s3-7OM.title" = "Reset zakończony";
+"3SD-s3-7OM.title" = "Resetowanie zakończone";
 
 /* Class = "UINavigationItem"; title = "Reset Transmitter"; ObjectID = "7nc-6t-4hZ"; */
-"7nc-6t-4hZ.title" = "Resetuj nadajnik";
+"7nc-6t-4hZ.title" = "Zresetuj nadajnik";
 
 /* Class = "UITextView"; text = "This tool can reset the clock on a transmitter that has reached its expiration date, allowing new sensor sessions to again be started.\nThis may have unintended consequences for data services, such as Clarity and Share, especially when using a reset transmitter with the same account.\nResetting cannot be undone.\nUse at your own risk."; ObjectID = "cJ3-Gc-pnc"; */
 "cJ3-Gc-pnc.text" = "To narzędzie może zresetować zegar nadajnika, który osiągnął termin ważności, umożliwiając ponowne rozpoczęcie sesji sensora. Może to mieć niepożądane konsekwencje dla usług danych, takich jak Clarity i Share, zwłaszcza w przypadku użytkowania zresetowanego nadajnika z tym samym kontem. Resetowania nie można cofnąć. Wykonujesz je na własne ryzyko.";

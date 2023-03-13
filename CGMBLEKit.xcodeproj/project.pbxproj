@@ -574,6 +574,7 @@
 		B4D40D4923ABB33500D7ECB5 /* CGMBLEKitG5Plugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGMBLEKitG5Plugin.swift; sourceTree = "<group>"; };
 		C105EF122981EDCF00EA8341 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C105EF132981EDCF00EA8341 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C122DEF729BBFAAE00321F8D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C126BAF129830A83002CEE4F /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Main.strings"; sourceTree = "<group>"; };
 		C126BAF229830A83002CEE4F /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C126BAF329830A83002CEE4F /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -1786,6 +1787,7 @@
 				C19E3879298638CE00851444 /* tr */,
 				C1F48FF42995821600C8BD69 /* pl */,
 				C1C247822995823200371B88 /* sk */,
+				C122DEF729BBFAAE00321F8D /* ru */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
