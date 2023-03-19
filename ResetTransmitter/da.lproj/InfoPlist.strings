@@ -8,5 +8,5 @@
 "NSBluetoothAlwaysUsageDescription" = "Bluetooth bliver brugt til at kommunikere med din insulinpumpe og din blodsukkermonitor";
 
 /* Privacy - Bluetooth Peripheral Usage Description */
-"NSBluetoothPeripheralUsageDescription" = "Bluetooth bliver brugt til at kommunikere med din insulinpumpe og din sensor";
+"NSBluetoothPeripheralUsageDescription" = "Bluetooth bliver brugt til at kommunikere med din insulinpumpe og din blodsukkermonitor";
 

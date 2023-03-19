@@ -5,13 +5,13 @@
 "Dds-49-o7G.title" = "Cài đặt Transmitter";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "GOT-KQ-cEh"; */
-"GOT-KQ-cEh.text" = "Chi tiết";
+"GOT-KQ-cEh.text" = "Detail";
 
 /* Class = "UITableViewSection"; footerTitle = "Data can be downloaded over the Internet from Share when the transmitter connection fails."; ObjectID = "k1N-Rg-XDy"; */
 "k1N-Rg-XDy.footerTitle" = "Dữ liệu có thể được tải xuống qua đường truyền Internet trên ứng dụng Share khi kết nối với transmitter bị đứt.";
 
 /* Class = "UITableViewSection"; headerTitle = "Dexcom Share"; ObjectID = "k1N-Rg-XDy"; */
-"k1N-Rg-XDy.headerTitle" = "Ứng dụng Share của Dexcom";
+"k1N-Rg-XDy.headerTitle" = "Dexcom Share";
 
 /* Class = "UITextField"; placeholder = "Enter the 6-digit transmitter ID"; ObjectID = "nKX-TW-GhD"; */
 "nKX-TW-GhD.placeholder" = "Nhập 6 số ID của Transmitter";
