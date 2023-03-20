@@ -23,7 +23,7 @@
 "Sensor calibration is OK" = "Sensor calibration is OK";
 
 /* The description of sensor calibration state when raw value is unknown. (1: missing data details) */
-"Sensor is in unknown state %1$d" = "Sensor is in unknown state %1$d";
+"Sensor is in unknown state %1$d" = "מצב החישן אינו ידוע %1$d";
 
 /* The description of sensor calibration state when sensor sensor is stopped. */
 "Sensor is stopped" = "חיישן נעצר";
