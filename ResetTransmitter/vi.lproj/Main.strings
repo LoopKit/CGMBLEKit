@@ -14,7 +14,7 @@
 "gYy-Zz-y12.text" = "[Lỗi ở đây. Và có thể mất nhiều thời gian nhưng sẽ ổn thôi]";
 
 /* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "LBC-6R-q79"; */
-"LBC-6R-q79.normalTitle" = "Cài lại";
+"LBC-6R-q79.normalTitle" = "Khôi phục lại";
 
 /* Class = "UITextView"; text = "The transmitter has been successfully reset. Connect it to the app to begin a new sensor session."; ObjectID = "MbK-kj-ejl"; */
 "MbK-kj-ejl.text" = "Việc cài lại Transmitter đã hoàn tất. Kết nối với ứng dụng để bắt đầu khởi động sensor.";

@@ -14,7 +14,7 @@
 "gYy-Zz-y12.text" = "[Error goes here. And it can get very long and that's OK]";
 
 /* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "LBC-6R-q79"; */
-"LBC-6R-q79.normalTitle" = "Zurücksetzen";
+"LBC-6R-q79.normalTitle" = "Reset";
 
 /* Class = "UITextView"; text = "The transmitter has been successfully reset. Connect it to the app to begin a new sensor session."; ObjectID = "MbK-kj-ejl"; */
 "MbK-kj-ejl.text" = "Der Transmitter wurde erfolgreich zurückgesetzt. Verbinden Sie ihn mit der App, um eine neue Sensorsitzung zu starten.";

@@ -5,7 +5,7 @@
 "Dds-49-o7G.title" = "Setare transmițător";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "GOT-KQ-cEh"; */
-"GOT-KQ-cEh.text" = "Detailu";
+"GOT-KQ-cEh.text" = "Detail";
 
 /* Class = "UITableViewSection"; footerTitle = "Data can be downloaded over the Internet from Share when the transmitter connection fails."; ObjectID = "k1N-Rg-XDy"; */
 "k1N-Rg-XDy.footerTitle" = "Pot fi transferate date prin Internet din Share atunci când eșuează conexiunea cu transmițătorul";

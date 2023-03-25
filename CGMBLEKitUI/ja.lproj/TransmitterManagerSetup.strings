@@ -5,7 +5,7 @@
 "Dds-49-o7G.title" = "トランスミッター設定";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "GOT-KQ-cEh"; */
-"GOT-KQ-cEh.text" = "詳細";
+"GOT-KQ-cEh.text" = "Detail";
 
 /* Class = "UITableViewSection"; footerTitle = "Data can be downloaded over the Internet from Share when the transmitter connection fails."; ObjectID = "k1N-Rg-XDy"; */
 "k1N-Rg-XDy.footerTitle" = "トランスミッターの接続ができないときに、インターネットでShareからデータをダウンロードできます。";

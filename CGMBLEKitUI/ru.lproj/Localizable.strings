@@ -12,10 +12,10 @@
 
 /* Button title to delete CGM
 Title text for the button to remove a CGM from Loop */
-"Delete CGM" = "Удалить мониторинг";
+"Delete CGM" = "Удалить CGM";
 
 /* Title describing glucose value */
-"Glucose" = "Гликемия";
+"Glucose" = "Глюкоза";
 
 /* Describes a glucose value adjusted to reflect a recent calibration */
 "Glucose (Adjusted)" = "ГК (корректированная)";
@@ -45,7 +45,7 @@ Title text for the button to remove a CGM from Loop */
 "Session Age" = "Сенсор отработал";
 
 /* Title describing CGM calibration and battery state */
-"Status" = "Состояние";
+"Status" = "Статус";
 
 /* Title describing transmitter session age */
 "Transmitter Age" = "Трансмиттер отработал";
@@ -54,7 +54,7 @@ Title text for the button to remove a CGM from Loop */
 "Transmitter ID" = "ID трансмиттера";
 
 /* Title describing glucose trend */
-"Trend" = "Тренд";
+"Trend" = "Тенденция";
 
 /* The title text for the upload glucose switch cell */
 "Upload Readings" = "Загрузить показания";
