@@ -22,7 +22,7 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
     
     public var shouldSyncToRemoteService: Bool
 
-    public init(transmitterID: String, shouldSyncToRemoteService: Bool = false) {
+    public init(transmitterID: String, shouldSyncToRemoteService: Bool = true) {
         self.transmitterID = transmitterID
         self.shouldSyncToRemoteService = shouldSyncToRemoteService
     }
@@ -33,7 +33,7 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
             return nil
         }
         
-        let shouldSyncToRemoteService = rawValue["shouldSyncToRemoteService"] as? Bool ?? false
+        let shouldSyncToRemoteService = rawValue["shouldSyncToRemoteService"] as? Bool ?? true
 
         self.init(transmitterID: transmitterID, shouldSyncToRemoteService: shouldSyncToRemoteService)
     }
