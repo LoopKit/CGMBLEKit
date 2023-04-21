@@ -12,7 +12,7 @@
 
 /* Button title to delete CGM
 Title text for the button to remove a CGM from Loop */
-"Delete CGM" = "Delete CGM";
+"Delete CGM" = "מחק מד סוכר רציף";
 
 /* Title describing glucose value */
 "Glucose" = "Glucose";
@@ -21,7 +21,7 @@ Title text for the button to remove a CGM from Loop */
 "Glucose (Adjusted)" = "Glucose (Adjusted)";
 
 /* Section title for latest glucose calibration */
-"Latest Calibration" = "Latest Calibration";
+"Latest Calibration" = "כיול אחרון";
 
 /* Section title for latest connection date */
 "Latest Connection" = "חיבור אחרון";
@@ -31,6 +31,9 @@ Title text for the button to remove a CGM from Loop */
 
 /* Button title to open CGM app */
 "Open App" = "Open App";
+
+/* Section title for remote data synchronization */
+"Remote Data Synchronization" = "סנכרון נתונים מרחוק";
 
 /* Title describing past sensor expiration */
 "Sensor Expired" = "Sensor Expired";
@@ -52,4 +55,7 @@ Title text for the button to remove a CGM from Loop */
 
 /* Title describing glucose trend */
 "Trend" = "מגמה";
+
+/* The title text for the upload glucose switch cell */
+"Upload Readings" = "העלה נתונים";
 
