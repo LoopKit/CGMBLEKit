@@ -1,8 +1,8 @@
 /* Class = "UILabel"; text = "Run alongside G5 app"; ObjectID = "3i8-2m-QFG"; */
-"3i8-2m-QFG.text" = "Ejecutar junto con la app del G5";
+"3i8-2m-QFG.text" = "Ejecutar junto con la aplicación del G5";
 
 /* Class = "UILabel"; text = "Transmitter ID"; ObjectID = "5y6-vU-qC3"; */
-"5y6-vU-qC3.text" = "Identificador del transmisor";
+"5y6-vU-qC3.text" = "Identificación del transmisor";
 
 /* Class = "UILabel"; text = "Waiting for first reading"; ObjectID = "9p7-LX-EMK"; */
 "9p7-LX-EMK.text" = "Esperando el primero dato";

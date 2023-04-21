@@ -15,7 +15,7 @@ Title text for the button to remove a CGM from Loop */
 "Delete CGM" = "Elimina CGM";
 
 /* Title describing glucose value */
-"Glucose" = "Glicemie";
+"Glucose" = "Glicemia";
 
 /* Describes a glucose value adjusted to reflect a recent calibration */
 "Glucose (Adjusted)" = "Glicemie (Corrette)";
@@ -51,10 +51,10 @@ Title text for the button to remove a CGM from Loop */
 "Transmitter Age" = "Età trasmettitore";
 
 /* The title text for the Dexcom G5/G6 transmitter ID config value */
-"Transmitter ID" = "ID Trasmettitore";
+"Transmitter ID" = "ID trasmettitore";
 
 /* Title describing glucose trend */
-"Trend" = "Andamento";
+"Trend" = "Tendenza";
 
 /* The title text for the upload glucose switch cell */
 "Upload Readings" = "Carica Letture";

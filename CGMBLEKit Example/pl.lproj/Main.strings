@@ -1,11 +1,11 @@
 /* Class = "UILabel"; text = "Run alongside G5 app"; ObjectID = "3i8-2m-QFG"; */
-"3i8-2m-QFG.text" = "Przejrzyj aplikację G5";
+"3i8-2m-QFG.text" = "Uruchom aplikację G5";
 
 /* Class = "UILabel"; text = "Transmitter ID"; ObjectID = "5y6-vU-qC3"; */
 "5y6-vU-qC3.text" = "ID nadajnika";
 
 /* Class = "UILabel"; text = "Waiting for first reading"; ObjectID = "9p7-LX-EMK"; */
-"9p7-LX-EMK.text" = "Oczekiwanie na pierwszy odczyt";
+"9p7-LX-EMK.text" = "Czekam na pierwszy odczyt";
 
 /* Class = "UITextField"; text = "500000"; ObjectID = "e0T-ru-tWD"; */
 "e0T-ru-tWD.text" = "500000";
