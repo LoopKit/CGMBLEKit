@@ -166,7 +166,7 @@ class TransmitterSettingsViewController: UITableViewController {
         //formatter.dateStyle = .full
         //formatter.timeStyle = .short
         //formatter.doesRelativeDateFormatting = true
-        formatter.dateFormat = "E, MMM d 'at' h:mm a"
+        formatter.setLocalizedDateFormatFromTemplate("E, MMM d, hh:mm")
         return formatter
     }()
     
