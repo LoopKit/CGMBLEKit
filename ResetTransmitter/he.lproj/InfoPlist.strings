@@ -1,9 +1,12 @@
 /* Bundle display name */
-"CFBundleDisplayName" = "Reset";
+"CFBundleDisplayName" = "איתחול";
+
+/* Bundle name */
+"CFBundleName" = "ResetTransmitter";
 
 /* Privacy - Bluetooth Always Usage Description */
-"NSBluetoothAlwaysUsageDescription" = "bluetooth משמש לתקשורת עם מד סוכר רציף";
+"NSBluetoothAlwaysUsageDescription" = "Bluetooth משמש לתקשורת עם חיישן (מד סוכר רציף)";
 
 /* Privacy - Bluetooth Peripheral Usage Description */
-"NSBluetoothPeripheralUsageDescription" = "bluetooth משמש לתקשורת עם מד סוכר רציף.";
+"NSBluetoothPeripheralUsageDescription" = "Bluetooth משמש לתקשורת עם חיישן (מד סוכר רציף)";
 
