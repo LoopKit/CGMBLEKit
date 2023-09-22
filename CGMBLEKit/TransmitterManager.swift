@@ -441,7 +441,7 @@ public class G5CGMManager: TransmitterManager, CGMManager {
 
     public override var device: HKDevice? {
         return HKDevice(
-            name: "CGMBLEKit",
+            name: transmitter.ID,
             manufacturer: "Dexcom",
             model: "G5 Mobile",
             hardwareVersion: nil,
