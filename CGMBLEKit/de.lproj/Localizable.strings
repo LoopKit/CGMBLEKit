@@ -8,7 +8,7 @@
 "Glucose data is unavailable" = "Blutzuckerdaten sind nicht verfügbar";
 
 /* Describes a low battery */
-"Low Battery" = "Niedriger Batteriestatus";
+"Low Battery" = "Batterie niedrig";
 
 /* Describes a functioning transmitter */
 "OK" = "OK";
@@ -20,7 +20,7 @@
 "Peripheral did not respond in time" = "Peripherie antwortet nicht rechtzeitig";
 
 /* Not ready error description */
-"Peripheral isnʼt connected" = "Peripherie ist nicht verbunden";
+"Peripheral isnʼt connected" = "Gerät ist nicht verbunden";
 
 /* The description of sensor calibration state when sensor calibration is ok. */
 "Sensor calibration is OK" = "Sensorkalibrierung ist OK";

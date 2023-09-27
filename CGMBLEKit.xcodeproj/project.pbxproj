@@ -185,6 +185,7 @@
 		B4D40D4A23ABB33500D7ECB5 /* CGMBLEKitG5Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D40D4923ABB33500D7ECB5 /* CGMBLEKitG5Plugin.swift */; };
 		B4D40D4B23ABB42400D7ECB5 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4323115E1EFC870300B95E62 /* OSLog.swift */; };
 		C15543B2252D8777008EE7E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C15543B1252D8776008EE7E5 /* Assets.xcassets */; };
+		C1614F082AAFD07700F636E5 /* TransmitterManagerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1614F072AAFD07700F636E5 /* TransmitterManagerState.swift */; };
 		C182166E297E55A7001EB097 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C182166C297E55A7001EB097 /* InfoPlist.strings */; };
 		C19084BB203932BD00AA47F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C19084B9203932BD00AA47F3 /* Main.storyboard */; };
 		C19C8BDB286520970056D5E4 /* CGMBLEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* CGMBLEKit.framework */; };
@@ -586,6 +587,7 @@
 		C15A581829C7866600D3A5A1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C15A581929C7866600D3A5A1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/TransmitterManagerSetup.strings; sourceTree = "<group>"; };
 		C15A581A29C7866600D3A5A1 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C1614F072AAFD07700F636E5 /* TransmitterManagerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmitterManagerState.swift; sourceTree = "<group>"; };
 		C17F1B502981EDD500F2F205 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C17F1B512981EDD500F2F205 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C182166D297E55A7001EB097 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -612,6 +614,7 @@
 		C1C247832995823200371B88 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C1CD8B0A203931AD00A8F498 /* NSUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaults.swift; sourceTree = "<group>"; };
 		C1D18D4E2981EDD900FE14A1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C1D70F792A914F71009FE129 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C1E3CD6A2981EDD9006BD841 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C1E3CD6B2981EDD9006BD841 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C1E693C729C786E200410918 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -882,6 +885,7 @@
 				431CE7661F91D0B300255374 /* PeripheralManager+G5.swift */,
 				43CABE111C350B2800005705 /* Transmitter.swift */,
 				4325E9EC210EAEF500969CE5 /* TransmitterManager.swift */,
+				C1614F072AAFD07700F636E5 /* TransmitterManagerState.swift */,
 				43CE7CDB1CA77468003CC1B0 /* TransmitterStatus.swift */,
 				43CABDF61C3506F100005705 /* CGMBLEKit.h */,
 				43CABE161C350B2E00005705 /* Messages */,
@@ -1398,6 +1402,7 @@
 				43CABE231C350B3D00005705 /* AuthRequestRxMessage.swift in Sources */,
 				43CABE261C350B3D00005705 /* AuthChallengeRxMessage.swift in Sources */,
 				43CE7CD41CA73CE8003CC1B0 /* GlucoseHistoryTxMessage.swift in Sources */,
+				C1614F082AAFD07700F636E5 /* TransmitterManagerState.swift in Sources */,
 				43E397931D56950C0028E321 /* HKUnit.swift in Sources */,
 				43846AC61D8F896C00799272 /* CalibrationDataRxMessage.swift in Sources */,
 				43CE7CD01CA73C57003CC1B0 /* SessionStopTxMessage.swift in Sources */,
@@ -1826,6 +1831,7 @@
 				C19E3878298638CE00851444 /* tr */,
 				C1F48FF32995821600C8BD69 /* pl */,
 				C1C2477C2995823200371B88 /* sk */,
+				C1D70F792A914F71009FE129 /* he */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
