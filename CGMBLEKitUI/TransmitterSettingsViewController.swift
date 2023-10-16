@@ -153,14 +153,22 @@ class TransmitterSettingsViewController: UITableViewController {
     
     private lazy var sensorExpirationFullFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateStyle = .full
-        formatter.timeStyle = .short
-        formatter.doesRelativeDateFormatting = true
-        //formatter.dateFormat = "E, MMM d 'at' h:mm a"
+        //formatter.dateStyle = .full
+        //formatter.timeStyle = .short
+        //formatter.doesRelativeDateFormatting = true
+        formatter.setLocalizedDateFormatFromTemplate("E, MMM d, hh:mm")
         return formatter
     }()
     
     private lazy var sensorExpirationRelativeFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .none
+        formatter.doesRelativeDateFormatting = true
+        return formatter
+    }()
+    
+    private lazy var sensorExpirationRelativeFormatterWithTime: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
         formatter.timeStyle = .short
@@ -171,7 +179,7 @@ class TransmitterSettingsViewController: UITableViewController {
     private lazy var sensorExpAbsFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
-        formatter.timeStyle = .short
+        formatter.timeStyle = .none
         formatter.doesRelativeDateFormatting = false
         return formatter
     }()
@@ -306,7 +314,7 @@ class TransmitterSettingsViewController: UITableViewController {
                         if sensorExpirationRelativeFormatter.string(from: sessionExp) == sensorExpAbsFormatter.string(from: sessionExp) {
                             cell.detailTextLabel?.text = sensorExpirationFullFormatter.string(from: sessionExp)
                         } else {
-                            cell.detailTextLabel?.text = sensorExpirationRelativeFormatter.string(from: sessionExp)
+                            cell.detailTextLabel?.text = sensorExpirationRelativeFormatterWithTime.string(from: sessionExp)
                         }
                     } else {
                         cell.detailTextLabel?.text = SettingsTableViewCell.NoValueString
