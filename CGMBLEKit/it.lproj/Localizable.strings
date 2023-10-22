@@ -29,7 +29,7 @@
 "Sensor is in unknown state %1$d" = "Il Sensore e' in un stato%1$d sconosciuto";
 
 /* The description of sensor calibration state when sensor sensor is stopped. */
-"Sensor is stopped" = "Il Sensore e' fermato";
+"Sensor is stopped" = "Il sensore è fermo";
 
 /* The description of sensor calibration state when sensor sensor is warming up. */
 "Sensor is warming up" = "Il Sensore si sta riscaldando";
