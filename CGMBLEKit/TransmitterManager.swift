@@ -335,6 +335,11 @@ public class TransmitterManager: TransmitterDelegate {
             ))
         }
 
+        // Filter out future-dated events
+        events = events.filter { event in
+            return event.date <= Date() // Ensure event date is not in the future
+        }
+        
         if !events.isEmpty {
             shareManager.delegate.notify { delegate in
                 delegate?.cgmManager(self.shareManager, hasNew: events)
