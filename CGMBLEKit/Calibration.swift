@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import HealthKit
+import LoopAlgorithm
 
 
 public struct Calibration {
@@ -16,12 +16,12 @@ public struct Calibration {
             return nil
         }
 
-        let unit = HKUnit.milligramsPerDeciliter
+        let unit = LoopUnit.milligramsPerDeciliter
 
-        glucose = HKQuantity(unit: unit, doubleValue: Double(calibrationMessage.glucose))
+        glucose = LoopQuantity(unit: unit, doubleValue: Double(calibrationMessage.glucose))
         date = activationDate.addingTimeInterval(TimeInterval(calibrationMessage.timestamp))
     }
 
-    public let glucose: HKQuantity
+    public let glucose: LoopQuantity
     public let date: Date
 }
