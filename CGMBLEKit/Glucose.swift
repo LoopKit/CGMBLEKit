@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import HealthKit
+import LoopAlgorithm
 
 enum GlucoseLimits {
     static var minimum: UInt16 = 40
@@ -70,14 +70,14 @@ public struct Glucose {
         return glucoseMessage.glucoseIsDisplayOnly
     }
 
-    public var glucose: HKQuantity? {
-        guard state.hasReliableGlucose && glucoseMessage.glucose >= 39 else { 
+    public var glucose: LoopQuantity? {
+        guard state.hasReliableGlucose && glucoseMessage.glucose >= 39 else {
             return nil
         }
 
-        let unit = HKUnit.milligramsPerDeciliter
+        let unit = LoopUnit.milligramsPerDeciliter
 
-        return HKQuantity(unit: unit, doubleValue: Double(min(max(glucoseMessage.glucose, GlucoseLimits.minimum), GlucoseLimits.maximum)))
+        return LoopQuantity(unit: unit, doubleValue: Double(min(max(glucoseMessage.glucose, GlucoseLimits.minimum), GlucoseLimits.maximum)))
     }
 
     public var state: CalibrationState {
@@ -88,13 +88,13 @@ public struct Glucose {
         return Int(glucoseMessage.trend)
     }
 
-    public var trendRate: HKQuantity? {
+    public var trendRate: LoopQuantity? {
         guard glucoseMessage.trend < Int8.max && glucoseMessage.trend > Int8.min else {
             return nil
         }
 
-        let unit = HKUnit.milligramsPerDeciliterPerMinute
-        return HKQuantity(unit: unit, doubleValue: Double(glucoseMessage.trend) / 10)
+        let unit = LoopUnit.milligramsPerDeciliterPerMinute
+        return LoopQuantity(unit: unit, doubleValue: Double(glucoseMessage.trend) / 10)
     }
 
     // An identifier for this reading thatʼs consistent between backfill/live data

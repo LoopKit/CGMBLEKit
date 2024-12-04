@@ -8,7 +8,6 @@
 import SwiftUI
 import LoopKit
 import LoopKitUI
-import HealthKit
 import CGMBLEKit
 
 
