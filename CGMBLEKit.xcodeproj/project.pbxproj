@@ -42,7 +42,6 @@
 		4379CFD7210EB1BF00AADC79 /* Locked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4379CFD5210EB19F00AADC79 /* Locked.swift */; };
 		4379CFD9210EB3AC00AADC79 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4379CFD8210EB3AB00AADC79 /* UIColor.swift */; };
 		4379CFDA210EB3D200AADC79 /* CGMBLEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CABDF31C3506F100005705 /* CGMBLEKit.framework */; };
-		4379CFE1210EC27500AADC79 /* HKUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E397921D56950C0028E321 /* HKUnit.swift */; };
 		4379CFE52110EBAE00AADC79 /* TransmitterSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4379CFE42110EBAE00AADC79 /* TransmitterSetupViewController.swift */; };
 		4379CFE72110EC5500AADC79 /* TransmitterIDSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4379CFE62110EC5500AADC79 /* TransmitterIDSetupViewController.swift */; };
 		4379CFEA2110EDB100AADC79 /* TransmitterManagerSetup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4379CFEC2110EDB100AADC79 /* TransmitterManagerSetup.storyboard */; };
@@ -107,10 +106,7 @@
 		43E3978B1D5668BD0028E321 /* CalibrationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E3978A1D5668BD0028E321 /* CalibrationState.swift */; };
 		43E3978F1D566B170028E321 /* Glucose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E3978E1D566B170028E321 /* Glucose.swift */; };
 		43E397911D5692080028E321 /* GlucoseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E397901D5692080028E321 /* GlucoseTests.swift */; };
-		43E397931D56950C0028E321 /* HKUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E397921D56950C0028E321 /* HKUnit.swift */; };
 		43E4B1F21F8AF9790038823E /* PeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B1F11F8AF9790038823E /* PeripheralManager.swift */; };
-		43E5292C2060C4FA00ACEB3B /* HKUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E397921D56950C0028E321 /* HKUnit.swift */; };
-		43E5292D2060C50800ACEB3B /* HKUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E397921D56950C0028E321 /* HKUnit.swift */; };
 		43EEA7111D14DC0800CBBDA0 /* AESCrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 43EEA70F1D14DC0800CBBDA0 /* AESCrypt.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43EEA7121D14DC0800CBBDA0 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 43EEA7101D14DC0800CBBDA0 /* AESCrypt.m */; };
 		43F82BCC1D035AA4006F5DD7 /* TransmitterTimeRxMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F82BCB1D035AA4006F5DD7 /* TransmitterTimeRxMessageTests.swift */; };
@@ -137,7 +133,6 @@
 		A9AD37EC225EEE850058C179 /* AuthRequestRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE171C350B3D00005705 /* AuthRequestRxMessage.swift */; };
 		A9AD37ED225EEE850058C179 /* AuthChallengeRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CABE1A1C350B3D00005705 /* AuthChallengeRxMessage.swift */; };
 		A9AD37EE225EEE850058C179 /* GlucoseHistoryTxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CE7CD31CA73CE8003CC1B0 /* GlucoseHistoryTxMessage.swift */; };
-		A9AD37EF225EEE850058C179 /* HKUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E397921D56950C0028E321 /* HKUnit.swift */; };
 		A9AD37F0225EEE850058C179 /* CalibrationDataRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43846AC51D8F896C00799272 /* CalibrationDataRxMessage.swift */; };
 		A9AD37F1225EEE850058C179 /* SessionStopTxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CE7CCF1CA73C57003CC1B0 /* SessionStopTxMessage.swift */; };
 		A9AD37F2225EEE850058C179 /* PeripheralManager+G5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431CE7661F91D0B300255374 /* PeripheralManager+G5.swift */; };
@@ -452,7 +447,6 @@
 		43E3978A1D5668BD0028E321 /* CalibrationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalibrationState.swift; sourceTree = "<group>"; };
 		43E3978E1D566B170028E321 /* Glucose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Glucose.swift; sourceTree = "<group>"; };
 		43E397901D5692080028E321 /* GlucoseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlucoseTests.swift; sourceTree = "<group>"; };
-		43E397921D56950C0028E321 /* HKUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HKUnit.swift; sourceTree = "<group>"; };
 		43E4B1F11F8AF9790038823E /* PeripheralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralManager.swift; sourceTree = "<group>"; };
 		43EEA70F1D14DC0800CBBDA0 /* AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESCrypt.h; sourceTree = "<group>"; };
 		43EEA7101D14DC0800CBBDA0 /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESCrypt.m; sourceTree = "<group>"; };
@@ -948,7 +942,6 @@
 			isa = PBXGroup;
 			children = (
 				43DC87BF1C8B509B005BC30D /* Data.swift */,
-				43E397921D56950C0028E321 /* HKUnit.swift */,
 				43026D3E2131C5C600A332E2 /* LocalizedString.swift */,
 				4379CFD5210EB19F00AADC79 /* Locked.swift */,
 				4379CFD1210EB0F700AADC79 /* TimeInterval.swift */,
@@ -1359,7 +1352,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43E5292C2060C4FA00ACEB3B /* HKUnit.swift in Sources */,
 				C1CD8B0C203931AD00A8F498 /* NSUserDefaults.swift in Sources */,
 				E71BFF7E20673BD700C876A2 /* CommandQueue.swift in Sources */,
 				43D140CE2047AA930032346D /* Data.swift in Sources */,
@@ -1372,7 +1364,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4379CFE1210EC27500AADC79 /* HKUnit.swift in Sources */,
 				4325E9E8210EAED100969CE5 /* TransmitterManager+UI.swift in Sources */,
 				4379CFD9210EB3AC00AADC79 /* UIColor.swift in Sources */,
 				4325E9E9210EAED100969CE5 /* TransmitterSettingsViewController.swift in Sources */,
@@ -1403,7 +1394,6 @@
 				43CABE261C350B3D00005705 /* AuthChallengeRxMessage.swift in Sources */,
 				43CE7CD41CA73CE8003CC1B0 /* GlucoseHistoryTxMessage.swift in Sources */,
 				C1614F082AAFD07700F636E5 /* TransmitterManagerState.swift in Sources */,
-				43E397931D56950C0028E321 /* HKUnit.swift in Sources */,
 				43846AC61D8F896C00799272 /* CalibrationDataRxMessage.swift in Sources */,
 				43CE7CD01CA73C57003CC1B0 /* SessionStopTxMessage.swift in Sources */,
 				431CE7671F91D0B300255374 /* PeripheralManager+G5.swift in Sources */,
@@ -1448,7 +1438,6 @@
 				43460F88200B30D10030C0E3 /* TransmitterIDTests.swift in Sources */,
 				43F82BCC1D035AA4006F5DD7 /* TransmitterTimeRxMessageTests.swift in Sources */,
 				433BC81D205CBB16000B1200 /* GlucoseBackfillMessageTests.swift in Sources */,
-				43E5292D2060C50800ACEB3B /* HKUnit.swift in Sources */,
 				43F82BD41D037227006F5DD7 /* SessionStartRxMessageTests.swift in Sources */,
 				43846AC81D8F89BE00799272 /* CalibrationDataRxMessageTests.swift in Sources */,
 				43DC87C01C8B509B005BC30D /* Data.swift in Sources */,
@@ -1478,7 +1467,6 @@
 				A9AD37EC225EEE850058C179 /* AuthRequestRxMessage.swift in Sources */,
 				A9AD37ED225EEE850058C179 /* AuthChallengeRxMessage.swift in Sources */,
 				A9AD37EE225EEE850058C179 /* GlucoseHistoryTxMessage.swift in Sources */,
-				A9AD37EF225EEE850058C179 /* HKUnit.swift in Sources */,
 				A9AD37F0225EEE850058C179 /* CalibrationDataRxMessage.swift in Sources */,
 				A9AD37F1225EEE850058C179 /* SessionStopTxMessage.swift in Sources */,
 				A9AD37F2225EEE850058C179 /* PeripheralManager+G5.swift in Sources */,
