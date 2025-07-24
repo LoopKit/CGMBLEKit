@@ -545,9 +545,7 @@ extension CalibrationState {
 
 // MARK: - AlertResponder implementation
 extension G5CGMManager {
-    public func acknowledgeAlert(alertIdentifier: Alert.AlertIdentifier, completion: @escaping (Error?) -> Void) {
-        completion(nil)
-    }
+    public func acknowledgeAlert(alertIdentifier: LoopKit.Alert.AlertIdentifier) async throws { }
 }
 
 // MARK: - AlertSoundVendor implementation
@@ -558,9 +556,7 @@ extension G5CGMManager {
 
 // MARK: - AlertResponder implementation
 extension G6CGMManager {
-    public func acknowledgeAlert(alertIdentifier: Alert.AlertIdentifier, completion: @escaping (Error?) -> Void) {
-        completion(nil)
-    }
+    public func acknowledgeAlert(alertIdentifier: LoopKit.Alert.AlertIdentifier) async throws { }
 }
 
 // MARK: - AlertSoundVendor implementation
