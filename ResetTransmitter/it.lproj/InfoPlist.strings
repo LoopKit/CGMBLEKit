@@ -5,8 +5,8 @@
 "CFBundleName" = "Resetta trasmettitore";
 
 /* Privacy - Bluetooth Always Usage Description */
-"NSBluetoothAlwaysUsageDescription" = "Il Bluetooth viene utilizzato per comunicare con i dispositivi di monitoraggio continuo del glucosio";
+"NSBluetoothAlwaysUsageDescription" = "Il Bluetooth viene utilizzato per comunicare con i dispositivi di monitoraggio continuo della glicemia";
 
 /* Privacy - Bluetooth Peripheral Usage Description */
-"NSBluetoothPeripheralUsageDescription" = "Il Bluetooth viene utilizzato per comunicare con i dispositivi di monitoraggio continuo del glucosio";
+"NSBluetoothPeripheralUsageDescription" = "Il Bluetooth viene utilizzato per comunicare con i dispositivi di monitoraggio continuo della glicemia";
 

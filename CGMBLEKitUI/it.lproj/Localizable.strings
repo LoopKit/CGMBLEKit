@@ -18,7 +18,7 @@ Title text for the button to remove a CGM from Loop */
 "Glucose" = "Glicemia";
 
 /* Describes a glucose value adjusted to reflect a recent calibration */
-"Glucose (Adjusted)" = "Glicemie (Corrette)";
+"Glucose (Adjusted)" = "Glucosio (aggiustate)";
 
 /* Section title for latest glucose calibration */
 "Latest Calibration" = "Ultima calibrazione";
@@ -33,22 +33,22 @@ Title text for the button to remove a CGM from Loop */
 "Open App" = "Apri app";
 
 /* Section title for remote data synchronization */
-"Remote Data Synchronization" = "Sincronizzazione di dati remoti";
+"Remote Data Synchronization" = "Sincronizzazione dati remoti";
 
 /* Title describing past sensor expiration */
-"Sensor Expired" = "Sensore Scaduto";
+"Sensor Expired" = "Sensore scaduto";
 
 /* Title describing sensor expiration */
-"Sensor Expires" = "Scadenza Sensore";
+"Sensor Expires" = "Scadenza sensore";
 
 /* Title describing sensor session age */
-"Session Age" = "Età sessione";
+"Session Age" = "Durata sessione";
 
 /* Title describing CGM calibration and battery state */
 "Status" = "Stato";
 
 /* Title describing transmitter session age */
-"Transmitter Age" = "Età trasmettitore";
+"Transmitter Age" = "Durata trasmettitore";
 
 /* The title text for the Dexcom G5/G6 transmitter ID config value */
 "Transmitter ID" = "ID trasmettitore";
@@ -57,5 +57,5 @@ Title text for the button to remove a CGM from Loop */
 "Trend" = "Tendenza";
 
 /* The title text for the upload glucose switch cell */
-"Upload Readings" = "Carica Letture";
+"Upload Readings" = "Carica letture";
 
