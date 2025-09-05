@@ -3,7 +3,6 @@
   "strings" : {
     "Are you sure you want to reset this transmitter?" : {
       "comment" : "Title of the reset confirmation sheet",
-      "extractionState" : "migrated",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -15,12 +14,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Möchtest Du das CGM wirklich löschen?"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Are you sure you want to reset this transmitter?"
           }
         },
         "es" : {
@@ -129,7 +122,6 @@
     },
     "Cancel" : {
       "comment" : "Title of button to cancel reset",
-      "extractionState" : "migrated",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -153,12 +145,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abbrechen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cancel"
           }
         },
         "es" : {
@@ -273,7 +259,6 @@
     },
     "It will take up to 10 minutes to complete." : {
       "comment" : "Message of the reset confirmation sheet",
-      "extractionState" : "migrated",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -285,12 +270,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Der Vorgang kann bis zu 10 Minuten dauern."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "It will take up to 10 minutes to complete."
           }
         },
         "es" : {
@@ -398,8 +377,7 @@
       }
     },
     "Reset" : {
-      "comment" : "Reset button title\n   Title of button to begin reset",
-      "extractionState" : "migrated",
+      "comment" : "Reset button title\nTitle of button to begin reset",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -411,12 +389,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zurücksetzen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Reset"
           }
         },
         "es" : {
@@ -525,7 +497,6 @@
     },
     "Transmitter Reset Complete" : {
       "comment" : "Notification title for background completion notification",
-      "extractionState" : "migrated",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -537,12 +508,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Zurücksetzen des Transmitters abgeschlossen"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Transmitter Reset Complete"
           }
         },
         "es" : {

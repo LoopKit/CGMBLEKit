@@ -3,7 +3,7 @@
   "strings" : {
     "3SD-s3-7OM.title" : {
       "comment" : "Class = \"UINavigationItem\"; title = \"Reset Complete\"; ObjectID = \"3SD-s3-7OM\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -19,7 +19,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "Reset Complete"
           }
         },
@@ -129,7 +129,7 @@
     },
     "7nc-6t-4hZ.title" : {
       "comment" : "Class = \"UINavigationItem\"; title = \"Reset Transmitter\"; ObjectID = \"7nc-6t-4hZ\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -145,7 +145,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "Reset Transmitter"
           }
         },
@@ -255,7 +255,7 @@
     },
     "cJ3-Gc-pnc.text" : {
       "comment" : "Class = \"UITextView\"; text = \"This tool can reset the clock on a transmitter that has reached its expiration date, allowing new sensor sessions to again be started.\\nThis may have unintended consequences for data services, such as Clarity and Share, especially when using a reset transmitter with the same account.\\nResetting cannot be undone.\\nUse at your own risk.\"; ObjectID = \"cJ3-Gc-pnc\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -271,7 +271,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "This tool can reset the clock on a transmitter that has reached its expiration date, allowing new sensor sessions to again be started.\nThis may have unintended consequences for data services, such as Clarity and Share, especially when using a reset transmitter with the same account.\nResetting cannot be undone.\nUse at your own risk."
           }
         },
@@ -381,7 +381,7 @@
     },
     "G4a-ia-wQC.placeholder" : {
       "comment" : "Class = \"UITextField\"; placeholder = \"Enter the 6-digit ID\"; ObjectID = \"G4a-ia-wQC\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -397,7 +397,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "Enter the 6-digit ID"
           }
         },
@@ -507,7 +507,7 @@
     },
     "gYy-Zz-y12.text" : {
       "comment" : "Class = \"UILabel\"; text = \"[Error goes here. And it can get very long and that's OK]\"; ObjectID = \"gYy-Zz-y12\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -523,7 +523,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "[Error goes here. And it can get very long and that's OK]"
           }
         },
@@ -627,7 +627,7 @@
     },
     "LBC-6R-q79.normalTitle" : {
       "comment" : "Class = \"UIButton\"; normalTitle = \"Reset\"; ObjectID = \"LBC-6R-q79\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -643,7 +643,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "Reset"
           }
         },
@@ -753,7 +753,7 @@
     },
     "MbK-kj-ejl.text" : {
       "comment" : "Class = \"UITextView\"; text = \"The transmitter has been successfully reset. Connect it to the app to begin a new sensor session.\"; ObjectID = \"MbK-kj-ejl\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -769,7 +769,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "The transmitter has been successfully reset. Connect it to the app to begin a new sensor session."
           }
         },
@@ -879,7 +879,7 @@
     },
     "vNG-r7-RbP.headerTitle" : {
       "comment" : "Class = \"UITableViewSection\"; headerTitle = \"Transmitter ID\"; ObjectID = \"vNG-r7-RbP\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -895,7 +895,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "Transmitter ID"
           }
         },

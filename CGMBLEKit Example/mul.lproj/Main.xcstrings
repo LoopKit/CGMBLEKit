@@ -3,7 +3,7 @@
   "strings" : {
     "3i8-2m-QFG.text" : {
       "comment" : "Class = \"UILabel\"; text = \"Run alongside G5 app\"; ObjectID = \"3i8-2m-QFG\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -19,7 +19,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "Run alongside G5 app"
           }
         },
@@ -129,7 +129,7 @@
     },
     "5y6-vU-qC3.text" : {
       "comment" : "Class = \"UILabel\"; text = \"Transmitter ID\"; ObjectID = \"5y6-vU-qC3\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -145,7 +145,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "Transmitter ID"
           }
         },
@@ -255,7 +255,7 @@
     },
     "9p7-LX-EMK.text" : {
       "comment" : "Class = \"UILabel\"; text = \"Waiting for first reading\"; ObjectID = \"9p7-LX-EMK\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -271,7 +271,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "Waiting for first reading"
           }
         },
@@ -381,7 +381,7 @@
     },
     "e0T-ru-tWD.text" : {
       "comment" : "Class = \"UITextField\"; text = \"500000\"; ObjectID = \"e0T-ru-tWD\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -397,7 +397,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "500000"
           }
         },
@@ -507,7 +507,7 @@
     },
     "HEQ-Bp-kx7.normalTitle" : {
       "comment" : "Class = \"UIButton\"; normalTitle = \"Start\"; ObjectID = \"HEQ-Bp-kx7\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -523,7 +523,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "Start"
           }
         },
@@ -633,7 +633,7 @@
     },
     "HYW-Ex-7LC.normalTitle" : {
       "comment" : "Class = \"UIButton\"; normalTitle = \"Calibrate\"; ObjectID = \"HYW-Ex-7LC\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -649,7 +649,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "Calibrate"
           }
         },
@@ -759,7 +759,7 @@
     },
     "JAM-9K-KeE.normalTitle" : {
       "comment" : "Class = \"UIButton\"; normalTitle = \"Stop\"; ObjectID = \"JAM-9K-KeE\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -775,7 +775,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "Stop"
           }
         },
@@ -885,7 +885,7 @@
     },
     "NSs-9e-3Sl.text" : {
       "comment" : "Class = \"UILabel\"; text = \"Stay connected\"; ObjectID = \"NSs-9e-3Sl\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -901,7 +901,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "Stay connected"
           }
         },
@@ -1011,7 +1011,7 @@
     },
     "zAF-A7-1Oc.text" : {
       "comment" : "Class = \"UILabel\"; text = \"––\"; ObjectID = \"zAF-A7-1Oc\";",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -1027,7 +1027,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "––"
           }
         },

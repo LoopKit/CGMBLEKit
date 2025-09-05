@@ -3,7 +3,7 @@
   "strings" : {
     "CFBundleName" : {
       "comment" : "Bundle name",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "da" : {
           "stringUnit" : {

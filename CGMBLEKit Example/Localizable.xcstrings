@@ -3,7 +3,7 @@
   "strings" : {
     "Backfill" : {
       "comment" : "Title displayed during backfill response",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -123,7 +123,7 @@
     },
     "Error" : {
       "comment" : "Title displayed during error response",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -249,7 +249,7 @@
     },
     "Unknown Data" : {
       "comment" : "Title displayed during unknown data response",
-      "extractionState" : "migrated",
+      "extractionState" : "manual",
       "localizations" : {
         "da" : {
           "stringUnit" : {

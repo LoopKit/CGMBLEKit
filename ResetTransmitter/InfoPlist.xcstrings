@@ -3,7 +3,7 @@
   "strings" : {
     "CFBundleDisplayName" : {
       "comment" : "Bundle display name",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -14,6 +14,12 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Reset"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Reset"
           }
         },
@@ -117,7 +123,7 @@
     },
     "CFBundleName" : {
       "comment" : "Bundle name",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -129,6 +135,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Transmitter zurücksetzen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "ResetTransmitter"
           }
         },
         "es" : {
@@ -213,7 +225,7 @@
     },
     "NSBluetoothAlwaysUsageDescription" : {
       "comment" : "Privacy - Bluetooth Always Usage Description",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -225,6 +237,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bluetooth wird verwendet für die Kommunikation mit CGM-Geräten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Bluetooth is used to communicate with continuous glucose monitor devices"
           }
         },
         "es" : {
@@ -309,7 +327,7 @@
     },
     "NSBluetoothPeripheralUsageDescription" : {
       "comment" : "Privacy - Bluetooth Peripheral Usage Description",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "da" : {
           "stringUnit" : {
@@ -321,6 +339,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bluetooth wird verwendet für die Kommunikation mit CGM-Geräten"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Bluetooth is used to communicate with continuous glucose monitor devices"
           }
         },
         "es" : {
