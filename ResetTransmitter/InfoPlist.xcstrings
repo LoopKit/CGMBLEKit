@@ -118,6 +118,12 @@
             "state" : "translated",
             "value" : "Khôi phục lại"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重置"
+          }
         }
       }
     },
