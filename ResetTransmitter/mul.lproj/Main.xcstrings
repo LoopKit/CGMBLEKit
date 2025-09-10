@@ -1,0 +1,1008 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "3SD-s3-7OM.title" : {
+      "comment" : "Class = \"UINavigationItem\"; title = \"Reset Complete\"; ObjectID = \"3SD-s3-7OM\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nulstil fuldført"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zurücksetzen abgeschlossen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Reset Complete"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reinicio completado"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nollaus valmis"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réinitialisation terminée"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "איתחול הסתיים"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ripristino completato"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "リセット完了"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nullstilling Ferdig"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset Compleet"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resetowanie zakończone"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Redefinição Concluída"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resetare finalizată"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сброс завершен"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obnovenie dokončené"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Återställning färdig"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sıfırlama Tamamlandı"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cài lại hoàn tất"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重置已完成"
+          }
+        }
+      }
+    },
+    "7nc-6t-4hZ.title" : {
+      "comment" : "Class = \"UINavigationItem\"; title = \"Reset Transmitter\"; ObjectID = \"7nc-6t-4hZ\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nulstil senderen"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transmitter zurücksetzen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Reset Transmitter"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reiniciar el transmisor"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nollaa lähetin"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réinitialiser le transmetteur"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "איתחול משדר"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ripristina trasmettitore"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "トランスミッターをリセットする"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nullstill Sender"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset Zender"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zresetuj nadajnik"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Redefinir Transmissor"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resetare transmițător"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сбросить трансмиттер"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resetovať vysielač"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Återställ sändare"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vericiyi Sıfırla"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cài lại Transmitter"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重置发射器"
+          }
+        }
+      }
+    },
+    "cJ3-Gc-pnc.text" : {
+      "comment" : "Class = \"UITextView\"; text = \"This tool can reset the clock on a transmitter that has reached its expiration date, allowing new sensor sessions to again be started.\\nThis may have unintended consequences for data services, such as Clarity and Share, especially when using a reset transmitter with the same account.\\nResetting cannot be undone.\\nUse at your own risk.\"; ObjectID = \"cJ3-Gc-pnc\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dette værktøj kan nulstille uret på en sender, der har nået sin udløbsdato, så det kan starte nye sensorsessioner.\nDette kan have utilsigtede konsekvenser for datatjenester, som f.eks. Dexcom Clarity og Dexcom Share, især når du bruger en nulstillet sender med det samme konto.\nGenindstilling kan ikke fortrydes.\nBenyttes på egen risiko."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit diesem Tool kann ein Transmitter, dessen Ablaufdatum erreicht ist, zurückgesetzt werden, sodass Sensorsitzungen erneut gestartet werden können.\nDies kann unbeabsichtigte Konsequenzen für Datendienste wie Clarity und Share haben, insbesondere wenn ein zurückgesetzter Transmitter mit demselben Konto verwendet wird.\nDas Zurücksetzen kann nicht rückgängig gemacht werden.\nBenutzung auf eigene Gefahr!"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "This tool can reset the clock on a transmitter that has reached its expiration date, allowing new sensor sessions to again be started.\nThis may have unintended consequences for data services, such as Clarity and Share, especially when using a reset transmitter with the same account.\nResetting cannot be undone.\nUse at your own risk."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta herramienta puede reiniciar el reloj de un transmisor que ha caducado y permite comenzar una nueva sesión de funcionamiento en el sensor.\nEsto puede tener consecuencias inintencionadas con los servidores de datos como Clarity o Share, especialmente si se usa un transmisor reiniciado con la misma cuenta.\nUna vez reiniciado, no se puede volver atrás.\nÚselo bajo su propio riesgo."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tämä työkalu nollaa kellon vanhentuneessa lähettimessä mahdollistaen lähettimen käytön jatkamisen.\n                    \n        Nollauksella voi olla odottamattomia seurauksia esimerkiksi Clarity- ja Share-palveluihin, erityisesti, kun nollattua lähetintä käytetään samalla käyttäjätilillä.\n        Nollausta ei voi perua.\n        Käytä omalla vastuullasi."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet outil peut réinitialiser l’horloge interne d’un transmetteur qui a atteint sa date de péremption, permettant de l’utiliser à nouveau.\nCeci pourrait avoir des conséquences involontaires pour des services de données, comme Clarity et Share, surtout en utilisant un transmetteur réinitialisé avec le même compte.\nLa réinitialisation est définitive.\nVous utilisez cette fonctionnalité à vos propres risques.."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "כלי זה מאתחל את השעון של משדר שפג, ומאפשר לחדש את התקשורת עם החיישן. זה עשוי לגרום לבעיות לא צפויות בשירותי מידע, כמו Clarity ו-Share, במיוחד אם מאתחלים משדר באותו חשבון.\nאיתחול היא פעולה בלתי הפיכה.\nהשימוש על אחריותך בלבד."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Questo strumento può reimpostare l'orologio di un trasmettitore che ha raggiunto la data di scadenza, consentendo di avviare nuove sessioni del sensore. \nCiò potrebbe avere conseguenze indesiderate per i servizi dati, come Clarity e Share, soprattutto quando si utilizza un trasmettitore reimpostato con lo stesso account. \nIl ripristino non può essere annullato. \nL'utilizzo è a proprio rischio e pericolo."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このツールは、使用期限に達したトランスミッターの時刻をリセットし、新たにセンサーのセッションを始められるようにします。\nリセットされたトランスミッターを同じアカウントで使うときは特に、ClarityやShareなどのデータサービスに意図しない影響を及ぼすことがあります。\nリセットは元に戻すことができません。\nご自身の責任で使用してください。"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dette verktøyet kan nullstille klokken på en sender som har gått ut på dato, slik at senderen kan brukes på nytt. Dette kan ha uante konsekvenser for eksterne data-tjenester, som Clarity og Share, og spesielt om sender brukes igjen med samme konto. Nullstilling kan ikke angres. Bruk på egen risiko."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deze methode kan de klok van de zender resetten als de vervaldatum is bereikt, zodat een nieuwe sensorsessie gestart kan worden.\nDit heeft mogelijk onbedoelde gevolgen voor services als Clarity en Share. Met name als hetzelfde account wordt gebruikt om een zender te resetten.\nResetten kan niet ongedaan gemaakt worden.\nGebruik op eigen risico"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To narzędzie może zresetować zegar nadajnika, który osiągnął termin ważności, umożliwiając ponowne rozpoczęcie sesji sensora. Może to mieć niepożądane konsekwencje dla usług danych, takich jak Clarity i Share, zwłaszcza w przypadku użytkowania zresetowanego nadajnika z tym samym kontem. Resetowania nie można cofnąć. Wykonujesz je na własne ryzyko."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esta ferramenta pode redefinir o relógio em um transmissor que atingiu sua data de validade, permitindo que novas sessões de sensor sejam iniciadas novamente.\n Isso pode ter consequências indesejadas para serviços de dados, como Clarity e Share, especialmente ao usar um transmissor redefinido com a mesmo conta.\n A redefinição não pode ser desfeita.\n Use por sua conta e risco."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acest utilitar poate reseta ceasul dintr-un transmițător ce a depășit data de expirare, permițând pornirea unor noi sesiuni de senzor.\nResetarea poate cauza consecințe nedorite pentru serviciile care colectează date, cum ar fi Clarity sau Share, în special când utilizați un transmițător resetat cu același cont.\nResetarea nu poate fi anulată.\nA se utiliza pe proprie răspundere."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этот инструмент поможет сбросить счетчик времени на трансмиттере, достигшем окончания срока работы. Может повлечь непреднамеренные последствия в службах сбора данных Clarity и Share, особенно при использовании трансмиттера с той же учетной записью. Сброс отменить невозможно. Пользуйтесь на свой риск."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tento nástroj môže resetovať hodiny na vysielači, ktorý dosiahol dátum vypršania platnosti, čo umožňuje opätovné spustenie nových relácií senzora.\nTo môže mať neželané dôsledky pre dátové služby, ako je Clarity a Share, najmä ak používate resetovaný vysielač s rovnakým účtom.\nResetovanie sa nedá vrátiť späť.\nPoužitie na vlastné riziko."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detta verktyg kan återställa klockan på en sändare som har nått sitt utgångsdatum, därigenom tillåta att en ny sensor kan startas. Detta kan få oväntade följder för tjänster som hanterar datan, t.ex. Clarity och Share, speciellt när man använder en återställd sändare med samma konto. Återställning kan inte ångras."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu araç, son kullanma tarihine ulaşmış bir vericideki saati sıfırlayarak yeni sensör oturumlarının yeniden başlatılmasını sağlayabilir.\nÖzellikle aynı hesapla, sıfırlanan bir verici kullanıldığında, Clarity ve Share gibi veri hizmetleri için istenmeyen sonuçları olabilir.\nSıfırlama geri alınamaz.\nKullanımı kendi sorumluluğunuzdadır."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tác vụ này có thể đảo ngược đồng hồ trên transmitter khi đến ngày hết hạn và cho phép tiếp tục sử dụng sensor mới.\nĐiều này có thể có hậu quả không lường được đối với các dịch vụ về dữ liệu ví dụ như trên ứng dụng Clarity và Share, đặc biệt là khi thực hiện việc cài lại transmitter mà sử dụng cùng một tài khoản.\nViệc cài đặt không thể được thực hiện.\nBạn tự chịu mọi rủi ro."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "该操作将会把发射器使用时间清零,此后可以继续重新启动传感器.这可能会导致Dexcom远程数据故障,尤其是使用同一个Dexcom账户上传数据.重置可能会失败,请自行承担相关风险"
+          }
+        }
+      }
+    },
+    "G4a-ia-wQC.placeholder" : {
+      "comment" : "Class = \"UITextField\"; placeholder = \"Enter the 6-digit ID\"; ObjectID = \"G4a-ia-wQC\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indtast det 6-cifrede ID"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gib die 6-stellige ID ein"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Enter the 6-digit ID"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Introduzca la identificación de 6 cifras"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syötä 6-numeroinen tunniste"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entrez l’ID, composé de 6 lettres et chiffres"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הכנס את המזהה בן 6 ספרות"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inserisci l'ID di 6 cifre"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "6桁のトランスミッタIDを入力"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skriv inn 6-siffret ID"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vul de 6 cijferige ID in"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wprowadź 6-cyfrowy ID"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Digite o ID de 6 dígitos"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Introduceți ID-ul din 6 cifre"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введите шестизначный идентификатор"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zadajte 6-miestne ID"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ange ditt 6-siffriga sändar-ID"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "6 basamaklı kimliği girin"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập 6 số ID"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "输入6位数字编号"
+          }
+        }
+      }
+    },
+    "gYy-Zz-y12.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"[Error goes here. And it can get very long and that's OK]\"; ObjectID = \"gYy-Zz-y12\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Fejl optræder her. Og det kan blive meget langt, og det er OK]"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Error goes here. And it can get very long and that's OK]"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "[Error goes here. And it can get very long and that's OK]"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[El error se localiza aquí. Puede ser muy largo, pero no importa]"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Virhe tulee tähän. Se voi olla hyvin pitkä ja se on OK]"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[L’erreur se place ici. Elle peut être très longue, ce n’est pas embêtant.]"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[השגיאה תופיע פה. היא יכולה להיות ארוכה מאוד וזה בסדר]"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[L'errore va qui. Può essere molto lungo, ma va bene]"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Error goes here. And it can get very long and that's OK]"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Feil skrives her. Den kan være veldig lang, og det er helt greit]"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Hier komt de foutmelding. Deze kan erg lang zijn en dat is OK]"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Oto błąd. Jego treść może być bardzo długa i to normalne]"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Erro aqui. E pode demorar muito mas tudo bem]"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Eroarea apare aici. Și poate fi foarte lungă și suntem OK cu asta]"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Ошибка здесь. И это может быть очень долго, и это нормально]"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Här står felen. Och det kan bli väldigt långt, vilket är OK]"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Hata buraya gider. Ve çok uzun olabilir ve sorun değil]"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Lỗi ở đây. Và có thể mất nhiều thời gian nhưng sẽ ổn thôi]"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[发生错误,请耐心等待]"
+          }
+        }
+      }
+    },
+    "LBC-6R-q79.normalTitle" : {
+      "comment" : "Class = \"UIButton\"; normalTitle = \"Reset\"; ObjectID = \"LBC-6R-q79\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nulstil"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zurücksetzen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Reset"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reiniciar"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nollaa"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réinitialiser"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "איתחול"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ripristina"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "リセット"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nullstille"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resetuj"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restabelecer"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resetare"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сброс"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resetovať"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Återställ"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sıfırla"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khôi phục lại"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重置"
+          }
+        }
+      }
+    },
+    "MbK-kj-ejl.text" : {
+      "comment" : "Class = \"UITextView\"; text = \"The transmitter has been successfully reset. Connect it to the app to begin a new sensor session.\"; ObjectID = \"MbK-kj-ejl\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senderen er nulstillet. Tilslut  til appen for at begynde en ny sensorsession."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Transmitter wurde erfolgreich zurückgesetzt. Verbinde ihn mit der App, um eine neue Sensorsitzung zu starten."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The transmitter has been successfully reset. Connect it to the app to begin a new sensor session."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El transmisor se ha reiniciado con éxito. Conéctelo a la app para empezar una sesión nueva del sensor."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lähettimen nollaus onnistui. Yhdistä se sovellukseen ja aloita uusi sensorin sessio."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La réinitialisation du transmetteur a réussi. Connectez-le à l’application mobile pour commencer une nouvelle session de capteur."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "המשדר אותחל בהצלחה. חבר אותו לאפליקציה כדי לחדש את התקשורת עם החיישן."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il trasmettitore è stato ripristinato correttamente. Collegalo all'app per iniziare una nuova sessione del sensore."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "トランスミッターのリセットが完了しました。新たにセンサーのセッションを始めるにはアプリを接続してください。"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sender er nå nullstillt. Koble den til appen for å starte en ny sensorøkt."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De zender is succesvol gereset. Verbind de zender met de app om een nieuwe sensorsessie te beginnen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nadajnik został skutecznie zresetowany. Podłącz go do apliakcji, aby rozpocząć nową sesję sensora."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O transmissor foi redefinido com sucesso. Conecte-o ao aplicativo para iniciar uma nova sessão de sensor."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transmițătorul a fost resetat cu succes. Conectați-l la aplicație pentru a porni o nouă sesiune de senzor."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Трансмиттер успешно сброшен. Подключите его к родному приложению, чтобы запустить новый сенсор."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vysielač bol úspešne resetovaný. Pripojte ho k aplikácii a začnite novú reláciu senzora."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sändaren har blivit återställd. Anslut den till appen för att börja ny session."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verici başarıyla sıfırlandı. Yeni bir sensör oturumu başlatmak için uygulamaya bağlayın."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Việc cài lại Transmitter đã hoàn tất. Kết nối với ứng dụng để bắt đầu khởi động sensor."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "发射器已重置,请重新连接,并启动传感器"
+          }
+        }
+      }
+    },
+    "vNG-r7-RbP.headerTitle" : {
+      "comment" : "Class = \"UITableViewSection\"; headerTitle = \"Transmitter ID\"; ObjectID = \"vNG-r7-RbP\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sender ID"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transmitter-ID"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Transmitter ID"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identificación del transmisor"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lähettimen tunniste"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID du transmetteur"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "מזהה משדר"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID trasmettitore"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "トランスミッタ ID"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sender ID"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zenderserienummer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID nadajnika"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID do Transmissor"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID transmițător"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID трансмиттера"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID vysielača"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sändari-ID"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verici Kimliği"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Số ID của Transmitter"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "发射器编号"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
