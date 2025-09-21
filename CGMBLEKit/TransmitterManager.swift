@@ -446,7 +446,7 @@ public class G5CGMManager: TransmitterManager, CGMManager {
     public let isOnboarded = true   // No distinction between created and onboarded
 
     public var appURL: URL? {
-        return URL(string: "dexcomcgm://")
+        return nil
     }
 
     public override var device: HKDevice? {
@@ -483,12 +483,12 @@ public class G6CGMManager: TransmitterManager, CGMManager {
     public let isOnboarded = true   // No distinction between created and onboarded
 
     public var appURL: URL? {
-        return URL(string: "dexcomg6://")
+        return nil
     }
 
     public override var device: HKDevice? {
         return HKDevice(
-            name: "CGMBLEKit",
+            name: transmitter.ID,
             manufacturer: "Dexcom",
             model: "G6",
             hardwareVersion: nil,
