@@ -1112,6 +1112,12 @@
             "state" : "translated",
             "value" : "Son Bağlantı"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最新连接"
+          }
         }
       }
     },
@@ -1445,6 +1451,12 @@
             "state" : "translated",
             "value" : "Uzaktan Veri Senkronizasyonu"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "远程数据同步"
+          }
         }
       }
     },
@@ -1528,6 +1540,12 @@
             "state" : "translated",
             "value" : "Sensörün Süresi Doldu"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "传感器已过期"
+          }
         }
       }
     },
@@ -1610,6 +1628,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensörün Süresi Doluyor"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "传感器即将过期"
           }
         }
       }
@@ -2324,6 +2348,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Okumaları Yükle"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上传读数"
           }
         }
       }
