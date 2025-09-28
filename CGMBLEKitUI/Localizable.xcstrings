@@ -5,10 +5,10 @@
       "comment" : "Format string for glucose trend per minute. (1: glucose value and unit)",
       "extractionState" : "manual",
       "localizations" : {
-        "cs" : {
+        "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@/min"
+            "value" : "%@ دقيقة"
           }
         },
         "da" : {
@@ -37,41 +37,35 @@
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "%@/min"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@/min"
+            "value" : "%@min"
           }
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@/דקה"
+            "state" : "new",
+            "value" : "%@/min"
           }
         },
-        "hi" : {
+        "hu" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@/मिनट"
+            "state" : "new",
+            "value" : "%@/min"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@/min"
+            "value" : "%@/minuto"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@/分"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@/min"
@@ -85,20 +79,20 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
+            "value" : "%@/min"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "%@/min"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "%@/min"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "/min"
           }
         },
         "ru" : {
@@ -110,7 +104,7 @@
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@ /min"
+            "value" : "%@/min"
           }
         },
         "sv" : {
@@ -122,19 +116,31 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@/dk"
+            "value" : "%@/dak"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@/хв"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@/phút"
+            "value" : "%@/phút"
+          }
+        },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%@/min"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@/分钟"
+            "state" : "new",
+            "value" : "%@/min"
           }
         }
       }
@@ -144,8 +150,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "هل أنت متأكد أنك تريد حذف هذا CGM؟"
+            "state" : "new",
+            "value" : "Are you sure you want to delete this CGM?"
           }
         },
         "da" : {
@@ -157,19 +163,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bist Du sicher, dass Du dieses CGM löschen möchtest?"
+            "value" : "Möchten Sie das CGM wirklich löschen?"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "¿Está seguro de que quiere eliminar este MCG?"
+            "value" : "¿Está usted seguro de querer eliminar este MCG?"
           }
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Haluatko varmasti poistaa CGM:n?"
+            "state" : "new",
+            "value" : "Are you sure you want to delete this CGM?"
           }
         },
         "fr" : {
@@ -180,74 +186,80 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "בטוח שברצונך למחוק את חיישן זה?"
+            "state" : "new",
+            "value" : "Are you sure you want to delete this CGM?"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to delete this CGM?"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sei sicuro di voler eliminare questo CGM?"
+            "value" : "Sei sicuro di voler cancellare questo CGM?"
           }
         },
-        "ja" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "このCGMを削除しますか?"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Er du sikker på at du vil slette CGM?"
+            "value" : "Sikker på at du vil slette denne CGM?"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Weet je zeker dat je deze CGM wilt verwijderen"
+            "value" : "Weet je zeker dat je deze CGM wilt vewijderen?"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Czy na pewno chcesz usunąć ten CGM?"
+            "state" : "new",
+            "value" : "Are you sure you want to delete this CGM?"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to delete this CGM?"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Você está certo que quer remover este CGM?"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sunteți sigur că doriți să ștergeți acest CGM?"
+            "state" : "new",
+            "value" : "Are you sure you want to delete this CGM?"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вы уверены, что хотите удалить этот CGM?"
+            "value" : "Вы уверены, что хотите удалить текущий CGM?"
           }
         },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Naozaj chcete odstrániť toto CGM?"
+            "value" : "Ste si istí, že chcete odstrániť tento CGM?"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Är du säker på att du vill radera denna CGM?"
+            "value" : "År du säker på att du vill ta bort denna CGM?"
           }
         },
         "tr" : {
           "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to delete this CGM?"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
             "state" : "translated",
-            "value" : "Bu CGM'i silmek istediğinizden emin misiniz?"
+            "value" : "Ви впевнені, що хочете видалити цей CGM?"
           }
         },
         "vi" : {
@@ -256,10 +268,16 @@
             "value" : "Bạn có chắc sẽ xóa CGM này?"
           }
         },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to delete this CGM?"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "确认要删除该CGM吗？"
+            "state" : "new",
+            "value" : "Are you sure you want to delete this CGM?"
           }
         }
       }
@@ -271,12 +289,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "إلغاء"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zrušit"
           }
         },
         "da" : {
@@ -300,7 +312,7 @@
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kumoa"
+            "value" : "Peru"
           }
         },
         "fr" : {
@@ -311,29 +323,23 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "לא"
+            "state" : "new",
+            "value" : "Cancel"
           }
         },
-        "hi" : {
+        "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "निरस्त"
+            "value" : "Mégse"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Annulla"
+            "value" : "Cancella"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "キャンセル"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Avbryt"
@@ -351,16 +357,16 @@
             "value" : "Anuluj"
           }
         },
-        "pt-BR" : {
+        "pt" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cancelar"
           }
         },
-        "ro" : {
+        "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Renunță"
+            "value" : "Cancelar"
           }
         },
         "ru" : {
@@ -384,13 +390,25 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "İptal"
+            "value" : "Vazgeç"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відмінити"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hủy bỏ"
+          }
+        },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Cancel"
           }
         },
         "zh-Hans" : {
@@ -404,6 +422,12 @@
     "Date" : {
       "comment" : "Title describing glucose date",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "التاريخ"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -425,7 +449,7 @@
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aika"
+            "value" : "Päivä"
           }
         },
         "fr" : {
@@ -436,8 +460,14 @@
         },
         "he" : {
           "stringUnit" : {
+            "state" : "new",
+            "value" : "Date"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
             "state" : "translated",
-            "value" : "תאריך"
+            "value" : "Dátum"
           }
         },
         "it" : {
@@ -446,13 +476,7 @@
             "value" : "Data"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "日付"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dato"
@@ -470,13 +494,13 @@
             "value" : "Data"
           }
         },
-        "pt-BR" : {
+        "pt" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Data"
           }
         },
-        "ro" : {
+        "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Data"
@@ -497,7 +521,7 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tid"
+            "value" : "Datum"
           }
         },
         "tr" : {
@@ -506,10 +530,22 @@
             "value" : "Tarih"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дата"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ngày"
+          }
+        },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Date"
           }
         },
         "zh-Hans" : {
@@ -526,7 +562,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "حذف CGM"
+            "value" : "حذف المستشعر"
           }
         },
         "da" : {
@@ -549,35 +585,35 @@
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Poista CGM"
+            "state" : "new",
+            "value" : "Delete CGM"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Supprimer le CGM"
+            "value" : "Supprimer CGM"
           }
         },
         "he" : {
           "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete CGM"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
             "state" : "translated",
-            "value" : "מחק חיישן"
+            "value" : "CGM kitörlése"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Elimina CGM"
+            "value" : "Cancella CGM"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "CGMを削除"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Slett CGM"
@@ -591,32 +627,32 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Usuń CGM"
+            "state" : "new",
+            "value" : "Delete CGM"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete CGM"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Remover CGM"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ștergeți CGM"
+            "state" : "new",
+            "value" : "Delete CGM"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Удалить мониторинг"
+            "value" : "Удалить CGM"
           }
         },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Odstrániť CGM"
+            "value" : "Odstrániť senzor"
           }
         },
         "sv" : {
@@ -628,7 +664,13 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "CGM Sil"
+            "value" : "CGM'i Sil"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Видалити CGM"
           }
         },
         "vi" : {
@@ -637,10 +679,16 @@
             "value" : "Xóa CGM"
           }
         },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete CGM"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "删除CGM"
+            "value" : "删除CGM数据源"
           }
         }
       }
@@ -650,14 +698,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "قراءات السكر"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Glukóza"
+            "state" : "new",
+            "value" : "Glucose"
           }
         },
         "da" : {
@@ -680,8 +722,8 @@
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Glukoosi"
+            "state" : "new",
+            "value" : "Glucose"
           }
         },
         "fr" : {
@@ -692,29 +734,23 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "גלוקוז"
+            "state" : "new",
+            "value" : "Glucose"
           }
         },
-        "hi" : {
+        "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "शुगर"
+            "value" : "Glükóz"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Glicemia"
+            "value" : "Glicemie"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "血糖値"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Blodsukker"
@@ -723,25 +759,25 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Glucose"
+            "value" : "Glucosewaarde"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Glukoza"
+            "state" : "new",
+            "value" : "Glucose"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Glucose"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Glicose"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Glucoza"
           }
         },
         "ru" : {
@@ -765,13 +801,25 @@
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kan şekeri"
+            "value" : "Glikoz"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Глюкоза"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Đường huyết"
+          }
+        },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Glucose"
           }
         },
         "zh-Hans" : {
@@ -785,6 +833,12 @@
     "Glucose (Adjusted)" : {
       "comment" : "Describes a glucose value adjusted to reflect a recent calibration",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جلوكوز (معدّلة)"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -800,7 +854,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Glucose (Adjusted)"
+            "value" : "Glucosa (ajustada)"
           }
         },
         "fi" : {
@@ -817,23 +871,23 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "גלוקוז (מתואם)"
+            "state" : "new",
+            "value" : "Glucose (Adjusted)"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Glucose (Adjusted)"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Glucosio (aggiustate)"
+            "value" : "Glicemie (Corrette)"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "グルコース (調整後)"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Blodsukker (Justert)"
@@ -851,16 +905,16 @@
             "value" : "Glukoza (skorygowana)"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Glucose (Adjusted)"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Glicose (Ajustada)"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Glucoză (ajustată)"
           }
         },
         "ru" : {
@@ -887,10 +941,22 @@
             "value" : "KŞ (Düzeltilmiş)"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Глюкоза (коригована)"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Đường huyết (Được điều chỉnh)"
+          }
+        },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Glucose (Adjusted)"
           }
         },
         "zh-Hans" : {
@@ -904,6 +970,12 @@
     "Latest Calibration" : {
       "comment" : "Section title for latest glucose calibration",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أحدث معايرة"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -936,8 +1008,14 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "כיול אחרון"
+            "state" : "new",
+            "value" : "Latest Calibration"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Latest Calibration"
           }
         },
         "it" : {
@@ -946,13 +1024,7 @@
             "value" : "Ultima calibrazione"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "直近の較正"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Siste kalibrering"
@@ -961,7 +1033,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Laatste Kalibratie"
+            "value" : "Laatste kalibratie"
           }
         },
         "pl" : {
@@ -970,16 +1042,16 @@
             "value" : "Ostatnia kalibracja"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Latest Calibration"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Última Calibração"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ultima calibrare"
           }
         },
         "ru" : {
@@ -1006,10 +1078,22 @@
             "value" : "Son Kalibrasyon"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Остання калібровка"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lần hiệu chỉnh gần nhất"
+          }
+        },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Latest Calibration"
           }
         },
         "zh-Hans" : {
@@ -1023,6 +1107,12 @@
     "Latest Connection" : {
       "comment" : "Section title for latest connection date",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "آخر اتصال"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1059,13 +1149,19 @@
             "value" : "חיבור אחרון"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Latest Connection"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ultima connessione"
           }
         },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Siste forbindelse"
@@ -1074,7 +1170,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Laatste Verbinding"
+            "value" : "Laatste verbinding"
           }
         },
         "pl" : {
@@ -1083,10 +1179,16 @@
             "value" : "Ostatnie połączenie"
           }
         },
-        "ro" : {
+        "pt" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ultima conexiune"
+            "state" : "new",
+            "value" : "Latest Connection"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Latest Connection"
           }
         },
         "ru" : {
@@ -1113,10 +1215,28 @@
             "value" : "Son Bağlantı"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Останнє підключення"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kết nối mới nhất"
+          }
+        },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Latest Connection"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "最新连接"
+            "value" : "上一次连接"
           }
         }
       }
@@ -1124,6 +1244,12 @@
     "Latest Reading" : {
       "comment" : "Section title for latest glucose reading",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "آخر قراءة"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1156,8 +1282,14 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "קריאה אחרונה"
+            "state" : "new",
+            "value" : "Latest Reading"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Latest Reading"
           }
         },
         "it" : {
@@ -1166,13 +1298,7 @@
             "value" : "Ultima lettura"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最新の読み取り"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Siste måling"
@@ -1181,7 +1307,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Laatste Meting"
+            "value" : "Laatste meting"
           }
         },
         "pl" : {
@@ -1190,16 +1316,16 @@
             "value" : "Ostatni odczyt"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Latest Reading"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Leitura mais Recente"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ultima citire"
           }
         },
         "ru" : {
@@ -1226,10 +1352,22 @@
             "value" : "Son Okuma"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Останнє читання"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kết quả đọc mới nhất"
+          }
+        },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Latest Reading"
           }
         },
         "zh-Hans" : {
@@ -1243,10 +1381,16 @@
     "Open App" : {
       "comment" : "Button title to open CGM app",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فتح التطبيق"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Åben app"
+            "value" : "Åbn app"
           }
         },
         "de" : {
@@ -1275,8 +1419,14 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "פתח אפליקציה"
+            "state" : "new",
+            "value" : "Open App"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Open App"
           }
         },
         "it" : {
@@ -1285,13 +1435,7 @@
             "value" : "Apri app"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "アプリを開く"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Åpne app"
@@ -1300,7 +1444,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open App"
+            "value" : "App openen"
           }
         },
         "pl" : {
@@ -1309,16 +1453,16 @@
             "value" : "Otwórz aplikację"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Open App"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Abrir App"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deschide aplicația"
           }
         },
         "ru" : {
@@ -1345,10 +1489,22 @@
             "value" : "Uygulamayı aç"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відкрити додаток"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mở ứng dụng"
+          }
+        },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Open App"
           }
         },
         "zh-Hans" : {
@@ -1362,10 +1518,16 @@
     "Remote Data Synchronization" : {
       "comment" : "Section title for remote data synchronization",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مزامنة البيانات عن بعد"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Synkronisering af fjerndata"
+            "value" : "Fjerndatasynkronisering"
           }
         },
         "de" : {
@@ -1394,17 +1556,23 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "סנכרון נתונים מרחוק"
+            "state" : "new",
+            "value" : "Remote Data Synchronization"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Remote Data Synchronization"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sincronizzazione dati remoti"
+            "value" : "Sincronizzazione dei dati remoti"
           }
         },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Synkronisering av eksterne data"
@@ -1413,7 +1581,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Remote Gegevenssynchronisatie"
+            "value" : "Synchronisatie van gegevens op afstand"
           }
         },
         "pl" : {
@@ -1422,10 +1590,16 @@
             "value" : "Zdalna synchronizacja danych"
           }
         },
-        "ro" : {
+        "pt" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sincronizarea datelor"
+            "state" : "new",
+            "value" : "Remote Data Synchronization"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Remote Data Synchronization"
           }
         },
         "ru" : {
@@ -1437,7 +1611,7 @@
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diaľková sychronizácia dát"
+            "value" : "Vzdialená sychronizácia dát"
           }
         },
         "sv" : {
@@ -1452,6 +1626,24 @@
             "value" : "Uzaktan Veri Senkronizasyonu"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Віддалена синхронізація даних"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đồng bộ hoá dữ liệu từ xa"
+          }
+        },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Remote Data Synchronization"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1463,6 +1655,12 @@
     "Sensor Expired" : {
       "comment" : "Title describing past sensor sensor expiration",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إنتهت صلاحية المستشعر"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1481,6 +1679,12 @@
             "value" : "Sensor caducado"
           }
         },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sensor Expired"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1489,8 +1693,14 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "המשדר פג"
+            "state" : "new",
+            "value" : "Sensor Expired"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sensor Expired"
           }
         },
         "it" : {
@@ -1499,7 +1709,7 @@
             "value" : "Sensore scaduto"
           }
         },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensor utløpt"
@@ -1508,7 +1718,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sensor Verlopen"
+            "value" : "Sensor verlopen"
           }
         },
         "pl" : {
@@ -1517,10 +1727,16 @@
             "value" : "Sensor wygasł"
           }
         },
-        "ro" : {
+        "pt" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Senzorul a expirat"
+            "state" : "new",
+            "value" : "Sensor Expired"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sensor Expired"
           }
         },
         "ru" : {
@@ -1535,10 +1751,34 @@
             "value" : "Platnosť senzora vypršala"
           }
         },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor har gått ut"
+          }
+        },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensörün Süresi Doldu"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сенсор минув"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cảm biến đã hết hạn"
+          }
+        },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sensor Expired"
           }
         },
         "zh-Hans" : {
@@ -1552,6 +1792,12 @@
     "Sensor Expires" : {
       "comment" : "Title describing sensor sensor expiration",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ينتهي المستشعر"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1561,13 +1807,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sensor-Ablaufzeitpunkt"
+            "value" : "Sensor läuft ab"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "El sensor caduca"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sensor Expires"
           }
         },
         "fr" : {
@@ -1578,8 +1830,14 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "תפוגת משדר"
+            "state" : "new",
+            "value" : "Sensor Expires"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sensor Expires"
           }
         },
         "it" : {
@@ -1588,7 +1846,7 @@
             "value" : "Scadenza sensore"
           }
         },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensor utløper"
@@ -1597,7 +1855,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sensor Verloopt"
+            "value" : "Sensor verloopt"
           }
         },
         "pl" : {
@@ -1606,10 +1864,16 @@
             "value" : "Sensor Wygasa"
           }
         },
-        "ro" : {
+        "pt" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Senzorul expiră"
+            "state" : "new",
+            "value" : "Sensor Expires"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sensor Expires"
           }
         },
         "ru" : {
@@ -1621,7 +1885,13 @@
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Platnosť senzora vyprší"
+            "value" : "Platnosť senzora skončí"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor går ut"
           }
         },
         "tr" : {
@@ -1630,10 +1900,28 @@
             "value" : "Sensörün Süresi Doluyor"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сенсор закінчується"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cảm biến hết hạn"
+          }
+        },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sensor Expires"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "传感器即将过期"
+            "value" : "传感器已过期"
           }
         }
       }
@@ -1641,10 +1929,16 @@
     "Session Age" : {
       "comment" : "Title describing sensor session age",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عمر الجلسة"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Session-alder"
+            "value" : "Sessionsalder"
           }
         },
         "de" : {
@@ -1673,23 +1967,23 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "זמן משדר"
+            "state" : "new",
+            "value" : "Session Age"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Session Age"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Durata sessione"
+            "value" : "Età sessione"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "セッション経過時間"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alder på økt"
@@ -1707,16 +2001,16 @@
             "value" : "Wiek sesji"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Session Age"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Idade da Sessão"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vechime sesiune"
           }
         },
         "ru" : {
@@ -1743,10 +2037,22 @@
             "value" : "Sensör Yaşı"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вік Сенсору"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Thời gian sử dụng sensor"
+          }
+        },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Session Age"
           }
         },
         "zh-Hans" : {
@@ -1764,12 +2070,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "الحالة"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Status"
           }
         },
         "da" : {
@@ -1804,8 +2104,14 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "מצב"
+            "state" : "new",
+            "value" : "Status"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Status"
           }
         },
         "it" : {
@@ -1814,13 +2120,7 @@
             "value" : "Stato"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ステータス"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Status"
@@ -1834,7 +2134,13 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
+            "value" : "Status"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Status"
           }
         },
@@ -1842,12 +2148,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Estado"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stare"
           }
         },
         "ru" : {
@@ -1874,10 +2174,22 @@
             "value" : "Durum"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Статус"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tình trạng"
+          }
+        },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Status"
           }
         },
         "zh-Hans" : {
@@ -1891,10 +2203,16 @@
     "Transmitter Age" : {
       "comment" : "Title describing transmitter session age",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عمر جهاز الإرسال"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sender alder"
+            "value" : "Senderalder"
           }
         },
         "de" : {
@@ -1923,23 +2241,23 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "גיל משדר"
+            "state" : "new",
+            "value" : "Transmitter Age"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Transmitter Age"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Durata trasmettitore"
+            "value" : "Età trasmettitore"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "トランスミッター経過時間"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alder på sender"
@@ -1957,16 +2275,16 @@
             "value" : "Wiek nadajnika"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Transmitter Age"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Idade do Transmissor"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vechime transmițător"
           }
         },
         "ru" : {
@@ -1993,10 +2311,22 @@
             "value" : "Verici Yaşı"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Трансмітер відпрацював"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Thời gian sử dụng Transmitter"
+            "value" : "Transmitter đã sử dụng"
+          }
+        },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Transmitter Age"
           }
         },
         "zh-Hans" : {
@@ -2010,6 +2340,12 @@
     "Transmitter ID" : {
       "comment" : "The title text for the Dexcom G5/G6 transmitter ID config value",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معرف المرسل"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2019,19 +2355,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Transmitter-ID"
+            "value" : "Sender-ID"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Identificación del transmisor"
+            "value" : "ID del transmisor"
           }
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lähettimen tunniste"
+            "state" : "new",
+            "value" : "Transmitter ID"
           }
         },
         "fr" : {
@@ -2042,8 +2378,14 @@
         },
         "he" : {
           "stringUnit" : {
+            "state" : "new",
+            "value" : "Transmitter ID"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
             "state" : "translated",
-            "value" : "מזהה משדר"
+            "value" : "Jeladó ID"
           }
         },
         "it" : {
@@ -2052,40 +2394,34 @@
             "value" : "ID trasmettitore"
           }
         },
-        "ja" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "トランスミッタ ID"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sender ID"
+            "value" : "Sender-ID"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zenderserienummer"
+            "value" : "Zender ID"
           }
         },
         "pl" : {
           "stringUnit" : {
+            "state" : "new",
+            "value" : "Transmitter ID"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
             "state" : "translated",
-            "value" : "ID nadajnika"
+            "value" : "ID do transmissor"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ID do Transmissor"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ID transmițător"
+            "value" : "ID do transmissor"
           }
         },
         "ru" : {
@@ -2103,19 +2439,31 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sändari-ID"
+            "value" : "Sändar-ID"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verici Kimliği"
+            "value" : "Verici ID"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID передавача"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Số ID của Transmitter"
+          }
+        },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Transmitter ID"
           }
         },
         "zh-Hans" : {
@@ -2129,6 +2477,12 @@
     "Trend" : {
       "comment" : "Title describing glucose trend",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إتجاه"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2149,8 +2503,8 @@
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Suunta"
+            "state" : "new",
+            "value" : "Trend"
           }
         },
         "fr" : {
@@ -2161,14 +2515,14 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "מגמה"
+            "state" : "new",
+            "value" : "Trend"
           }
         },
-        "hi" : {
+        "hu" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "ट्रेंड"
+            "state" : "new",
+            "value" : "Trend"
           }
         },
         "it" : {
@@ -2177,13 +2531,7 @@
             "value" : "Tendenza"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "トレンド"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trend"
@@ -2197,20 +2545,20 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
+            "value" : "Trend"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Trend"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tendência"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tendinţă"
+            "state" : "new",
+            "value" : "Trend"
           }
         },
         "ru" : {
@@ -2222,7 +2570,7 @@
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trend"
+            "value" : "Vývoj"
           }
         },
         "sv" : {
@@ -2237,16 +2585,28 @@
             "value" : "Eğilim"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренди"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Xu hướng"
           }
         },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Trend"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "趋势"
+            "state" : "new",
+            "value" : "Trend"
           }
         }
       }
@@ -2254,6 +2614,12 @@
     "Upload Readings" : {
       "comment" : "The title text for the upload glucose switch cell",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رفع القراءات"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2269,13 +2635,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Subir Datos"
+            "value" : "Subir lecturas"
           }
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lataa lukemat"
+            "state" : "new",
+            "value" : "Upload Readings"
           }
         },
         "fr" : {
@@ -2286,23 +2652,23 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "העלה נתונים"
+            "state" : "new",
+            "value" : "Upload Readings"
           }
         },
-        "hi" : {
+        "hu" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "अपलोड रीडिंग्स"
+            "state" : "new",
+            "value" : "Upload Readings"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Carica letture"
+            "value" : "Carica Letture"
           }
         },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Last opp avlesninger"
@@ -2311,37 +2677,43 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Upload Metingen"
+            "value" : "Lezingen uploaden"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wysyłaj odczyty"
+            "state" : "new",
+            "value" : "Upload Readings"
           }
         },
-        "ro" : {
+        "pt" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Urcă citirile de glicemie"
+            "state" : "new",
+            "value" : "Upload Readings"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Upload Readings"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Загрузить показания"
+            "value" : "Выгружать данные"
           }
         },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Načítať údaje"
+            "value" : "Nahrať merania"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ladda upp avläsningar"
+            "value" : "Ladda upp blodsocker"
           }
         },
         "tr" : {
@@ -2350,10 +2722,28 @@
             "value" : "Okumaları Yükle"
           }
         },
-        "zh-Hans" : {
+        "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "上传读数"
+            "value" : "Вивантажити читання"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glucose đang tải lên"
+          }
+        },
+        "yy-YY" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Upload Readings"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Upload Readings"
           }
         }
       }
