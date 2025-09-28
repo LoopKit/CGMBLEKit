@@ -1,0 +1,10 @@
+files:
+  - source: /CGMBLEKit/Localizable.xcstrings
+    translation: /CGMBLEKit/Localizable.xcstrings
+    multilingual: 1
+  - source: /CGMBLEKitUI/Localizable.xcstrings
+    translation: /CGMBLEKitUI/Localizable.xcstrings
+    multilingual: 1
+  - source: /CGMBLEKitUI/mul.lproj/TransmitterManagerSetup.xcstrings
+    translation: /CGMBLEKit/CGMBLEKitUI/mul.lproj/TransmitterManagerSetup.xcstrings
+    multilingual: 1
