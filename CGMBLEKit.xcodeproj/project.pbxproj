@@ -1071,6 +1071,9 @@
 				ar,
 				cs,
 				hi,
+				ce,
+				hu,
+				uk,
 			);
 			mainGroup = 43CABDE91C3506F100005705;
 			productRefGroup = 43CABDF41C3506F100005705 /* Products */;
