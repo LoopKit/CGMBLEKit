@@ -131,12 +131,6 @@
             "value" : "Thông tin xác thực"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Credentials"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -273,12 +267,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cài đặt Transmitter"
-          }
-        },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Transmitter Setup"
           }
         },
         "zh-Hans" : {
@@ -419,12 +407,6 @@
             "value" : "Chi tiết"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Detail"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -561,12 +543,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dữ liệu có thể được tải xuống qua Internet từ Chia sẻ khi kết nối bộ phát không thành công."
-          }
-        },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Data can be downloaded over the Internet from Share when the transmitter connection fails."
           }
         },
         "zh-Hans" : {
@@ -707,12 +683,6 @@
             "value" : "Dữ liệu từ Dexcom Share"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Dexcom Share"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -849,12 +819,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nhập 6 số ID của Transmitter"
-          }
-        },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Enter the 6-digit transmitter ID"
           }
         },
         "zh-Hans" : {
@@ -995,12 +959,6 @@
             "value" : "Số ID của Transmitter có thể được tìm thấy trên vỏ hộp hoặc bên hông hộp và trong phần Menu cài đặt cũng như trên ứng dụng của điện thoại."
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "The transmitter ID can be found printed on the back of the device, on the side of the box it came in, and from within the settings menus of the receiver and mobile app."
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1137,12 +1095,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Số ID của Transmitter"
-          }
-        },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Transmitter ID"
           }
         },
         "zh-Hans" : {

@@ -142,12 +142,6 @@
             "value" : "Dexcom G5"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Dexcom G5"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -294,12 +288,6 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dexcom G6"
-          }
-        },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
             "value" : "Dexcom G6"
           }
         },
@@ -464,12 +452,6 @@
             "value" : "Dữ liệu glucose không có sẵn"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Glucose data is unavailable"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -623,12 +605,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "pin yếu"
-          }
-        },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Low Battery"
           }
         },
         "zh-Hans" : {
@@ -786,12 +762,6 @@
             "value" : "OK"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "OK"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -933,12 +903,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Câu lệnh không hợp lệ"
-          }
-        },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Peripheral command was invalid"
           }
         },
         "zh-Hans" : {
@@ -1096,12 +1060,6 @@
             "value" : "Ngoại vi không đáp ứng kịp thời"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Peripheral did not respond in time"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1251,12 +1209,6 @@
             "value" : "Ngoại vi không được kết nối"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Peripheral isnʼt connected"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1404,12 +1356,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hiệu chuẩn cảm biến là OK"
-          }
-        },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Sensor calibration is OK"
           }
         },
         "zh-Hans" : {
@@ -1565,12 +1511,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cảm biến ở trạng thái không xác định %1$d"
-          }
-        },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Sensor is in unknown state %1$d"
           }
         },
         "zh-Hans" : {
@@ -1734,12 +1674,6 @@
             "value" : "Cảm biến bị dừng"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Sensor is stopped"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1901,12 +1835,6 @@
             "value" : "Cảm biến đang nóng lên"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Sensor is warming up"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2056,12 +1984,6 @@
             "value" : "Cảm biến cần hiệu chuẩn"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Sensor needs calibration"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2209,12 +2131,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Đặc điểm không xác định"
-          }
-        },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Unknown characteristic"
           }
         },
         "zh-Hans" : {

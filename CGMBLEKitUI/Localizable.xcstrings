@@ -161,12 +161,6 @@
             "value" : "%@/phút"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%@/min"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -314,12 +308,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bạn có chắc sẽ xóa CGM này?"
-          }
-        },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Are you sure you want to delete this CGM?"
           }
         },
         "zh-Hans" : {
@@ -483,12 +471,6 @@
             "value" : "Hủy bỏ"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Cancel"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -638,12 +620,6 @@
             "value" : "Ngày"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Date"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -791,12 +767,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Xóa CGM"
-          }
-        },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Delete CGM"
           }
         },
         "zh-Hans" : {
@@ -960,12 +930,6 @@
             "value" : "Đường huyết"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Glucose"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1113,12 +1077,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Đường huyết (Được điều chỉnh)"
-          }
-        },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Glucose (Adjusted)"
           }
         },
         "zh-Hans" : {
@@ -1270,12 +1228,6 @@
             "value" : "Lần hiệu chỉnh gần nhất"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Latest Calibration"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1417,12 +1369,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kết nối mới nhất"
-          }
-        },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Latest Connection"
           }
         },
         "zh-Hans" : {
@@ -1574,12 +1520,6 @@
             "value" : "Kết quả đọc mới nhất"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Latest Reading"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1729,12 +1669,6 @@
             "value" : "Mở ứng dụng"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Open App"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1876,12 +1810,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Đồng bộ hoá dữ liệu từ xa"
-          }
-        },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Remote Data Synchronization"
           }
         },
         "zh-Hans" : {
@@ -2027,12 +1955,6 @@
             "value" : "Cảm biến đã hết hạn"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Sensor Expired"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2174,12 +2096,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Cảm biến hết hạn"
-          }
-        },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Sensor Expires"
           }
         },
         "zh-Hans" : {
@@ -2329,12 +2245,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Thời gian sử dụng sensor"
-          }
-        },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Session Age"
           }
         },
         "zh-Hans" : {
@@ -2492,12 +2402,6 @@
             "value" : "Tình trạng"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Status"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2647,12 +2551,6 @@
             "value" : "Thời gian sử dụng Transmitter"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Transmitter Age"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2800,12 +2698,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Số ID của Transmitter"
-          }
-        },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Transmitter ID"
           }
         },
         "zh-Hans" : {
@@ -2963,12 +2855,6 @@
             "value" : "Xu hướng"
           }
         },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Trend"
-          }
-        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3116,12 +3002,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Glucose đang tải lên"
-          }
-        },
-        "yy-YY" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Upload Readings"
           }
         },
         "zh-Hans" : {
