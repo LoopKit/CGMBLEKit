@@ -4,6 +4,12 @@
     "Dexcom G5" : {
       "comment" : "CGM display title",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ديكسكوم G5"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -40,6 +46,12 @@
             "value" : "Dexcom G5"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dexcom G5"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -58,6 +70,12 @@
             "value" : "Dexcom G5"
           }
         },
+        "nb-NO" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dexcom G5"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -67,6 +85,12 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Dexcom G5"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Dexcom G5"
           }
         },
@@ -106,10 +130,22 @@
             "value" : "Dexcom G5"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dexcom G5"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dexcom G5"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dexcom G 5"
           }
         }
       }
@@ -117,6 +153,12 @@
     "Dexcom G6" : {
       "comment" : "CGM display title",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ديكسكوم G6"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -153,6 +195,12 @@
             "value" : "Dexcom G6"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dexcom G6"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -171,6 +219,12 @@
             "value" : "Dexcom G6"
           }
         },
+        "nb-NO" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dexcom G6"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -180,6 +234,12 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Dexcom G6"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Dexcom G6"
           }
         },
@@ -219,10 +279,22 @@
             "value" : "Dexcom G6"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dexcom G6"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dexcom G6"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "德康 G6"
           }
         }
       }
@@ -230,6 +302,12 @@
     "Glucose data is unavailable" : {
       "comment" : "Error description for unreliable state",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قراءات السكر غير متوفرة"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -278,6 +356,12 @@
             "value" : "ग्लूकोस डेटा उपलब्ध नहीं है"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Glucose data is unavailable"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -296,6 +380,12 @@
             "value" : "Blodsukker er utilgjengelig"
           }
         },
+        "nb-NO" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Blodsukker er utilgjengelig"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -306,6 +396,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dane o poziomie glukozy są niedostępne"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Glucose data is unavailable"
           }
         },
         "pt-BR" : {
@@ -344,6 +440,12 @@
             "value" : "KŞ verileri mevcut değil"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дані глюкози недоступні"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -361,6 +463,12 @@
     "Low Battery" : {
       "comment" : "Describes a low battery",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "البطارية منخفضة"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -403,6 +511,12 @@
             "value" : "סוללה חלשה"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Low Battery"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -421,6 +535,12 @@
             "value" : "Lavt batterinivå"
           }
         },
+        "nb-NO" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lavt batterinivå"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -431,6 +551,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Słaba bateria"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Low Battery"
           }
         },
         "pt-BR" : {
@@ -467,6 +593,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Düşük Pil"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Низький заряд батареї"
           }
         },
         "vi" : {
@@ -534,6 +666,12 @@
             "value" : "תקין"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -552,6 +690,12 @@
             "value" : "OK"
           }
         },
+        "nb-NO" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ok"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -561,6 +705,12 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "OK"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "OK"
           }
         },
@@ -600,6 +750,12 @@
             "value" : "Tamam"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ОК"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -617,6 +773,12 @@
     "Peripheral command was invalid" : {
       "comment" : "invlid config error description",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أمر الجهاز الطرفي غير صالح"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -653,6 +815,12 @@
             "value" : "פעולה לא חוקית"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peripheral command was invalid"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -660,6 +828,12 @@
           }
         },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perifer kommando var ugyldig"
+          }
+        },
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Perifer kommando var ugyldig"
@@ -675,6 +849,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Polecenie urządzenia peryferyjnego było nieprawidłowe"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Peripheral command was invalid"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peripheral command was invalid"
           }
         },
         "ro" : {
@@ -706,12 +892,36 @@
             "state" : "translated",
             "value" : "Çevre birimi komutu geçersiz"
           }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неправильно сформовано запит."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Câu lệnh không hợp lệ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "外围命令无效"
+          }
         }
       }
     },
     "Peripheral did not respond in time" : {
       "comment" : "Timeout error description",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الجهاز الطرفي لم يستجب في الوقت المحدد"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -754,6 +964,12 @@
             "value" : "לא הגיב בזמן"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peripheral did not respond in time"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -772,6 +988,12 @@
             "value" : "Tilbehøret svarte ikke i tide"
           }
         },
+        "nb-NO" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilbehøret svarte ikke i tide"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -782,6 +1004,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Urządzenie peryferyjne nie odpowiada"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Peripheral did not respond in time"
           }
         },
         "pt-BR" : {
@@ -820,6 +1048,12 @@
             "value" : "Çevre birimi zamanında yanıt vermedi"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Периферійний пристрій не озвався вчасно"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -837,6 +1071,12 @@
     "Peripheral isnʼt connected" : {
       "comment" : "Not ready error description",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الجهاز الطرفي غير متصل"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -873,6 +1113,12 @@
             "value" : "לא מחובר"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peripheral isnʼt connected"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -891,6 +1137,12 @@
             "value" : "Tilbehøret er ikke tilkoblet"
           }
         },
+        "nb-NO" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilbehøret er ikke tilkoblet"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -901,6 +1153,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Urządzenie peryferyjne nie jest podłączone"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Peripheral isnʼt connected"
           }
         },
         "pt-BR" : {
@@ -939,6 +1197,12 @@
             "value" : "Çevre birimi bağlı değil"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "З'єднання з периферійним пристроєм не встановлено"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -956,6 +1220,12 @@
     "Sensor calibration is OK" : {
       "comment" : "The description of sensor calibration state when sensor calibration is ok.",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معايرة المستشعر مضبوطة"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -992,6 +1262,12 @@
             "value" : "כיול חיישן הצליח"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor calibration is OK"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1010,6 +1286,12 @@
             "value" : "Sensorkalibrering er OK"
           }
         },
+        "nb-NO" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorkalibrering er OK"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1020,6 +1302,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kalibracja sensora powiodła się"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sensor calibration is OK"
           }
         },
         "pt-BR" : {
@@ -1058,6 +1346,12 @@
             "value" : "Sensör kalibrasyonu tamam"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Калібрування сенсора ОК"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1075,6 +1369,12 @@
     "Sensor is in unknown state %1$d" : {
       "comment" : "The description of sensor calibration state when raw value is unknown. (1: missing data details)",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المستشعر في حالة غير معروفة %1$d"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1117,6 +1417,12 @@
             "value" : "מצב החיישן אינו ידוע %1$d"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor is in unknown state %1$d"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1135,6 +1441,12 @@
             "value" : "Sensor er i ukjent tilstand %1$d"
           }
         },
+        "nb-NO" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensoren har ukjent tilstand %1$d"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1145,6 +1457,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensor jest w nieznanym stanie %1$d"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sensor is in unknown state %1$d"
           }
         },
         "pt-BR" : {
@@ -1183,6 +1501,12 @@
             "value" : "Sensör bilinmeyen durumda %1$d"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сенсор знаходиться в невідомому стані%1$d"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1200,6 +1524,12 @@
     "Sensor is stopped" : {
       "comment" : "The description of sensor calibration state when sensor sensor is stopped.",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المستشعر متوقف"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1248,6 +1578,12 @@
             "value" : "सेन्सर समाप्त हो गया"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor is stopped"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1266,6 +1602,12 @@
             "value" : "Sensor er stoppet"
           }
         },
+        "nb-NO" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensoren er stoppet"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1276,6 +1618,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensor został zatrzymany"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sensor is stopped"
           }
         },
         "pt-BR" : {
@@ -1314,6 +1662,12 @@
             "value" : "Sensör durdu"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сенсор зупинений"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1331,6 +1685,12 @@
     "Sensor is warming up" : {
       "comment" : "The description of sensor calibration state when sensor sensor is warming up.",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المستشعر تحت الإحماء"
+          }
+        },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1379,6 +1739,12 @@
             "value" : "सेन्सर अपने शुरुआती समय में है"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor is warming up"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1397,6 +1763,12 @@
             "value" : "Sensor varmer opp"
           }
         },
+        "nb-NO" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensoren varmer opp"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1407,6 +1779,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensor jest w fazie rozruchu"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sensor is warming up"
           }
         },
         "pt-BR" : {
@@ -1445,6 +1823,12 @@
             "value" : "Sensör ısınıyor"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сенсор прогрівається"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1462,6 +1846,12 @@
     "Sensor needs calibration" : {
       "comment" : "The description of sensor calibration state when sensor needs calibration.",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المستشعر بحاجة الى معايرة"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1498,6 +1888,12 @@
             "value" : "נדרש כיול לחיישן"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor needs calibration"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1516,6 +1912,12 @@
             "value" : "Sensor trenger kalibrering"
           }
         },
+        "nb-NO" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor trenger kalibrering"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1526,6 +1928,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensor wymaga kalibracji"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sensor needs calibration"
           }
         },
         "pt-BR" : {
@@ -1564,6 +1972,12 @@
             "value" : "Sensörün kalibrasyona ihtiyacı var"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сенсор вимагає калібрування"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1581,6 +1995,12 @@
     "Unknown characteristic" : {
       "comment" : "Error description",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "خاصية مجهولة"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1617,6 +2037,12 @@
             "value" : "מאפיין לא ידוע"
           }
         },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unknown characteristic"
+          }
+        },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1635,6 +2061,12 @@
             "value" : "Ukjent karakteristikk"
           }
         },
+        "nb-NO" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ukjent karakteristikk"
+          }
+        },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1645,6 +2077,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nieznany błąd"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Unknown characteristic"
           }
         },
         "pt-BR" : {
@@ -1681,6 +2119,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bilinmeyen karakteristik"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Невідома характеристика"
           }
         },
         "vi" : {

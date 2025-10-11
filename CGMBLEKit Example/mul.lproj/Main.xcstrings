@@ -131,6 +131,12 @@
       "comment" : "Class = \"UILabel\"; text = \"Transmitter ID\"; ObjectID = \"5y6-vU-qC3\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معرف المرسل"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",

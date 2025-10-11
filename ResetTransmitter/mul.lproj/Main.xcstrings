@@ -881,6 +881,12 @@
       "comment" : "Class = \"UITableViewSection\"; headerTitle = \"Transmitter ID\"; ObjectID = \"vNG-r7-RbP\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معرف المرسل"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",

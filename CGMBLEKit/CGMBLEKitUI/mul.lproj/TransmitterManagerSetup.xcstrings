@@ -5,6 +5,12 @@
       "comment" : "Class = \"UILabel\"; text = \"Credentials\"; ObjectID = \"5oU-vK-JHQ\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بيانات التسجيل"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -43,8 +49,14 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "פרטי כניסה"
+            "state" : "new",
+            "value" : "Credentials"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Credentials"
           }
         },
         "it" : {
@@ -53,13 +65,7 @@
             "value" : "Credenziali"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "証明"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Påloggingsinformasjon"
@@ -77,22 +83,28 @@
             "value" : "Dane uwierzytelniające"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Credentials"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Credenciais"
           }
         },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Autentificare"
-          }
-        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Учетные данные"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poverenia"
           }
         },
         "sv" : {
@@ -105,6 +117,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kimlik bilgileri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Облікові дані"
           }
         },
         "vi" : {
@@ -125,6 +143,12 @@
       "comment" : "Class = \"UITableViewController\"; title = \"Transmitter Setup\"; ObjectID = \"Dds-49-o7G\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إعداد جهاز الإرسال"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -163,8 +187,14 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "הגדרת משדר"
+            "state" : "new",
+            "value" : "Transmitter Setup"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Transmitter Setup"
           }
         },
         "it" : {
@@ -173,13 +203,7 @@
             "value" : "Configurazione trasmettitore"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "トランスミッター設定"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sett opp sender"
@@ -188,7 +212,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zender Instellen"
+            "value" : "Zender instellen"
           }
         },
         "pl" : {
@@ -197,16 +221,16 @@
             "value" : "Konfiguracja nadajnika"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Transmitter Setup"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Configuração do Transmissor"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Setare transmițător"
           }
         },
         "ru" : {
@@ -224,13 +248,19 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sändarinställning"
+            "value" : "Sändarinställningar"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verici Kurulumu"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Налаштування Трасмітера"
           }
         },
         "vi" : {
@@ -283,7 +313,7 @@
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "Detail"
           }
         },
@@ -295,8 +325,14 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "פרטים"
+            "state" : "new",
+            "value" : "Detail"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Detail"
           }
         },
         "it" : {
@@ -305,13 +341,7 @@
             "value" : "Dettaglio"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Detail"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Detalj"
@@ -325,38 +355,38 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
+            "value" : "Detail"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Detail"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Detail"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "Detail"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detail"
+            "value" : "Подробности"
           }
         },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detail"
+            "value" : "Podrobnosti"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detail"
+            "value" : "Detalj"
           }
         },
         "tr" : {
@@ -365,10 +395,16 @@
             "value" : "Detay"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Детальніше"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detail"
+            "value" : "Chi tiết"
           }
         },
         "zh-Hans" : {
@@ -383,10 +419,16 @@
       "comment" : "Class = \"UITableViewSection\"; footerTitle = \"Data can be downloaded over the Internet from Share when the transmitter connection fails.\"; ObjectID = \"k1N-Rg-XDy\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يمكن تحميل البيانات عبر الإنترنت من تطبيق Share عند فشل اتصال المرسل."
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Data kan downloades over internettet fra Share, når transmitterforbindelsen mislykkes."
+            "value" : "Data kan downloades via internet fra Share, hvis senderforbindelsen mislykkes."
           }
         },
         "de" : {
@@ -421,23 +463,23 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "אם תקשורת מהמשדר נכשלת, מידע יכול להגיע מהאינטרנט באמצעות Share."
+            "state" : "new",
+            "value" : "Data can be downloaded over the Internet from Share when the transmitter connection fails."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Data can be downloaded over the Internet from Share when the transmitter connection fails."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Quando la connessione al trasmettitore non funziona, è possibile scaricare i dati tramite Internet da Share."
+            "value" : "In caso di problemi di connessione del trasmettitore, puoi scaricare i dati da Internet grazie alla funzionalità Share."
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "トランスミッターの接続ができないときに、インターネットでShareからデータをダウンロードできます。"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Data kan lastes ned over internett fra Share-server om tilkobling til sender ikke fungerer."
@@ -455,16 +497,16 @@
             "value" : "Dane można pobrać przez internet z Share, kiedy połączenie nadajnika się nie powiedzie."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Data can be downloaded over the Internet from Share when the transmitter connection fails."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Os dados podem ser baixados pela Internet a partir do compartilhamento quando a conexão do transmissor falhar."
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pot fi transferate date prin Internet din Share atunci când eșuează conexiunea cu transmițătorul"
           }
         },
         "ru" : {
@@ -482,7 +524,7 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Data kan laddas ned från Share (via Internet) om sändaranslutningen skulle misslyckas."
+            "value" : "Data kan laddas ned från Dexcom Share (via Internet) om sändaranslutningen skulle misslyckas."
           }
         },
         "tr" : {
@@ -491,10 +533,16 @@
             "value" : "Verici bağlantısı başarısız olduğunda Dexcom Share üzerinden  veriler indirilebilir."
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дані можуть бути завантажені по мережі через Sharе, у разі помилки зʼєднання трансмітера."
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dữ liệu có thể được tải xuống qua đường truyền Internet trên ứng dụng Share khi kết nối với transmitter bị đứt."
+            "value" : "Dữ liệu có thể được tải xuống qua Internet từ Chia sẻ khi kết nối bộ phát không thành công."
           }
         },
         "zh-Hans" : {
@@ -509,6 +557,12 @@
       "comment" : "Class = \"UITableViewSection\"; headerTitle = \"Dexcom Share\"; ObjectID = \"k1N-Rg-XDy\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ديكسكوم شير"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
@@ -535,7 +589,7 @@
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "Dexcom Share"
           }
         },
@@ -547,7 +601,13 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
+            "value" : "Dexcom Share"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Dexcom Share"
           }
         },
@@ -557,13 +617,7 @@
             "value" : "Dexcom Share"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dexcom Share"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dexcom Share"
@@ -577,19 +631,19 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
+            "value" : "Dexcom Share"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Dexcom Share"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dexcom Share"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
+            "state" : "new",
             "value" : "Dexcom Share"
           }
         },
@@ -617,10 +671,16 @@
             "value" : "Dexcom Share"
           }
         },
-        "vi" : {
+        "uk" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dexcom Share"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dữ liệu từ Dexcom Share"
           }
         },
         "zh-Hans" : {
@@ -635,16 +695,22 @@
       "comment" : "Class = \"UITextField\"; placeholder = \"Enter the 6-digit transmitter ID\"; ObjectID = \"nKX-TW-GhD\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أدخل معرف جهاز الإرسال المكون من 6 أرقام"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Indtast det 6-cifrede sender-ID"
+            "value" : "Angiv det 6-cifrede sender-ID"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gib die 6-stellige Transmitter-ID ein"
+            "value" : "Geben Sie die 6-stellige Transmitter-ID ein"
           }
         },
         "en" : {
@@ -673,23 +739,23 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "הכנס מזהה משדר בן 6 ספרות"
+            "state" : "new",
+            "value" : "Enter the 6-digit transmitter ID"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Enter the 6-digit transmitter ID"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Inserisci l'ID del trasmettitore a 6 cifre"
+            "value" : "Inserisci ID a 6 cifre del trasmettitore"
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "6桁のトランスミッタIDを入力"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Skriv 6-siffret sender ID"
@@ -698,7 +764,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vul de 6 cijferige zenderserienummer in"
+            "value" : "Vul het 6 cijferige serienummer van de zender in"
           }
         },
         "pl" : {
@@ -707,16 +773,16 @@
             "value" : "Wprowadź 6-cyfrowy ID nadajnika"
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Enter the 6-digit transmitter ID"
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Digite o ID do transmissor de 6 dígitos"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Introduceți ID-ul din 6 cifre al transmițătorului"
           }
         },
         "ru" : {
@@ -743,6 +809,12 @@
             "value" : "6 basamaklı verici kimliğini girin"
           }
         },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введіть 6-значний ID трансмітера"
+          }
+        },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -761,10 +833,16 @@
       "comment" : "Class = \"UITableViewSection\"; footerTitle = \"The transmitter ID can be found printed on the back of the device, on the side of the box it came in, and from within the settings menus of the receiver and mobile app.\"; ObjectID = \"Qub-6B-0aB\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يمكن العثور على معرف جهاز الإرسال مطبوعا على الجزء الخلفي من الجهاز، على جانب الصندوق الذي أتى به، ومن داخل قوائم الإعدادات الخاصة بالمستلم والتطبيق الموبايل."
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sender-ID'et kan findes trykt på bagsiden af ​​enheden, på den side af boksen, den kom i, og fra indstillingsmenuerne på modtageren og mobilappen."
+            "value" : "Sender-ID'et kan findes trykt på bagsiden af ​​enheden, på siden af æsken, den kom i, og via indstillingsmenuerne på modtageren og mobil-appen."
           }
         },
         "de" : {
@@ -799,23 +877,23 @@
         },
         "he" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "ניתן למצוא את מזהה המשדר מודפס מאחוריו, לצד הקופסא שנארז בה או מתוך תפריט ההגדרות של הקורא או אפליקציית החיישן."
+            "state" : "new",
+            "value" : "The transmitter ID can be found printed on the back of the device, on the side of the box it came in, and from within the settings menus of the receiver and mobile app."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The transmitter ID can be found printed on the back of the device, on the side of the box it came in, and from within the settings menus of the receiver and mobile app."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "L'ID del trasmettitore è stampato sul retro del dispositivo, sul lato della scatola in cui è stato acquistato e nei menu delle impostazioni del ricevitore e dell'app mobile."
+            "value" : "L'ID del trasmettitore è riportato sul retro del dispositivo, ai lati della confezione di imballaggio e nel menù impostazioni del ricevitore dell’app per dispositivi mobili."
           }
         },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "トランスミッターIDは、トランスミッタ―の底面、パッケージの側面、またはレシーバとモバイルアプリの設定メニューで確認できます。"
-          }
-        },
-        "nb" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sender ID finner du på baksiden av senderen, eller på siden av esken den kom i, eller under innstillinger i appen til senderen."
@@ -824,7 +902,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "De zenderserienummer staat achter op het apparaat, op de zijkant van de verpakking en in het instellingenmenu van de ontvanger en de app."
+            "value" : "Het serienummer van de zender staat achter op het apparaat, op de zijkant van de verpakking en in het instellingenmenu van de ontvanger en de app."
           }
         },
         "pl" : {
@@ -833,16 +911,16 @@
             "value" : "ID nadajnika jest nadrukowany z tyłu urządzenia, z boku opakowania, w którym go dostarczono oraz jest dostępny w menu ustawień odbiornika i w aplikacji mobilnej."
           }
         },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "The transmitter ID can be found printed on the back of the device, on the side of the box it came in, and from within the settings menus of the receiver and mobile app."
+          }
+        },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "O ID do transmissor pode ser encontrado impresso na parte traseira do dispositivo, na parte lateral da caixa em que ele veio e nos menus de configurações do receptor e do aplicativo móvel."
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ID-ul transmițătorului poate fi găsit fie pe pe spatele dispozitivului sau pe cutia cu care a venit sau poate fi văzut în setările receiver-ului sau a aplicației mobile."
           }
         },
         "ru" : {
@@ -860,13 +938,19 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sändar-ID kan hittas tryckt på baksidan av enheten, på sidan av lådan den kom in samt från inställningsmenyn för mottagaren och mobilappen."
+            "value" : "Sändar-ID kan hittas tryckt på baksidan av enheten, på sidan av lådan den kom i, samt från inställningsmenyn för mottagaren och mobilappen."
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verici kimliğini, cihazın arkasında, geldiği kutunun yan tarafında, alıcının mobil uygulamasının ayarlar menüsünde bulabilirsiniz."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID Трансмітера вказано на зворотній стороні девайса, на бічній стороні упаковки, а також в меню налаштувань ресивера та мобільного додатку."
           }
         },
         "vi" : {
@@ -902,7 +986,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Transmitter-ID"
+            "value" : "Sender-ID"
           }
         },
         "en" : {
@@ -914,13 +998,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Identificación del transmisor"
+            "value" : "ID del transmisor"
           }
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lähettimen tunniste"
+            "state" : "new",
+            "value" : "Transmitter ID"
           }
         },
         "fr" : {
@@ -931,8 +1015,14 @@
         },
         "he" : {
           "stringUnit" : {
+            "state" : "new",
+            "value" : "Transmitter ID"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
             "state" : "translated",
-            "value" : "מזהה משדר"
+            "value" : "Jeladó ID"
           }
         },
         "it" : {
@@ -941,40 +1031,34 @@
             "value" : "ID trasmettitore"
           }
         },
-        "ja" : {
+        "nb-NO" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "トランスミッタ ID"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sender ID"
+            "value" : "Sender-ID"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zenderserienummer"
+            "value" : "Zender ID"
           }
         },
         "pl" : {
           "stringUnit" : {
+            "state" : "new",
+            "value" : "Transmitter ID"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
             "state" : "translated",
-            "value" : "ID nadajnika"
+            "value" : "ID do transmissor"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ID do Transmissor"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ID transmițător"
+            "value" : "ID do transmissor"
           }
         },
         "ru" : {
@@ -992,13 +1076,19 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sändari-ID"
+            "value" : "Sändar-ID"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Verici Kimliği"
+            "value" : "Verici ID"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID передавача"
           }
         },
         "vi" : {
