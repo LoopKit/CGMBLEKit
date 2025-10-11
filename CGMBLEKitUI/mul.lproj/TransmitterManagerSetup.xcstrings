@@ -887,6 +887,12 @@
       "comment" : "Class = \"UITableViewSection\"; headerTitle = \"Transmitter ID\"; ObjectID = \"Qub-6B-0aB\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معرف المرسل"
+          }
+        },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
