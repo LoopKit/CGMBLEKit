@@ -430,6 +430,12 @@ extension TransmitterManager {
 
 
 public class G5CGMManager: TransmitterManager, CGMManager {
+    public var inSignalLoss: Bool = false
+    
+    public var isInoperable: Bool {
+        cgmManagerStatus.isInoperable
+    }
+    
     public let pluginIdentifier: String = "DexG5Transmitter"
 
     public let localizedTitle = LocalizedString("Dexcom G5", comment: "CGM display title")
@@ -467,6 +473,12 @@ public class G5CGMManager: TransmitterManager, CGMManager {
 
 
 public class G6CGMManager: TransmitterManager, CGMManager {
+    public var inSignalLoss: Bool = false
+    
+    public var isInoperable: Bool {
+        cgmManagerStatus.isInoperable
+    }
+    
     public let pluginIdentifier: String = "DexG6Transmitter"
 
     public let localizedTitle = LocalizedString("Dexcom G6", comment: "CGM display title")
