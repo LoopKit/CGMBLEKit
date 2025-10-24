@@ -464,7 +464,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pot fi transferate date prin Internet din Share atunci când eșuează conexiunea cu transmițătorul"
+            "value" : "Datele pot fi descărcate de pe internet din Share atunci când conexiunea la transmițător eșuează."
           }
         },
         "ru" : {
@@ -842,7 +842,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ID-ul transmițătorului poate fi găsit fie pe pe spatele dispozitivului sau pe cutia cu care a venit sau poate fi văzut în setările receiver-ului sau a aplicației mobile."
+            "value" : "ID-ul transmițătorului poate fi găsit imprimat pe spatele dispozitivului, pe partea laterală a cutiei în care a venit și din meniurile de setări ale receptorului și ale aplicației mobile."
           }
         },
         "ru" : {

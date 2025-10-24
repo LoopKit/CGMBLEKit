@@ -413,7 +413,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Datele despre glucoză nu sunt disponibile"
+            "value" : "Datele privind glicemia nu sunt disponibile"
           }
         },
         "ru" : {
