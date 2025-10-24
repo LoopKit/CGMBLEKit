@@ -891,7 +891,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Glucoza"
+            "value" : "Glicemia"
           }
         },
         "ru" : {
@@ -1040,7 +1040,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Glucoză (ajustată)"
+            "value" : "Glicemie (calibrată)"
           }
         },
         "ru" : {
@@ -2965,7 +2965,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Urcă citirile de glicemie"
+            "value" : "Încarcă citirile de glicemie"
           }
         },
         "ru" : {
