@@ -548,7 +548,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Commencer"
+            "value" : "Commencez"
           }
         },
         "he" : {
@@ -674,7 +674,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Étalonner"
+            "value" : "Calibrer le capteur"
           }
         },
         "he" : {
