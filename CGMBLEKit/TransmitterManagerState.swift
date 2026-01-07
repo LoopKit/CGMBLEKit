@@ -26,7 +26,7 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
 
     public init(
         transmitterID: String,
-        shouldSyncToRemoteService: Bool = false,
+        shouldSyncToRemoteService: Bool = true,
         transmitterStartDate: Date? = nil,
         sensorStartOffset: UInt32? = nil
     ) {
