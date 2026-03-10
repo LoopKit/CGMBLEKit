@@ -7,15 +7,14 @@
 //
 
 import Foundation
-import HealthKit
-
+import LoopAlgorithm
 
 public enum Command: RawRepresentable {
     public typealias RawValue = [String: Any]
 
     case startSensor(at: Date)
     case stopSensor(at: Date)
-    case calibrateSensor(to: HKQuantity, at: Date)
+    case calibrateSensor(to: LoopQuantity, at: Date)
     case resetTransmitter
 
     public init?(rawValue: RawValue) {
@@ -37,7 +36,7 @@ public enum Command: RawRepresentable {
             }
             self = .stopSensor(at: date)
         case .calibrateSensor?:
-            guard let date = date, let glucose = rawValue["glucose"] as? HKQuantity else {
+            guard let date = date, let glucose = rawValue["glucose"] as? LoopQuantity else {
                 return nil
             }
             self = .calibrateSensor(to: glucose, at: date)

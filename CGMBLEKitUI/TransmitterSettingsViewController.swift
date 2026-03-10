@@ -7,7 +7,7 @@
 
 import UIKit
 import Combine
-import HealthKit
+import LoopAlgorithm
 import LoopKit
 import LoopKitUI
 import CGMBLEKit
@@ -523,7 +523,7 @@ private extension UIAlertController {
 
 
 private extension SettingsTableViewCell {
-    func setGlucose(_ glucose: HKQuantity?, formatter: QuantityFormatter, isDisplayOnly: Bool) {
+    func setGlucose(_ glucose: LoopQuantity?, formatter: QuantityFormatter, isDisplayOnly: Bool) {
         if isDisplayOnly {
             textLabel?.text = LocalizedString("Glucose (Adjusted)", comment: "Describes a glucose value adjusted to reflect a recent calibration")
         } else {

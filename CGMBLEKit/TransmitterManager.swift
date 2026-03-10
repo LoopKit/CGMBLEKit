@@ -6,6 +6,7 @@
 //
 
 import HealthKit
+import LoopAlgorithm
 import LoopKit
 import ShareClient
 import os.log
@@ -125,8 +126,8 @@ public class TransmitterManager: TransmitterDelegate {
             }
         }()
 
-        let quantity = HKQuantity(unit: .milligramsPerDeciliter, doubleValue: glucoseValue)
-        let trendRate = HKQuantity(unit: .milligramsPerDeciliterPerMinute, doubleValue: trendRateValue)
+        let quantity = LoopQuantity(unit: .milligramsPerDeciliter, doubleValue: glucoseValue)
+        let trendRate = LoopQuantity(unit: .milligramsPerDeciliterPerMinute, doubleValue: trendRateValue)
         let sample = NewGlucoseSample(date: timestamp, quantity: quantity, condition: nil, trend: trend, trendRate: trendRate, isDisplayOnly: false, wasUserEntered: false, syncIdentifier: syncIdentifier)
         self.updateDelegate(with: .newData([sample]))
     }
@@ -439,7 +440,13 @@ extension TransmitterManager {
 
 
 public class G5CGMManager: TransmitterManager, CGMManager {
-    public static let pluginIdentifier: String = "DexG5Transmitter"
+    public var inSignalLoss: Bool = false
+    
+    public var isInoperable: Bool {
+        cgmManagerStatus.isInoperable
+    }
+    
+    public let pluginIdentifier: String = "DexG5Transmitter"
 
     public let localizedTitle = LocalizedString("Dexcom G5", comment: "CGM display title")
 
@@ -476,7 +483,13 @@ public class G5CGMManager: TransmitterManager, CGMManager {
 
 
 public class G6CGMManager: TransmitterManager, CGMManager {
-    public static let pluginIdentifier: String = "DexG6Transmitter"
+    public var inSignalLoss: Bool = false
+    
+    public var isInoperable: Bool {
+        cgmManagerStatus.isInoperable
+    }
+    
+    public let pluginIdentifier: String = "DexG6Transmitter"
 
     public let localizedTitle = LocalizedString("Dexcom G6", comment: "CGM display title")
 
@@ -554,9 +567,7 @@ extension CalibrationState {
 
 // MARK: - AlertResponder implementation
 extension G5CGMManager {
-    public func acknowledgeAlert(alertIdentifier: Alert.AlertIdentifier, completion: @escaping (Error?) -> Void) {
-        completion(nil)
-    }
+    public func acknowledgeAlert(alertIdentifier: LoopKit.Alert.AlertIdentifier) async throws { }
 }
 
 // MARK: - AlertSoundVendor implementation
@@ -567,9 +578,7 @@ extension G5CGMManager {
 
 // MARK: - AlertResponder implementation
 extension G6CGMManager {
-    public func acknowledgeAlert(alertIdentifier: Alert.AlertIdentifier, completion: @escaping (Error?) -> Void) {
-        completion(nil)
-    }
+    public func acknowledgeAlert(alertIdentifier: LoopKit.Alert.AlertIdentifier) async throws { }
 }
 
 // MARK: - AlertSoundVendor implementation
