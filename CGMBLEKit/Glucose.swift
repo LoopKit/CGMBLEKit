@@ -49,8 +49,14 @@ public struct Glucose {
         self.status = TransmitterStatus(rawValue: status)
         self.activationDate = activationDate
 
-        sessionStartDate = activationDate.addingTimeInterval(TimeInterval(timeMessage.sessionStartTime))
-        sessionExpDate = activationDate.addingTimeInterval(TimeInterval(timeMessage.sessionStartTime) + (10*24*60*60))
+        if timeMessage.hasValidSensorSession {
+            let sessionStartDate = activationDate.addingTimeInterval(TimeInterval(timeMessage.sessionStartTime))
+            self.sessionStartDate = sessionStartDate
+            self.sessionExpDate = sessionStartDate.addingTimeInterval(10*24*60*60)
+        } else {
+            sessionStartDate = nil
+            sessionExpDate = nil
+        }
         readDate = activationDate.addingTimeInterval(TimeInterval(glucoseMessage.timestamp))
         lastCalibration = calibrationMessage != nil ? Calibration(calibrationMessage: calibrationMessage!, activationDate: activationDate) : nil
     }
@@ -59,8 +65,12 @@ public struct Glucose {
     public let transmitterID: String
     public let status: TransmitterStatus
     public let activationDate: Date
-    public let sessionStartDate: Date
-    public let sessionExpDate: Date
+    public let sessionStartDate: Date?
+    public let sessionExpDate: Date?
+
+    public var hasValidSensorSession: Bool {
+        return sessionStartDate != nil
+    }
 
     // MARK: - Glucose Info
     public let lastCalibration: Calibration?
