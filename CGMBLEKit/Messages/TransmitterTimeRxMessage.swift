@@ -10,9 +10,16 @@ import Foundation
 
 
 struct TransmitterTimeRxMessage: TransmitterRxMessage {
+    // Dexcom reports UInt32.max when no sensor session is active.
+    static let noActiveSessionStartTime = UInt32.max
+
     let status: UInt8
     let currentTime: UInt32
     let sessionStartTime: UInt32
+
+    var hasValidSensorSession: Bool {
+        return sessionStartTime != Self.noActiveSessionStartTime && sessionStartTime <= currentTime
+    }
 
     init?(data: Data) {
         guard data.count == 16 && data.isCRCValid else {

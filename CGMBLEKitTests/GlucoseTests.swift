@@ -33,11 +33,28 @@ class GlucoseTests: XCTestCase {
 
         XCTAssertEqual(TransmitterStatus.ok, glucose.status)
         XCTAssertEqual(calendar.date(from: DateComponents(year: 2016, month: 12, day: 6, hour: 7, minute: 51, second: 38))!, glucose.readDate)
-        XCTAssertEqual(calendar.date(from: DateComponents(year: 2016, month: 12, day: 26, hour: 11, minute: 16, second: 12))!, glucose.sessionStartDate)
+        XCTAssertEqual(calendar.date(from: DateComponents(year: 2016, month: 12, day: 26, hour: 11, minute: 16, second: 12)), glucose.sessionStartDate)
+        XCTAssertEqual(calendar.date(from: DateComponents(year: 2017, month: 1, day: 5, hour: 11, minute: 16, second: 12)), glucose.sessionExpDate)
+        XCTAssertTrue(glucose.hasValidSensorSession)
         XCTAssertFalse(glucose.isDisplayOnly)
         XCTAssertEqual(204, glucose.glucose?.doubleValue(for: .milligramsPerDeciliter))
         XCTAssertEqual(.known(.ok), glucose.state)
         XCTAssertEqual(-1, glucose.trend)
+    }
+
+    func testNoSessionDoesNotDeriveFutureSessionDates() {
+        let timeData = Data(hexadecimalString: "2500e8f87100ffffffff010000000a70")!
+        let noSessionTimeMessage = TransmitterTimeRxMessage(data: timeData)!
+
+        let data = Data(hexadecimalString: "3100680a00008a715700cc0006ffc42a")!
+        let message = GlucoseRxMessage(data: data)!
+        let glucose = Glucose(transmitterID: "123456", glucoseMessage: message, timeMessage: noSessionTimeMessage, activationDate: activationDate)
+
+        XCTAssertFalse(noSessionTimeMessage.hasValidSensorSession)
+        XCTAssertFalse(glucose.hasValidSensorSession)
+        XCTAssertNil(glucose.sessionStartDate)
+        XCTAssertNil(glucose.sessionExpDate)
+        XCTAssertEqual(calendar.date(from: DateComponents(year: 2016, month: 12, day: 6, hour: 7, minute: 51, second: 38))!, glucose.readDate)
     }
 
     func testNegativeTrend() {

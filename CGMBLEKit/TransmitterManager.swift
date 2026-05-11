@@ -60,8 +60,15 @@ public class TransmitterManager: TransmitterDelegate {
 
 
     public var hasValidSensorSession: Bool {
-        // TODO: we should decode and persist transmitter session state
-        return !state.transmitterID.isEmpty
+        if let latestReading = latestReading {
+            return latestReading.hasValidSensorSession
+        }
+
+        if let sensorStartOffset = state.sensorStartOffset {
+            return sensorStartOffset != TransmitterTimeRxMessage.noActiveSessionStartTime
+        }
+
+        return false
     }
     
     public var cgmManagerStatus: CGMManagerStatus {
@@ -323,17 +330,24 @@ public class TransmitterManager: TransmitterDelegate {
             ))
         }
 
-        if state.sensorStartOffset != glucose.timeMessage.sessionStartTime {
+        let sensorStartOffset = glucose.timeMessage.hasValidSensorSession
+            ? glucose.timeMessage.sessionStartTime
+            : TransmitterTimeRxMessage.noActiveSessionStartTime
+        if state.sensorStartOffset != sensorStartOffset {
             mutateState { state in
-                state.sensorStartOffset = glucose.timeMessage.sessionStartTime
+                state.sensorStartOffset = sensorStartOffset
             }
-            events.append(PersistedCgmEvent(
-                date: glucose.sessionStartDate,
-                type: .sensorStart,
-                deviceIdentifier: transmitter.ID,
-                expectedLifetime: .hours(24 * 10),
-                warmupPeriod: .hours(2)
-            ))
+            if let sessionStartDate = glucose.sessionStartDate {
+                events.append(PersistedCgmEvent(
+                    date: sessionStartDate,
+                    type: .sensorStart,
+                    deviceIdentifier: transmitter.ID,
+                    expectedLifetime: .hours(24 * 10),
+                    warmupPeriod: .hours(2)
+                ))
+            } else {
+                log.error("Ignoring sensor start event with invalid session start time: %{public}@", String(describing: glucose))
+            }
         }
 
         // Filter out future-dated events
@@ -586,4 +600,3 @@ extension G6CGMManager {
     public func getSoundBaseURL() -> URL? { return nil }
     public func getSounds() -> [Alert.Sound] { return [] }
 }
-

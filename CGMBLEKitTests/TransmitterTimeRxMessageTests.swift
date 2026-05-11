@@ -19,6 +19,7 @@ class TransmitterTimeRxMessageTests: XCTestCase {
         XCTAssertEqual(0, message.status)
         XCTAssertEqual(7469288, message.currentTime)
         XCTAssertEqual(0xffffffff, message.sessionStartTime)
+        XCTAssertFalse(message.hasValidSensorSession)
 
         data = Data(hexadecimalString: "250096fd7100ffffffff01000000226d")!
         message = TransmitterTimeRxMessage(data: data)!
@@ -26,6 +27,7 @@ class TransmitterTimeRxMessageTests: XCTestCase {
         XCTAssertEqual(0, message.status)
         XCTAssertEqual(7470486, message.currentTime)
         XCTAssertEqual(0xffffffff, message.sessionStartTime)
+        XCTAssertFalse(message.hasValidSensorSession)
 
         data = Data(hexadecimalString: "2500eeff7100ffffffff010000008952")!
         message = TransmitterTimeRxMessage(data: data)!
@@ -33,6 +35,7 @@ class TransmitterTimeRxMessageTests: XCTestCase {
         XCTAssertEqual(0, message.status)
         XCTAssertEqual(7471086, message.currentTime)
         XCTAssertEqual(0xffffffff, message.sessionStartTime)
+        XCTAssertFalse(message.hasValidSensorSession)
     }
 
     func testInSession() {
@@ -42,6 +45,7 @@ class TransmitterTimeRxMessageTests: XCTestCase {
         XCTAssertEqual(0, message.status)
         XCTAssertEqual(7471687, message.currentTime)
         XCTAssertEqual(7470972, message.sessionStartTime)
+        XCTAssertTrue(message.hasValidSensorSession)
 
         data = Data(hexadecimalString: "2500beb24d00f22d4d000100000083c0")!
         message = TransmitterTimeRxMessage(data: data)!
@@ -49,5 +53,6 @@ class TransmitterTimeRxMessageTests: XCTestCase {
         XCTAssertEqual(0, message.status)
         XCTAssertEqual(5092030, message.currentTime)
         XCTAssertEqual(5058034, message.sessionStartTime)
+        XCTAssertTrue(message.hasValidSensorSession)
     }
 }
