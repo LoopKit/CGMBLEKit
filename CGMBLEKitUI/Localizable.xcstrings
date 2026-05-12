@@ -432,7 +432,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Renunță"
+            "value" : "Anulați"
           }
         },
         "ru" : {
@@ -1630,7 +1630,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deschide aplicația"
+            "value" : "Deschideți aplicația"
           }
         },
         "ru" : {
