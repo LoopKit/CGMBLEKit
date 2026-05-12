@@ -59,12 +59,6 @@
             "value" : "%@/דקה"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@/मिनट"
-          }
-        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -367,12 +361,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "לא"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "निरस्त"
           }
         },
         "hu" : {
@@ -826,12 +814,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "גלוקוז"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "शुगर"
           }
         },
         "hu" : {
@@ -2753,12 +2735,6 @@
             "value" : "מגמה"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ट्रेंड"
-          }
-        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2906,12 +2882,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "העלה נתונים"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "अपलोड रीडिंग्स"
           }
         },
         "hu" : {

@@ -350,12 +350,6 @@
             "value" : "מידע גלוקוז לא זמין"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ग्लूकोस डेटा उपलब्ध नहीं है"
-          }
-        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1572,12 +1566,6 @@
             "value" : "חיישן נעצר"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "सेन्सर समाप्त हो गया"
-          }
-        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1731,12 +1719,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "חיישן מתכונן"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "सेन्सर अपने शुरुआती समय में है"
           }
         },
         "hu" : {
