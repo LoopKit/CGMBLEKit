@@ -1803,7 +1803,7 @@
       }
     },
     "Sensor Expired" : {
-      "comment" : "Title describing past sensor sensor expiration",
+      "comment" : "Sensor expired status\nTitle describing past sensor sensor expiration",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

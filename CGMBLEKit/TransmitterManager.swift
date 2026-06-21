@@ -431,6 +431,19 @@ public class TransmitterManager: TransmitterDelegate {
 
         logDeviceCommunication("Unknown sensor data: \(data.hexadecimalString)", type: .error)
     }
+
+    public func transmitter(_ transmitter: Transmitter, didReadTransmitterVersion message: TransmitterVersionRxMessage) {
+        log.default("Transmitter reports expiry of %d days (isAnubis=%@)",
+                    message.transmitterExpiryInDays, String(describing: message.isAnubis))
+        mutateState { state in
+            state.transmitterExpiryInDays = message.transmitterExpiryInDays
+        }
+    }
+
+    /// `true` once the transmitter has reported the Anubis 180-day lifetime.
+    public var isAnubis: Bool {
+        return state.isAnubis
+    }
 }
 
 

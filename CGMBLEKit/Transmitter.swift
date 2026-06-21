@@ -22,6 +22,13 @@ public protocol TransmitterDelegate: AnyObject {
     func transmitter(_ transmitter: Transmitter, didReadBackfill glucose: [Glucose])
 
     func transmitter(_ transmitter: Transmitter, didReadUnknownData data: Data)
+
+    func transmitter(_ transmitter: Transmitter, didReadTransmitterVersion message: TransmitterVersionRxMessage)
+}
+
+public extension TransmitterDelegate {
+    // Default no-op so existing implementors don't need to opt in.
+    func transmitter(_ transmitter: Transmitter, didReadTransmitterVersion message: TransmitterVersionRxMessage) {}
 }
 
 /// These methods are called on a private background queue. It is the responsibility of the client to ensure thread-safety.
@@ -206,6 +213,16 @@ public final class Transmitter: BluetoothManagerDelegate {
                     self.log.debug("Reading calibration data")
                     let calibrationMessage = try? peripheral.readCalibrationData()
 
+                    // Best-effort version read — surfaces transmitter-reported
+                    // expiry (Anubis detection). Optional: don't fail the
+                    // connect cycle if the transmitter doesn't answer.
+                    self.log.debug("Reading transmitter version")
+                    if let versionMessage = try? peripheral.readTransmitterVersion() {
+                        self.delegateQueue.async {
+                            self.delegate?.transmitter(self, didReadTransmitterVersion: versionMessage)
+                        }
+                    }
+
                     let glucose = Glucose(
                         transmitterID: self.id.id,
                         glucoseMessage: glucoseMessage,
@@ -338,6 +355,14 @@ public final class Transmitter: BluetoothManagerDelegate {
             }
 
             lastCalibrationMessage = calibrationDataMessage
+        case .transmitterVersionRx?:
+            guard let versionMessage = TransmitterVersionRxMessage(data: response) else {
+                break
+            }
+
+            delegateQueue.async {
+                self.delegate?.transmitter(self, didReadTransmitterVersion: versionMessage)
+            }
         case .none:
             delegateQueue.async {
                 self.delegate?.transmitter(self, didReadUnknownData: response)
@@ -548,6 +573,14 @@ fileprivate extension PeripheralManager {
             return try writeMessage(CalibrationDataTxMessage(), for: .control)
         } catch let error {
             throw TransmitterError.controlError("Error getting calibration data: \(error)")
+        }
+    }
+
+    func readTransmitterVersion() throws -> TransmitterVersionRxMessage {
+        do {
+            return try writeMessage(TransmitterVersionTxMessage(), for: .control)
+        } catch let error {
+            throw TransmitterError.controlError("Error getting transmitter version: \(error)")
         }
     }
 

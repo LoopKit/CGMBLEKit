@@ -24,16 +24,22 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
 
     public var shouldSyncToRemoteService: Bool
 
+    /// Transmitter-reported lifetime in days (90 for stock G6, 180 for
+    /// Anubis-modded). `nil` until the first version-rx frame comes in.
+    public var transmitterExpiryInDays: UInt16?
+
     public init(
         transmitterID: String,
         shouldSyncToRemoteService: Bool = true,
         transmitterStartDate: Date? = nil,
-        sensorStartOffset: UInt32? = nil
+        sensorStartOffset: UInt32? = nil,
+        transmitterExpiryInDays: UInt16? = nil
     ) {
         self.transmitterID = transmitterID
         self.shouldSyncToRemoteService = shouldSyncToRemoteService
         self.transmitterStartDate = transmitterStartDate
         self.sensorStartOffset = sensorStartOffset
+        self.transmitterExpiryInDays = transmitterExpiryInDays
     }
 
     public init?(rawValue: RawValue) {
@@ -48,11 +54,15 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
 
         let sensorStartOffset = rawValue["sensorStartOffset"] as? UInt32
 
+        let transmitterExpiryInDays = (rawValue["transmitterExpiryInDays"] as? UInt16)
+            ?? (rawValue["transmitterExpiryInDays"] as? Int).map { UInt16($0) }
+
         self.init(
             transmitterID: transmitterID,
             shouldSyncToRemoteService: shouldSyncToRemoteService,
             transmitterStartDate: transmitterStartDate,
-            sensorStartOffset: sensorStartOffset
+            sensorStartOffset: sensorStartOffset,
+            transmitterExpiryInDays: transmitterExpiryInDays
         )
     }
 
@@ -64,7 +74,13 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
 
         rval["transmitterStartDate"] = transmitterStartDate
         rval["sensorStartOffset"] = sensorStartOffset
+        rval["transmitterExpiryInDays"] = transmitterExpiryInDays.map { Int($0) }
 
         return rval
+    }
+
+    /// `true` once the transmitter has reported the Anubis 180-day lifetime.
+    public var isAnubis: Bool {
+        return transmitterExpiryInDays == 180
     }
 }
