@@ -312,6 +312,12 @@
         }
       }
     },
+    "Calibration Error" : {
+      "comment" : "Sensor calibration error"
+    },
+    "Calibration Needed" : {
+      "comment" : "Sensor needs calibration"
+    },
     "Cancel" : {
       "comment" : "The title of the cancel action in an action sheet",
       "localizations" : {
@@ -2088,6 +2094,12 @@
         }
       }
     },
+    "Sensor Failed" : {
+      "comment" : "Sensor hardware failure"
+    },
+    "Sensor Stopped" : {
+      "comment" : "Sensor session stopped"
+    },
     "Session Age" : {
       "comment" : "Title describing sensor session age",
       "localizations" : {
@@ -2236,6 +2248,12 @@
           }
         }
       }
+    },
+    "Session Failed" : {
+      "comment" : "Sensor session failed"
+    },
+    "Signal Problem" : {
+      "comment" : "Sensor signal problem"
     },
     "Status" : {
       "comment" : "Title describing CGM calibration and battery state",
@@ -2981,6 +2999,9 @@
           }
         }
       }
+    },
+    "Warming Up" : {
+      "comment" : "Sensor warmup status"
     }
   },
   "version" : "1.0"
