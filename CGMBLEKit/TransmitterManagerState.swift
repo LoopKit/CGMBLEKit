@@ -14,6 +14,15 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
 
     public static let version = 1
 
+    public static let defaultSensorLifeDays = 10
+
+    /// Selectable session lengths for Anubis-modded transmitters.
+    public static let sensorLifeDaysRange = 10...60
+
+    static func clampedSensorLifeDays(_ days: Int) -> Int {
+        return min(max(days, sensorLifeDaysRange.lowerBound), sensorLifeDaysRange.upperBound)
+    }
+
     public var transmitterID: String
 
     public var passiveModeEnabled: Bool = true
@@ -24,16 +33,27 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
 
     public var shouldSyncToRemoteService: Bool
 
+    /// Transmitter-reported lifetime in days (90 for stock G6, 180 for
+    /// Anubis-modded). `nil` until the first version-rx frame comes in.
+    public var transmitterExpiryInDays: UInt16?
+
+    /// User-configured session length; only honored for Anubis (see `sensorLife`).
+    public var sensorLifeDays: Int
+
     public init(
         transmitterID: String,
         shouldSyncToRemoteService: Bool = true,
         transmitterStartDate: Date? = nil,
-        sensorStartOffset: UInt32? = nil
+        sensorStartOffset: UInt32? = nil,
+        transmitterExpiryInDays: UInt16? = nil,
+        sensorLifeDays: Int = Self.defaultSensorLifeDays
     ) {
         self.transmitterID = transmitterID
         self.shouldSyncToRemoteService = shouldSyncToRemoteService
         self.transmitterStartDate = transmitterStartDate
         self.sensorStartOffset = sensorStartOffset
+        self.transmitterExpiryInDays = transmitterExpiryInDays
+        self.sensorLifeDays = Self.clampedSensorLifeDays(sensorLifeDays)
     }
 
     public init?(rawValue: RawValue) {
@@ -48,11 +68,18 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
 
         let sensorStartOffset = rawValue["sensorStartOffset"] as? UInt32
 
+        let transmitterExpiryInDays = (rawValue["transmitterExpiryInDays"] as? UInt16)
+            ?? (rawValue["transmitterExpiryInDays"] as? Int).map { UInt16($0) }
+
+        let sensorLifeDays = rawValue["sensorLifeDays"] as? Int ?? Self.defaultSensorLifeDays
+
         self.init(
             transmitterID: transmitterID,
             shouldSyncToRemoteService: shouldSyncToRemoteService,
             transmitterStartDate: transmitterStartDate,
-            sensorStartOffset: sensorStartOffset
+            sensorStartOffset: sensorStartOffset,
+            transmitterExpiryInDays: transmitterExpiryInDays,
+            sensorLifeDays: sensorLifeDays
         )
     }
 
@@ -64,7 +91,19 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
 
         rval["transmitterStartDate"] = transmitterStartDate
         rval["sensorStartOffset"] = sensorStartOffset
+        rval["transmitterExpiryInDays"] = transmitterExpiryInDays.map { Int($0) }
+        rval["sensorLifeDays"] = sensorLifeDays
 
         return rval
+    }
+
+    /// `true` once the transmitter has reported the Anubis 180-day lifetime.
+    public var isAnubis: Bool {
+        return transmitterExpiryInDays == 180
+    }
+
+    /// Active session length: `sensorLifeDays` for Anubis, else the stock 10 days.
+    public var sensorLife: TimeInterval {
+        return .hours(24 * Double(isAnubis ? sensorLifeDays : Self.defaultSensorLifeDays))
     }
 }

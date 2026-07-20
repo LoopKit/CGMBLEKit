@@ -52,7 +52,7 @@ public struct Glucose {
         if timeMessage.hasValidSensorSession {
             let sessionStartDate = activationDate.addingTimeInterval(TimeInterval(timeMessage.sessionStartTime))
             self.sessionStartDate = sessionStartDate
-            self.sessionExpDate = sessionStartDate.addingTimeInterval(10*24*60*60)
+            self.sessionExpDate = sessionStartDate.addingTimeInterval(.hours(24 * Double(TransmitterManagerState.defaultSensorLifeDays)))
         } else {
             sessionStartDate = nil
             sessionExpDate = nil
@@ -66,7 +66,7 @@ public struct Glucose {
     public let status: TransmitterStatus
     public let activationDate: Date
     public let sessionStartDate: Date?
-    public let sessionExpDate: Date?
+    public internal(set) var sessionExpDate: Date?
 
     public var hasValidSensorSession: Bool {
         return sessionStartDate != nil
