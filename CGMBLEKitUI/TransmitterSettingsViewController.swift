@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import SwiftUI
 import HealthKit
 import LoopKit
 import LoopKitUI
@@ -26,6 +27,8 @@ class TransmitterSettingsViewController: UITableViewController {
         self.displayGlucosePreference = displayGlucosePreference
 
         super.init(style: .grouped)
+
+        updateSections()
 
         cgmManager.addObserver(self, queue: .main)
 
@@ -82,6 +85,7 @@ class TransmitterSettingsViewController: UITableViewController {
     private enum Section: Int, CaseIterable {
         case transmitterID
         case remoteDataSync
+        case sensorLife
         case latestReading
         case latestCalibration
         case latestConnection
@@ -90,8 +94,15 @@ class TransmitterSettingsViewController: UITableViewController {
         case delete
     }
 
+    /// Visible sections; `sensorLife` is only offered once Anubis is detected.
+    private var sections: [Section] = []
+
+    private func updateSections() {
+        sections = Section.allCases.filter { $0 != .sensorLife || cgmManager.isAnubis }
+    }
+
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return Section.allCases.count
+        return sections.count
     }
 
     private enum LatestReadingRow: Int, CaseIterable {
@@ -123,10 +134,12 @@ class TransmitterSettingsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch Section(rawValue: section)! {
+        switch sections[section] {
         case .transmitterID:
             return 1
         case .remoteDataSync:
+            return 1
+        case .sensorLife:
             return 1
         case .latestReading:
             return LatestReadingRow.allCases.count
@@ -200,7 +213,7 @@ class TransmitterSettingsViewController: UITableViewController {
     }()
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch Section(rawValue: indexPath.section)! {
+        switch sections[indexPath.section] {
         case .transmitterID:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className, for: indexPath) as! SettingsTableViewCell
 
@@ -219,6 +232,14 @@ class TransmitterSettingsViewController: UITableViewController {
             switchCell.switch?.addTarget(self, action: #selector(uploadEnabledChanged(_:)), for: .valueChanged)
 
             return switchCell
+        case .sensorLife:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className, for: indexPath) as! SettingsTableViewCell
+
+            cell.textLabel?.text = LocalizedString("Sensor Life", comment: "The title text for the sensor life setting")
+            cell.detailTextLabel?.text = transmitterLengthFormatter.string(from: cgmManager.sensorLife)
+            cell.accessoryType = .disclosureIndicator
+
+            return cell
         case .latestReading:
             let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.className, for: indexPath) as! SettingsTableViewCell
             let glucose = cgmManager.latestReading
@@ -364,11 +385,13 @@ class TransmitterSettingsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch Section(rawValue: section)! {
+        switch sections[section] {
         case .transmitterID:
             return nil
         case .remoteDataSync:
             return LocalizedString("Remote Data Synchronization", comment: "Section title for remote data synchronization")
+        case .sensorLife:
+            return nil
         case .latestReading:
             return LocalizedString("Latest Reading", comment: "Section title for latest glucose reading")
         case .latestCalibration:
@@ -385,11 +408,13 @@ class TransmitterSettingsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        switch Section(rawValue: indexPath.section)! {
+        switch sections[indexPath.section] {
         case .transmitterID:
             return false
         case .remoteDataSync:
             return false
+        case .sensorLife:
+            return true
         case .latestReading:
             return false
         case .latestCalibration:
@@ -414,11 +439,19 @@ class TransmitterSettingsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch Section(rawValue: indexPath.section)! {
+        switch sections[indexPath.section] {
         case .transmitterID:
             break
         case .remoteDataSync:
             break
+        case .sensorLife:
+            let picker = SensorLifeSettingsView(sensorLifeDays: cgmManager.sensorLifeDays) { [weak self] days in
+                self?.cgmManager.sensorLifeDays = days
+            }
+            let vc = UIHostingController(rootView: picker)
+            vc.title = LocalizedString("Sensor Life", comment: "The title text for the sensor life setting")
+            show(vc, sender: nil)
+            return // Don't deselect
         case .latestReading:
             break
         case .latestCalibration:
@@ -460,11 +493,13 @@ class TransmitterSettingsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
-        switch Section(rawValue: indexPath.section)! {
+        switch sections[indexPath.section] {
         case .transmitterID:
             break
         case .remoteDataSync:
             break
+        case .sensorLife:
+            tableView.reloadRows(at: [indexPath], with: .fade)
         case .latestReading:
             break
         case .latestCalibration:
@@ -495,6 +530,7 @@ class TransmitterSettingsViewController: UITableViewController {
 
 extension TransmitterSettingsViewController: TransmitterManagerObserver {
     func transmitterManagerDidUpdateLatestReading(_ manager: TransmitterManager) {
+        updateSections()
         tableView.reloadData()
     }
 }
@@ -544,6 +580,41 @@ private extension SettingsTableViewCell {
             detailTextLabel?.text = formatter.string(from: date)
         } else {
             detailTextLabel?.text = SettingsTableViewCell.NoValueString
+        }
+    }
+}
+
+
+private struct SensorLifeSettingsView: View {
+    @State private var sensorLifeDays: Int
+    private let onChange: (Int) -> Void
+
+    init(sensorLifeDays: Int, onChange: @escaping (Int) -> Void) {
+        _sensorLifeDays = State(initialValue: sensorLifeDays)
+        self.onChange = onChange
+    }
+
+    var body: some View {
+        List {
+            Section(footer: footer) {
+                Picker(LocalizedString("Sensor Life", comment: "The title text for the sensor life setting"), selection: $sensorLifeDays) {
+                    ForEach(TransmitterManagerState.sensorLifeDaysRange, id: \.self) { days in
+                        Text(String(format: LocalizedString("%d days", comment: "The format string for a sensor life option in days (1: number of days)"), days)).tag(days)
+                    }
+                }
+                .pickerStyle(.wheel)
+            }
+        }
+        .listStyle(.insetGrouped)
+        .onChange(of: sensorLifeDays) { newValue in
+            onChange(newValue)
+        }
+    }
+
+    private var footer: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(LocalizedString("This transmitter is Anubis-modified and supports extended sensor sessions. Set how long a sensor lasts before it is considered expired.", comment: "The footer text for the sensor life setting"))
+            Text(LocalizedString("Sensor expiration, including the countdown on the home screen, is calculated from the session start using this value.", comment: "The footer text for the sensor life picker"))
         }
     }
 }
