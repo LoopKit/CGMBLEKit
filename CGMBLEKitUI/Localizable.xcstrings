@@ -163,6 +163,9 @@
         }
       }
     },
+    "%d days" : {
+      "comment" : "The format string for a sensor life option in days (1: number of days)"
+    },
     "Are you sure you want to delete this CGM?" : {
       "comment" : "Confirmation message for deleting a CGM",
       "localizations" : {
@@ -1808,6 +1811,9 @@
         }
       }
     },
+    "Sensor expiration, including the countdown on the home screen, is calculated from the session start using this value." : {
+      "comment" : "The footer text for the sensor life picker"
+    },
     "Sensor Expired" : {
       "comment" : "Sensor expired status\nTitle describing past sensor sensor expiration",
       "localizations" : {
@@ -2096,6 +2102,9 @@
     },
     "Sensor Failed" : {
       "comment" : "Sensor hardware failure"
+    },
+    "Sensor Life" : {
+      "comment" : "The title text for the sensor life setting"
     },
     "Sensor Stopped" : {
       "comment" : "Sensor session stopped"
@@ -2409,6 +2418,9 @@
           }
         }
       }
+    },
+    "This transmitter is Anubis-modified and supports extended sensor sessions. Set how long a sensor lasts before it is considered expired." : {
+      "comment" : "The footer text for the sensor life setting"
     },
     "Transmitter Age" : {
       "comment" : "Title describing transmitter session age",

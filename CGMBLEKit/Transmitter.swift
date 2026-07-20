@@ -71,6 +71,8 @@ public final class Transmitter: BluetoothManagerDelegate {
 
     public var passiveModeEnabled: Bool
 
+    public var needsExpiryRead: Bool = false
+
     public weak var delegate: TransmitterDelegate?
 
     public weak var commandSource: TransmitterCommandSource?
@@ -282,6 +284,13 @@ public final class Transmitter: BluetoothManagerDelegate {
                     self.log.error("Error trying to enable notifications on backfill characteristic: %{public}@", String(describing: error))
                     self.delegateQueue.async {
                         self.delegate?.transmitter(self, didError: error)
+                    }
+                }
+
+                if self.needsExpiryRead, let versionMessage = try? peripheral.readTransmitterVersion() {
+                    self.needsExpiryRead = false
+                    self.delegateQueue.async {
+                        self.delegate?.transmitter(self, didReadTransmitterVersion: versionMessage)
                     }
                 }
             }

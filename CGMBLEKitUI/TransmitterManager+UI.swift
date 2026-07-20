@@ -86,10 +86,11 @@ extension G6CGMManager: CGMManagerUI {
 
 
 /// Shared lifecycle + status-highlight derivation for both G5 and G6.
-/// Both transmitters compute `sessionStartDate` / `sessionExpDate` on every
-/// reading (`Glucose.swift`), so we don't need to hardcode a sensor lifetime
-/// — the transmitter already knows. Sensor state (warmup, sensor failure,
-/// calibration needed, session failure) comes from `Glucose.state`.
+/// Readings carry `sessionStartDate` from the transmitter and a
+/// `sessionExpDate` stamped by `TransmitterManager` with the configured
+/// sensor life (10 days stock, user-set 10–60 days for Anubis). Sensor state
+/// (warmup, sensor failure, calibration needed, session failure) comes from
+/// `Glucose.state`.
 private enum TransmitterSessionStatus {
     /// Stock G5/G6 warmup window (2 h from `sessionStartDate`).
     static let standardWarmupDuration: TimeInterval = 2 * 60 * 60
@@ -100,10 +101,10 @@ private enum TransmitterSessionStatus {
     static func lifecycle(for glucose: Glucose?, isAnubis: Bool) -> DeviceLifecycleProgress? {
         guard let glucose, let start = glucose.sessionStartDate else { return nil }
 
-        // During warmup the session expiry is ~10 days out — using it as the
-        // ring's denominator would render ~0% and feel broken. Switch the
-        // ring's denominator to the actual warmup window (50 min for Anubis,
-        // 2 h for stock) so the arc visibly fills as warmup completes.
+        // During warmup the session expiry is over a week out — using it as the
+        // lifecycle's denominator would render ~0% and feel broken. Switch the
+        // lifecycle's denominator to the actual warmup window (50 min for Anubis,
+        // 2 h for stock) so the lifecycle visibly fills as warmup completes.
         if case .known(.warmup) = glucose.state {
             let elapsed = Date().timeIntervalSince(start)
             let warmupDuration = isAnubis ? anubisWarmupDuration : standardWarmupDuration
@@ -119,6 +120,10 @@ private enum TransmitterSessionStatus {
         guard let end = glucose.sessionExpDate else { return nil }
         let total = end.timeIntervalSince(start)
         guard total > 0 else { return nil }
+
+        // Hide lifecycle countdown until the final 48 h
+        guard end.timeIntervalSinceNow < 48 * 60 * 60 else { return nil }
+
         let elapsed = Date().timeIntervalSince(start)
         let fraction = max(0, min(1, elapsed / total))
         let progressState: DeviceLifecycleProgressState

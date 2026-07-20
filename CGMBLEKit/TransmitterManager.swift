@@ -81,6 +81,8 @@ public class TransmitterManager: TransmitterDelegate {
 
         self.transmitter.delegate = self
         
+        self.transmitter.needsExpiryRead = state.transmitterExpiryInDays == nil
+
         #if targetEnvironment(simulator)
         setupSimulatedSampleGenerator()
         #endif
@@ -270,6 +272,9 @@ public class TransmitterManager: TransmitterDelegate {
             "latestConnection: \(String(describing: latestConnection))",
             "dataIsFresh: \(dataIsFresh)",
             "providesBLEHeartbeat: \(providesBLEHeartbeat)",
+            "transmitterExpiryInDays: \(String(describing: state.transmitterExpiryInDays))",
+            "isAnubis: \(isAnubis)",
+            "sensorLifeDays: \(state.sensorLifeDays)",
             shareManager.debugDescription,
             "observers.count: \(observers.cleanupDeallocatedElements().count)",
             String(reflecting: transmitter),
@@ -310,6 +315,9 @@ public class TransmitterManager: TransmitterDelegate {
     }
 
     public func transmitter(_ transmitter: Transmitter, didRead glucose: Glucose) {
+        var glucose = glucose
+        glucose.sessionExpDate = glucose.sessionStartDate?.addingTimeInterval(state.sensorLife)
+
         guard glucose != latestReading else {
             updateDelegate(with: .noData)
             return
@@ -341,8 +349,8 @@ public class TransmitterManager: TransmitterDelegate {
                     date: sessionStartDate,
                     type: .sensorStart,
                     deviceIdentifier: transmitter.ID,
-                    expectedLifetime: .hours(24 * 10),
-                    warmupPeriod: .hours(2)
+                    expectedLifetime: state.sensorLife,
+                    warmupPeriod: state.isAnubis ? .minutes(50) : .hours(2)
                 ))
             } else {
                 log.error("Ignoring sensor start event with invalid session start time: %{public}@", String(describing: glucose))
@@ -435,14 +443,43 @@ public class TransmitterManager: TransmitterDelegate {
     public func transmitter(_ transmitter: Transmitter, didReadTransmitterVersion message: TransmitterVersionRxMessage) {
         log.default("Transmitter reports expiry of %d days (isAnubis=%@)",
                     message.transmitterExpiryInDays, String(describing: message.isAnubis))
+        logDeviceCommunication("Transmitter version: expiry \(message.transmitterExpiryInDays) days", type: .receive)
+        transmitter.needsExpiryRead = false
         mutateState { state in
             state.transmitterExpiryInDays = message.transmitterExpiryInDays
         }
+        updateLatestReadingSessionExpDate()
     }
 
     /// `true` once the transmitter has reported the Anubis 180-day lifetime.
     public var isAnubis: Bool {
         return state.isAnubis
+    }
+
+    /// User-configured session length; only honored for Anubis (see `sensorLife`).
+    public var sensorLifeDays: Int {
+        get {
+            return state.sensorLifeDays
+        }
+        set {
+            mutateState { state in
+                state.sensorLifeDays = TransmitterManagerState.clampedSensorLifeDays(newValue)
+            }
+            updateLatestReadingSessionExpDate()
+        }
+    }
+
+    public var sensorLife: TimeInterval {
+        return state.sensorLife
+    }
+
+    /// Re-stamps the cached reading so a sensor-life change applies immediately.
+    private func updateLatestReadingSessionExpDate() {
+        guard var reading = latestReading else {
+            return
+        }
+        reading.sessionExpDate = reading.sessionStartDate?.addingTimeInterval(state.sensorLife)
+        latestReading = reading
     }
 }
 
