@@ -16,6 +16,10 @@ extension G5CGMManager: CGMManagerUI {
         return nil
     }
 
+    public static var pickerImage: UIImage? {
+        return UIImage(named: "g5", in: Bundle(for: TransmitterSetupViewController.self), compatibleWith: nil)
+    }
+
     public static func setupViewController(bluetoothProvider: BluetoothProvider, displayGlucosePreference: DisplayGlucosePreference, colorPalette: LoopUIColorPalette, allowDebugFeatures: Bool, prefersToSkipUserInteraction: Bool = false) -> SetupUIResult<CGMManagerViewController, CGMManagerUI> {
         let setupVC = TransmitterSetupViewController.instantiateFromStoryboard()
         setupVC.cgmManagerType = self
@@ -52,6 +56,10 @@ extension G5CGMManager: CGMManagerUI {
 extension G6CGMManager: CGMManagerUI {
     public static var onboardingImage: UIImage? {
         return nil
+    }
+
+    public static var pickerImage: UIImage? {
+        return UIImage(named: "g6", in: Bundle(for: TransmitterSetupViewController.self), compatibleWith: nil)
     }
 
     public static func setupViewController(bluetoothProvider: BluetoothProvider, displayGlucosePreference: DisplayGlucosePreference, colorPalette: LoopUIColorPalette, allowDebugFeatures: Bool, prefersToSkipUserInteraction: Bool = false) -> SetupUIResult<CGMManagerViewController, CGMManagerUI> {
