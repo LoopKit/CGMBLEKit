@@ -380,7 +380,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "输入第一个校准值"
+            "value" : "等待首次读取"
           }
         }
       }

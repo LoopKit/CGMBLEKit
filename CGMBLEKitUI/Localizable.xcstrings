@@ -268,7 +268,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sunteți sigur că doriți să ștergeți acest CGM?"
+            "value" : "Sunteți sigur că doriți să ștergeți acest senzor de glicemie?"
           }
         },
         "ru" : {
@@ -727,7 +727,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ștergeți CGM"
+            "value" : "Ștergeți senzorul de glicemie"
           }
         },
         "ru" : {

@@ -626,7 +626,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dexcom远程"
+            "value" : "Dexcom Share"
           }
         }
       }
@@ -1010,7 +1010,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "发射器编号"
+            "value" : "发射器 ID"
           }
         }
       }
