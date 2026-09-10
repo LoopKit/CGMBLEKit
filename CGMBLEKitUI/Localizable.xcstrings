@@ -164,7 +164,33 @@
       }
     },
     "%d days" : {
-      "comment" : "The format string for a sensor life option in days (1: number of days)"
+      "comment" : "The format string for a sensor life option in days (1: number of days)",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d Tage"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d dager"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d zile"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d 天"
+          }
+        }
+      }
     },
     "Are you sure you want to delete this CGM?" : {
       "comment" : "Confirmation message for deleting a CGM",
@@ -316,10 +342,62 @@
       }
     },
     "Calibration Error" : {
-      "comment" : "Sensor calibration error"
+      "comment" : "Sensor calibration error",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalibrierungsfehler"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalibreringsfeil"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eroare de calibrare"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "校准错误"
+          }
+        }
+      }
     },
     "Calibration Needed" : {
-      "comment" : "Sensor needs calibration"
+      "comment" : "Sensor needs calibration",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalibrierung erforderlich"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensoren må kalibreres"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calibrare necesară"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要校准"
+          }
+        }
+      }
     },
     "Cancel" : {
       "comment" : "The title of the cancel action in an action sheet",
@@ -1812,7 +1890,33 @@
       }
     },
     "Sensor expiration, including the countdown on the home screen, is calculated from the session start using this value." : {
-      "comment" : "The footer text for the sensor life picker"
+      "comment" : "The footer text for the sensor life picker",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Ablaufzeit des Sensors, einschließlich des Countdowns auf dem Startbildschirm, wird anhand dieses Werts ab Beginn der Sitzung berechnet."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorens utløpstid, inkludert nedtellingen på startskjermen, beregnes fra sesjonens start ved hjelp av denne verdien."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expirarea senzorului, inclusiv numărătoarea inversă de pe ecranul principal, este calculată de la începutul sesiunii folosind această valoare."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "传感器有效期（包括主屏幕上的倒计时）是根据该值自会话开始时起计算的。"
+          }
+        }
+      }
     },
     "Sensor Expired" : {
       "comment" : "Sensor expired status\nTitle describing past sensor sensor expiration",
@@ -2101,13 +2205,91 @@
       }
     },
     "Sensor Failed" : {
-      "comment" : "Sensor hardware failure"
+      "comment" : "Sensor hardware failure",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorausfall"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensoren sviktet"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senzor defect"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "传感器故障"
+          }
+        }
+      }
     },
     "Sensor Life" : {
-      "comment" : "The title text for the sensor life setting"
+      "comment" : "The title text for the sensor life setting",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorlebensdauer"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorens levetid"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durata de viață a senzorului"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "传感器寿命"
+          }
+        }
+      }
     },
     "Sensor Stopped" : {
-      "comment" : "Sensor session stopped"
+      "comment" : "Sensor session stopped",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor angehalten"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensoren har stoppet"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senzor oprit"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "传感器已停止"
+          }
+        }
+      }
     },
     "Session Age" : {
       "comment" : "Title describing sensor session age",
@@ -2259,10 +2441,56 @@
       }
     },
     "Session Failed" : {
-      "comment" : "Sensor session failed"
+      "comment" : "Sensor session failed",
+      "localizations" : {
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sesjonen mislyktes"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sesiune eșuată"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "会话失败"
+          }
+        }
+      }
     },
     "Signal Problem" : {
-      "comment" : "Sensor signal problem"
+      "comment" : "Sensor signal problem",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signalstörung"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signal problem"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Problemă de semnal"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "信号问题"
+          }
+        }
+      }
     },
     "Status" : {
       "comment" : "Title describing CGM calibration and battery state",
@@ -2420,7 +2648,33 @@
       }
     },
     "This transmitter is Anubis-modified and supports extended sensor sessions. Set how long a sensor lasts before it is considered expired." : {
-      "comment" : "The footer text for the sensor life setting"
+      "comment" : "The footer text for the sensor life setting",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser Sender wurde von Anubis modifiziert und unterstützt verlängerte Sensor-Sitzungen. Legen Sie fest, wie lange ein Sensor genutzt wird, bevor er als abgelaufen gilt."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denne senderen er modifisert av Anubis og støtter utvidede sensorsesjoner. Angi hvor lenge en sensor skal vare før den regnes som utløpt."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acest transmițător este modificat Anubis și acceptă sesiuni extinse de senzori. Setați durata de viață a unui senzor înainte de a fi considerat expirat."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此发射器为 Anubis 修改版，支持延长传感器使用期。设置传感器在被视为过期前可持续使用的时间。"
+          }
+        }
+      }
     },
     "Transmitter Age" : {
       "comment" : "Title describing transmitter session age",
@@ -3013,7 +3267,33 @@
       }
     },
     "Warming Up" : {
-      "comment" : "Sensor warmup status"
+      "comment" : "Sensor warmup status",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufwärmen"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oppvarming"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Încălzire"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "预热中"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
