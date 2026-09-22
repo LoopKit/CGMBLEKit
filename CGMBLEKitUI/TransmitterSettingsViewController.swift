@@ -153,10 +153,8 @@ class TransmitterSettingsViewController: UITableViewController {
     
     private lazy var sensorExpirationFullFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        //formatter.dateStyle = .full
-        //formatter.timeStyle = .short
-        //formatter.doesRelativeDateFormatting = true
-        formatter.setLocalizedDateFormatFromTemplate("E, MMM d, hh:mm")
+        // j is the hour in the user's preferred cycle; hh would force AM/PM.
+        formatter.setLocalizedDateFormatFromTemplate("EEEMMMdjmm")
         return formatter
     }()
     
