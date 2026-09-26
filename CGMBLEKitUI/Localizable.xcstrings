@@ -178,6 +178,12 @@
             "value" : "%d dager"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d dagen"
+          }
+        },
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
@@ -356,6 +362,12 @@
             "value" : "Kalibreringsfeil"
           }
         },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalibratiefout"
+          }
+        },
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
@@ -383,6 +395,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensoren må kalibreres"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nieuwe kalibratie nodig"
           }
         },
         "ro" : {
@@ -1085,7 +1103,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Glucose (Aangepast)"
+            "value" : "Glucose (aangepast)"
           }
         },
         "pl" : {
@@ -1234,7 +1252,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Laatste Kalibratie"
+            "value" : "Laatste kalibratie"
           }
         },
         "pl" : {
@@ -1377,7 +1395,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Laatste Verbinding"
+            "value" : "Laatste verbinding"
           }
         },
         "pl" : {
@@ -1526,7 +1544,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Laatste Meting"
+            "value" : "Laatste meting"
           }
         },
         "pl" : {
@@ -1818,7 +1836,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Remote Gegevenssynchronisatie"
+            "value" : "Remote gegevenssynchronisatie"
           }
         },
         "pl" : {
@@ -1902,6 +1920,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensorens utløpstid, inkludert nedtellingen på startskjermen, beregnes fra sesjonens start ved hjelp av denne verdien."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De vervaldatum van de sensor wordt met deze waarde berekend vanaf de start van de sessie. Dat geldt ook voor het aftellen op het beginscherm."
           }
         },
         "ro" : {
@@ -1990,7 +2014,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sensor Verlopen"
+            "value" : "Sensor verlopen"
           }
         },
         "pl" : {
@@ -2133,7 +2157,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sensor Verloopt"
+            "value" : "Sensor verloopt"
           }
         },
         "pl" : {
@@ -2213,10 +2237,22 @@
             "value" : "Sensorausfall"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur de capteur"
+          }
+        },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensoren sviktet"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor mislukt"
           }
         },
         "ro" : {
@@ -2242,10 +2278,22 @@
             "value" : "Sensorlebensdauer"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durée de vie du capteur"
+          }
+        },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensorens levetid"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor leeftijd"
           }
         },
         "ro" : {
@@ -2271,10 +2319,22 @@
             "value" : "Sensor angehalten"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Capteur arrêté"
+          }
+        },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sensoren har stoppet"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor gestopt"
           }
         },
         "ro" : {
@@ -2443,10 +2503,28 @@
     "Session Failed" : {
       "comment" : "Sensor session failed",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sitzung fehlgeschlagen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Echec de session"
+          }
+        },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sesjonen mislyktes"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sessie mislukt"
           }
         },
         "ro" : {
@@ -2472,10 +2550,22 @@
             "value" : "Signalstörung"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Problème de signal"
+          }
+        },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Signal problem"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signaal probleem"
           }
         },
         "ro" : {
@@ -2660,6 +2750,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Denne senderen er modifisert av Anubis og støtter utvidede sensorsesjoner. Angi hvor lenge en sensor skal vare før den regnes som utløpt."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deze transmitter is aangepast met Anubis en kan sensorsessies verlengen. Stel in hoe lang een sensor meegaat voordat hij verloopt. "
           }
         },
         "ro" : {
@@ -3195,7 +3291,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Upload Metingen"
+            "value" : "Upload metingen"
           }
         },
         "pl" : {
@@ -3275,10 +3371,22 @@
             "value" : "Aufwärmen"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Préchauffage en cours"
+          }
+        },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Oppvarming"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aan het opwarmen"
           }
         },
         "ro" : {
