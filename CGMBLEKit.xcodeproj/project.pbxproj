@@ -60,7 +60,6 @@
 		438621CE2292074A00741DFE /* ShareClientUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4325E9EE210EAF3F00969CE5 /* ShareClientUI.framework */; };
 		43880F981D9E19FC009061A8 /* TransmitterVersionRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43880F971D9E19FC009061A8 /* TransmitterVersionRxMessage.swift */; };
 		43880F9A1D9E1BD7009061A8 /* TransmitterVersionRxMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43880F991D9E1BD7009061A8 /* TransmitterVersionRxMessageTests.swift */; };
-		CA04000000000000000010C2 /* AnubisDetectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA04000000000000000010C1 /* AnubisDetectionTests.swift */; };
 		43A8EC4A210D09BE00A81379 /* LoopKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC49210D09BE00A81379 /* LoopKitUI.framework */; };
 		43A8EC4C210D09DA00A81379 /* LoopKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A8EC49210D09BE00A81379 /* LoopKitUI.framework */; };
 		43A8EC56210D0A7400A81379 /* CGMBLEKitUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 43A8EC54210D0A7400A81379 /* CGMBLEKitUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -206,6 +205,7 @@
 		C19C8BF3286521290056D5E4 /* ShareClientUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4325E9EE210EAF3F00969CE5 /* ShareClientUI.framework */; };
 		C19C8BF4286521290056D5E4 /* ShareClientUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4325E9EE210EAF3F00969CE5 /* ShareClientUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C1CD8B0C203931AD00A8F498 /* NSUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CD8B0A203931AD00A8F498 /* NSUserDefaults.swift */; };
+		CA04000000000000000010C2 /* AnubisDetectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA04000000000000000010C1 /* AnubisDetectionTests.swift */; };
 		E71BFF7E20673BD700C876A2 /* CommandQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71BFF7D20673BD700C876A2 /* CommandQueue.swift */; };
 		E752B4102063C31B0063027D /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = E752B40F2063C31B0063027D /* Command.swift */; };
 		E75DB6AE20419B5D00FBE04E /* CalibrateGlucoseRxMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75DB6AD20419B5D00FBE04E /* CalibrateGlucoseRxMessage.swift */; };
@@ -392,7 +392,6 @@
 		43846AC71D8F89BE00799272 /* CalibrationDataRxMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalibrationDataRxMessageTests.swift; sourceTree = "<group>"; };
 		43880F971D9E19FC009061A8 /* TransmitterVersionRxMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterVersionRxMessage.swift; sourceTree = "<group>"; };
 		43880F991D9E1BD7009061A8 /* TransmitterVersionRxMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmitterVersionRxMessageTests.swift; sourceTree = "<group>"; };
-		CA04000000000000000010C1 /* AnubisDetectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnubisDetectionTests.swift; sourceTree = "<group>"; };
 		43A8EC49210D09BE00A81379 /* LoopKitUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LoopKitUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43A8EC52210D0A7400A81379 /* CGMBLEKitUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CGMBLEKitUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43A8EC54210D0A7400A81379 /* CGMBLEKitUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGMBLEKitUI.h; sourceTree = "<group>"; };
@@ -470,6 +469,7 @@
 		C1614F072AAFD07700F636E5 /* TransmitterManagerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransmitterManagerState.swift; sourceTree = "<group>"; };
 		C19084BA203932BD00AA47F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C1CD8B0A203931AD00A8F498 /* NSUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaults.swift; sourceTree = "<group>"; };
+		CA04000000000000000010C1 /* AnubisDetectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnubisDetectionTests.swift; sourceTree = "<group>"; };
 		E71BFF7D20673BD700C876A2 /* CommandQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandQueue.swift; sourceTree = "<group>"; };
 		E752B40F2063C31B0063027D /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		E75DB6AD20419B5D00FBE04E /* CalibrateGlucoseRxMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrateGlucoseRxMessage.swift; sourceTree = "<group>"; };
