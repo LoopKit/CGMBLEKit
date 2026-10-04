@@ -9,8 +9,10 @@
 import Foundation
 
 
-struct TransmitterVersionTxMessage {
+struct TransmitterVersionTxMessage: RespondableMessage {
     typealias Response = TransmitterVersionRxMessage
 
-    let opcode: Opcode = .transmitterVersionTx
+    var data: Data {
+        return Data(for: .transmitterVersionTx).appendingCRC()
+    }
 }
