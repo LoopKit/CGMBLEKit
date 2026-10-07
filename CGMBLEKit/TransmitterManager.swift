@@ -357,6 +357,15 @@ public class TransmitterManager: TransmitterDelegate {
             }
         }
 
+        if let event = CgmSensorStateReporter.event(for: glucose.state.sensorObservation,
+                                                    namespace: "DexTransmitter",
+                                                    sensorSessionStart: glucose.sessionStartDate,
+                                                    deviceIdentifier: transmitter.ID,
+                                                    date: glucose.readDate)
+        {
+            events.append(event)
+        }
+
         // Filter out future-dated events
         // Stopgap measure for the issue described in https://github.com/LoopKit/Loop/issues/2087
         events = events.filter { event in
@@ -597,6 +606,11 @@ extension CalibrationError: LocalizedError {
 }
 
 extension CalibrationState {
+    /// The kit's own name for the state is what gets reported.
+    var sensorObservation: CgmSensorObservation {
+        hasReliableGlucose ? .reliable : .unreliable(state: description)
+    }
+
     public var localizedDescription: String {
         switch self {
         case .known(let state):
