@@ -40,6 +40,9 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
     /// User-configured session length; only honored for Anubis (see `sensorLife`).
     public var sensorLifeDays: Int
 
+    /// The state last recorded as a `sensorIssue` this session; nil once glucose is reliable.
+    public var reportedSensorIssue: String?
+
     public init(
         transmitterID: String,
         shouldSyncToRemoteService: Bool = true,
@@ -81,6 +84,7 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
             transmitterExpiryInDays: transmitterExpiryInDays,
             sensorLifeDays: sensorLifeDays
         )
+        self.reportedSensorIssue = rawValue["reportedSensorIssue"] as? String
     }
 
     public var rawValue: RawValue {
@@ -93,8 +97,21 @@ public struct TransmitterManagerState: RawRepresentable, Equatable {
         rval["sensorStartOffset"] = sensorStartOffset
         rval["transmitterExpiryInDays"] = transmitterExpiryInDays.map { Int($0) }
         rval["sensorLifeDays"] = sensorLifeDays
+        rval["reportedSensorIssue"] = reportedSensorIssue
 
         return rval
+    }
+
+    /// The state to record as a `sensorIssue`, when `calibrationState` lacks reliable glucose and
+    /// differs from the last one recorded. A reliable reading clears it, so a state that returns
+    /// after recovery is recorded again.
+    mutating func newSensorIssue(for calibrationState: CalibrationState) -> String? {
+        let issue = calibrationState.hasReliableGlucose ? nil : calibrationState.description
+        guard issue != reportedSensorIssue else {
+            return nil
+        }
+        reportedSensorIssue = issue
+        return issue
     }
 
     /// `true` once the transmitter has reported the Anubis 180-day lifetime.
