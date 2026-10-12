@@ -344,6 +344,7 @@ public class TransmitterManager: TransmitterDelegate {
         if state.sensorStartOffset != sensorStartOffset {
             mutateState { state in
                 state.sensorStartOffset = sensorStartOffset
+                state.reportedSensorIssue = nil
             }
             if let sessionStartDate = glucose.sessionStartDate {
                 events.append(PersistedCgmEvent(
@@ -356,6 +357,19 @@ public class TransmitterManager: TransmitterDelegate {
             } else {
                 log.error("Ignoring sensor start event with invalid session start time: %{public}@", String(describing: glucose))
             }
+        }
+
+        var sensorIssue: String?
+        mutateState { state in
+            sensorIssue = state.newSensorIssue(for: glucose.state)
+        }
+        if let sensorIssue {
+            events.append(PersistedCgmEvent(
+                date: glucose.readDate,
+                type: .sensorIssue,
+                deviceIdentifier: transmitter.ID,
+                error: CgmEventError(code: sensorIssue, isFatal: glucose.state.sensorFailed)
+            ))
         }
 
         // Filter out future-dated events
@@ -610,6 +624,15 @@ extension CalibrationError: LocalizedError {
 }
 
 extension CalibrationState {
+    var sensorFailed: Bool {
+        switch self {
+        case .known(.sensorFailure11), .known(.sensorFailure12), .known(.sessionFailure15), .known(.sessionFailure16), .known(.sessionFailure17):
+            return true
+        default:
+            return false
+        }
+    }
+
     public var localizedDescription: String {
         switch self {
         case .known(let state):
