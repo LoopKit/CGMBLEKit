@@ -607,7 +607,7 @@ private struct SensorLifeSettingsView: View {
             }
         }
         .listStyle(.insetGrouped)
-        .onChange(of: sensorLifeDays) { newValue in
+        .onChange(of: sensorLifeDays) { _, newValue in
             onChange(newValue)
         }
     }
