@@ -11,7 +11,7 @@ import LoopKitUI
 import CGMBLEKit
 
 
-extension G5CGMManager: CGMManagerUI {
+extension G5CGMManager: @retroactive CGMManagerUI {
     public static var onboardingImage: UIImage? {
         return nil
     }
@@ -48,7 +48,7 @@ extension G5CGMManager: CGMManagerUI {
 }
 
 
-extension G6CGMManager: CGMManagerUI {
+extension G6CGMManager: @retroactive CGMManagerUI {
     public static var onboardingImage: UIImage? {
         return nil
     }
