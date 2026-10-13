@@ -435,7 +435,8 @@ public class TransmitterManager: TransmitterDelegate {
                 isDisplayOnly: glucose.isDisplayOnly,
                 wasUserEntered: glucose.isDisplayOnly,
                 syncIdentifier: glucose.syncIdentifier,
-                device: device
+                device: device,
+                isBackfill: true
             )
         }
 
