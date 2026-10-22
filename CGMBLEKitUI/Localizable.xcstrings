@@ -374,6 +374,12 @@
             "value" : "Eroare de calibrare"
           }
         },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalibrationsfel"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -407,6 +413,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Calibrare necesară"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalibrering behövs"
           }
         },
         "zh-Hans" : {
@@ -2302,6 +2314,12 @@
             "value" : "Durata de viață a senzorului"
           }
         },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorlivslängd"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2341,6 +2359,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Senzor oprit"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor stoppad"
           }
         },
         "zh-Hans" : {
@@ -2572,6 +2596,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Problemă de semnal"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signalproblem"
           }
         },
         "zh-Hans" : {
@@ -3393,6 +3423,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Încălzire"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Värmer upp"
           }
         },
         "zh-Hans" : {
