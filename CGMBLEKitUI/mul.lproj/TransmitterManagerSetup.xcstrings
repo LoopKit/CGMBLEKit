@@ -464,7 +464,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Datele pot fi descărcate de pe internet din Share atunci când conexiunea la transmițător eșuează."
+            "value" : "Datele pot fi descărcate de pe internet din Share atunci când conexiunea cu transmițătorul eșuează."
           }
         },
         "ru" : {
@@ -626,7 +626,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dexcom远程"
+            "value" : "Dexcom Share"
           }
         }
       }
@@ -716,7 +716,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Introduceți ID-ul din 6 cifre al transmițătorului"
+            "value" : "Introduceți ID din 6 cifre al transmițătorului"
           }
         },
         "ru" : {
@@ -842,7 +842,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ID-ul transmițătorului poate fi găsit imprimat pe spatele dispozitivului, pe partea laterală a cutiei în care a venit și din meniurile de setări ale receptorului și ale aplicației mobile."
+            "value" : "ID transmițător poate fi găsit imprimat pe spatele dispozitivului, pe partea laterală a cutiei în care a venit și din meniurile de setări ale receptorului și ale aplicației mobile."
           }
         },
         "ru" : {
@@ -950,7 +950,7 @@
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sender ID"
+            "value" : "Sender-ID"
           }
         },
         "nl" : {
@@ -1010,7 +1010,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "发射器编号"
+            "value" : "发射器 ID"
           }
         }
       }

@@ -59,12 +59,6 @@
             "value" : "%@/דקה"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@/मिनट"
-          }
-        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -170,7 +164,39 @@
       }
     },
     "%d days" : {
-      "comment" : "The format string for a sensor life option in days (1: number of days)"
+      "comment" : "The format string for a sensor life option in days (1: number of days)",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d Tage"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d dager"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d dagen"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d zile"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d 天"
+          }
+        }
+      }
     },
     "Are you sure you want to delete this CGM?" : {
       "comment" : "Confirmation message for deleting a CGM",
@@ -274,7 +300,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sunteți sigur că doriți să ștergeți acest CGM?"
+            "value" : "Sunteți sigur că doriți să ștergeți acest senzor de glicemie?"
           }
         },
         "ru" : {
@@ -322,10 +348,86 @@
       }
     },
     "Calibration Error" : {
-      "comment" : "Sensor calibration error"
+      "comment" : "Sensor calibration error",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalibrierungsfehler"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalibreringsfeil"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalibratiefout"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eroare de calibrare"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalibrationsfel"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "校准错误"
+          }
+        }
+      }
     },
     "Calibration Needed" : {
-      "comment" : "Sensor needs calibration"
+      "comment" : "Sensor needs calibration",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalibrierung erforderlich"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensoren må kalibreres"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nieuwe kalibratie nodig"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Calibrare necesară"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalibrering behövs"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "需要校准"
+          }
+        }
+      }
     },
     "Cancel" : {
       "comment" : "The title of the cancel action in an action sheet",
@@ -376,12 +478,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "לא"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "निरस्त"
           }
         },
         "hu" : {
@@ -441,7 +537,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Renunță"
+            "value" : "Anulați"
           }
         },
         "ru" : {
@@ -739,7 +835,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ștergeți CGM"
+            "value" : "Ștergeți senzorul de glicemie"
           }
         },
         "ru" : {
@@ -835,12 +931,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "גלוקוז"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "शुगर"
           }
         },
         "hu" : {
@@ -1025,7 +1115,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Glucose (Aangepast)"
+            "value" : "Glucose (aangepast)"
           }
         },
         "pl" : {
@@ -1174,7 +1264,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Laatste Kalibratie"
+            "value" : "Laatste kalibratie"
           }
         },
         "pl" : {
@@ -1317,7 +1407,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Laatste Verbinding"
+            "value" : "Laatste verbinding"
           }
         },
         "pl" : {
@@ -1466,7 +1556,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Laatste Meting"
+            "value" : "Laatste meting"
           }
         },
         "pl" : {
@@ -1639,7 +1729,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deschide aplicația"
+            "value" : "Deschideți aplicația"
           }
         },
         "ru" : {
@@ -1758,7 +1848,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Remote Gegevenssynchronisatie"
+            "value" : "Remote gegevenssynchronisatie"
           }
         },
         "pl" : {
@@ -1830,7 +1920,39 @@
       }
     },
     "Sensor expiration, including the countdown on the home screen, is calculated from the session start using this value." : {
-      "comment" : "The footer text for the sensor life picker"
+      "comment" : "The footer text for the sensor life picker",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Ablaufzeit des Sensors, einschließlich des Countdowns auf dem Startbildschirm, wird anhand dieses Werts ab Beginn der Sitzung berechnet."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorens utløpstid, inkludert nedtellingen på startskjermen, beregnes fra sesjonens start ved hjelp av denne verdien."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De vervaldatum van de sensor wordt met deze waarde berekend vanaf de start van de sessie. Dat geldt ook voor het aftellen op het beginscherm."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expirarea senzorului, inclusiv numărătoarea inversă de pe ecranul principal, este calculată de la începutul sesiunii folosind această valoare."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "传感器有效期（包括主屏幕上的倒计时）是根据该值自会话开始时起计算的。"
+          }
+        }
+      }
     },
     "Sensor Expired" : {
       "comment" : "Sensor expired status\nTitle describing past sensor sensor expiration",
@@ -1904,7 +2026,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sensor Verlopen"
+            "value" : "Sensor verlopen"
           }
         },
         "pl" : {
@@ -2047,7 +2169,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sensor Verloopt"
+            "value" : "Sensor verloopt"
           }
         },
         "pl" : {
@@ -2119,13 +2241,139 @@
       }
     },
     "Sensor Failed" : {
-      "comment" : "Sensor hardware failure"
+      "comment" : "Sensor hardware failure",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorausfall"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur de capteur"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensoren sviktet"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor mislukt"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senzor defect"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "传感器故障"
+          }
+        }
+      }
     },
     "Sensor Life" : {
-      "comment" : "The title text for the sensor life setting"
+      "comment" : "The title text for the sensor life setting",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorlebensdauer"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durée de vie du capteur"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorens levetid"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor leeftijd"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durata de viață a senzorului"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensorlivslängd"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "传感器寿命"
+          }
+        }
+      }
     },
     "Sensor Stopped" : {
-      "comment" : "Sensor session stopped"
+      "comment" : "Sensor session stopped",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor angehalten"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Capteur arrêté"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensoren har stoppet"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor gestopt"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senzor oprit"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sensor stoppad"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "传感器已停止"
+          }
+        }
+      }
     },
     "Session Age" : {
       "comment" : "Title describing sensor session age",
@@ -2277,10 +2525,92 @@
       }
     },
     "Session Failed" : {
-      "comment" : "Sensor session failed"
+      "comment" : "Sensor session failed",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sitzung fehlgeschlagen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Echec de session"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sesjonen mislyktes"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sessie mislukt"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sesiune eșuată"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "会话失败"
+          }
+        }
+      }
     },
     "Signal Problem" : {
-      "comment" : "Sensor signal problem"
+      "comment" : "Sensor signal problem",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signalstörung"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Problème de signal"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signal problem"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signaal probleem"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Problemă de semnal"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signalproblem"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "信号问题"
+          }
+        }
+      }
     },
     "Status" : {
       "comment" : "Title describing CGM calibration and battery state",
@@ -2438,7 +2768,39 @@
       }
     },
     "This transmitter is Anubis-modified and supports extended sensor sessions. Set how long a sensor lasts before it is considered expired." : {
-      "comment" : "The footer text for the sensor life setting"
+      "comment" : "The footer text for the sensor life setting",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser Sender wurde von Anubis modifiziert und unterstützt verlängerte Sensor-Sitzungen. Legen Sie fest, wie lange ein Sensor genutzt wird, bevor er als abgelaufen gilt."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denne senderen er modifisert av Anubis og støtter utvidede sensorsesjoner. Angi hvor lenge en sensor skal vare før den regnes som utløpt."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deze transmitter is aangepast met Anubis en kan sensorsessies verlengen. Stel in hoe lang een sensor meegaat voordat hij verloopt. "
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acest transmițător este modificat Anubis și acceptă sesiuni extinse de senzori. Setați durata de viață a unui senzor înainte de a fi considerat expirat."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此发射器为 Anubis 修改版，支持延长传感器使用期。设置传感器在被视为过期前可持续使用的时间。"
+          }
+        }
+      }
     },
     "Transmitter Age" : {
       "comment" : "Title describing transmitter session age",
@@ -2783,12 +3145,6 @@
             "value" : "מגמה"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ट्रेंड"
-          }
-        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2938,12 +3294,6 @@
             "value" : "העלה נתונים"
           }
         },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "अपलोड रीडिंग्स"
-          }
-        },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2971,7 +3321,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Upload Metingen"
+            "value" : "Upload metingen"
           }
         },
         "pl" : {
@@ -3043,7 +3393,51 @@
       }
     },
     "Warming Up" : {
-      "comment" : "Sensor warmup status"
+      "comment" : "Sensor warmup status",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aufwärmen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Préchauffage en cours"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oppvarming"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aan het opwarmen"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Încălzire"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Värmer upp"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "预热中"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
