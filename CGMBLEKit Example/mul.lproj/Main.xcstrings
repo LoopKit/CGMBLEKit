@@ -86,7 +86,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rulează împreună cu aplicația G5"
+            "value" : "Rulați alături de aplicația G5"
           }
         },
         "ru" : {
@@ -194,7 +194,7 @@
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sender ID"
+            "value" : "Sender-ID"
           }
         },
         "nl" : {
@@ -380,7 +380,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "输入第一个校准值"
+            "value" : "等待首次读取"
           }
         }
       }
@@ -596,7 +596,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pornește"
+            "value" : "Start"
           }
         },
         "ru" : {
@@ -722,7 +722,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Calibrează"
+            "value" : "Calibrați"
           }
         },
         "ru" : {
@@ -974,7 +974,7 @@
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Păstrează conexiunea"
+            "value" : "Păstrați conexiunea"
           }
         },
         "ru" : {
