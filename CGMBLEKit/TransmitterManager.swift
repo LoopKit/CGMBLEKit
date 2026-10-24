@@ -607,8 +607,10 @@ extension CalibrationState {
                 return LocalizedString("Sensor calibration is OK", comment: "The description of sensor calibration state when sensor calibration is ok.")
             case .stopped, .sensorFailure11, .sensorFailure12, .sessionFailure15, .sessionFailure16, .sessionFailure17:
                 return LocalizedString("Sensor is stopped", comment: "The description of sensor calibration state when sensor sensor is stopped.")
-            case .warmup, .questionMarks:
+            case .warmup:
                 return LocalizedString("Sensor is warming up", comment: "The description of sensor calibration state when sensor sensor is warming up.")
+            case .questionMarks:
+                return LocalizedString("Temporary sensor issue", comment: "The description of sensor calibration state when the sensor reports a temporary sensor issue (???).")
             }
         case .unknown(let rawValue):
             return String(format: LocalizedString("Sensor is in unknown state %1$d", comment: "The description of sensor calibration state when raw value is unknown. (1: missing data details)"), rawValue)
