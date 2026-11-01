@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import LoopAlgorithm
+import LoopKit
 
 public enum Command: RawRepresentable {
     public typealias RawValue = [String: Any]

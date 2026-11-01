@@ -6,7 +6,6 @@
 //
 
 import HealthKit
-import LoopAlgorithm
 import LoopKit
 import ShareClient
 import os.log
