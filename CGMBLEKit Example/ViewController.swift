@@ -7,7 +7,7 @@
 //
 
 import CGMBLEKit
-import LoopAlgorithm
+import LoopKit
 import UIKit
 
 class ViewController: UIViewController, TransmitterDelegate, UITextFieldDelegate {

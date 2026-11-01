@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import LoopAlgorithm
+import LoopKit
 
 
 public struct Calibration {

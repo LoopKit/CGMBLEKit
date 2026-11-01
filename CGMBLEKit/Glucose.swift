@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import LoopAlgorithm
+import LoopKit
 
 enum GlucoseLimits {
     static var minimum: UInt16 = 40
