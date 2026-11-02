@@ -475,10 +475,9 @@ class TransmitterSettingsViewController: UITableViewController {
             }
         case .delete:
             let confirmVC = UIAlertController(cgmDeletionHandler: {
-                self.cgmManager.notifyDelegateOfDeletion {
-                    DispatchQueue.main.async {
-                        self.complete()
-                    }
+                Task {
+                    await self.cgmManager.delete()
+                    self.complete()
                 }
             })
 
