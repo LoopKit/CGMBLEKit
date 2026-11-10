@@ -176,15 +176,6 @@ public class TransmitterManager: TransmitterDelegate {
         }
     }
 
-    public var delegateQueue: DispatchQueue! {
-        get {
-            return shareManager.delegateQueue
-        }
-        set {
-            shareManager.delegateQueue = newValue
-        }
-    }
-
     private(set) public var latestConnection: Date? {
         get {
             return lockedLatestConnection.value
@@ -284,7 +275,7 @@ public class TransmitterManager: TransmitterDelegate {
     private func updateDelegate(with result: CGMReadingResult) {
         if let manager = self as? CGMManager {
             shareManager.delegate.notify { (delegate) in
-                delegate?.cgmManager(manager, hasNew: result)
+                await delegate?.cgmManager(manager, hasNew: result)
             }
         }
 
@@ -294,7 +285,7 @@ public class TransmitterManager: TransmitterDelegate {
     private func notifyDelegateOfStateChange() {
         if let manager = self as? CGMManager {
             shareManager.delegate.notify { (delegate) in
-                delegate?.cgmManagerDidUpdateState(manager)
+                await delegate?.cgmManagerDidUpdateState(manager)
             }
         }
     }
@@ -383,7 +374,7 @@ public class TransmitterManager: TransmitterDelegate {
 
         if !events.isEmpty {
             shareManager.delegate.notify { delegate in
-                delegate?.cgmManager(self.shareManager, hasNew: events)
+                await delegate?.cgmManager(self.shareManager, hasNew: events)
             }
         }
 
@@ -553,7 +544,7 @@ public class G5CGMManager: TransmitterManager, CGMManager {
 
     override func stateDidUpdate() {
         shareManager.delegate.notify { delegate in
-            delegate?.cgmManagerDidUpdateState(self)
+            await delegate?.cgmManagerDidUpdateState(self)
             delegate?.cgmManager(self, didUpdate: self.cgmManagerStatus)
         }
     }
@@ -596,7 +587,7 @@ public class G6CGMManager: TransmitterManager, CGMManager {
 
     override func stateDidUpdate() {
         shareManager.delegate.notify { delegate in
-            delegate?.cgmManagerDidUpdateState(self)
+            await delegate?.cgmManagerDidUpdateState(self)
             delegate?.cgmManager(self, didUpdate: self.cgmManagerStatus)
         }
     }
