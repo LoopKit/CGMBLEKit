@@ -2565,53 +2565,6 @@
         }
       }
     },
-    "Signal Problem" : {
-      "comment" : "Sensor signal problem",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signalstörung"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Problème de signal"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signal problem"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signaal probleem"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Problemă de semnal"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signalproblem"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "信号问题"
-          }
-        }
-      }
-    },
     "Status" : {
       "comment" : "Title describing CGM calibration and battery state",
       "localizations" : {
@@ -2766,6 +2719,10 @@
           }
         }
       }
+    },
+    "Temporary Sensor Issue" : {
+      "comment" : "Sensor reports a temporary sensor issue (???)",
+      "localizations" : {}
     },
     "This transmitter is Anubis-modified and supports extended sensor sessions. Set how long a sensor lasts before it is considered expired." : {
       "comment" : "The footer text for the sensor life setting",

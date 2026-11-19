@@ -234,7 +234,7 @@ private extension CalibrationState.State {
             )
         case .questionMarks:
             return G5G6StatusHighlight(
-                localizedMessage: NSLocalizedString("Signal Problem", comment: "Sensor signal problem"),
+                localizedMessage: NSLocalizedString("Temporary Sensor Issue", comment: "Sensor reports a temporary sensor issue (???)"),
                 imageName: "questionmark.circle",
                 state: .warning
             )
